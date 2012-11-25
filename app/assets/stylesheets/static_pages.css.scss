@@ -1,3 +1,15 @@
 // Place all the styles related to the StaticPages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+static_pages.guides #background {
+-webkit-border-radius: 3px;
+-moz-border-radius: 3px;
+border-radius: 3px;
+-webkit-box-shadow: 0px 1px 3px #424641;
+-moz-box-shadow: 0px 1px 3px #424641;
+box-shadow: 0px 1px 3px #424641;
+background: url("/images//guides/main.jpg") no-repeat;
+height: 547px;
+width: 900px;
+margin-left: 20px;
+}

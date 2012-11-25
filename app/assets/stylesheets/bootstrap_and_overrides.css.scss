@@ -1,3 +1,86 @@
 @import "bootstrap";
-body { padding-top: 60px; }
+body { 
+  padding-top: 0px; 
+  background-color: #eee;
+}
+
+.icon-search {
+color: #fff;
+}
+/* NAVIGATION ELEMENTS (_navigation.html)*/
+.logo {
+margin: 10px 0px 6px;
+}
+
+.main-nav {
+margin: 20px 60px 0px;
+}
+
+navbar {
+color: #424656;
+}
+
+.navbar .nav > ul {
+}
+
+.navbar .nav > li > a {
+float: none;
+padding: 10px 10px 11px;
+line-height: 19px;
+color: #424641;
+text-decoration: none;
+font-weight: bold;
+text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.1);
+}
+
+.navbar-inner {
+min-height: 42px;
+padding-left: 20px;
+padding-right: 20px;
+
+background-color: #424656;
+background-image: -moz-linear-gradient(top, white, #F2F2F2);
+background-image: -webkit-gradient(linear, 0 0, 0 100%, from(white), to(#F2F2F2));
+background-image: -webkit-linear-gradient(top, white, #F2F2F2);
+background-image: -o-linear-gradient(top, white, #F2F2F2);
+background-image: linear-gradient(to bottom, white, #F2F2F2);
+background-repeat: repeat-x;
+filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFFFFFFF', endColorstr='#FFF2F2F2', GradientType=0);
+border: 1px solid #D4D4D4;
+-webkit-border-radius: 4px;
+-moz-border-radius: 4px;
+border-radius: 4px;
+-webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.065);
+-moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.065);
+box-shadow: 0 1px 4px rgba(0, 0, 0, 0.065);
+}
+
+.navbar .divider-vertical {
+height: 42px;
+width: 1px;
+margin: 0 9px;
+overflow: hidden;
+background-color: gainsboro;
+border-right: 1px solid white;
+}
+
+.carousel {
+margin-bottom: 20px;
+height: 500px;
+width: 900px;
+background-color: none;
+background: url("/images//homepage/main_elephants.jpg") no-repeat;
+-webkit-box-shadow: 0px 1px 3px #424641;
+-moz-box-shadow: 0px 1px 3px #424641;
+box-shadow: 0px 1px 3px #424641;
+margin-left: 20px;
+}
+
+.carousel-inner {
+}
+
+.carousel .item {
+}
+
+    
 @import "bootstrap-responsive";

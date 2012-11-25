@@ -1,6 +1,8 @@
 Railsapp::Application.routes.draw do
   get "static_pages/about"
-    
+    get "static_pages/discover"
+    get "static_pages/info_create"
+  
     get "static_pages/home"
     get "static_pages/help"
     

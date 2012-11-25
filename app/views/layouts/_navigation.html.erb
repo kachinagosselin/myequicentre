@@ -1,26 +1,51 @@
-<%= link_to "Railsapp", root_path, :class => 'brand' %>
-<ul class="nav">
+<div class='logo'>
+<%= link_to "MyRailsApp", root_path, :class => 'brand' %>
+</div>
+<div class='main-nav'>
+<ul class="nav pull-right">
+<li><form class="form-search">
+  <input type="text" class="input-large search-query" placeholder="search this site...">
+</form>
+</li>
+<li><%= link_to 'About', '/static_pages/about' %></li>
+<li class='divider-vertical'></li>
+<li><%= link_to 'Discover', '/static_pages/discover' %></li>
+<li class='divider-vertical'></li>
+<li><%= link_to 'Share', '/static_pages/info_create' %></li>
+<li class='divider-vertical'></li>
+<li><%= link_to 'Jobs', '/static_pages/jobs' %></li>
+<li class='divider-vertical'></li>
+  
   <% if user_signed_in? %>
-    <li>
-    <%= link_to 'Logout', destroy_user_session_path, :method=>'delete' %>        
-    </li>
-  <% else %>
-    <li>
-    <%= link_to 'Login', new_user_session_path %>  
-    </li>
-  <% end %>
-  <% if user_signed_in? %>
-    <li>
-    <%= link_to 'Edit account', edit_user_registration_path %>
-    </li>
-    <% if current_user.has_role? :admin %>
+  <li class='dropdown'>
+  <a class='dropdown-toggle' data-toggle='dropdown' href='#'> Hi Kachina
+  <b class='caret'></b>
+  </a>
+  <ul class='dropdown-menu'>
+      <% if current_user.has_role? :admin %>
       <li>
       <%= link_to 'Admin', users_path %>
       </li>
     <% end %>
+    <li>
+    <a href="/users/:id">Profile</a>
+    </li>
+    <li>
+    <%= link_to 'Edit account', edit_user_registration_path %>
+    </li>
+    <li>
+    <%= link_to 'Logout', destroy_user_session_path, :method=>'delete' %>        
+    </li>    
+  </ul>
+  </li>
   <% else %>
     <li>
     <%= link_to 'Sign up', new_user_registration_path %>
     </li>
+    <li>
+    <%= link_to 'Login', new_user_session_path %>  
+    </li>
+    <li class='divider-vertical'></li> 
   <% end %>
 </ul>
+</div>
