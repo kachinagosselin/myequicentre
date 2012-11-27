@@ -25384,3 +25384,39 @@ Compiled application.css  (19ms)  (pid 460)
   Rendered layouts/_messages.html.erb (0.1ms)
   Rendered layouts/_footer.html.erb (0.5ms)
 Completed 200 OK in 121ms (Views: 119.9ms | ActiveRecord: 0.5ms)
+Connecting to database specified by database.yml
+
+
+Started GET "/messages" for 127.0.0.1 at 2012-11-26 23:34:41 -0500
+Processing by MessagesController#index as HTML
+  [1m[36mMessage Load (0.6ms)[0m  [1mSELECT "messages".* FROM "messages" [0m
+  Rendered messages/index.html.erb within layouts/application (4.6ms)
+Compiled jquery.js  (4ms)  (pid 8078)
+Compiled jquery_ujs.js  (0ms)  (pid 8078)
+Compiled bootstrap-transition.js  (0ms)  (pid 8078)
+Compiled bootstrap-affix.js  (0ms)  (pid 8078)
+Compiled bootstrap-alert.js  (0ms)  (pid 8078)
+Compiled bootstrap-button.js  (0ms)  (pid 8078)
+Compiled bootstrap-carousel.js  (0ms)  (pid 8078)
+Compiled bootstrap-collapse.js  (0ms)  (pid 8078)
+Compiled bootstrap-dropdown.js  (0ms)  (pid 8078)
+Compiled bootstrap-modal.js  (0ms)  (pid 8078)
+Compiled bootstrap-scrollspy.js  (0ms)  (pid 8078)
+Compiled bootstrap-tab.js  (0ms)  (pid 8078)
+Compiled bootstrap-tooltip.js  (0ms)  (pid 8078)
+Compiled bootstrap-popover.js  (0ms)  (pid 8078)
+Compiled bootstrap-typeahead.js  (0ms)  (pid 8078)
+Compiled bootstrap.js  (173ms)  (pid 8078)
+Compiled home.js  (174ms)  (pid 8078)
+Compiled horses.js  (68ms)  (pid 8078)
+Compiled messages.js  (69ms)  (pid 8078)
+Compiled pages.js  (69ms)  (pid 8078)
+Compiled posts.js  (96ms)  (pid 8078)
+Compiled static_pages.js  (66ms)  (pid 8078)
+Compiled application.js  (870ms)  (pid 8078)
+  [1m[35mUser Load (0.6ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 3 LIMIT 1
+  [1m[36m (1.0ms)[0m  [1mSELECT COUNT(*) FROM "roles" INNER JOIN "users_roles" ON "roles"."id" = "users_roles"."role_id" WHERE "users_roles"."user_id" = 3 AND (((roles.name = 'admin') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)))[0m
+  Rendered layouts/_navigation.html.erb (110.3ms)
+  Rendered layouts/_messages.html.erb (0.9ms)
+  Rendered layouts/_footer.html.erb (2.1ms)
+Completed 200 OK in 1320ms (Views: 1284.7ms | ActiveRecord: 6.5ms)
