@@ -198,6 +198,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  bcrypt-ruby
   bootstrap-sass (>= 2.1.1.0)
   cancan (>= 1.6.8)
   capybara (>= 1.1.3)
