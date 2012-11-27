@@ -1,6 +1,5 @@
 <h1>Editing horse</h1>
-
 <%= render 'form' %>
 
-<%= link_to 'Show', @horse %> |
-<%= link_to 'Back', horses_path %>
+<%= link_to 'Show', user_horses_path(@user) %> |
+<%= link_to 'Back', user_horses_path(@user) %>

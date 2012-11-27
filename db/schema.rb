@@ -11,7 +11,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121127025839) do
+ActiveRecord::Schema.define(:version => 20121127165241) do
+
+  create_table "comments", :force => true do |t|
+    t.string   "commenter"
+    t.text     "body"
+    t.integer  "post_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "comments", ["post_id"], :name => "index_comments_on_post_id"
 
   create_table "horses", :force => true do |t|
     t.string   "name"
@@ -21,9 +31,12 @@ ActiveRecord::Schema.define(:version => 20121127025839) do
     t.decimal  "height"
     t.text     "text_description"
     t.decimal  "price"
+    t.integer  "user_id"
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
   end
+
+  add_index "horses", ["user_id"], :name => "index_horses_on_user_id"
 
   create_table "messages", :force => true do |t|
     t.string   "to_name"

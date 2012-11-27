@@ -7,11 +7,19 @@ Railsapp::Application.routes.draw do
     devise_for :users
   
     ## Object resources
-    resources :users
-    resources :horses
+    resources :users do
+        resources :horses
+        end
     resources :messages
-    resources :posts
-
+    
+    resources :posts do
+        resources :comments
+        end
+    
+    match 'horse' => 'horses#show', :via => :get
+    match 'horses' => 'horses#index', :via => :get
+    match 'users/:user_id/horses/new' => 'horses#create', :via => :get
+    
     get "static_pages/about"
     get "static_pages/discover"
     get "static_pages/info_create"

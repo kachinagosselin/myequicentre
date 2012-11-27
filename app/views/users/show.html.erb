@@ -1,3 +1,22 @@
+<!-- This is the user profile page. -->
 <h3>User</h3>
 <p>User: <%= @user.name %></p>
 <p>Email: <%= @user.email if @user.email %></p>
+
+<h2>Horses</h2>
+<% @user.horses.each do |horse| %>
+<p>
+  <tr>
+    <td><%= horse.name %></td>
+    <td><%= horse.breed %></td>
+    <td><%= horse.gender %></td>
+    <td><%= horse.age %></td>
+    <td><%= horse.height %></td>
+    <td><%= horse.text_description %></td>
+    <td><%= horse.price %></td>
+  </tr>
+  </p>
+<% end %>
+
+<%= link_to 'View Details', user_horses_path(@user) %>
+

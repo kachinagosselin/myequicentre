@@ -31,7 +31,7 @@
       </li>
     <% end %>
     <li>
-    <a href="/users/:id">Dashboard</a>
+    <%= link_to 'Dashboard', user_path(current_user) %>
     </li>
     <li>
     <%= link_to 'Edit account', edit_user_registration_path %>

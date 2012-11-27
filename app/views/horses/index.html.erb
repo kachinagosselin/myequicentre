@@ -13,8 +13,8 @@
     <th></th>
     <th></th>
   </tr>
-
-<% @horses.each do |horse| %>
+  <% @user = current_user %>
+<% @user.horses.each do |horse| %>
   <tr>
     <td><%= horse.name %></td>
     <td><%= horse.breed %></td>
@@ -23,13 +23,14 @@
     <td><%= horse.height %></td>
     <td><%= horse.text_description %></td>
     <td><%= horse.price %></td>
-    <td><%= link_to 'Show', horse %></td>
-    <td><%= link_to 'Edit', edit_horse_path(horse) %></td>
-    <td><%= link_to 'Destroy', horse, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= link_to 'Show', user_horse_path(@user, horse) %></td>
+    <td><%= link_to 'Edit', edit_user_horse_path(@user, horse) %></td>
+    <td><%= link_to 'Destroy', [horse.user, horse], method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New Horse', new_horse_path %>
+<%= link_to 'New Horse', new_user_horse_path %>
+<%= link_to 'Back', user_path(@user) %>

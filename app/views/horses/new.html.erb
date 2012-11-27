@@ -1,5 +1,8 @@
 <h1>New horse</h1>
 
+<!-- <%= @user = current_user %>
+<%= @horse = @user.horses.create %>
+-->
 <%= render 'form' %>
 
-<%= link_to 'Back', horses_path %>
+<%= link_to 'Back', user_horses_path(@user) %>
