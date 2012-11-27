@@ -28,3 +28,4 @@ gem "quiet_assets", ">= 1.0.1", :group => :development
 gem "heroku"
 gem 'thin'
 gem 'bcrypt-ruby'
+gem 'foreman'
