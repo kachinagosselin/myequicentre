@@ -1,5 +1,18 @@
 Railsapp::Application.routes.draw do
-  get "static_pages/about"
+    ## For the auth
+    authenticated :user do
+        root :to => 'home#welcome'
+    end
+    root :to => "home#index"
+    devise_for :users
+  
+    ## Object resources
+    resources :users
+    resources :horses
+    resources :messages
+    resources :posts
+
+    get "static_pages/about"
     get "static_pages/discover"
     get "static_pages/info_create"
   
@@ -16,13 +29,10 @@ Railsapp::Application.routes.draw do
     get "static_pages/team"
     get "static_pages/stories"
     get "static_pages/jobs"
-
-
-  authenticated :user do
-    root :to => 'home#index'
-  end
-  root :to => "home#index"
-  devise_for :users
-  resources :users
+    
+    get "static_pages/sample_horse_profile"
+    get "static_pages/sample_dashboard"
+    get "static_pages/sample_search"
+    get "static_pages/sample_create_form"
 
 end

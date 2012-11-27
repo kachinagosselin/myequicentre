@@ -13,10 +13,13 @@
 <li class='divider-vertical'></li>
 <li><%= link_to 'Share', '/static_pages/info_create' %></li>
 <li class='divider-vertical'></li>
-<li><%= link_to 'Jobs', '/static_pages/jobs' %></li>
+<li><%= link_to 'Blog', '/static_pages/blog' %></li>
 <li class='divider-vertical'></li>
   
   <% if user_signed_in? %>
+    <li><%= link_to 'Inbox', '/static_pages/inbox' %></li>
+<li class='divider-vertical'></li>
+
   <li class='dropdown'>
   <a class='dropdown-toggle' data-toggle='dropdown' href='#'> Hi Kachina
   <b class='caret'></b>
@@ -28,7 +31,7 @@
       </li>
     <% end %>
     <li>
-    <a href="/users/:id">Profile</a>
+    <a href="/users/:id">Dashboard</a>
     </li>
     <li>
     <%= link_to 'Edit account', edit_user_registration_path %>

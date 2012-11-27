@@ -11,10 +11,33 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121124185243) do
+ActiveRecord::Schema.define(:version => 20121127025839) do
 
-  create_table "pages", :force => true do |t|
+  create_table "horses", :force => true do |t|
+    t.string   "name"
+    t.string   "breed"
+    t.string   "gender"
+    t.integer  "age"
+    t.decimal  "height"
+    t.text     "text_description"
+    t.decimal  "price"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+  end
+
+  create_table "messages", :force => true do |t|
+    t.string   "to_name"
+    t.string   "from_name"
     t.string   "title"
+    t.text     "content"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "posts", :force => true do |t|
+    t.string   "name"
+    t.string   "title"
+    t.text     "content"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
