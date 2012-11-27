@@ -1,0 +1,35 @@
+<h1>Listing horses</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Breed</th>
+    <th>Gender</th>
+    <th>Age</th>
+    <th>Height</th>
+    <th>Text description</th>
+    <th>Price</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @horses.each do |horse| %>
+  <tr>
+    <td><%= horse.name %></td>
+    <td><%= horse.breed %></td>
+    <td><%= horse.gender %></td>
+    <td><%= horse.age %></td>
+    <td><%= horse.height %></td>
+    <td><%= horse.text_description %></td>
+    <td><%= horse.price %></td>
+    <td><%= link_to 'Show', horse %></td>
+    <td><%= link_to 'Edit', edit_horse_path(horse) %></td>
+    <td><%= link_to 'Destroy', horse, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Horse', new_horse_path %>

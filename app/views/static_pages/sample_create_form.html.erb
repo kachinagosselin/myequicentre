@@ -1,0 +1,85 @@
+<script src="js/jquery.js"></script>
+<script src="js/bootstrap-typeahead.js"></script>
+<script>
+  $(document).ready(function(){
+   var breeds = ['ALL BREEDS', 'Akhal-Teke', 'American Saddlebred', 'American Warmblood',
+    'Andalusian', 'Appaloosa', 'Arabian', 'Belgian Horse', 'Belgian Sporthorse', 
+    'Belgian Warmblood', 'Black Forest Horse', 'Canadian Horse', 'Canadian Sport Horse', 
+    'Canadian Warmblood', 'Caspian Horse', 'Champagne Horse', 'Chincoteague Pony', 
+    'Cleveland Bay', 'Clydesdale', 'Connemara', 'Czech Warmblood', 'Dales Pony', 
+    'Danish Warmblood', 'Dartmoor Pony', 'Draft', 'Dutch Warmblood', 'Fell Pony', 'Fjord', 
+    'Friesian', 'German Riding Pony', 'German Warmblood', 'Grade Horse', 'Gypsy Horse', 
+    'Hackney Horse', 'Hackney Pony', 'Haflinger', 'Hanoverian', 'Highland Pony', 'Holsteiner',
+    'Hungarian Warmblood', 'Icelandic Horse', 'International Sporthorse', 'Irish Cob', 
+    'Irish Draught', 'Irish Sport Horse', 'Kentucky Mountain', 'Lipizzan', 'Lusitano', 
+    'Miniature', 'Missouri Fox Trotter Horse', 'Missouri Fox Trotter Pony', 'Morab', 
+    'Morgan', 'Mountain Pleasure Horse', 'Mustang', 'National Show Horse', 'New Forest Pony',
+    'New Zealand Warmblood', 'Newfoundland Pony', 'Oldenburg', 'Other', 'Paint Horse', 
+    'Palomino Horse', 'Paso Fino', 'Percheron', 'Peruvian Paso', 'Pintabian', 'Pintaloosa', 
+    'Pinto', 'Pinto Paso', 'Pleasure Saddle Horse Registry', 'POA', 'Pony', 'Quarab', 
+    'Quarter Horse', 'Quarter Pony', 'Racking Horse', 'Rocky Mountain', 'Selle Francais', 
+    'Shetland Pony', 'Shire', 'Spanish Barb', 'Spanish Mustang', 'Standardbred', 'Suffolk', 
+    'Swedish Warmblood', 'Swiss Warmblood', 'Tennessee Walker', 'Thoroughbred', 'Trakehner', 
+    'Warmblood', 'Welsh Cob', 'Welsh Pony'];   
+    $('#horse_breed').typeahead({source: breeds});
+  });
+</script>
+<div id='content'>
+<div class='container'>
+<div class='row'>
+<div class='span8 offset2'>
+<div class='white-background-form'>
+<h4 class='span8 offset2'>List a Horse for Sale</h4>
+<form accept-charset="UTF-8" action="/experiences" class="form-horizontal framed" id="new_trip" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /><input name="authenticity_token" type="hidden" value="b13QiE4gzt2EGvcmcg62m4PajtVoWSertVtuHxJRFH4=" /></div>
+<div class='help-block'>
+<p>
+Instruction text here...
+</p>
+<p>
+Let's start with some basics about your horse:
+</p>
+</div>
+<input id="trip_user_id" name="trip[user_id]" type="hidden" value="13263" />
+
+<div class=" control-group"><label class="control-label">Horse Name:</label>
+<div class="controls"><input class="required" id="horse_name" maxlength="28" name="horse[name]" placeholder="" size="28" type="text" />
+</div></div>
+<div class=" control-group"><label class="control-label">Breed:</label>
+<div class="controls"><input class="required" id="horse_breed" name="horse[breed]" placeholder="" size="28" type="text" data-provide="typeahead"/>
+</div></div>
+<div class=" control-group"><label class="control-label">Gender:</label>
+<div class="controls">
+<select class="required" id="horse_gender" name="horse[gender]" placeholder="">
+<option value="select">Select Gender</option>
+<option value="mare">Mare</option>
+<option value="gelding">Gelding</option>
+<option value="stallion">Stallion</option>
+</select></div></div>
+
+
+<div class=" control-group"><label class="control-label">Age:</label>
+<div class="controls"><input class="required" id="horse_age" name="horse[age]" placeholder="" size="28" type="text" />
+</div></div>
+<div class=" control-group"><label class="control-label">Height:</label>
+<div class="controls"><input class="required" id="horse_height" name="horse[height]" placeholder="height in hands" size="28" type="text" />
+</div></div>
+<div class=" control-group"><label class="control-label">Description:</label>
+<div class="controls"><textarea class="required" cols="40" id="horse_description" maxlength="500" name="horse[description]" placeholder="Give a description of your horse (500 characters, max)" rows="8"></textarea>
+</div></div>
+<div class=" control-group"><label class="control-label">Price:</label>
+<div class="controls"><div class='input-prepend'>$</div><input class="required" id="trip_price" name="trip[price]" number="true" placeholder="(USD)" size="30" type="text" />
+</div></div>
+<div class=" control-group"><label class="control-label">Sale Status?</label>
+<div class="controls">
+<label class="radio inline" for="horse_for_sale"><input checked="checked" id="horse_for_sale" name="horse[for_sale]" type="radio" value="true" />For Sale</label>
+<label class="radio inline" for="horse_for_lease"><input id="horse_for_lease" name="horse[for_lease]" type="radio" value="false" /> For Lease</label>
+</div></div>
+<div>
+<input class="btn btn-primary" id="horse_submit" name="commit" type="button" value="Create Ad" />
+</div>
+</form>
+</div>
+</div>
+</div>
+</div>
+</div>
