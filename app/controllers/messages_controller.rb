@@ -13,22 +13,24 @@ class MessagesController < ApplicationController
   # GET /messages/1
   # GET /messages/1.json
   def show
-    @message = Message.find(params[:id])
+      @user = User.find(params[:user_id])
+      @message = @user.messages.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
-      format.json { render json: @message }
+      format.json { render json: user_message_path(@user, @message) }
     end
   end
 
   # GET /messages/new
   # GET /messages/new.json
   def new
-    @message = Message.new
+    @user = current_user
+    @message = @user.message.new
 
     respond_to do |format|
       format.html # new.html.erb
-      format.json { render json: @message }
+      format.json { render json: user_messages_path(@user) }
     end
   end
 

@@ -10,5 +10,9 @@ class User < ActiveRecord::Base
   attr_accessible :role_ids, :as => :admin
   attr_accessible :name, :email, :password, :password_confirmation, :remember_me
   
+  # For Inbox
+  has_many :messages, :dependent => :destroy
+    
+  #Horses
   has_many :horses, :dependent => :destroy
 end

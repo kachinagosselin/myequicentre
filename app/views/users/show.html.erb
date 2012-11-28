@@ -1,4 +1,10 @@
 <!-- This is the user profile page. -->
+<div class='white-background'>
+<div class="row-fluid">
+<div class="span4" id="profile-image">
+</div>
+<div class="span8">
+
 <h3>User</h3>
 <p>User: <%= @user.name %></p>
 <p>Email: <%= @user.email if @user.email %></p>
@@ -19,4 +25,7 @@
 <% end %>
 
 <%= link_to 'View Details', user_horses_path(@user) %>
+</div>
+</div>
+</div>
 

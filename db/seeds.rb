@@ -17,10 +17,11 @@ user = User.create! :name => 'First User', :email => 'user@example.com', :passwo
 puts 'New user created: ' << user.name
 user2 = User.create! :name => 'Second User', :email => 'user2@example.com', :password => 'please', :password_confirmation => 'please'
 puts 'New user created: ' << user2.name
-user.add_role :admin
-user2.add_role :VIP
 user3 = User.create! :name => 'Kachina Gosselin', :email => 'kachina@alum.mit.edu', :password => 'please', :password_confirmation => 'please'
 puts 'New user created: ' << user3.name
+user.add_role :admin
+user2.add_role :VIP
+user3.add_role :admin
 
 puts 'SETTING UP TEST HORSE OBJECTS'
 @user = User.find(3)

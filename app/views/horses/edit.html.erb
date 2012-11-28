@@ -1,4 +1,10 @@
+<p id="notice"><%= notice %></p>
 <h1>Editing horse</h1>
+
+<p> User: <%= current_user.name %> </p>
+
+<p> Horse: <%= current_user.horses.find(params[:id]).name %></p>
+
 <%= render 'form' %>
 
 <%= link_to 'Show', user_horses_path(@user) %> |

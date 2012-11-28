@@ -1,5 +1,7 @@
 class Message < ActiveRecord::Base
-  attr_accessible :content, :from_name, :title, :to_name
+    belongs_to :user
+    
+    attr_accessible :content, :from_name, :title, :to_name
     
     validates :content,  :presence => true,
     :length => { :minimum => 5 }

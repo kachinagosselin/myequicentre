@@ -11,5 +11,5 @@ class Horse < ActiveRecord::Base
     :length => { :minimum => 3 }
     validates :price, :presence => true
     validates :text_description, :presence => true,
-    :length => { :minimum => 20 }
+    :length => { :minimum => 2 }
 end

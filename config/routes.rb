@@ -1,7 +1,7 @@
 Railsapp::Application.routes.draw do
     ## For the auth
     authenticated :user do
-        root :to => 'home#welcome'
+        root :to => 'home#index'
     end
     root :to => "home#index"
     devise_for :users
@@ -9,17 +9,19 @@ Railsapp::Application.routes.draw do
     ## Object resources
     resources :users do
         resources :horses
+        resources :messages
         end
-    resources :messages
     
     resources :posts do
         resources :comments
         end
     
+    match  'horses' => redirect('horses#show')
     match 'horse' => 'horses#show', :via => :get
-    match 'horses' => 'horses#index', :via => :get
-    match 'users/:user_id/horses/new' => 'horses#create', :via => :get
+    ## match 'horses' => 'horses#index', :via => :get
+    ##match 'users/:user_id/horses/new' => 'horses#create', :via => :get
     
+    match 'messages' => 'messages#show', :via => [:get, :post]
     get "static_pages/about"
     get "static_pages/discover"
     get "static_pages/info_create"

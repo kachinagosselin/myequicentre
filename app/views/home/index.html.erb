@@ -2,8 +2,9 @@
 <script>
   $(document).ready(function(){
     $('.carousel').carousel({
-      interval: 9999000
+      interval: 5000
     });
+    $('.item').eq(Math.floor((Math.random() * $('.item').length))).addClass("active");
   });
 </script>
 <body>
@@ -13,25 +14,22 @@
 <div id="myCarousel" class="carousel slide">
   <!-- Carousel items -->
   <div class="carousel-inner">
-    <div class= "active item">
-    <%= image_tag("/images/single.jpg", :height => '500', :alt => "1")%>
-      <div class="carousel-caption">
-      <p>Caption text here 1</p>
-      </div>
-    </div>
+
     <% @users.each do |user| %>
+    <% user.horses.each do |horse| %>
     <div class="item">
 <div class='span7'>
 <div class='text-box'>
-<h1>Learn about Us</h1>
+<h1><%=link_to horse.name, user_horse_path(user, horse) %></h1>
 </div>
 </div>
-    <%= image_tag("/images/single.jpg", :height => '500', :alt => "2")%>
+    <%= image_tag("/images/single.jpg", :alt => "")%>
       <div class="carousel-caption">
-      <p>User: <%=link_to user.name, user %></p>
-      <a href="/" class="btn-large btn"> Sign Up (it's free)</a>
+      <p> <%= horse.text_description %></p>
+      <p><%=link_to 'view details', user_horse_path(user, horse) %></p>
       </div>
      </div>
+    <% end %>
     <% end %>
   </div>
   <!-- Carousel nav -->
@@ -72,11 +70,8 @@ congue aliquet. In mauris mauris, fermentum sit amet ullamcorper a, fermentum at
 Sed sit amet tellus lorem, id luctus dui.
 </h3>
 
-<h1>Home</h1>
-<h3> Here is a list of all the users on this site: </h3>
-<% @users.each do |user| %>
-  <p>User: <%=link_to user.name, user %></p>
-<% end %>
+      <a href="/" class="btn-large btn"> Sign Up (it's free)</a>
+
 </div>
 
 </div>

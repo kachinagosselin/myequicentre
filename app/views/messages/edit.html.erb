@@ -3,5 +3,5 @@
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @message %> |
-<%= link_to 'Back', messages_path %>
+<%= link_to 'Show', user_message_path(@user) %> |
+<%= link_to 'Back', user_messages_path(@user) %>

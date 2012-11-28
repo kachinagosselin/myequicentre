@@ -1,9 +1,7 @@
 <p id="notice"><%= notice %></p>
-
-<p>
-  <b>Name:</b>
-  <%= @horse.name %>
-</p>
+<div class='white-background'>
+<div class="row-fluid">
+<div class="span4" id="profile-image">
 
 <p>
   <b>Breed:</b>
@@ -24,8 +22,13 @@
   <b>Height:</b>
   <%= @horse.height %>
 </p>
+</div>
+<div class="span8">
 
 <p>
+  <b>Name:</b>
+  <%= @horse.name %>
+</p>
   <b>Text description:</b>
   <%= @horse.text_description %>
 </p>
@@ -38,3 +41,8 @@
 
 <%= link_to 'Edit', edit_user_horse_path(@user, @horse) %> |
 <%= link_to 'Back', user_horses_path(@user) %>
+</div>
+
+</div>
+</div>
+

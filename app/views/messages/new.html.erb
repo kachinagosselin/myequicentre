@@ -1,6 +1,7 @@
 <!-- This is where we create new messages or responses. -->
 <h1>New message</h1>
+<% @user = current_user %>
 
 <%= render 'form' %>
 
-<%= link_to 'Back', messages_path %>
+<%= link_to 'Back', user_messages_path(@user) %>

@@ -5,8 +5,11 @@ class CreateMessages < ActiveRecord::Migration
       t.string :from_name
       t.string :title
       t.text :content
-
+      t.references :user
+        
       t.timestamps
     end
+      
+      add_index :messages, :user_id
   end
 end
