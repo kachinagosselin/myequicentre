@@ -44226,3 +44226,1704 @@ Processing by UsersController#show as HTML
   Rendered layouts/_messages.html.erb (0.1ms)
   Rendered layouts/_footer.html.erb (0.5ms)
 Completed 200 OK in 60ms (Views: 33.8ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/users/3/messages" for 127.0.0.1 at 2012-11-28 15:26:51 -0500
+Processing by MessagesController#index as HTML
+  Parameters: {"user_id"=>"3"}
+  [1m[35mMessage Load (0.1ms)[0m  SELECT "messages".* FROM "messages" 
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 3 LIMIT 1[0m
+  [1m[35mMessage Load (0.1ms)[0m  SELECT "messages".* FROM "messages" WHERE "messages"."user_id" = 3
+  Rendered messages/index.html.erb within layouts/application (4.0ms)
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "roles" INNER JOIN "users_roles" ON "roles"."id" = "users_roles"."role_id" WHERE "users_roles"."user_id" = 3 AND (((roles.name = 'admin') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)))[0m
+  Rendered layouts/_navigation.html.erb (2.8ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+  Rendered layouts/_footer.html.erb (0.5ms)
+Completed 200 OK in 15ms (Views: 12.4ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/users/3/messages/new" for 127.0.0.1 at 2012-11-28 15:26:54 -0500
+Processing by MessagesController#new as HTML
+  Parameters: {"user_id"=>"3"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 3 LIMIT 1
+Completed 500 Internal Server Error in 2ms
+
+NoMethodError (undefined method `message' for #<User:0x007fd495549ec8>):
+  app/controllers/messages_controller.rb:29:in `new'
+
+
+  Rendered /Users/kachinagosselin/.rvm/gems/ruby-1.9.3-p194/gems/actionpack-3.2.9/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.2ms)
+  Rendered /Users/kachinagosselin/.rvm/gems/ruby-1.9.3-p194/gems/actionpack-3.2.9/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (0.8ms)
+  Rendered /Users/kachinagosselin/.rvm/gems/ruby-1.9.3-p194/gems/actionpack-3.2.9/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (7.8ms)
+
+
+Started GET "/users/3/messages" for 127.0.0.1 at 2012-11-28 15:28:00 -0500
+Processing by MessagesController#index as HTML
+  Parameters: {"user_id"=>"3"}
+  [1m[36mMessage Load (0.2ms)[0m  [1mSELECT "messages".* FROM "messages" [0m
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 3 LIMIT 1
+  [1m[36mMessage Load (0.1ms)[0m  [1mSELECT "messages".* FROM "messages" WHERE "messages"."user_id" = 3[0m
+  Rendered messages/index.html.erb within layouts/application (2.5ms)
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "roles" INNER JOIN "users_roles" ON "roles"."id" = "users_roles"."role_id" WHERE "users_roles"."user_id" = 3 AND (((roles.name = 'admin') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)))
+  Rendered layouts/_navigation.html.erb (5.7ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+  Rendered layouts/_footer.html.erb (0.5ms)
+Completed 200 OK in 15ms (Views: 12.9ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/static_pages/about" for 127.0.0.1 at 2012-11-28 15:28:02 -0500
+Processing by StaticPagesController#about as HTML
+  Rendered static_pages/about.html.erb within layouts/application (0.3ms)
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 3 LIMIT 1[0m
+  Rendered layouts/_navigation.html.erb (2.7ms)
+Completed 500 Internal Server Error in 7ms
+
+ActionController::RoutingError (No route matches {:controller=>"messages", :user_id=>nil}):
+  app/views/layouts/_navigation.html.erb:20:in `_app_views_layouts__navigation_html_erb___3167588825692691451_70275515071780'
+  app/views/layouts/application.html.erb:18:in `_app_views_layouts_application_html_erb___2268014786612927908_70275507579060'
+
+
+  Rendered /Users/kachinagosselin/.rvm/gems/ruby-1.9.3-p194/gems/actionpack-3.2.9/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (0.7ms)
+
+
+Started GET "/static_pages/about" for 127.0.0.1 at 2012-11-28 15:28:08 -0500
+Processing by StaticPagesController#about as HTML
+  Rendered static_pages/about.html.erb within layouts/application (0.0ms)
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 3 LIMIT 1
+  Rendered layouts/_navigation.html.erb (2.4ms)
+Completed 500 Internal Server Error in 6ms
+
+ActionController::RoutingError (No route matches {:controller=>"messages", :user_id=>nil}):
+  app/views/layouts/_navigation.html.erb:20:in `_app_views_layouts__navigation_html_erb___3167588825692691451_70275515071780'
+  app/views/layouts/application.html.erb:18:in `_app_views_layouts_application_html_erb___2268014786612927908_70275507579060'
+
+
+  Rendered /Users/kachinagosselin/.rvm/gems/ruby-1.9.3-p194/gems/actionpack-3.2.9/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (0.5ms)
+
+
+Started GET "/static_pages/about" for 127.0.0.1 at 2012-11-28 15:28:26 -0500
+Processing by StaticPagesController#about as HTML
+  Rendered static_pages/about.html.erb within layouts/application (0.0ms)
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 3 LIMIT 1[0m
+  [1m[35m (0.3ms)[0m  SELECT COUNT(*) FROM "roles" INNER JOIN "users_roles" ON "roles"."id" = "users_roles"."role_id" WHERE "users_roles"."user_id" = 3 AND (((roles.name = 'admin') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)))
+  Rendered layouts/_navigation.html.erb (8.9ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+  Rendered layouts/_footer.html.erb (0.6ms)
+Completed 200 OK in 15ms (Views: 14.5ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/users/3/messages" for 127.0.0.1 at 2012-11-28 15:28:28 -0500
+Processing by MessagesController#index as HTML
+  Parameters: {"user_id"=>"3"}
+  [1m[36mMessage Load (0.1ms)[0m  [1mSELECT "messages".* FROM "messages" [0m
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 3 LIMIT 1
+  [1m[36mMessage Load (0.1ms)[0m  [1mSELECT "messages".* FROM "messages" WHERE "messages"."user_id" = 3[0m
+  Rendered messages/index.html.erb within layouts/application (2.2ms)
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "roles" INNER JOIN "users_roles" ON "roles"."id" = "users_roles"."role_id" WHERE "users_roles"."user_id" = 3 AND (((roles.name = 'admin') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)))
+  Rendered layouts/_navigation.html.erb (3.7ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+  Rendered layouts/_footer.html.erb (0.5ms)
+Completed 200 OK in 12ms (Views: 10.4ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/static_pages/blog" for 127.0.0.1 at 2012-11-28 15:28:32 -0500
+
+ActionController::RoutingError (No route matches [GET] "/static_pages/blog"):
+  actionpack (3.2.9) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (3.2.9) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.9) lib/rails/rack/logger.rb:32:in `call_app'
+  railties (3.2.9) lib/rails/rack/logger.rb:16:in `block in call'
+  activesupport (3.2.9) lib/active_support/tagged_logging.rb:22:in `tagged'
+  railties (3.2.9) lib/rails/rack/logger.rb:16:in `call'
+  quiet_assets (1.0.1) lib/quiet_assets.rb:20:in `call_with_quiet_assets'
+  actionpack (3.2.9) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.1) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.1) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.9) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.1) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.9) lib/action_dispatch/middleware/static.rb:62:in `call'
+  railties (3.2.9) lib/rails/engine.rb:479:in `call'
+  railties (3.2.9) lib/rails/application.rb:223:in `call'
+  rack (1.4.1) lib/rack/content_length.rb:14:in `call'
+  railties (3.2.9) lib/rails/rack/log_tailer.rb:17:in `call'
+  thin (1.5.0) lib/thin/connection.rb:81:in `block in pre_process'
+  thin (1.5.0) lib/thin/connection.rb:79:in `catch'
+  thin (1.5.0) lib/thin/connection.rb:79:in `pre_process'
+  thin (1.5.0) lib/thin/connection.rb:54:in `process'
+  thin (1.5.0) lib/thin/connection.rb:39:in `receive_data'
+  eventmachine (1.0.0) lib/eventmachine.rb:187:in `run_machine'
+  eventmachine (1.0.0) lib/eventmachine.rb:187:in `run'
+  thin (1.5.0) lib/thin/backends/base.rb:63:in `start'
+  thin (1.5.0) lib/thin/server.rb:159:in `start'
+  rack (1.4.1) lib/rack/handler/thin.rb:13:in `run'
+  rack (1.4.1) lib/rack/server.rb:265:in `start'
+  railties (3.2.9) lib/rails/commands/server.rb:70:in `start'
+  railties (3.2.9) lib/rails/commands.rb:55:in `block in <top (required)>'
+  railties (3.2.9) lib/rails/commands.rb:50:in `tap'
+  railties (3.2.9) lib/rails/commands.rb:50:in `<top (required)>'
+  script/rails:6:in `require'
+  script/rails:6:in `<main>'
+
+
+  Rendered /Users/kachinagosselin/.rvm/gems/ruby-1.9.3-p194/gems/actionpack-3.2.9/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (0.5ms)
+
+
+Started GET "/users/3/messages" for 127.0.0.1 at 2012-11-28 15:28:40 -0500
+Processing by MessagesController#index as HTML
+  Parameters: {"user_id"=>"3"}
+  [1m[36mMessage Load (0.2ms)[0m  [1mSELECT "messages".* FROM "messages" [0m
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 3 LIMIT 1
+  [1m[36mMessage Load (0.1ms)[0m  [1mSELECT "messages".* FROM "messages" WHERE "messages"."user_id" = 3[0m
+  Rendered messages/index.html.erb within layouts/application (2.2ms)
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "roles" INNER JOIN "users_roles" ON "roles"."id" = "users_roles"."role_id" WHERE "users_roles"."user_id" = 3 AND (((roles.name = 'admin') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)))
+  Rendered layouts/_navigation.html.erb (3.5ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+  Rendered layouts/_footer.html.erb (0.6ms)
+Completed 200 OK in 12ms (Views: 10.1ms | ActiveRecord: 0.6ms)
+Connecting to database specified by database.yml
+
+
+Started GET "/static_pages/about" for 127.0.0.1 at 2012-11-28 15:30:31 -0500
+Processing by StaticPagesController#about as HTML
+  Rendered static_pages/about.html.erb within layouts/application (0.1ms)
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 3 LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "roles" INNER JOIN "users_roles" ON "roles"."id" = "users_roles"."role_id" WHERE "users_roles"."user_id" = 3 AND (((roles.name = 'admin') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)))
+  Rendered layouts/_navigation.html.erb (66.6ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+  Rendered layouts/_footer.html.erb (1.0ms)
+Completed 200 OK in 76ms (Views: 73.7ms | ActiveRecord: 1.4ms)
+
+
+Started GET "/inbox" for 127.0.0.1 at 2012-11-28 15:30:33 -0500
+
+
+Started GET "/inbox" for 127.0.0.1 at 2012-11-28 15:30:34 -0500
+
+
+Started GET "/" for 127.0.0.1 at 2012-11-28 15:30:56 -0500
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 3 LIMIT 1[0m
+Processing by HomeController#index as HTML
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" 
+  [1m[36mHorse Load (0.2ms)[0m  [1mSELECT "horses".* FROM "horses" WHERE "horses"."user_id" = 1[0m
+  [1m[35mHorse Load (0.2ms)[0m  SELECT "horses".* FROM "horses" WHERE "horses"."user_id" = 2
+  [1m[36mHorse Load (0.3ms)[0m  [1mSELECT "horses".* FROM "horses" WHERE "horses"."user_id" = 3[0m
+  Rendered home/index.html.erb within layouts/application (27.9ms)
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "roles" INNER JOIN "users_roles" ON "roles"."id" = "users_roles"."role_id" WHERE "users_roles"."user_id" = 3 AND (((roles.name = 'admin') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)))
+  Rendered layouts/_navigation.html.erb (6.2ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+  Rendered layouts/_footer.html.erb (0.9ms)
+Completed 200 OK in 44ms (Views: 40.9ms | ActiveRecord: 1.6ms)
+
+
+Started GET "/js/bootstrap.min.js" for 127.0.0.1 at 2012-11-28 15:30:56 -0500
+
+ActionController::RoutingError (No route matches [GET] "/js/bootstrap.min.js"):
+  actionpack (3.2.9) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (3.2.9) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.9) lib/rails/rack/logger.rb:32:in `call_app'
+  railties (3.2.9) lib/rails/rack/logger.rb:16:in `block in call'
+  activesupport (3.2.9) lib/active_support/tagged_logging.rb:22:in `tagged'
+  railties (3.2.9) lib/rails/rack/logger.rb:16:in `call'
+  quiet_assets (1.0.1) lib/quiet_assets.rb:20:in `call_with_quiet_assets'
+  actionpack (3.2.9) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.1) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.1) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.9) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.1) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.9) lib/action_dispatch/middleware/static.rb:62:in `call'
+  railties (3.2.9) lib/rails/engine.rb:479:in `call'
+  railties (3.2.9) lib/rails/application.rb:223:in `call'
+  rack (1.4.1) lib/rack/content_length.rb:14:in `call'
+  railties (3.2.9) lib/rails/rack/log_tailer.rb:17:in `call'
+  thin (1.5.0) lib/thin/connection.rb:81:in `block in pre_process'
+  thin (1.5.0) lib/thin/connection.rb:79:in `catch'
+  thin (1.5.0) lib/thin/connection.rb:79:in `pre_process'
+  thin (1.5.0) lib/thin/connection.rb:54:in `process'
+  thin (1.5.0) lib/thin/connection.rb:39:in `receive_data'
+  eventmachine (1.0.0) lib/eventmachine.rb:187:in `run_machine'
+  eventmachine (1.0.0) lib/eventmachine.rb:187:in `run'
+  thin (1.5.0) lib/thin/backends/base.rb:63:in `start'
+  thin (1.5.0) lib/thin/server.rb:159:in `start'
+  rack (1.4.1) lib/rack/handler/thin.rb:13:in `run'
+  rack (1.4.1) lib/rack/server.rb:265:in `start'
+  railties (3.2.9) lib/rails/commands/server.rb:70:in `start'
+  railties (3.2.9) lib/rails/commands.rb:55:in `block in <top (required)>'
+  railties (3.2.9) lib/rails/commands.rb:50:in `tap'
+  railties (3.2.9) lib/rails/commands.rb:50:in `<top (required)>'
+  script/rails:6:in `require'
+  script/rails:6:in `<main>'
+
+
+  Rendered /Users/kachinagosselin/.rvm/gems/ruby-1.9.3-p194/gems/actionpack-3.2.9/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (1.0ms)
+
+
+Started GET "/inbox" for 127.0.0.1 at 2012-11-28 15:30:57 -0500
+
+
+Started GET "/inbox" for 127.0.0.1 at 2012-11-28 15:30:58 -0500
+
+
+Started GET "/inbox" for 127.0.0.1 at 2012-11-28 15:30:59 -0500
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+
+
+Started GET "/" for 127.0.0.1 at 2012-11-28 15:32:24 -0500
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 3 LIMIT 1[0m
+Processing by HomeController#index as HTML
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" 
+  [1m[36mHorse Load (0.1ms)[0m  [1mSELECT "horses".* FROM "horses" WHERE "horses"."user_id" = 1[0m
+  [1m[35mHorse Load (0.1ms)[0m  SELECT "horses".* FROM "horses" WHERE "horses"."user_id" = 2
+  [1m[36mHorse Load (0.1ms)[0m  [1mSELECT "horses".* FROM "horses" WHERE "horses"."user_id" = 3[0m
+  Rendered home/index.html.erb within layouts/application (21.6ms)
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "roles" INNER JOIN "users_roles" ON "roles"."id" = "users_roles"."role_id" WHERE "users_roles"."user_id" = 3 AND (((roles.name = 'admin') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)))
+  Rendered layouts/_navigation.html.erb (41.8ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+  Rendered layouts/_footer.html.erb (0.5ms)
+Completed 200 OK in 70ms (Views: 67.7ms | ActiveRecord: 1.4ms)
+
+
+Started GET "/js/bootstrap.min.js" for 127.0.0.1 at 2012-11-28 15:32:24 -0500
+
+ActionController::RoutingError (No route matches [GET] "/js/bootstrap.min.js"):
+  actionpack (3.2.9) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (3.2.9) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.9) lib/rails/rack/logger.rb:32:in `call_app'
+  railties (3.2.9) lib/rails/rack/logger.rb:16:in `block in call'
+  activesupport (3.2.9) lib/active_support/tagged_logging.rb:22:in `tagged'
+  railties (3.2.9) lib/rails/rack/logger.rb:16:in `call'
+  quiet_assets (1.0.1) lib/quiet_assets.rb:20:in `call_with_quiet_assets'
+  actionpack (3.2.9) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.1) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.1) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.9) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.1) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.9) lib/action_dispatch/middleware/static.rb:62:in `call'
+  railties (3.2.9) lib/rails/engine.rb:479:in `call'
+  railties (3.2.9) lib/rails/application.rb:223:in `call'
+  rack (1.4.1) lib/rack/content_length.rb:14:in `call'
+  railties (3.2.9) lib/rails/rack/log_tailer.rb:17:in `call'
+  thin (1.5.0) lib/thin/connection.rb:81:in `block in pre_process'
+  thin (1.5.0) lib/thin/connection.rb:79:in `catch'
+  thin (1.5.0) lib/thin/connection.rb:79:in `pre_process'
+  thin (1.5.0) lib/thin/connection.rb:54:in `process'
+  thin (1.5.0) lib/thin/connection.rb:39:in `receive_data'
+  eventmachine (1.0.0) lib/eventmachine.rb:187:in `run_machine'
+  eventmachine (1.0.0) lib/eventmachine.rb:187:in `run'
+  thin (1.5.0) lib/thin/backends/base.rb:63:in `start'
+  thin (1.5.0) lib/thin/server.rb:159:in `start'
+  rack (1.4.1) lib/rack/handler/thin.rb:13:in `run'
+  rack (1.4.1) lib/rack/server.rb:265:in `start'
+  railties (3.2.9) lib/rails/commands/server.rb:70:in `start'
+  railties (3.2.9) lib/rails/commands.rb:55:in `block in <top (required)>'
+  railties (3.2.9) lib/rails/commands.rb:50:in `tap'
+  railties (3.2.9) lib/rails/commands.rb:50:in `<top (required)>'
+  script/rails:6:in `require'
+  script/rails:6:in `<main>'
+
+
+  Rendered /Users/kachinagosselin/.rvm/gems/ruby-1.9.3-p194/gems/actionpack-3.2.9/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (0.6ms)
+
+
+Started GET "/inbox" for 127.0.0.1 at 2012-11-28 15:32:25 -0500
+
+
+Started GET "/inbox" for 127.0.0.1 at 2012-11-28 15:32:26 -0500
+
+
+Started GET "/" for 127.0.0.1 at 2012-11-28 15:32:38 -0500
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 3 LIMIT 1[0m
+Processing by HomeController#index as HTML
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" 
+  [1m[36mHorse Load (0.2ms)[0m  [1mSELECT "horses".* FROM "horses" WHERE "horses"."user_id" = 1[0m
+  [1m[35mHorse Load (0.1ms)[0m  SELECT "horses".* FROM "horses" WHERE "horses"."user_id" = 2
+  [1m[36mHorse Load (0.1ms)[0m  [1mSELECT "horses".* FROM "horses" WHERE "horses"."user_id" = 3[0m
+  Rendered home/index.html.erb within layouts/application (5.1ms)
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "roles" INNER JOIN "users_roles" ON "roles"."id" = "users_roles"."role_id" WHERE "users_roles"."user_id" = 3 AND (((roles.name = 'admin') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)))
+  Rendered layouts/_navigation.html.erb (5.0ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+  Rendered layouts/_footer.html.erb (0.5ms)
+Completed 200 OK in 17ms (Views: 15.6ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/js/bootstrap.min.js" for 127.0.0.1 at 2012-11-28 15:32:38 -0500
+
+ActionController::RoutingError (No route matches [GET] "/js/bootstrap.min.js"):
+  actionpack (3.2.9) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (3.2.9) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.9) lib/rails/rack/logger.rb:32:in `call_app'
+  railties (3.2.9) lib/rails/rack/logger.rb:16:in `block in call'
+  activesupport (3.2.9) lib/active_support/tagged_logging.rb:22:in `tagged'
+  railties (3.2.9) lib/rails/rack/logger.rb:16:in `call'
+  quiet_assets (1.0.1) lib/quiet_assets.rb:20:in `call_with_quiet_assets'
+  actionpack (3.2.9) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.1) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.1) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.9) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.1) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.9) lib/action_dispatch/middleware/static.rb:62:in `call'
+  railties (3.2.9) lib/rails/engine.rb:479:in `call'
+  railties (3.2.9) lib/rails/application.rb:223:in `call'
+  rack (1.4.1) lib/rack/content_length.rb:14:in `call'
+  railties (3.2.9) lib/rails/rack/log_tailer.rb:17:in `call'
+  thin (1.5.0) lib/thin/connection.rb:81:in `block in pre_process'
+  thin (1.5.0) lib/thin/connection.rb:79:in `catch'
+  thin (1.5.0) lib/thin/connection.rb:79:in `pre_process'
+  thin (1.5.0) lib/thin/connection.rb:54:in `process'
+  thin (1.5.0) lib/thin/connection.rb:39:in `receive_data'
+  eventmachine (1.0.0) lib/eventmachine.rb:187:in `run_machine'
+  eventmachine (1.0.0) lib/eventmachine.rb:187:in `run'
+  thin (1.5.0) lib/thin/backends/base.rb:63:in `start'
+  thin (1.5.0) lib/thin/server.rb:159:in `start'
+  rack (1.4.1) lib/rack/handler/thin.rb:13:in `run'
+  rack (1.4.1) lib/rack/server.rb:265:in `start'
+  railties (3.2.9) lib/rails/commands/server.rb:70:in `start'
+  railties (3.2.9) lib/rails/commands.rb:55:in `block in <top (required)>'
+  railties (3.2.9) lib/rails/commands.rb:50:in `tap'
+  railties (3.2.9) lib/rails/commands.rb:50:in `<top (required)>'
+  script/rails:6:in `require'
+  script/rails:6:in `<main>'
+
+
+  Rendered /Users/kachinagosselin/.rvm/gems/ruby-1.9.3-p194/gems/actionpack-3.2.9/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (0.9ms)
+
+
+Started GET "/inbox" for 127.0.0.1 at 2012-11-28 15:32:39 -0500
+
+
+Started GET "/inbox" for 127.0.0.1 at 2012-11-28 15:32:40 -0500
+
+
+Started GET "/" for 127.0.0.1 at 2012-11-28 15:33:05 -0500
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 3 LIMIT 1[0m
+Processing by HomeController#index as HTML
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" 
+  [1m[36mHorse Load (0.1ms)[0m  [1mSELECT "horses".* FROM "horses" WHERE "horses"."user_id" = 1[0m
+  [1m[35mHorse Load (0.1ms)[0m  SELECT "horses".* FROM "horses" WHERE "horses"."user_id" = 2
+  [1m[36mHorse Load (0.1ms)[0m  [1mSELECT "horses".* FROM "horses" WHERE "horses"."user_id" = 3[0m
+  Rendered home/index.html.erb within layouts/application (20.6ms)
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "roles" INNER JOIN "users_roles" ON "roles"."id" = "users_roles"."role_id" WHERE "users_roles"."user_id" = 3 AND (((roles.name = 'admin') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)))
+  Rendered layouts/_navigation.html.erb (11.6ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+  Rendered layouts/_footer.html.erb (0.6ms)
+Completed 200 OK in 39ms (Views: 36.9ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/js/bootstrap.min.js" for 127.0.0.1 at 2012-11-28 15:33:05 -0500
+
+ActionController::RoutingError (No route matches [GET] "/js/bootstrap.min.js"):
+  actionpack (3.2.9) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (3.2.9) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.9) lib/rails/rack/logger.rb:32:in `call_app'
+  railties (3.2.9) lib/rails/rack/logger.rb:16:in `block in call'
+  activesupport (3.2.9) lib/active_support/tagged_logging.rb:22:in `tagged'
+  railties (3.2.9) lib/rails/rack/logger.rb:16:in `call'
+  quiet_assets (1.0.1) lib/quiet_assets.rb:20:in `call_with_quiet_assets'
+  actionpack (3.2.9) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.1) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.1) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.9) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.1) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.9) lib/action_dispatch/middleware/static.rb:62:in `call'
+  railties (3.2.9) lib/rails/engine.rb:479:in `call'
+  railties (3.2.9) lib/rails/application.rb:223:in `call'
+  rack (1.4.1) lib/rack/content_length.rb:14:in `call'
+  railties (3.2.9) lib/rails/rack/log_tailer.rb:17:in `call'
+  thin (1.5.0) lib/thin/connection.rb:81:in `block in pre_process'
+  thin (1.5.0) lib/thin/connection.rb:79:in `catch'
+  thin (1.5.0) lib/thin/connection.rb:79:in `pre_process'
+  thin (1.5.0) lib/thin/connection.rb:54:in `process'
+  thin (1.5.0) lib/thin/connection.rb:39:in `receive_data'
+  eventmachine (1.0.0) lib/eventmachine.rb:187:in `run_machine'
+  eventmachine (1.0.0) lib/eventmachine.rb:187:in `run'
+  thin (1.5.0) lib/thin/backends/base.rb:63:in `start'
+  thin (1.5.0) lib/thin/server.rb:159:in `start'
+  rack (1.4.1) lib/rack/handler/thin.rb:13:in `run'
+  rack (1.4.1) lib/rack/server.rb:265:in `start'
+  railties (3.2.9) lib/rails/commands/server.rb:70:in `start'
+  railties (3.2.9) lib/rails/commands.rb:55:in `block in <top (required)>'
+  railties (3.2.9) lib/rails/commands.rb:50:in `tap'
+  railties (3.2.9) lib/rails/commands.rb:50:in `<top (required)>'
+  script/rails:6:in `require'
+  script/rails:6:in `<main>'
+
+
+  Rendered /Users/kachinagosselin/.rvm/gems/ruby-1.9.3-p194/gems/actionpack-3.2.9/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (0.8ms)
+
+
+Started GET "/users/3/messages" for 127.0.0.1 at 2012-11-28 15:33:06 -0500
+Processing by MessagesController#index as HTML
+  Parameters: {"user_id"=>"3"}
+  [1m[36mMessage Load (0.1ms)[0m  [1mSELECT "messages".* FROM "messages" [0m
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 3 LIMIT 1
+  [1m[36mMessage Load (0.3ms)[0m  [1mSELECT "messages".* FROM "messages" WHERE "messages"."user_id" = 3[0m
+  Rendered messages/index.html.erb within layouts/application (35.3ms)
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "roles" INNER JOIN "users_roles" ON "roles"."id" = "users_roles"."role_id" WHERE "users_roles"."user_id" = 3 AND (((roles.name = 'admin') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)))
+  Rendered layouts/_navigation.html.erb (4.0ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+  Rendered layouts/_footer.html.erb (0.6ms)
+Completed 200 OK in 49ms (Views: 45.3ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/users/3/messages/new" for 127.0.0.1 at 2012-11-28 15:33:28 -0500
+Processing by MessagesController#new as HTML
+  Parameters: {"user_id"=>"3"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 3 LIMIT 1[0m
+Completed 500 Internal Server Error in 3ms
+
+NoMethodError (undefined method `message' for #<User:0x007fd4921b1b10>):
+  app/controllers/messages_controller.rb:29:in `new'
+
+
+  Rendered /Users/kachinagosselin/.rvm/gems/ruby-1.9.3-p194/gems/actionpack-3.2.9/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.1ms)
+  Rendered /Users/kachinagosselin/.rvm/gems/ruby-1.9.3-p194/gems/actionpack-3.2.9/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.1ms)
+  Rendered /Users/kachinagosselin/.rvm/gems/ruby-1.9.3-p194/gems/actionpack-3.2.9/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (9.4ms)
+
+
+Started GET "/users/3/messages/new" for 127.0.0.1 at 2012-11-28 15:40:57 -0500
+
+SyntaxError (/Users/kachinagosselin/Documents/inspiredapp/app/controllers/messages_controller.rb:38: syntax error, unexpected ')', expecting ']'):
+  activesupport (3.2.9) lib/active_support/dependencies.rb:469:in `load'
+  activesupport (3.2.9) lib/active_support/dependencies.rb:469:in `block in load_file'
+  activesupport (3.2.9) lib/active_support/dependencies.rb:639:in `new_constants_in'
+  activesupport (3.2.9) lib/active_support/dependencies.rb:468:in `load_file'
+  activesupport (3.2.9) lib/active_support/dependencies.rb:353:in `require_or_load'
+  activesupport (3.2.9) lib/active_support/dependencies.rb:502:in `load_missing_constant'
+  activesupport (3.2.9) lib/active_support/dependencies.rb:192:in `block in const_missing'
+  activesupport (3.2.9) lib/active_support/dependencies.rb:190:in `each'
+  activesupport (3.2.9) lib/active_support/dependencies.rb:190:in `const_missing'
+  activesupport (3.2.9) lib/active_support/inflector/methods.rb:230:in `block in constantize'
+  activesupport (3.2.9) lib/active_support/inflector/methods.rb:229:in `each'
+  activesupport (3.2.9) lib/active_support/inflector/methods.rb:229:in `constantize'
+  activesupport (3.2.9) lib/active_support/dependencies.rb:554:in `get'
+  actionpack (3.2.9) lib/action_dispatch/routing/route_set.rb:69:in `controller_reference'
+  actionpack (3.2.9) lib/action_dispatch/routing/route_set.rb:54:in `controller'
+  actionpack (3.2.9) lib/action_dispatch/routing/route_set.rb:32:in `call'
+  journey (1.0.4) lib/journey/router.rb:68:in `block in call'
+  journey (1.0.4) lib/journey/router.rb:56:in `each'
+  journey (1.0.4) lib/journey/router.rb:56:in `call'
+  actionpack (3.2.9) lib/action_dispatch/routing/route_set.rb:601:in `call'
+  warden (1.2.1) lib/warden/manager.rb:35:in `block in call'
+  warden (1.2.1) lib/warden/manager.rb:34:in `catch'
+  warden (1.2.1) lib/warden/manager.rb:34:in `call'
+  actionpack (3.2.9) lib/action_dispatch/middleware/best_standards_support.rb:17:in `call'
+  rack (1.4.1) lib/rack/etag.rb:23:in `call'
+  rack (1.4.1) lib/rack/conditionalget.rb:25:in `call'
+  actionpack (3.2.9) lib/action_dispatch/middleware/head.rb:14:in `call'
+  actionpack (3.2.9) lib/action_dispatch/middleware/params_parser.rb:21:in `call'
+  actionpack (3.2.9) lib/action_dispatch/middleware/flash.rb:242:in `call'
+  rack (1.4.1) lib/rack/session/abstract/id.rb:205:in `context'
+  rack (1.4.1) lib/rack/session/abstract/id.rb:200:in `call'
+  actionpack (3.2.9) lib/action_dispatch/middleware/cookies.rb:341:in `call'
+  activerecord (3.2.9) lib/active_record/query_cache.rb:64:in `call'
+  activerecord (3.2.9) lib/active_record/connection_adapters/abstract/connection_pool.rb:479:in `call'
+  actionpack (3.2.9) lib/action_dispatch/middleware/callbacks.rb:28:in `block in call'
+  activesupport (3.2.9) lib/active_support/callbacks.rb:405:in `_run__3446917178584633195__call__3779611971385839243__callbacks'
+  activesupport (3.2.9) lib/active_support/callbacks.rb:405:in `__run_callback'
+  activesupport (3.2.9) lib/active_support/callbacks.rb:385:in `_run_call_callbacks'
+  activesupport (3.2.9) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (3.2.9) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (3.2.9) lib/action_dispatch/middleware/reloader.rb:65:in `call'
+  actionpack (3.2.9) lib/action_dispatch/middleware/remote_ip.rb:31:in `call'
+  actionpack (3.2.9) lib/action_dispatch/middleware/debug_exceptions.rb:16:in `call'
+  actionpack (3.2.9) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.9) lib/rails/rack/logger.rb:32:in `call_app'
+  railties (3.2.9) lib/rails/rack/logger.rb:16:in `block in call'
+  activesupport (3.2.9) lib/active_support/tagged_logging.rb:22:in `tagged'
+  railties (3.2.9) lib/rails/rack/logger.rb:16:in `call'
+  quiet_assets (1.0.1) lib/quiet_assets.rb:20:in `call_with_quiet_assets'
+  actionpack (3.2.9) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.1) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.1) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.9) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.1) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.9) lib/action_dispatch/middleware/static.rb:62:in `call'
+  railties (3.2.9) lib/rails/engine.rb:479:in `call'
+  railties (3.2.9) lib/rails/application.rb:223:in `call'
+  rack (1.4.1) lib/rack/content_length.rb:14:in `call'
+  railties (3.2.9) lib/rails/rack/log_tailer.rb:17:in `call'
+  thin (1.5.0) lib/thin/connection.rb:81:in `block in pre_process'
+  thin (1.5.0) lib/thin/connection.rb:79:in `catch'
+  thin (1.5.0) lib/thin/connection.rb:79:in `pre_process'
+  thin (1.5.0) lib/thin/connection.rb:54:in `process'
+  thin (1.5.0) lib/thin/connection.rb:39:in `receive_data'
+  eventmachine (1.0.0) lib/eventmachine.rb:187:in `run_machine'
+  eventmachine (1.0.0) lib/eventmachine.rb:187:in `run'
+  thin (1.5.0) lib/thin/backends/base.rb:63:in `start'
+  thin (1.5.0) lib/thin/server.rb:159:in `start'
+  rack (1.4.1) lib/rack/handler/thin.rb:13:in `run'
+  rack (1.4.1) lib/rack/server.rb:265:in `start'
+  railties (3.2.9) lib/rails/commands/server.rb:70:in `start'
+  railties (3.2.9) lib/rails/commands.rb:55:in `block in <top (required)>'
+  railties (3.2.9) lib/rails/commands.rb:50:in `tap'
+  railties (3.2.9) lib/rails/commands.rb:50:in `<top (required)>'
+  script/rails:6:in `require'
+  script/rails:6:in `<main>'
+
+
+  Rendered /Users/kachinagosselin/.rvm/gems/ruby-1.9.3-p194/gems/actionpack-3.2.9/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.6ms)
+  Rendered /Users/kachinagosselin/.rvm/gems/ruby-1.9.3-p194/gems/actionpack-3.2.9/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.1ms)
+  Rendered /Users/kachinagosselin/.rvm/gems/ruby-1.9.3-p194/gems/actionpack-3.2.9/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (10.2ms)
+
+
+Started GET "/users/3/messages/new" for 127.0.0.1 at 2012-11-28 15:41:40 -0500
+Processing by MessagesController#new as HTML
+  Parameters: {"user_id"=>"3"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", "3"]]
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 3 LIMIT 1[0m
+  Rendered messages/_form.html.erb (8.3ms)
+  Rendered messages/new.html.erb within layouts/application (12.8ms)
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "roles" INNER JOIN "users_roles" ON "roles"."id" = "users_roles"."role_id" WHERE "users_roles"."user_id" = 3 AND (((roles.name = 'admin') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)))
+  Rendered layouts/_navigation.html.erb (10.4ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+  Rendered layouts/_footer.html.erb (0.5ms)
+Completed 200 OK in 96ms (Views: 28.1ms | ActiveRecord: 1.8ms)
+
+
+Started GET "/users/3/messages/new" for 127.0.0.1 at 2012-11-28 15:42:24 -0500
+Processing by MessagesController#new as HTML
+  Parameters: {"user_id"=>"3"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", "3"]]
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 3 LIMIT 1
+  Rendered messages/_form.html.erb (6.0ms)
+  Rendered messages/new.html.erb within layouts/application (7.8ms)
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "roles" INNER JOIN "users_roles" ON "roles"."id" = "users_roles"."role_id" WHERE "users_roles"."user_id" = 3 AND (((roles.name = 'admin') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)))[0m
+  Rendered layouts/_navigation.html.erb (3.4ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+  Rendered layouts/_footer.html.erb (1.0ms)
+Completed 200 OK in 20ms (Views: 17.5ms | ActiveRecord: 0.5ms)
+
+
+Started POST "/messages" for 127.0.0.1 at 2012-11-28 15:42:38 -0500
+
+ActionController::RoutingError (No route matches [POST] "/messages"):
+  actionpack (3.2.9) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (3.2.9) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.9) lib/rails/rack/logger.rb:32:in `call_app'
+  railties (3.2.9) lib/rails/rack/logger.rb:16:in `block in call'
+  activesupport (3.2.9) lib/active_support/tagged_logging.rb:22:in `tagged'
+  railties (3.2.9) lib/rails/rack/logger.rb:16:in `call'
+  quiet_assets (1.0.1) lib/quiet_assets.rb:20:in `call_with_quiet_assets'
+  actionpack (3.2.9) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.1) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.1) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.9) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.1) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.9) lib/action_dispatch/middleware/static.rb:62:in `call'
+  railties (3.2.9) lib/rails/engine.rb:479:in `call'
+  railties (3.2.9) lib/rails/application.rb:223:in `call'
+  rack (1.4.1) lib/rack/content_length.rb:14:in `call'
+  railties (3.2.9) lib/rails/rack/log_tailer.rb:17:in `call'
+  thin (1.5.0) lib/thin/connection.rb:81:in `block in pre_process'
+  thin (1.5.0) lib/thin/connection.rb:79:in `catch'
+  thin (1.5.0) lib/thin/connection.rb:79:in `pre_process'
+  thin (1.5.0) lib/thin/connection.rb:54:in `process'
+  thin (1.5.0) lib/thin/connection.rb:39:in `receive_data'
+  eventmachine (1.0.0) lib/eventmachine.rb:187:in `run_machine'
+  eventmachine (1.0.0) lib/eventmachine.rb:187:in `run'
+  thin (1.5.0) lib/thin/backends/base.rb:63:in `start'
+  thin (1.5.0) lib/thin/server.rb:159:in `start'
+  rack (1.4.1) lib/rack/handler/thin.rb:13:in `run'
+  rack (1.4.1) lib/rack/server.rb:265:in `start'
+  railties (3.2.9) lib/rails/commands/server.rb:70:in `start'
+  railties (3.2.9) lib/rails/commands.rb:55:in `block in <top (required)>'
+  railties (3.2.9) lib/rails/commands.rb:50:in `tap'
+  railties (3.2.9) lib/rails/commands.rb:50:in `<top (required)>'
+  script/rails:6:in `require'
+  script/rails:6:in `<main>'
+
+
+  Rendered /Users/kachinagosselin/.rvm/gems/ruby-1.9.3-p194/gems/actionpack-3.2.9/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (1.0ms)
+
+
+Started GET "/users/3/messages/new" for 127.0.0.1 at 2012-11-28 15:44:53 -0500
+Processing by MessagesController#new as HTML
+  Parameters: {"user_id"=>"3"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", "3"]]
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 3 LIMIT 1[0m
+  Rendered messages/_form.html.erb (7.5ms)
+  Rendered messages/new.html.erb within layouts/application (9.4ms)
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "roles" INNER JOIN "users_roles" ON "roles"."id" = "users_roles"."role_id" WHERE "users_roles"."user_id" = 3 AND (((roles.name = 'admin') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)))
+  Rendered layouts/_navigation.html.erb (10.4ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+  Rendered layouts/_footer.html.erb (0.9ms)
+Completed 200 OK in 103ms (Views: 24.9ms | ActiveRecord: 1.9ms)
+
+
+Started POST "/messages" for 127.0.0.1 at 2012-11-28 15:45:05 -0500
+
+ActionController::RoutingError (No route matches [POST] "/messages"):
+  actionpack (3.2.9) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (3.2.9) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.9) lib/rails/rack/logger.rb:32:in `call_app'
+  railties (3.2.9) lib/rails/rack/logger.rb:16:in `block in call'
+  activesupport (3.2.9) lib/active_support/tagged_logging.rb:22:in `tagged'
+  railties (3.2.9) lib/rails/rack/logger.rb:16:in `call'
+  quiet_assets (1.0.1) lib/quiet_assets.rb:20:in `call_with_quiet_assets'
+  actionpack (3.2.9) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.1) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.1) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.9) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.1) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.9) lib/action_dispatch/middleware/static.rb:62:in `call'
+  railties (3.2.9) lib/rails/engine.rb:479:in `call'
+  railties (3.2.9) lib/rails/application.rb:223:in `call'
+  rack (1.4.1) lib/rack/content_length.rb:14:in `call'
+  railties (3.2.9) lib/rails/rack/log_tailer.rb:17:in `call'
+  thin (1.5.0) lib/thin/connection.rb:81:in `block in pre_process'
+  thin (1.5.0) lib/thin/connection.rb:79:in `catch'
+  thin (1.5.0) lib/thin/connection.rb:79:in `pre_process'
+  thin (1.5.0) lib/thin/connection.rb:54:in `process'
+  thin (1.5.0) lib/thin/connection.rb:39:in `receive_data'
+  eventmachine (1.0.0) lib/eventmachine.rb:187:in `run_machine'
+  eventmachine (1.0.0) lib/eventmachine.rb:187:in `run'
+  thin (1.5.0) lib/thin/backends/base.rb:63:in `start'
+  thin (1.5.0) lib/thin/server.rb:159:in `start'
+  rack (1.4.1) lib/rack/handler/thin.rb:13:in `run'
+  rack (1.4.1) lib/rack/server.rb:265:in `start'
+  railties (3.2.9) lib/rails/commands/server.rb:70:in `start'
+  railties (3.2.9) lib/rails/commands.rb:55:in `block in <top (required)>'
+  railties (3.2.9) lib/rails/commands.rb:50:in `tap'
+  railties (3.2.9) lib/rails/commands.rb:50:in `<top (required)>'
+  script/rails:6:in `require'
+  script/rails:6:in `<main>'
+
+
+  Rendered /Users/kachinagosselin/.rvm/gems/ruby-1.9.3-p194/gems/actionpack-3.2.9/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (0.8ms)
+
+
+Started POST "/messages" for 127.0.0.1 at 2012-11-28 15:45:55 -0500
+
+ActionController::RoutingError (No route matches [POST] "/messages"):
+  actionpack (3.2.9) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (3.2.9) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.9) lib/rails/rack/logger.rb:32:in `call_app'
+  railties (3.2.9) lib/rails/rack/logger.rb:16:in `block in call'
+  activesupport (3.2.9) lib/active_support/tagged_logging.rb:22:in `tagged'
+  railties (3.2.9) lib/rails/rack/logger.rb:16:in `call'
+  quiet_assets (1.0.1) lib/quiet_assets.rb:20:in `call_with_quiet_assets'
+  actionpack (3.2.9) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.1) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.1) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.9) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.1) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.9) lib/action_dispatch/middleware/static.rb:62:in `call'
+  railties (3.2.9) lib/rails/engine.rb:479:in `call'
+  railties (3.2.9) lib/rails/application.rb:223:in `call'
+  rack (1.4.1) lib/rack/content_length.rb:14:in `call'
+  railties (3.2.9) lib/rails/rack/log_tailer.rb:17:in `call'
+  thin (1.5.0) lib/thin/connection.rb:81:in `block in pre_process'
+  thin (1.5.0) lib/thin/connection.rb:79:in `catch'
+  thin (1.5.0) lib/thin/connection.rb:79:in `pre_process'
+  thin (1.5.0) lib/thin/connection.rb:54:in `process'
+  thin (1.5.0) lib/thin/connection.rb:39:in `receive_data'
+  eventmachine (1.0.0) lib/eventmachine.rb:187:in `run_machine'
+  eventmachine (1.0.0) lib/eventmachine.rb:187:in `run'
+  thin (1.5.0) lib/thin/backends/base.rb:63:in `start'
+  thin (1.5.0) lib/thin/server.rb:159:in `start'
+  rack (1.4.1) lib/rack/handler/thin.rb:13:in `run'
+  rack (1.4.1) lib/rack/server.rb:265:in `start'
+  railties (3.2.9) lib/rails/commands/server.rb:70:in `start'
+  railties (3.2.9) lib/rails/commands.rb:55:in `block in <top (required)>'
+  railties (3.2.9) lib/rails/commands.rb:50:in `tap'
+  railties (3.2.9) lib/rails/commands.rb:50:in `<top (required)>'
+  script/rails:6:in `require'
+  script/rails:6:in `<main>'
+
+
+  Rendered /Users/kachinagosselin/.rvm/gems/ruby-1.9.3-p194/gems/actionpack-3.2.9/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (0.5ms)
+
+
+Started POST "/messages" for 127.0.0.1 at 2012-11-28 15:46:23 -0500
+
+ActionController::RoutingError (No route matches [POST] "/messages"):
+  actionpack (3.2.9) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (3.2.9) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.9) lib/rails/rack/logger.rb:32:in `call_app'
+  railties (3.2.9) lib/rails/rack/logger.rb:16:in `block in call'
+  activesupport (3.2.9) lib/active_support/tagged_logging.rb:22:in `tagged'
+  railties (3.2.9) lib/rails/rack/logger.rb:16:in `call'
+  quiet_assets (1.0.1) lib/quiet_assets.rb:20:in `call_with_quiet_assets'
+  actionpack (3.2.9) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.1) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.1) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.9) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.1) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.9) lib/action_dispatch/middleware/static.rb:62:in `call'
+  railties (3.2.9) lib/rails/engine.rb:479:in `call'
+  railties (3.2.9) lib/rails/application.rb:223:in `call'
+  rack (1.4.1) lib/rack/content_length.rb:14:in `call'
+  railties (3.2.9) lib/rails/rack/log_tailer.rb:17:in `call'
+  thin (1.5.0) lib/thin/connection.rb:81:in `block in pre_process'
+  thin (1.5.0) lib/thin/connection.rb:79:in `catch'
+  thin (1.5.0) lib/thin/connection.rb:79:in `pre_process'
+  thin (1.5.0) lib/thin/connection.rb:54:in `process'
+  thin (1.5.0) lib/thin/connection.rb:39:in `receive_data'
+  eventmachine (1.0.0) lib/eventmachine.rb:187:in `run_machine'
+  eventmachine (1.0.0) lib/eventmachine.rb:187:in `run'
+  thin (1.5.0) lib/thin/backends/base.rb:63:in `start'
+  thin (1.5.0) lib/thin/server.rb:159:in `start'
+  rack (1.4.1) lib/rack/handler/thin.rb:13:in `run'
+  rack (1.4.1) lib/rack/server.rb:265:in `start'
+  railties (3.2.9) lib/rails/commands/server.rb:70:in `start'
+  railties (3.2.9) lib/rails/commands.rb:55:in `block in <top (required)>'
+  railties (3.2.9) lib/rails/commands.rb:50:in `tap'
+  railties (3.2.9) lib/rails/commands.rb:50:in `<top (required)>'
+  script/rails:6:in `require'
+  script/rails:6:in `<main>'
+
+
+  Rendered /Users/kachinagosselin/.rvm/gems/ruby-1.9.3-p194/gems/actionpack-3.2.9/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (0.5ms)
+
+
+Started GET "/users/3/messages" for 127.0.0.1 at 2012-11-28 15:47:15 -0500
+Processing by MessagesController#index as HTML
+  Parameters: {"user_id"=>"3"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", "3"]]
+  [1m[35mMessage Load (0.2ms)[0m  SELECT "messages".* FROM "messages" WHERE "messages"."user_id" = 3
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 3 LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "messages".* FROM "messages" WHERE "messages"."user_id" = 3
+  Rendered messages/index.html.erb within layouts/application (1.8ms)
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "roles" INNER JOIN "users_roles" ON "roles"."id" = "users_roles"."role_id" WHERE "users_roles"."user_id" = 3 AND (((roles.name = 'admin') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)))[0m
+  Rendered layouts/_navigation.html.erb (3.8ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+  Rendered layouts/_footer.html.erb (0.5ms)
+Completed 200 OK in 14ms (Views: 10.3ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/users/3/messages/new" for 127.0.0.1 at 2012-11-28 15:47:17 -0500
+Processing by MessagesController#new as HTML
+  Parameters: {"user_id"=>"3"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", "3"]]
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 3 LIMIT 1[0m
+  Rendered messages/_form.html.erb (9.3ms)
+  Rendered messages/new.html.erb within layouts/application (11.1ms)
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "roles" INNER JOIN "users_roles" ON "roles"."id" = "users_roles"."role_id" WHERE "users_roles"."user_id" = 3 AND (((roles.name = 'admin') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)))
+  Rendered layouts/_navigation.html.erb (3.1ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+  Rendered layouts/_footer.html.erb (0.5ms)
+Completed 200 OK in 21ms (Views: 18.6ms | ActiveRecord: 0.6ms)
+
+
+Started POST "/users/3/messages" for 127.0.0.1 at 2012-11-28 15:47:19 -0500
+Processing by MessagesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"8fI4E+NK6pCsdB8Agt7Lw6bdJz4BDkEe79rh2UKYUVw=", "message"=>{"to_name"=>"", "from_name"=>"", "title"=>"", "content"=>""}, "commit"=>"Create Message", "user_id"=>"3"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", "3"]]
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+Completed 500 Internal Server Error in 14ms
+
+NameError (undefined local variable or method `forat' for #<MessagesController:0x007fd496239de0>):
+  app/controllers/messages_controller.rb:48:in `block in create'
+  app/controllers/messages_controller.rb:40:in `create'
+
+
+  Rendered /Users/kachinagosselin/.rvm/gems/ruby-1.9.3-p194/gems/actionpack-3.2.9/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.4ms)
+  Rendered /Users/kachinagosselin/.rvm/gems/ruby-1.9.3-p194/gems/actionpack-3.2.9/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (35.5ms)
+  Rendered /Users/kachinagosselin/.rvm/gems/ruby-1.9.3-p194/gems/actionpack-3.2.9/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (45.3ms)
+
+
+Started POST "/users/3/messages" for 127.0.0.1 at 2012-11-28 15:47:38 -0500
+Processing by MessagesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"8fI4E+NK6pCsdB8Agt7Lw6bdJz4BDkEe79rh2UKYUVw=", "message"=>{"to_name"=>"", "from_name"=>"", "title"=>"", "content"=>""}, "commit"=>"Create Message", "user_id"=>"3"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", "3"]]
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  rollback transaction
+Redirected to http://0.0.0.0:3000/users/3/messages
+Completed 302 Found in 49ms (ActiveRecord: 1.2ms)
+
+
+Started GET "/users/3/messages" for 127.0.0.1 at 2012-11-28 15:47:38 -0500
+Processing by MessagesController#index as HTML
+  Parameters: {"user_id"=>"3"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", "3"]]
+  [1m[35mMessage Load (0.2ms)[0m  SELECT "messages".* FROM "messages" WHERE "messages"."user_id" = 3
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 3 LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "messages".* FROM "messages" WHERE "messages"."user_id" = 3
+  Rendered messages/index.html.erb within layouts/application (2.2ms)
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "roles" INNER JOIN "users_roles" ON "roles"."id" = "users_roles"."role_id" WHERE "users_roles"."user_id" = 3 AND (((roles.name = 'admin') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)))[0m
+  Rendered layouts/_navigation.html.erb (41.3ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+  Rendered layouts/_footer.html.erb (0.5ms)
+Completed 200 OK in 52ms (Views: 48.2ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/users/3/messages/new" for 127.0.0.1 at 2012-11-28 15:47:40 -0500
+Processing by MessagesController#new as HTML
+  Parameters: {"user_id"=>"3"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", "3"]]
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 3 LIMIT 1[0m
+  Rendered messages/_form.html.erb (7.4ms)
+  Rendered messages/new.html.erb within layouts/application (9.0ms)
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "roles" INNER JOIN "users_roles" ON "roles"."id" = "users_roles"."role_id" WHERE "users_roles"."user_id" = 3 AND (((roles.name = 'admin') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)))
+  Rendered layouts/_navigation.html.erb (3.0ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+  Rendered layouts/_footer.html.erb (0.5ms)
+Completed 200 OK in 19ms (Views: 16.3ms | ActiveRecord: 0.5ms)
+
+
+Started POST "/users/3/messages" for 127.0.0.1 at 2012-11-28 15:47:51 -0500
+Processing by MessagesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"8fI4E+NK6pCsdB8Agt7Lw6bdJz4BDkEe79rh2UKYUVw=", "message"=>{"to_name"=>"Test User ", "from_name"=>"Kachina Gosselin", "title"=>"Title Test", "content"=>"rawr!"}, "commit"=>"Create Message", "user_id"=>"3"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", "3"]]
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.7ms)[0m  [1mINSERT INTO "messages" ("content", "created_at", "from_name", "title", "to_name", "updated_at", "user_id") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["content", "rawr!"], ["created_at", Wed, 28 Nov 2012 20:47:51 UTC +00:00], ["from_name", "Kachina Gosselin"], ["title", "Title Test"], ["to_name", "Test User "], ["updated_at", Wed, 28 Nov 2012 20:47:51 UTC +00:00], ["user_id", 3]]
+  [1m[35m (7.3ms)[0m  commit transaction
+Redirected to http://0.0.0.0:3000/users/3/messages/1
+Completed 302 Found in 16ms (ActiveRecord: 8.3ms)
+
+
+Started GET "/users/3/messages/1" for 127.0.0.1 at 2012-11-28 15:47:51 -0500
+Processing by MessagesController#show as HTML
+  Parameters: {"user_id"=>"3", "id"=>"1"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", "3"]]
+  [1m[35mMessage Load (0.3ms)[0m  SELECT "messages".* FROM "messages" WHERE "messages"."user_id" = 3 AND "messages"."id" = ? LIMIT 1  [["id", "1"]]
+  Rendered messages/show.html.erb within layouts/application (1.3ms)
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 3 LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "roles" INNER JOIN "users_roles" ON "roles"."id" = "users_roles"."role_id" WHERE "users_roles"."user_id" = 3 AND (((roles.name = 'admin') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)))
+  Rendered layouts/_navigation.html.erb (5.3ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+  Rendered layouts/_footer.html.erb (0.6ms)
+Completed 200 OK in 18ms (Views: 12.5ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/users/3/messages" for 127.0.0.1 at 2012-11-28 15:47:54 -0500
+Processing by MessagesController#index as HTML
+  Parameters: {"user_id"=>"3"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", "3"]]
+  [1m[35mMessage Load (0.3ms)[0m  SELECT "messages".* FROM "messages" WHERE "messages"."user_id" = 3
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 3 LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "messages".* FROM "messages" WHERE "messages"."user_id" = 3
+  Rendered messages/index.html.erb within layouts/application (2.9ms)
+Completed 500 Internal Server Error in 8ms
+
+ActionController::RoutingError (No route matches {:action=>"show", :controller=>"messages", :user_id=>#<User id: 3, email: "kachina@alum.mit.edu", encrypted_password: "$2a$10$GPofalIEj/Cw4TErqQOlF.9u.hW1u6Kcl8x/X2Inm4nt...", reset_password_token: nil, reset_password_sent_at: nil, remember_created_at: nil, sign_in_count: 1, current_sign_in_at: "2012-11-28 20:19:42", last_sign_in_at: "2012-11-28 20:19:42", current_sign_in_ip: "127.0.0.1", last_sign_in_ip: "127.0.0.1", created_at: "2012-11-28 20:19:19", updated_at: "2012-11-28 20:19:42", name: "Kachina Gosselin">}):
+  app/views/messages/index.html.erb:23:in `block in _app_views_messages_index_html_erb__452052872444998748_70275508205880'
+  app/views/messages/index.html.erb:17:in `_app_views_messages_index_html_erb__452052872444998748_70275508205880'
+  app/controllers/messages_controller.rb:8:in `index'
+
+
+  Rendered /Users/kachinagosselin/.rvm/gems/ruby-1.9.3-p194/gems/actionpack-3.2.9/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (0.6ms)
+
+
+Started GET "/users/3/messages" for 127.0.0.1 at 2012-11-28 15:48:06 -0500
+Processing by MessagesController#index as HTML
+  Parameters: {"user_id"=>"3"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", "3"]]
+  [1m[35mMessage Load (0.2ms)[0m  SELECT "messages".* FROM "messages" WHERE "messages"."user_id" = 3
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 3 LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "messages".* FROM "messages" WHERE "messages"."user_id" = 3
+  Rendered messages/index.html.erb within layouts/application (3.3ms)
+Completed 500 Internal Server Error in 8ms
+
+ActionController::RoutingError (No route matches {:action=>"show", :controller=>"messages", :user_id=>#<User id: 3, email: "kachina@alum.mit.edu", encrypted_password: "$2a$10$GPofalIEj/Cw4TErqQOlF.9u.hW1u6Kcl8x/X2Inm4nt...", reset_password_token: nil, reset_password_sent_at: nil, remember_created_at: nil, sign_in_count: 1, current_sign_in_at: "2012-11-28 20:19:42", last_sign_in_at: "2012-11-28 20:19:42", current_sign_in_ip: "127.0.0.1", last_sign_in_ip: "127.0.0.1", created_at: "2012-11-28 20:19:19", updated_at: "2012-11-28 20:19:42", name: "Kachina Gosselin">}):
+  app/views/messages/index.html.erb:23:in `block in _app_views_messages_index_html_erb__452052872444998748_70275508205880'
+  app/views/messages/index.html.erb:17:in `_app_views_messages_index_html_erb__452052872444998748_70275508205880'
+  app/controllers/messages_controller.rb:8:in `index'
+
+
+  Rendered /Users/kachinagosselin/.rvm/gems/ruby-1.9.3-p194/gems/actionpack-3.2.9/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (0.6ms)
+
+
+Started GET "/static_pages/about" for 127.0.0.1 at 2012-11-28 15:48:35 -0500
+Processing by StaticPagesController#about as HTML
+  Rendered static_pages/about.html.erb within layouts/application (0.1ms)
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 3 LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "roles" INNER JOIN "users_roles" ON "roles"."id" = "users_roles"."role_id" WHERE "users_roles"."user_id" = 3 AND (((roles.name = 'admin') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)))
+  Rendered layouts/_navigation.html.erb (4.4ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+  Rendered layouts/_footer.html.erb (0.5ms)
+Completed 200 OK in 11ms (Views: 10.4ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/users/3/messages" for 127.0.0.1 at 2012-11-28 15:48:37 -0500
+Processing by MessagesController#index as HTML
+  Parameters: {"user_id"=>"3"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", "3"]]
+  [1m[35mMessage Load (0.2ms)[0m  SELECT "messages".* FROM "messages" WHERE "messages"."user_id" = 3
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 3 LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "messages".* FROM "messages" WHERE "messages"."user_id" = 3
+  Rendered messages/index.html.erb within layouts/application (3.7ms)
+Completed 500 Internal Server Error in 8ms
+
+ActionController::RoutingError (No route matches {:action=>"show", :controller=>"messages", :user_id=>#<User id: 3, email: "kachina@alum.mit.edu", encrypted_password: "$2a$10$GPofalIEj/Cw4TErqQOlF.9u.hW1u6Kcl8x/X2Inm4nt...", reset_password_token: nil, reset_password_sent_at: nil, remember_created_at: nil, sign_in_count: 1, current_sign_in_at: "2012-11-28 20:19:42", last_sign_in_at: "2012-11-28 20:19:42", current_sign_in_ip: "127.0.0.1", last_sign_in_ip: "127.0.0.1", created_at: "2012-11-28 20:19:19", updated_at: "2012-11-28 20:19:42", name: "Kachina Gosselin">}):
+  app/views/messages/index.html.erb:23:in `block in _app_views_messages_index_html_erb__452052872444998748_70275508205880'
+  app/views/messages/index.html.erb:17:in `_app_views_messages_index_html_erb__452052872444998748_70275508205880'
+  app/controllers/messages_controller.rb:8:in `index'
+
+
+  Rendered /Users/kachinagosselin/.rvm/gems/ruby-1.9.3-p194/gems/actionpack-3.2.9/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (0.5ms)
+
+
+Started GET "/users/3/messages/1" for 127.0.0.1 at 2012-11-28 15:49:23 -0500
+Processing by MessagesController#show as HTML
+  Parameters: {"user_id"=>"3", "id"=>"1"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", "3"]]
+  [1m[35mMessage Load (0.1ms)[0m  SELECT "messages".* FROM "messages" WHERE "messages"."user_id" = 3 AND "messages"."id" = ? LIMIT 1  [["id", "1"]]
+  Rendered messages/show.html.erb within layouts/application (1.3ms)
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 3 LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "roles" INNER JOIN "users_roles" ON "roles"."id" = "users_roles"."role_id" WHERE "users_roles"."user_id" = 3 AND (((roles.name = 'admin') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)))
+  Rendered layouts/_navigation.html.erb (4.5ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+  Rendered layouts/_footer.html.erb (0.6ms)
+Completed 200 OK in 14ms (Views: 11.6ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/users/3/messages/1/edit" for 127.0.0.1 at 2012-11-28 15:49:26 -0500
+Processing by MessagesController#edit as HTML
+  Parameters: {"user_id"=>"3", "id"=>"1"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", "3"]]
+  [1m[35mMessage Load (0.1ms)[0m  SELECT "messages".* FROM "messages" WHERE "messages"."user_id" = 3 AND "messages"."id" = ? LIMIT 1  [["id", "1"]]
+  Rendered messages/_form.html.erb (7.1ms)
+  Rendered messages/edit.html.erb within layouts/application (8.7ms)
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 3 LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "roles" INNER JOIN "users_roles" ON "roles"."id" = "users_roles"."role_id" WHERE "users_roles"."user_id" = 3 AND (((roles.name = 'admin') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)))
+  Rendered layouts/_navigation.html.erb (4.4ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+  Rendered layouts/_footer.html.erb (0.6ms)
+Completed 200 OK in 22ms (Views: 18.4ms | ActiveRecord: 0.7ms)
+
+
+Started PUT "/users/3/messages/1" for 127.0.0.1 at 2012-11-28 15:49:34 -0500
+Processing by MessagesController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"8fI4E+NK6pCsdB8Agt7Lw6bdJz4BDkEe79rh2UKYUVw=", "message"=>{"to_name"=>"Test User ", "from_name"=>"Kachina Gosselin", "title"=>"Title Test", "content"=>"rawr! I can edit!"}, "commit"=>"Update Message", "user_id"=>"3", "id"=>"1"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", "3"]]
+  [1m[35mMessage Load (0.2ms)[0m  SELECT "messages".* FROM "messages" WHERE "messages"."user_id" = 3 AND "messages"."id" = ? LIMIT 1  [["id", "1"]]
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  UPDATE "messages" SET "content" = 'rawr! I can edit!', "updated_at" = '2012-11-28 20:49:34.415044' WHERE "messages"."id" = 1
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+Redirected to http://0.0.0.0:3000/users/3/messages/1
+Completed 302 Found in 8ms (ActiveRecord: 1.5ms)
+
+
+Started GET "/users/3/messages/1" for 127.0.0.1 at 2012-11-28 15:49:34 -0500
+Processing by MessagesController#show as HTML
+  Parameters: {"user_id"=>"3", "id"=>"1"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", "3"]]
+  [1m[36mMessage Load (0.1ms)[0m  [1mSELECT "messages".* FROM "messages" WHERE "messages"."user_id" = 3 AND "messages"."id" = ? LIMIT 1[0m  [["id", "1"]]
+  Rendered messages/show.html.erb within layouts/application (0.9ms)
+  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 3 LIMIT 1
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "roles" INNER JOIN "users_roles" ON "roles"."id" = "users_roles"."role_id" WHERE "users_roles"."user_id" = 3 AND (((roles.name = 'admin') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)))[0m
+  Rendered layouts/_navigation.html.erb (5.4ms)
+  Rendered layouts/_messages.html.erb (0.2ms)
+  Rendered layouts/_footer.html.erb (1.0ms)
+Completed 200 OK in 16ms (Views: 12.7ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/users/3/messages" for 127.0.0.1 at 2012-11-28 15:49:39 -0500
+Processing by MessagesController#index as HTML
+  Parameters: {"user_id"=>"3"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", "3"]]
+  [1m[36mMessage Load (0.3ms)[0m  [1mSELECT "messages".* FROM "messages" WHERE "messages"."user_id" = 3[0m
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 3 LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "messages".* FROM "messages" WHERE "messages"."user_id" = 3[0m
+  Rendered messages/index.html.erb within layouts/application (5.0ms)
+Completed 500 Internal Server Error in 12ms
+
+ActionController::RoutingError (No route matches {:action=>"show", :controller=>"messages", :user_id=>#<User id: 3, email: "kachina@alum.mit.edu", encrypted_password: "$2a$10$GPofalIEj/Cw4TErqQOlF.9u.hW1u6Kcl8x/X2Inm4nt...", reset_password_token: nil, reset_password_sent_at: nil, remember_created_at: nil, sign_in_count: 1, current_sign_in_at: "2012-11-28 20:19:42", last_sign_in_at: "2012-11-28 20:19:42", current_sign_in_ip: "127.0.0.1", last_sign_in_ip: "127.0.0.1", created_at: "2012-11-28 20:19:19", updated_at: "2012-11-28 20:19:42", name: "Kachina Gosselin">}):
+  app/views/messages/index.html.erb:23:in `block in _app_views_messages_index_html_erb__452052872444998748_70275508205880'
+  app/views/messages/index.html.erb:17:in `_app_views_messages_index_html_erb__452052872444998748_70275508205880'
+  app/controllers/messages_controller.rb:8:in `index'
+
+
+  Rendered /Users/kachinagosselin/.rvm/gems/ruby-1.9.3-p194/gems/actionpack-3.2.9/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (1.1ms)
+
+
+Started GET "/users/3/messages" for 127.0.0.1 at 2012-11-28 15:50:43 -0500
+Processing by MessagesController#index as HTML
+  Parameters: {"user_id"=>"3"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", "3"]]
+  [1m[36mMessage Load (0.1ms)[0m  [1mSELECT "messages".* FROM "messages" WHERE "messages"."user_id" = 3[0m
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 3 LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "messages".* FROM "messages" WHERE "messages"."user_id" = 3[0m
+  Rendered messages/index.html.erb within layouts/application (3.2ms)
+Completed 500 Internal Server Error in 49ms
+
+ActionController::RoutingError (No route matches {:action=>"show", :controller=>"messages", :user_id=>#<User id: 3, email: "kachina@alum.mit.edu", encrypted_password: "$2a$10$GPofalIEj/Cw4TErqQOlF.9u.hW1u6Kcl8x/X2Inm4nt...", reset_password_token: nil, reset_password_sent_at: nil, remember_created_at: nil, sign_in_count: 1, current_sign_in_at: "2012-11-28 20:19:42", last_sign_in_at: "2012-11-28 20:19:42", current_sign_in_ip: "127.0.0.1", last_sign_in_ip: "127.0.0.1", created_at: "2012-11-28 20:19:19", updated_at: "2012-11-28 20:19:42", name: "Kachina Gosselin">}):
+  app/views/messages/index.html.erb:23:in `block in _app_views_messages_index_html_erb__452052872444998748_70275508205880'
+  app/views/messages/index.html.erb:17:in `_app_views_messages_index_html_erb__452052872444998748_70275508205880'
+
+
+  Rendered /Users/kachinagosselin/.rvm/gems/ruby-1.9.3-p194/gems/actionpack-3.2.9/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (0.6ms)
+
+
+Started GET "/users/3/messages" for 127.0.0.1 at 2012-11-28 15:50:45 -0500
+Processing by MessagesController#index as HTML
+  Parameters: {"user_id"=>"3"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", "3"]]
+  [1m[36mMessage Load (0.2ms)[0m  [1mSELECT "messages".* FROM "messages" WHERE "messages"."user_id" = 3[0m
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 3 LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "messages".* FROM "messages" WHERE "messages"."user_id" = 3[0m
+  Rendered messages/index.html.erb within layouts/application (3.4ms)
+Completed 500 Internal Server Error in 9ms
+
+ActionController::RoutingError (No route matches {:action=>"show", :controller=>"messages", :user_id=>#<User id: 3, email: "kachina@alum.mit.edu", encrypted_password: "$2a$10$GPofalIEj/Cw4TErqQOlF.9u.hW1u6Kcl8x/X2Inm4nt...", reset_password_token: nil, reset_password_sent_at: nil, remember_created_at: nil, sign_in_count: 1, current_sign_in_at: "2012-11-28 20:19:42", last_sign_in_at: "2012-11-28 20:19:42", current_sign_in_ip: "127.0.0.1", last_sign_in_ip: "127.0.0.1", created_at: "2012-11-28 20:19:19", updated_at: "2012-11-28 20:19:42", name: "Kachina Gosselin">}):
+  app/views/messages/index.html.erb:23:in `block in _app_views_messages_index_html_erb__452052872444998748_70275508205880'
+  app/views/messages/index.html.erb:17:in `_app_views_messages_index_html_erb__452052872444998748_70275508205880'
+
+
+  Rendered /Users/kachinagosselin/.rvm/gems/ruby-1.9.3-p194/gems/actionpack-3.2.9/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (0.7ms)
+
+
+Started GET "/users/3/messages" for 127.0.0.1 at 2012-11-28 15:51:20 -0500
+Processing by MessagesController#index as HTML
+  Parameters: {"user_id"=>"3"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", "3"]]
+  [1m[36mMessage Load (0.1ms)[0m  [1mSELECT "messages".* FROM "messages" WHERE "messages"."user_id" = 3[0m
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 3 LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "messages".* FROM "messages" WHERE "messages"."user_id" = 3[0m
+  Rendered messages/index.html.erb within layouts/application (3.2ms)
+Completed 500 Internal Server Error in 59ms
+
+ActionController::RoutingError (No route matches {:action=>"show", :controller=>"messages", :user_id=>#<User id: 3, email: "kachina@alum.mit.edu", encrypted_password: "$2a$10$GPofalIEj/Cw4TErqQOlF.9u.hW1u6Kcl8x/X2Inm4nt...", reset_password_token: nil, reset_password_sent_at: nil, remember_created_at: nil, sign_in_count: 1, current_sign_in_at: "2012-11-28 20:19:42", last_sign_in_at: "2012-11-28 20:19:42", current_sign_in_ip: "127.0.0.1", last_sign_in_ip: "127.0.0.1", created_at: "2012-11-28 20:19:19", updated_at: "2012-11-28 20:19:42", name: "Kachina Gosselin">}):
+  app/views/messages/index.html.erb:23:in `block in _app_views_messages_index_html_erb__452052872444998748_70275508205880'
+  app/views/messages/index.html.erb:17:in `_app_views_messages_index_html_erb__452052872444998748_70275508205880'
+  app/controllers/messages_controller.rb:7:in `index'
+
+
+  Rendered /Users/kachinagosselin/.rvm/gems/ruby-1.9.3-p194/gems/actionpack-3.2.9/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (0.7ms)
+
+
+Started GET "/users/3/messages" for 127.0.0.1 at 2012-11-28 15:52:51 -0500
+Processing by MessagesController#index as HTML
+  Parameters: {"user_id"=>"3"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", "3"]]
+  [1m[36mMessage Load (0.1ms)[0m  [1mSELECT "messages".* FROM "messages" WHERE "messages"."user_id" = 3[0m
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 3 LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "messages".* FROM "messages" WHERE "messages"."user_id" = 3[0m
+  Rendered messages/index.html.erb within layouts/application (3.1ms)
+Completed 500 Internal Server Error in 48ms
+
+ActionController::RoutingError (No route matches {:action=>"show", :controller=>"messages", :user_id=>#<User id: 3, email: "kachina@alum.mit.edu", encrypted_password: "$2a$10$GPofalIEj/Cw4TErqQOlF.9u.hW1u6Kcl8x/X2Inm4nt...", reset_password_token: nil, reset_password_sent_at: nil, remember_created_at: nil, sign_in_count: 1, current_sign_in_at: "2012-11-28 20:19:42", last_sign_in_at: "2012-11-28 20:19:42", current_sign_in_ip: "127.0.0.1", last_sign_in_ip: "127.0.0.1", created_at: "2012-11-28 20:19:19", updated_at: "2012-11-28 20:19:42", name: "Kachina Gosselin">}):
+  app/views/messages/index.html.erb:23:in `block in _app_views_messages_index_html_erb__452052872444998748_70275508205880'
+  app/views/messages/index.html.erb:17:in `_app_views_messages_index_html_erb__452052872444998748_70275508205880'
+  app/controllers/messages_controller.rb:7:in `index'
+
+
+  Rendered /Users/kachinagosselin/.rvm/gems/ruby-1.9.3-p194/gems/actionpack-3.2.9/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (0.6ms)
+
+
+Started GET "/" for 127.0.0.1 at 2012-11-28 15:53:02 -0500
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 3 LIMIT 1
+Processing by HomeController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" [0m
+  [1m[35mHorse Load (0.1ms)[0m  SELECT "horses".* FROM "horses" WHERE "horses"."user_id" = 1
+  [1m[36mHorse Load (0.1ms)[0m  [1mSELECT "horses".* FROM "horses" WHERE "horses"."user_id" = 2[0m
+  [1m[35mHorse Load (0.1ms)[0m  SELECT "horses".* FROM "horses" WHERE "horses"."user_id" = 3
+  Rendered home/index.html.erb within layouts/application (22.2ms)
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "roles" INNER JOIN "users_roles" ON "roles"."id" = "users_roles"."role_id" WHERE "users_roles"."user_id" = 3 AND (((roles.name = 'admin') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)))[0m
+  Rendered layouts/_navigation.html.erb (10.2ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+  Rendered layouts/_footer.html.erb (0.6ms)
+Completed 200 OK in 40ms (Views: 37.4ms | ActiveRecord: 1.5ms)
+
+
+Started GET "/js/bootstrap.min.js" for 127.0.0.1 at 2012-11-28 15:53:02 -0500
+
+ActionController::RoutingError (No route matches [GET] "/js/bootstrap.min.js"):
+  actionpack (3.2.9) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (3.2.9) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.9) lib/rails/rack/logger.rb:32:in `call_app'
+  railties (3.2.9) lib/rails/rack/logger.rb:16:in `block in call'
+  activesupport (3.2.9) lib/active_support/tagged_logging.rb:22:in `tagged'
+  railties (3.2.9) lib/rails/rack/logger.rb:16:in `call'
+  quiet_assets (1.0.1) lib/quiet_assets.rb:20:in `call_with_quiet_assets'
+  actionpack (3.2.9) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.1) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.1) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.9) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.1) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.9) lib/action_dispatch/middleware/static.rb:62:in `call'
+  railties (3.2.9) lib/rails/engine.rb:479:in `call'
+  railties (3.2.9) lib/rails/application.rb:223:in `call'
+  rack (1.4.1) lib/rack/content_length.rb:14:in `call'
+  railties (3.2.9) lib/rails/rack/log_tailer.rb:17:in `call'
+  thin (1.5.0) lib/thin/connection.rb:81:in `block in pre_process'
+  thin (1.5.0) lib/thin/connection.rb:79:in `catch'
+  thin (1.5.0) lib/thin/connection.rb:79:in `pre_process'
+  thin (1.5.0) lib/thin/connection.rb:54:in `process'
+  thin (1.5.0) lib/thin/connection.rb:39:in `receive_data'
+  eventmachine (1.0.0) lib/eventmachine.rb:187:in `run_machine'
+  eventmachine (1.0.0) lib/eventmachine.rb:187:in `run'
+  thin (1.5.0) lib/thin/backends/base.rb:63:in `start'
+  thin (1.5.0) lib/thin/server.rb:159:in `start'
+  rack (1.4.1) lib/rack/handler/thin.rb:13:in `run'
+  rack (1.4.1) lib/rack/server.rb:265:in `start'
+  railties (3.2.9) lib/rails/commands/server.rb:70:in `start'
+  railties (3.2.9) lib/rails/commands.rb:55:in `block in <top (required)>'
+  railties (3.2.9) lib/rails/commands.rb:50:in `tap'
+  railties (3.2.9) lib/rails/commands.rb:50:in `<top (required)>'
+  script/rails:6:in `require'
+  script/rails:6:in `<main>'
+
+
+  Rendered /Users/kachinagosselin/.rvm/gems/ruby-1.9.3-p194/gems/actionpack-3.2.9/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (1.0ms)
+
+
+Started GET "/users/3/messages" for 127.0.0.1 at 2012-11-28 15:53:03 -0500
+Processing by MessagesController#index as HTML
+  Parameters: {"user_id"=>"3"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", "3"]]
+  [1m[36mMessage Load (0.1ms)[0m  [1mSELECT "messages".* FROM "messages" WHERE "messages"."user_id" = 3[0m
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 3 LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "messages".* FROM "messages" WHERE "messages"."user_id" = 3[0m
+  Rendered messages/index.html.erb within layouts/application (3.3ms)
+Completed 500 Internal Server Error in 7ms
+
+ActionController::RoutingError (No route matches {:action=>"show", :controller=>"messages", :user_id=>#<User id: 3, email: "kachina@alum.mit.edu", encrypted_password: "$2a$10$GPofalIEj/Cw4TErqQOlF.9u.hW1u6Kcl8x/X2Inm4nt...", reset_password_token: nil, reset_password_sent_at: nil, remember_created_at: nil, sign_in_count: 1, current_sign_in_at: "2012-11-28 20:19:42", last_sign_in_at: "2012-11-28 20:19:42", current_sign_in_ip: "127.0.0.1", last_sign_in_ip: "127.0.0.1", created_at: "2012-11-28 20:19:19", updated_at: "2012-11-28 20:19:42", name: "Kachina Gosselin">}):
+  app/views/messages/index.html.erb:23:in `block in _app_views_messages_index_html_erb__452052872444998748_70275508205880'
+  app/views/messages/index.html.erb:17:in `_app_views_messages_index_html_erb__452052872444998748_70275508205880'
+  app/controllers/messages_controller.rb:7:in `index'
+
+
+  Rendered /Users/kachinagosselin/.rvm/gems/ruby-1.9.3-p194/gems/actionpack-3.2.9/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (0.6ms)
+
+
+Started GET "/users/3/messages/1" for 127.0.0.1 at 2012-11-28 15:53:22 -0500
+Processing by MessagesController#show as HTML
+  Parameters: {"user_id"=>"3", "id"=>"1"}
+  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 3 LIMIT 1
+  [1m[36mMessage Load (0.3ms)[0m  [1mSELECT "messages".* FROM "messages" WHERE "messages"."user_id" = 3 AND "messages"."id" = ? LIMIT 1[0m  [["id", "1"]]
+  Rendered messages/show.html.erb within layouts/application (0.9ms)
+  [1m[35m (0.3ms)[0m  SELECT COUNT(*) FROM "roles" INNER JOIN "users_roles" ON "roles"."id" = "users_roles"."role_id" WHERE "users_roles"."user_id" = 3 AND (((roles.name = 'admin') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)))
+  Rendered layouts/_navigation.html.erb (3.9ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+  Rendered layouts/_footer.html.erb (1.0ms)
+Completed 200 OK in 16ms (Views: 11.6ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/users/3/messages" for 127.0.0.1 at 2012-11-28 15:54:26 -0500
+Processing by MessagesController#index as HTML
+  Parameters: {"user_id"=>"3"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", "3"]]
+  [1m[35mMessage Load (0.2ms)[0m  SELECT "messages".* FROM "messages" WHERE "messages"."user_id" = 3
+  Rendered messages/index.html.erb within layouts/application (0.9ms)
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 3 LIMIT 1[0m
+  [1m[35m (0.3ms)[0m  SELECT COUNT(*) FROM "roles" INNER JOIN "users_roles" ON "roles"."id" = "users_roles"."role_id" WHERE "users_roles"."user_id" = 3 AND (((roles.name = 'admin') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)))
+  Rendered layouts/_navigation.html.erb (6.2ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+  Rendered layouts/_footer.html.erb (0.6ms)
+Completed 200 OK in 16ms (Views: 12.2ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/users/3/messages" for 127.0.0.1 at 2012-11-28 15:54:42 -0500
+Processing by MessagesController#index as HTML
+  Parameters: {"user_id"=>"3"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", "3"]]
+  [1m[35mMessage Load (0.2ms)[0m  SELECT "messages".* FROM "messages" WHERE "messages"."user_id" = 3
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 3 LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "messages".* FROM "messages" WHERE "messages"."user_id" = 3
+  Rendered messages/index.html.erb within layouts/application (3.9ms)
+  [1m[36m (0.3ms)[0m  [1mSELECT COUNT(*) FROM "roles" INNER JOIN "users_roles" ON "roles"."id" = "users_roles"."role_id" WHERE "users_roles"."user_id" = 3 AND (((roles.name = 'admin') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)))[0m
+  Rendered layouts/_navigation.html.erb (5.4ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+  Rendered layouts/_footer.html.erb (0.8ms)
+Completed 200 OK in 19ms (Views: 16.5ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/users/3/messages" for 127.0.0.1 at 2012-11-28 15:55:03 -0500
+Processing by MessagesController#index as HTML
+  Parameters: {"user_id"=>"3"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", "3"]]
+  [1m[36mMessage Load (0.2ms)[0m  [1mSELECT "messages".* FROM "messages" WHERE "messages"."user_id" = 3[0m
+  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 3 LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "messages".* FROM "messages" WHERE "messages"."user_id" = 3[0m
+  Rendered messages/index.html.erb within layouts/application (7.2ms)
+Completed 500 Internal Server Error in 12ms
+
+ActionController::RoutingError (No route matches {:action=>"show", :controller=>"messages", :user_id=>#<User id: 3, email: "kachina@alum.mit.edu", encrypted_password: "$2a$10$GPofalIEj/Cw4TErqQOlF.9u.hW1u6Kcl8x/X2Inm4nt...", reset_password_token: nil, reset_password_sent_at: nil, remember_created_at: nil, sign_in_count: 1, current_sign_in_at: "2012-11-28 20:19:42", last_sign_in_at: "2012-11-28 20:19:42", current_sign_in_ip: "127.0.0.1", last_sign_in_ip: "127.0.0.1", created_at: "2012-11-28 20:19:19", updated_at: "2012-11-28 20:19:42", name: "Kachina Gosselin">}):
+  app/views/messages/index.html.erb:23:in `block in _app_views_messages_index_html_erb__452052872444998748_70275514318740'
+  app/views/messages/index.html.erb:17:in `_app_views_messages_index_html_erb__452052872444998748_70275514318740'
+  app/controllers/messages_controller.rb:7:in `index'
+
+
+  Rendered /Users/kachinagosselin/.rvm/gems/ruby-1.9.3-p194/gems/actionpack-3.2.9/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (1.0ms)
+
+
+Started GET "/users/3/messages" for 127.0.0.1 at 2012-11-28 15:55:17 -0500
+Processing by MessagesController#index as HTML
+  Parameters: {"user_id"=>"3"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", "3"]]
+  [1m[36mMessage Load (0.2ms)[0m  [1mSELECT "messages".* FROM "messages" WHERE "messages"."user_id" = 3[0m
+ERROR: compiling _app_views_messages_index_html_erb__452052872444998748_70275515419480 RAISED /Users/kachinagosselin/Documents/inspiredapp/app/views/messages/index.html.erb:23: syntax error, unexpected ')'
+...er.append= ( link_to 'Show',  );@output_buffer.safe_concat('...
+...                               ^
+/Users/kachinagosselin/Documents/inspiredapp/app/views/messages/index.html.erb:27: syntax error, unexpected keyword_end, expecting ')'
+'); end 
+       ^
+/Users/kachinagosselin/Documents/inspiredapp/app/views/messages/index.html.erb:34: syntax error, unexpected keyword_ensure, expecting ')'
+/Users/kachinagosselin/Documents/inspiredapp/app/views/messages/index.html.erb:36: syntax error, unexpected keyword_end, expecting ')'
+Function body:           def _app_views_messages_index_html_erb__452052872444998748_70275515419480(local_assigns, output_buffer)
+            _old_virtual_path, @virtual_path = @virtual_path, "messages/index";_old_output_buffer = @output_buffer;;@output_buffer = output_buffer || ActionView::OutputBuffer.new;@output_buffer.safe_concat('<!-- This is the user inbox. -->
+<div class="white-background">
+<h1>Listing messages</h1>
+
+<table>
+  <tr>
+    <th>To name</th>
+    <th>From name</th>
+    <th>Title</th>
+    <th>Content</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+'); @user = current_user 
+ @user.messages.each do |message| 
+@output_buffer.safe_concat('  <tr>
+    <td>');@output_buffer.append= ( message.to_name );@output_buffer.safe_concat('</td>
+    <td>');@output_buffer.append= ( message.from_name );@output_buffer.safe_concat('</td>
+    <td>');@output_buffer.append= ( message.title );@output_buffer.safe_concat('</td>
+    <td>');@output_buffer.append= ( message.content );@output_buffer.safe_concat('</td>
+    <td>');@output_buffer.append= ( link_to 'Show',  );@output_buffer.safe_concat('</td>
+    <td>');@output_buffer.append= ( link_to 'Edit', edit_user_message_path(@user, message) );@output_buffer.safe_concat('</td>
+    <td>');@output_buffer.append= ( link_to 'Destroy', [message.user, message], method: :delete, data: { confirm: 'Are you sure?' } );@output_buffer.safe_concat('</td>
+  </tr>
+'); end 
+@output_buffer.safe_concat('</table>
+
+<br />
+
+');@output_buffer.append= ( link_to 'New Message', new_user_message_path(@user) );@output_buffer.safe_concat('
+');@output_buffer.safe_concat('</div>');@output_buffer.to_s
+          ensure
+            @virtual_path, @output_buffer = _old_virtual_path, _old_output_buffer
+          end
+
+Backtrace: /Users/kachinagosselin/.rvm/gems/ruby-1.9.3-p194/gems/actionpack-3.2.9/lib/action_view/template.rb:297:in `module_eval'
+/Users/kachinagosselin/.rvm/gems/ruby-1.9.3-p194/gems/actionpack-3.2.9/lib/action_view/template.rb:297:in `compile'
+/Users/kachinagosselin/.rvm/gems/ruby-1.9.3-p194/gems/actionpack-3.2.9/lib/action_view/template.rb:244:in `block in compile!'
+<internal:prelude>:10:in `synchronize'
+/Users/kachinagosselin/.rvm/gems/ruby-1.9.3-p194/gems/actionpack-3.2.9/lib/action_view/template.rb:232:in `compile!'
+/Users/kachinagosselin/.rvm/gems/ruby-1.9.3-p194/gems/actionpack-3.2.9/lib/action_view/template.rb:144:in `block in render'
+/Users/kachinagosselin/.rvm/gems/ruby-1.9.3-p194/gems/activesupport-3.2.9/lib/active_support/notifications.rb:125:in `instrument'
+/Users/kachinagosselin/.rvm/gems/ruby-1.9.3-p194/gems/actionpack-3.2.9/lib/action_view/template.rb:143:in `render'
+/Users/kachinagosselin/.rvm/gems/ruby-1.9.3-p194/gems/actionpack-3.2.9/lib/action_view/renderer/template_renderer.rb:47:in `block (2 levels) in render_template'
+/Users/kachinagosselin/.rvm/gems/ruby-1.9.3-p194/gems/actionpack-3.2.9/lib/action_view/renderer/abstract_renderer.rb:38:in `block in instrument'
+/Users/kachinagosselin/.rvm/gems/ruby-1.9.3-p194/gems/activesupport-3.2.9/lib/active_support/notifications.rb:123:in `block in instrument'
+/Users/kachinagosselin/.rvm/gems/ruby-1.9.3-p194/gems/activesupport-3.2.9/lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+/Users/kachinagosselin/.rvm/gems/ruby-1.9.3-p194/gems/activesupport-3.2.9/lib/active_support/notifications.rb:123:in `instrument'
+/Users/kachinagosselin/.rvm/gems/ruby-1.9.3-p194/gems/actionpack-3.2.9/lib/action_view/renderer/abstract_renderer.rb:38:in `instrument'
+/Users/kachinagosselin/.rvm/gems/ruby-1.9.3-p194/gems/actionpack-3.2.9/lib/action_view/renderer/template_renderer.rb:46:in `block in render_template'
+/Users/kachinagosselin/.rvm/gems/ruby-1.9.3-p194/gems/actionpack-3.2.9/lib/action_view/renderer/template_renderer.rb:54:in `render_with_layout'
+/Users/kachinagosselin/.rvm/gems/ruby-1.9.3-p194/gems/actionpack-3.2.9/lib/action_view/renderer/template_renderer.rb:45:in `render_template'
+/Users/kachinagosselin/.rvm/gems/ruby-1.9.3-p194/gems/actionpack-3.2.9/lib/action_view/renderer/template_renderer.rb:18:in `render'
+/Users/kachinagosselin/.rvm/gems/ruby-1.9.3-p194/gems/actionpack-3.2.9/lib/action_view/renderer/renderer.rb:36:in `render_template'
+/Users/kachinagosselin/.rvm/gems/ruby-1.9.3-p194/gems/actionpack-3.2.9/lib/action_view/renderer/renderer.rb:17:in `render'
+/Users/kachinagosselin/.rvm/gems/ruby-1.9.3-p194/gems/actionpack-3.2.9/lib/abstract_controller/rendering.rb:110:in `_render_template'
+/Users/kachinagosselin/.rvm/gems/ruby-1.9.3-p194/gems/actionpack-3.2.9/lib/action_controller/metal/streaming.rb:225:in `_render_template'
+/Users/kachinagosselin/.rvm/gems/ruby-1.9.3-p194/gems/actionpack-3.2.9/lib/abstract_controller/rendering.rb:103:in `render_to_body'
+/Users/kachinagosselin/.rvm/gems/ruby-1.9.3-p194/gems/actionpack-3.2.9/lib/action_controller/metal/renderers.rb:28:in `render_to_body'
+/Users/kachinagosselin/.rvm/gems/ruby-1.9.3-p194/gems/actionpack-3.2.9/lib/action_controller/metal/compatibility.rb:50:in `render_to_body'
+/Users/kachinagosselin/.rvm/gems/ruby-1.9.3-p194/gems/actionpack-3.2.9/lib/abstract_controller/rendering.rb:88:in `render'
+/Users/kachinagosselin/.rvm/gems/ruby-1.9.3-p194/gems/actionpack-3.2.9/lib/action_controller/metal/rendering.rb:16:in `render'
+/Users/kachinagosselin/.rvm/gems/ruby-1.9.3-p194/gems/actionpack-3.2.9/lib/action_controller/metal/instrumentation.rb:40:in `block (2 levels) in render'
+/Users/kachinagosselin/.rvm/gems/ruby-1.9.3-p194/gems/activesupport-3.2.9/lib/active_support/core_ext/benchmark.rb:5:in `block in ms'
+/Users/kachinagosselin/.rvm/rubies/ruby-1.9.3-p194/lib/ruby/1.9.1/benchmark.rb:295:in `realtime'
+/Users/kachinagosselin/.rvm/gems/ruby-1.9.3-p194/gems/activesupport-3.2.9/lib/active_support/core_ext/benchmark.rb:5:in `ms'
+/Users/kachinagosselin/.rvm/gems/ruby-1.9.3-p194/gems/actionpack-3.2.9/lib/action_controller/metal/instrumentation.rb:40:in `block in render'
+/Users/kachinagosselin/.rvm/gems/ruby-1.9.3-p194/gems/actionpack-3.2.9/lib/action_controller/metal/instrumentation.rb:83:in `cleanup_view_runtime'
+/Users/kachinagosselin/.rvm/gems/ruby-1.9.3-p194/gems/activerecord-3.2.9/lib/active_record/railties/controller_runtime.rb:24:in `cleanup_view_runtime'
+/Users/kachinagosselin/.rvm/gems/ruby-1.9.3-p194/gems/actionpack-3.2.9/lib/action_controller/metal/instrumentation.rb:39:in `render'
+/Users/kachinagosselin/.rvm/gems/ruby-1.9.3-p194/gems/actionpack-3.2.9/lib/action_controller/metal/implicit_render.rb:10:in `default_render'
+/Users/kachinagosselin/.rvm/gems/ruby-1.9.3-p194/gems/actionpack-3.2.9/lib/action_controller/metal/mime_responds.rb:196:in `respond_to'
+/Users/kachinagosselin/Documents/inspiredapp/app/controllers/messages_controller.rb:7:in `index'
+/Users/kachinagosselin/.rvm/gems/ruby-1.9.3-p194/gems/actionpack-3.2.9/lib/action_controller/metal/implicit_render.rb:4:in `send_action'
+/Users/kachinagosselin/.rvm/gems/ruby-1.9.3-p194/gems/actionpack-3.2.9/lib/abstract_controller/base.rb:167:in `process_action'
+/Users/kachinagosselin/.rvm/gems/ruby-1.9.3-p194/gems/actionpack-3.2.9/lib/action_controller/metal/rendering.rb:10:in `process_action'
+/Users/kachinagosselin/.rvm/gems/ruby-1.9.3-p194/gems/actionpack-3.2.9/lib/abstract_controller/callbacks.rb:18:in `block in process_action'
+/Users/kachinagosselin/.rvm/gems/ruby-1.9.3-p194/gems/activesupport-3.2.9/lib/active_support/callbacks.rb:414:in `_run__544025173535696381__process_action__1433092963377413247__callbacks'
+/Users/kachinagosselin/.rvm/gems/ruby-1.9.3-p194/gems/activesupport-3.2.9/lib/active_support/callbacks.rb:405:in `__run_callback'
+/Users/kachinagosselin/.rvm/gems/ruby-1.9.3-p194/gems/activesupport-3.2.9/lib/active_support/callbacks.rb:385:in `_run_process_action_callbacks'
+/Users/kachinagosselin/.rvm/gems/ruby-1.9.3-p194/gems/activesupport-3.2.9/lib/active_support/callbacks.rb:81:in `run_callbacks'
+/Users/kachinagosselin/.rvm/gems/ruby-1.9.3-p194/gems/actionpack-3.2.9/lib/abstract_controller/callbacks.rb:17:in `process_action'
+/Users/kachinagosselin/.rvm/gems/ruby-1.9.3-p194/gems/actionpack-3.2.9/lib/action_controller/metal/rescue.rb:29:in `process_action'
+/Users/kachinagosselin/.rvm/gems/ruby-1.9.3-p194/gems/actionpack-3.2.9/lib/action_controller/metal/instrumentation.rb:30:in `block in process_action'
+/Users/kachinagosselin/.rvm/gems/ruby-1.9.3-p194/gems/activesupport-3.2.9/lib/active_support/notifications.rb:123:in `block in instrument'
+/Users/kachinagosselin/.rvm/gems/ruby-1.9.3-p194/gems/activesupport-3.2.9/lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+/Users/kachinagosselin/.rvm/gems/ruby-1.9.3-p194/gems/activesupport-3.2.9/lib/active_support/notifications.rb:123:in `instrument'
+/Users/kachinagosselin/.rvm/gems/ruby-1.9.3-p194/gems/actionpack-3.2.9/lib/action_controller/metal/instrumentation.rb:29:in `process_action'
+/Users/kachinagosselin/.rvm/gems/ruby-1.9.3-p194/gems/actionpack-3.2.9/lib/action_controller/metal/params_wrapper.rb:207:in `process_action'
+/Users/kachinagosselin/.rvm/gems/ruby-1.9.3-p194/gems/activerecord-3.2.9/lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+/Users/kachinagosselin/.rvm/gems/ruby-1.9.3-p194/gems/actionpack-3.2.9/lib/abstract_controller/base.rb:121:in `process'
+/Users/kachinagosselin/.rvm/gems/ruby-1.9.3-p194/gems/actionpack-3.2.9/lib/abstract_controller/rendering.rb:45:in `process'
+/Users/kachinagosselin/.rvm/gems/ruby-1.9.3-p194/gems/actionpack-3.2.9/lib/action_controller/metal.rb:203:in `dispatch'
+/Users/kachinagosselin/.rvm/gems/ruby-1.9.3-p194/gems/actionpack-3.2.9/lib/action_controller/metal/rack_delegation.rb:14:in `dispatch'
+/Users/kachinagosselin/.rvm/gems/ruby-1.9.3-p194/gems/actionpack-3.2.9/lib/action_controller/metal.rb:246:in `block in action'
+/Users/kachinagosselin/.rvm/gems/ruby-1.9.3-p194/gems/actionpack-3.2.9/lib/action_dispatch/routing/route_set.rb:73:in `call'
+/Users/kachinagosselin/.rvm/gems/ruby-1.9.3-p194/gems/actionpack-3.2.9/lib/action_dispatch/routing/route_set.rb:73:in `dispatch'
+/Users/kachinagosselin/.rvm/gems/ruby-1.9.3-p194/gems/actionpack-3.2.9/lib/action_dispatch/routing/route_set.rb:36:in `call'
+/Users/kachinagosselin/.rvm/gems/ruby-1.9.3-p194/gems/journey-1.0.4/lib/journey/router.rb:68:in `block in call'
+/Users/kachinagosselin/.rvm/gems/ruby-1.9.3-p194/gems/journey-1.0.4/lib/journey/router.rb:56:in `each'
+/Users/kachinagosselin/.rvm/gems/ruby-1.9.3-p194/gems/journey-1.0.4/lib/journey/router.rb:56:in `call'
+/Users/kachinagosselin/.rvm/gems/ruby-1.9.3-p194/gems/actionpack-3.2.9/lib/action_dispatch/routing/route_set.rb:601:in `call'
+/Users/kachinagosselin/.rvm/gems/ruby-1.9.3-p194/gems/warden-1.2.1/lib/warden/manager.rb:35:in `block in call'
+/Users/kachinagosselin/.rvm/gems/ruby-1.9.3-p194/gems/warden-1.2.1/lib/warden/manager.rb:34:in `catch'
+/Users/kachinagosselin/.rvm/gems/ruby-1.9.3-p194/gems/warden-1.2.1/lib/warden/manager.rb:34:in `call'
+/Users/kachinagosselin/.rvm/gems/ruby-1.9.3-p194/gems/actionpack-3.2.9/lib/action_dispatch/middleware/best_standards_support.rb:17:in `call'
+/Users/kachinagosselin/.rvm/gems/ruby-1.9.3-p194/gems/rack-1.4.1/lib/rack/etag.rb:23:in `call'
+/Users/kachinagosselin/.rvm/gems/ruby-1.9.3-p194/gems/rack-1.4.1/lib/rack/conditionalget.rb:25:in `call'
+/Users/kachinagosselin/.rvm/gems/ruby-1.9.3-p194/gems/actionpack-3.2.9/lib/action_dispatch/middleware/head.rb:14:in `call'
+/Users/kachinagosselin/.rvm/gems/ruby-1.9.3-p194/gems/actionpack-3.2.9/lib/action_dispatch/middleware/params_parser.rb:21:in `call'
+/Users/kachinagosselin/.rvm/gems/ruby-1.9.3-p194/gems/actionpack-3.2.9/lib/action_dispatch/middleware/flash.rb:242:in `call'
+/Users/kachinagosselin/.rvm/gems/ruby-1.9.3-p194/gems/rack-1.4.1/lib/rack/session/abstract/id.rb:205:in `context'
+/Users/kachinagosselin/.rvm/gems/ruby-1.9.3-p194/gems/rack-1.4.1/lib/rack/session/abstract/id.rb:200:in `call'
+/Users/kachinagosselin/.rvm/gems/ruby-1.9.3-p194/gems/actionpack-3.2.9/lib/action_dispatch/middleware/cookies.rb:341:in `call'
+/Users/kachinagosselin/.rvm/gems/ruby-1.9.3-p194/gems/activerecord-3.2.9/lib/active_record/query_cache.rb:64:in `call'
+/Users/kachinagosselin/.rvm/gems/ruby-1.9.3-p194/gems/activerecord-3.2.9/lib/active_record/connection_adapters/abstract/connection_pool.rb:479:in `call'
+/Users/kachinagosselin/.rvm/gems/ruby-1.9.3-p194/gems/actionpack-3.2.9/lib/action_dispatch/middleware/callbacks.rb:28:in `block in call'
+/Users/kachinagosselin/.rvm/gems/ruby-1.9.3-p194/gems/activesupport-3.2.9/lib/active_support/callbacks.rb:405:in `_run__3446917178584633195__call__3779611971385839243__callbacks'
+/Users/kachinagosselin/.rvm/gems/ruby-1.9.3-p194/gems/activesupport-3.2.9/lib/active_support/callbacks.rb:405:in `__run_callback'
+/Users/kachinagosselin/.rvm/gems/ruby-1.9.3-p194/gems/activesupport-3.2.9/lib/active_support/callbacks.rb:385:in `_run_call_callbacks'
+/Users/kachinagosselin/.rvm/gems/ruby-1.9.3-p194/gems/activesupport-3.2.9/lib/active_support/callbacks.rb:81:in `run_callbacks'
+/Users/kachinagosselin/.rvm/gems/ruby-1.9.3-p194/gems/actionpack-3.2.9/lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+/Users/kachinagosselin/.rvm/gems/ruby-1.9.3-p194/gems/actionpack-3.2.9/lib/action_dispatch/middleware/reloader.rb:65:in `call'
+/Users/kachinagosselin/.rvm/gems/ruby-1.9.3-p194/gems/actionpack-3.2.9/lib/action_dispatch/middleware/remote_ip.rb:31:in `call'
+/Users/kachinagosselin/.rvm/gems/ruby-1.9.3-p194/gems/actionpack-3.2.9/lib/action_dispatch/middleware/debug_exceptions.rb:16:in `call'
+/Users/kachinagosselin/.rvm/gems/ruby-1.9.3-p194/gems/actionpack-3.2.9/lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+/Users/kachinagosselin/.rvm/gems/ruby-1.9.3-p194/gems/railties-3.2.9/lib/rails/rack/logger.rb:32:in `call_app'
+/Users/kachinagosselin/.rvm/gems/ruby-1.9.3-p194/gems/railties-3.2.9/lib/rails/rack/logger.rb:16:in `block in call'
+/Users/kachinagosselin/.rvm/gems/ruby-1.9.3-p194/gems/activesupport-3.2.9/lib/active_support/tagged_logging.rb:22:in `tagged'
+/Users/kachinagosselin/.rvm/gems/ruby-1.9.3-p194/gems/railties-3.2.9/lib/rails/rack/logger.rb:16:in `call'
+/Users/kachinagosselin/.rvm/gems/ruby-1.9.3-p194/gems/quiet_assets-1.0.1/lib/quiet_assets.rb:20:in `call_with_quiet_assets'
+/Users/kachinagosselin/.rvm/gems/ruby-1.9.3-p194/gems/actionpack-3.2.9/lib/action_dispatch/middleware/request_id.rb:22:in `call'
+/Users/kachinagosselin/.rvm/gems/ruby-1.9.3-p194/gems/rack-1.4.1/lib/rack/methodoverride.rb:21:in `call'
+/Users/kachinagosselin/.rvm/gems/ruby-1.9.3-p194/gems/rack-1.4.1/lib/rack/runtime.rb:17:in `call'
+/Users/kachinagosselin/.rvm/gems/ruby-1.9.3-p194/gems/activesupport-3.2.9/lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+/Users/kachinagosselin/.rvm/gems/ruby-1.9.3-p194/gems/rack-1.4.1/lib/rack/lock.rb:15:in `call'
+/Users/kachinagosselin/.rvm/gems/ruby-1.9.3-p194/gems/actionpack-3.2.9/lib/action_dispatch/middleware/static.rb:62:in `call'
+/Users/kachinagosselin/.rvm/gems/ruby-1.9.3-p194/gems/railties-3.2.9/lib/rails/engine.rb:479:in `call'
+/Users/kachinagosselin/.rvm/gems/ruby-1.9.3-p194/gems/railties-3.2.9/lib/rails/application.rb:223:in `call'
+/Users/kachinagosselin/.rvm/gems/ruby-1.9.3-p194/gems/rack-1.4.1/lib/rack/content_length.rb:14:in `call'
+/Users/kachinagosselin/.rvm/gems/ruby-1.9.3-p194/gems/railties-3.2.9/lib/rails/rack/log_tailer.rb:17:in `call'
+/Users/kachinagosselin/.rvm/gems/ruby-1.9.3-p194@global/gems/thin-1.5.0/lib/thin/connection.rb:81:in `block in pre_process'
+/Users/kachinagosselin/.rvm/gems/ruby-1.9.3-p194@global/gems/thin-1.5.0/lib/thin/connection.rb:79:in `catch'
+/Users/kachinagosselin/.rvm/gems/ruby-1.9.3-p194@global/gems/thin-1.5.0/lib/thin/connection.rb:79:in `pre_process'
+/Users/kachinagosselin/.rvm/gems/ruby-1.9.3-p194@global/gems/thin-1.5.0/lib/thin/connection.rb:54:in `process'
+/Users/kachinagosselin/.rvm/gems/ruby-1.9.3-p194@global/gems/thin-1.5.0/lib/thin/connection.rb:39:in `receive_data'
+/Users/kachinagosselin/.rvm/gems/ruby-1.9.3-p194@global/gems/eventmachine-1.0.0/lib/eventmachine.rb:187:in `run_machine'
+/Users/kachinagosselin/.rvm/gems/ruby-1.9.3-p194@global/gems/eventmachine-1.0.0/lib/eventmachine.rb:187:in `run'
+/Users/kachinagosselin/.rvm/gems/ruby-1.9.3-p194@global/gems/thin-1.5.0/lib/thin/backends/base.rb:63:in `start'
+/Users/kachinagosselin/.rvm/gems/ruby-1.9.3-p194@global/gems/thin-1.5.0/lib/thin/server.rb:159:in `start'
+/Users/kachinagosselin/.rvm/gems/ruby-1.9.3-p194/gems/rack-1.4.1/lib/rack/handler/thin.rb:13:in `run'
+/Users/kachinagosselin/.rvm/gems/ruby-1.9.3-p194/gems/rack-1.4.1/lib/rack/server.rb:265:in `start'
+/Users/kachinagosselin/.rvm/gems/ruby-1.9.3-p194/gems/railties-3.2.9/lib/rails/commands/server.rb:70:in `start'
+/Users/kachinagosselin/.rvm/gems/ruby-1.9.3-p194/gems/railties-3.2.9/lib/rails/commands.rb:55:in `block in <top (required)>'
+/Users/kachinagosselin/.rvm/gems/ruby-1.9.3-p194/gems/railties-3.2.9/lib/rails/commands.rb:50:in `tap'
+/Users/kachinagosselin/.rvm/gems/ruby-1.9.3-p194/gems/railties-3.2.9/lib/rails/commands.rb:50:in `<top (required)>'
+script/rails:6:in `require'
+script/rails:6:in `<main>'
+  Rendered messages/index.html.erb within layouts/application (1.2ms)
+Completed 500 Internal Server Error in 6ms
+
+ActionView::Template::Error (/Users/kachinagosselin/Documents/inspiredapp/app/views/messages/index.html.erb:23: syntax error, unexpected ')'
+...er.append= ( link_to 'Show',  );@output_buffer.safe_concat('...
+...                               ^
+/Users/kachinagosselin/Documents/inspiredapp/app/views/messages/index.html.erb:27: syntax error, unexpected keyword_end, expecting ')'
+'); end 
+       ^
+/Users/kachinagosselin/Documents/inspiredapp/app/views/messages/index.html.erb:34: syntax error, unexpected keyword_ensure, expecting ')'
+/Users/kachinagosselin/Documents/inspiredapp/app/views/messages/index.html.erb:36: syntax error, unexpected keyword_end, expecting ')'):
+    20:     <td><%= message.from_name %></td>
+    21:     <td><%= message.title %></td>
+    22:     <td><%= message.content %></td>
+    23:     <td><%= link_to 'Show',  %></td>
+    24:     <td><%= link_to 'Edit', edit_user_message_path(@user, message) %></td>
+    25:     <td><%= link_to 'Destroy', [message.user, message], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    26:   </tr>
+  app/controllers/messages_controller.rb:7:in `index'
+
+
+  Rendered /Users/kachinagosselin/.rvm/gems/ruby-1.9.3-p194/gems/actionpack-3.2.9/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.4ms)
+  Rendered /Users/kachinagosselin/.rvm/gems/ruby-1.9.3-p194/gems/actionpack-3.2.9/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.5ms)
+  Rendered /Users/kachinagosselin/.rvm/gems/ruby-1.9.3-p194/gems/actionpack-3.2.9/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (9.5ms)
+
+
+Started GET "/users/3/messages" for 127.0.0.1 at 2012-11-28 15:55:26 -0500
+Processing by MessagesController#index as HTML
+  Parameters: {"user_id"=>"3"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", "3"]]
+  [1m[36mMessage Load (0.2ms)[0m  [1mSELECT "messages".* FROM "messages" WHERE "messages"."user_id" = 3[0m
+  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 3 LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "messages".* FROM "messages" WHERE "messages"."user_id" = 3[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 3 LIMIT 1
+  Rendered messages/index.html.erb within layouts/application (10.1ms)
+  [1m[36m (0.3ms)[0m  [1mSELECT COUNT(*) FROM "roles" INNER JOIN "users_roles" ON "roles"."id" = "users_roles"."role_id" WHERE "users_roles"."user_id" = 3 AND (((roles.name = 'admin') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)))[0m
+  Rendered layouts/_navigation.html.erb (5.3ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+  Rendered layouts/_footer.html.erb (1.0ms)
+Completed 200 OK in 25ms (Views: 22.2ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/users/3/messages/1/edit" for 127.0.0.1 at 2012-11-28 15:55:29 -0500
+Processing by MessagesController#edit as HTML
+  Parameters: {"user_id"=>"3", "id"=>"1"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", "3"]]
+  [1m[36mMessage Load (0.1ms)[0m  [1mSELECT "messages".* FROM "messages" WHERE "messages"."user_id" = 3 AND "messages"."id" = ? LIMIT 1[0m  [["id", "1"]]
+  Rendered messages/_form.html.erb (8.9ms)
+  Rendered messages/edit.html.erb within layouts/application (10.1ms)
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 3 LIMIT 1
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "roles" INNER JOIN "users_roles" ON "roles"."id" = "users_roles"."role_id" WHERE "users_roles"."user_id" = 3 AND (((roles.name = 'admin') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)))[0m
+  Rendered layouts/_navigation.html.erb (4.1ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+  Rendered layouts/_footer.html.erb (0.5ms)
+Completed 200 OK in 22ms (Views: 18.5ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/users/3/messages" for 127.0.0.1 at 2012-11-28 15:55:48 -0500
+Processing by MessagesController#index as HTML
+  Parameters: {"user_id"=>"3"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", "3"]]
+  [1m[36mMessage Load (0.3ms)[0m  [1mSELECT "messages".* FROM "messages" WHERE "messages"."user_id" = 3[0m
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 3 LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "messages".* FROM "messages" WHERE "messages"."user_id" = 3[0m
+  Rendered messages/index.html.erb within layouts/application (4.2ms)
+Completed 500 Internal Server Error in 10ms
+
+ActionController::RoutingError (No route matches {:action=>"show", :controller=>"messages"}):
+  app/views/messages/index.html.erb:23:in `block in _app_views_messages_index_html_erb__452052872444998748_70275515369960'
+  app/views/messages/index.html.erb:17:in `_app_views_messages_index_html_erb__452052872444998748_70275515369960'
+  app/controllers/messages_controller.rb:7:in `index'
+
+
+  Rendered /Users/kachinagosselin/.rvm/gems/ruby-1.9.3-p194/gems/actionpack-3.2.9/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (0.8ms)
+
+
+Started GET "/users/3/messages" for 127.0.0.1 at 2012-11-28 15:56:07 -0500
+Processing by MessagesController#index as HTML
+  Parameters: {"user_id"=>"3"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", "3"]]
+  [1m[36mMessage Load (0.2ms)[0m  [1mSELECT "messages".* FROM "messages" WHERE "messages"."user_id" = 3[0m
+  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 3 LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "messages".* FROM "messages" WHERE "messages"."user_id" = 3[0m
+  Rendered messages/index.html.erb within layouts/application (6.0ms)
+Completed 500 Internal Server Error in 12ms
+
+ActionController::RoutingError (No route matches {:action=>"show", :controller=>"messages", :user_id=>#<User id: 3, email: "kachina@alum.mit.edu", encrypted_password: "$2a$10$GPofalIEj/Cw4TErqQOlF.9u.hW1u6Kcl8x/X2Inm4nt...", reset_password_token: nil, reset_password_sent_at: nil, remember_created_at: nil, sign_in_count: 1, current_sign_in_at: "2012-11-28 20:19:42", last_sign_in_at: "2012-11-28 20:19:42", current_sign_in_ip: "127.0.0.1", last_sign_in_ip: "127.0.0.1", created_at: "2012-11-28 20:19:19", updated_at: "2012-11-28 20:19:42", name: "Kachina Gosselin">}):
+  app/views/messages/index.html.erb:23:in `block in _app_views_messages_index_html_erb__452052872444998748_70275514802860'
+  app/views/messages/index.html.erb:17:in `_app_views_messages_index_html_erb__452052872444998748_70275514802860'
+  app/controllers/messages_controller.rb:7:in `index'
+
+
+  Rendered /Users/kachinagosselin/.rvm/gems/ruby-1.9.3-p194/gems/actionpack-3.2.9/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (0.9ms)
+
+
+Started GET "/users/3/messages" for 127.0.0.1 at 2012-11-28 15:57:34 -0500
+Processing by MessagesController#index as HTML
+  Parameters: {"user_id"=>"3"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", "3"]]
+  [1m[36mMessage Load (0.1ms)[0m  [1mSELECT "messages".* FROM "messages" WHERE "messages"."user_id" = 3[0m
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 3 LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "messages".* FROM "messages" WHERE "messages"."user_id" = 3[0m
+  Rendered messages/index.html.erb within layouts/application (4.0ms)
+Completed 500 Internal Server Error in 34ms
+
+ActionController::RoutingError (No route matches {:action=>"show", :controller=>"messages", :user_id=>#<User id: 3, email: "kachina@alum.mit.edu", encrypted_password: "$2a$10$GPofalIEj/Cw4TErqQOlF.9u.hW1u6Kcl8x/X2Inm4nt...", reset_password_token: nil, reset_password_sent_at: nil, remember_created_at: nil, sign_in_count: 1, current_sign_in_at: "2012-11-28 20:19:42", last_sign_in_at: "2012-11-28 20:19:42", current_sign_in_ip: "127.0.0.1", last_sign_in_ip: "127.0.0.1", created_at: "2012-11-28 20:19:19", updated_at: "2012-11-28 20:19:42", name: "Kachina Gosselin">}):
+  app/views/messages/index.html.erb:23:in `block in _app_views_messages_index_html_erb__452052872444998748_70275514824540'
+  app/views/messages/index.html.erb:17:in `_app_views_messages_index_html_erb__452052872444998748_70275514824540'
+  app/controllers/messages_controller.rb:7:in `index'
+
+
+  Rendered /Users/kachinagosselin/.rvm/gems/ruby-1.9.3-p194/gems/actionpack-3.2.9/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (0.7ms)
+
+
+Started GET "/users/3/messages" for 127.0.0.1 at 2012-11-28 15:57:43 -0500
+Processing by MessagesController#index as HTML
+  Parameters: {"user_id"=>"3"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", "3"]]
+  [1m[36mMessage Load (0.1ms)[0m  [1mSELECT "messages".* FROM "messages" WHERE "messages"."user_id" = 3[0m
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 3 LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "messages".* FROM "messages" WHERE "messages"."user_id" = 3[0m
+  Rendered messages/index.html.erb within layouts/application (3.8ms)
+Completed 500 Internal Server Error in 50ms
+
+ActionController::RoutingError (No route matches {:action=>"show", :controller=>"messages", :user_id=>#<User id: 3, email: "kachina@alum.mit.edu", encrypted_password: "$2a$10$GPofalIEj/Cw4TErqQOlF.9u.hW1u6Kcl8x/X2Inm4nt...", reset_password_token: nil, reset_password_sent_at: nil, remember_created_at: nil, sign_in_count: 1, current_sign_in_at: "2012-11-28 20:19:42", last_sign_in_at: "2012-11-28 20:19:42", current_sign_in_ip: "127.0.0.1", last_sign_in_ip: "127.0.0.1", created_at: "2012-11-28 20:19:19", updated_at: "2012-11-28 20:19:42", name: "Kachina Gosselin">}):
+  app/views/messages/index.html.erb:23:in `block in _app_views_messages_index_html_erb__452052872444998748_70275514824540'
+  app/views/messages/index.html.erb:17:in `_app_views_messages_index_html_erb__452052872444998748_70275514824540'
+  app/controllers/messages_controller.rb:7:in `index'
+
+
+  Rendered /Users/kachinagosselin/.rvm/gems/ruby-1.9.3-p194/gems/actionpack-3.2.9/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (0.6ms)
+
+
+Started GET "/users/3/messages/1" for 127.0.0.1 at 2012-11-28 15:57:49 -0500
+Processing by MessagesController#show as HTML
+  Parameters: {"user_id"=>"3", "id"=>"1"}
+Completed 500 Internal Server Error in 1ms
+
+NoMethodError (undefined method `messages' for nil:NilClass):
+  app/controllers/messages_controller.rb:16:in `show'
+
+
+  Rendered /Users/kachinagosselin/.rvm/gems/ruby-1.9.3-p194/gems/actionpack-3.2.9/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.4ms)
+  Rendered /Users/kachinagosselin/.rvm/gems/ruby-1.9.3-p194/gems/actionpack-3.2.9/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (0.9ms)
+  Rendered /Users/kachinagosselin/.rvm/gems/ruby-1.9.3-p194/gems/actionpack-3.2.9/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (9.1ms)
+
+
+Started GET "/users/3/messages/1" for 127.0.0.1 at 2012-11-28 15:57:58 -0500
+Processing by MessagesController#show as HTML
+  Parameters: {"user_id"=>"3", "id"=>"1"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", "3"]]
+  [1m[36mMessage Load (0.2ms)[0m  [1mSELECT "messages".* FROM "messages" WHERE "messages"."user_id" = 3 AND "messages"."id" = ? LIMIT 1[0m  [["id", "1"]]
+  Rendered messages/show.html.erb within layouts/application (0.8ms)
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 3 LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "roles" INNER JOIN "users_roles" ON "roles"."id" = "users_roles"."role_id" WHERE "users_roles"."user_id" = 3 AND (((roles.name = 'admin') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)))[0m
+  Rendered layouts/_navigation.html.erb (12.7ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+  Rendered layouts/_footer.html.erb (0.5ms)
+Completed 200 OK in 61ms (Views: 17.6ms | ActiveRecord: 2.1ms)
+
+
+Started GET "/users/3/messages" for 127.0.0.1 at 2012-11-28 15:58:50 -0500
+Processing by MessagesController#index as HTML
+  Parameters: {"user_id"=>"3"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", "3"]]
+  [1m[36mMessage Load (0.1ms)[0m  [1mSELECT "messages".* FROM "messages" WHERE "messages"."user_id" = 3[0m
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 3 LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "messages".* FROM "messages" WHERE "messages"."user_id" = 3[0m
+  Rendered messages/index.html.erb within layouts/application (3.2ms)
+Completed 500 Internal Server Error in 67ms
+
+ActionController::RoutingError (No route matches {:action=>"show", :controller=>"messages", :user_id=>#<User id: 3, email: "kachina@alum.mit.edu", encrypted_password: "$2a$10$GPofalIEj/Cw4TErqQOlF.9u.hW1u6Kcl8x/X2Inm4nt...", reset_password_token: nil, reset_password_sent_at: nil, remember_created_at: nil, sign_in_count: 1, current_sign_in_at: "2012-11-28 20:19:42", last_sign_in_at: "2012-11-28 20:19:42", current_sign_in_ip: "127.0.0.1", last_sign_in_ip: "127.0.0.1", created_at: "2012-11-28 20:19:19", updated_at: "2012-11-28 20:19:42", name: "Kachina Gosselin">}):
+  app/views/messages/index.html.erb:23:in `block in _app_views_messages_index_html_erb__452052872444998748_70275514824540'
+  app/views/messages/index.html.erb:17:in `_app_views_messages_index_html_erb__452052872444998748_70275514824540'
+  app/controllers/messages_controller.rb:7:in `index'
+
+
+  Rendered /Users/kachinagosselin/.rvm/gems/ruby-1.9.3-p194/gems/actionpack-3.2.9/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (0.6ms)
+Connecting to database specified by database.yml
+
+
+Started GET "/users/3/messages" for 127.0.0.1 at 2012-11-28 16:01:12 -0500
+Processing by MessagesController#index as HTML
+  Parameters: {"user_id"=>"3"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", "3"]]
+  [1m[36mMessage Load (0.1ms)[0m  [1mSELECT "messages".* FROM "messages" WHERE "messages"."user_id" = 3[0m
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 3 LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "messages".* FROM "messages" WHERE "messages"."user_id" = 3[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 3 LIMIT 1
+  Rendered messages/index.html.erb within layouts/application (6.9ms)
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "roles" INNER JOIN "users_roles" ON "roles"."id" = "users_roles"."role_id" WHERE "users_roles"."user_id" = 3 AND (((roles.name = 'admin') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)))[0m
+  Rendered layouts/_navigation.html.erb (10.6ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+  Rendered layouts/_footer.html.erb (0.5ms)
+Completed 200 OK in 49ms (Views: 22.6ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/users/3/messages/new" for 127.0.0.1 at 2012-11-28 16:01:15 -0500
+Processing by MessagesController#new as HTML
+  Parameters: {"user_id"=>"3"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", "3"]]
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 3 LIMIT 1[0m
+  Rendered messages/_form.html.erb (6.6ms)
+  Rendered messages/new.html.erb within layouts/application (8.4ms)
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "roles" INNER JOIN "users_roles" ON "roles"."id" = "users_roles"."role_id" WHERE "users_roles"."user_id" = 3 AND (((roles.name = 'admin') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)))
+  Rendered layouts/_navigation.html.erb (3.5ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+  Rendered layouts/_footer.html.erb (0.5ms)
+Completed 200 OK in 20ms (Views: 16.4ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/users/3/messages/new" for 127.0.0.1 at 2012-11-28 16:01:19 -0500
+Processing by MessagesController#new as HTML
+  Parameters: {"user_id"=>"3"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", "3"]]
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 3 LIMIT 1
+  Rendered messages/_form.html.erb (7.4ms)
+  Rendered messages/new.html.erb within layouts/application (9.6ms)
+  [1m[36m (0.3ms)[0m  [1mSELECT COUNT(*) FROM "roles" INNER JOIN "users_roles" ON "roles"."id" = "users_roles"."role_id" WHERE "users_roles"."user_id" = 3 AND (((roles.name = 'admin') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)))[0m
+  Rendered layouts/_navigation.html.erb (4.3ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+  Rendered layouts/_footer.html.erb (0.5ms)
+Completed 200 OK in 22ms (Views: 19.2ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/users/3/messages" for 127.0.0.1 at 2012-11-28 16:03:23 -0500
+Processing by MessagesController#index as HTML
+  Parameters: {"user_id"=>"3"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", "3"]]
+  [1m[36mMessage Load (0.2ms)[0m  [1mSELECT "messages".* FROM "messages" WHERE "messages"."user_id" = 3[0m
+  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 3 LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "messages".* FROM "messages" WHERE "messages"."user_id" = 3[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 3 LIMIT 1
+  Rendered messages/index.html.erb within layouts/application (7.3ms)
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "roles" INNER JOIN "users_roles" ON "roles"."id" = "users_roles"."role_id" WHERE "users_roles"."user_id" = 3 AND (((roles.name = 'admin') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)))[0m
+  Rendered layouts/_navigation.html.erb (3.7ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+  Rendered layouts/_footer.html.erb (0.6ms)
+Completed 200 OK in 21ms (Views: 17.6ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/users/3/messages/new.1" for 127.0.0.1 at 2012-11-28 16:03:24 -0500
+Processing by MessagesController#new as 
+  Parameters: {"user_id"=>"3"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", "3"]]
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 3 LIMIT 1[0m
+  Rendered messages/_form.html.erb (7.9ms)
+  Rendered messages/new.html.erb within layouts/application (10.4ms)
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "roles" INNER JOIN "users_roles" ON "roles"."id" = "users_roles"."role_id" WHERE "users_roles"."user_id" = 3 AND (((roles.name = 'admin') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)))
+  Rendered layouts/_navigation.html.erb (4.8ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+  Rendered layouts/_footer.html.erb (0.5ms)
+Completed 200 OK in 26ms (Views: 22.9ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/users/3/messages/new.1" for 127.0.0.1 at 2012-11-28 16:03:35 -0500
+Processing by MessagesController#new as 
+  Parameters: {"user_id"=>"3"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", "3"]]
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 3 LIMIT 1
+  Rendered messages/_form.html.erb (8.4ms)
+  Rendered messages/new.html.erb within layouts/application (10.3ms)
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "roles" INNER JOIN "users_roles" ON "roles"."id" = "users_roles"."role_id" WHERE "users_roles"."user_id" = 3 AND (((roles.name = 'admin') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)))[0m
+  Rendered layouts/_navigation.html.erb (36.4ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+  Rendered layouts/_footer.html.erb (0.6ms)
+Completed 200 OK in 56ms (Views: 53.4ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/users/3/messages" for 127.0.0.1 at 2012-11-28 16:03:42 -0500
+Processing by MessagesController#index as HTML
+  Parameters: {"user_id"=>"3"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", "3"]]
+  [1m[36mMessage Load (0.2ms)[0m  [1mSELECT "messages".* FROM "messages" WHERE "messages"."user_id" = 3[0m
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 3 LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "messages".* FROM "messages" WHERE "messages"."user_id" = 3[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 3 LIMIT 1
+  Rendered messages/index.html.erb within layouts/application (4.5ms)
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "roles" INNER JOIN "users_roles" ON "roles"."id" = "users_roles"."role_id" WHERE "users_roles"."user_id" = 3 AND (((roles.name = 'admin') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)))[0m
+  Rendered layouts/_navigation.html.erb (3.2ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+  Rendered layouts/_footer.html.erb (0.5ms)
+Completed 200 OK in 15ms (Views: 12.4ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/users/3/messages/1" for 127.0.0.1 at 2012-11-28 16:03:44 -0500
+Processing by MessagesController#show as HTML
+  Parameters: {"user_id"=>"3", "id"=>"1"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", "3"]]
+  [1m[36mMessage Load (0.2ms)[0m  [1mSELECT "messages".* FROM "messages" WHERE "messages"."user_id" = 3 AND "messages"."id" = ? LIMIT 1[0m  [["id", "1"]]
+  Rendered messages/show.html.erb within layouts/application (0.8ms)
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 3 LIMIT 1
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "roles" INNER JOIN "users_roles" ON "roles"."id" = "users_roles"."role_id" WHERE "users_roles"."user_id" = 3 AND (((roles.name = 'admin') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)))[0m
+  Rendered layouts/_navigation.html.erb (4.2ms)
+  Rendered layouts/_messages.html.erb (0.0ms)
+  Rendered layouts/_footer.html.erb (0.5ms)
+Completed 200 OK in 13ms (Views: 9.7ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/users/3/messages/1" for 127.0.0.1 at 2012-11-28 16:06:32 -0500
+Processing by MessagesController#show as HTML
+  Parameters: {"user_id"=>"3", "id"=>"1"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", "3"]]
+  [1m[36mMessage Load (0.2ms)[0m  [1mSELECT "messages".* FROM "messages" WHERE "messages"."user_id" = 3 AND "messages"."id" = ? LIMIT 1[0m  [["id", "1"]]
+  Rendered messages/_form.html.erb (12.3ms)
+  Rendered messages/_response.html.erb (13.8ms)
+  Rendered messages/show.html.erb within layouts/application (16.5ms)
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 3 LIMIT 1
+  [1m[36m (0.3ms)[0m  [1mSELECT COUNT(*) FROM "roles" INNER JOIN "users_roles" ON "roles"."id" = "users_roles"."role_id" WHERE "users_roles"."user_id" = 3 AND (((roles.name = 'admin') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)))[0m
+  Rendered layouts/_navigation.html.erb (6.6ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+  Rendered layouts/_footer.html.erb (1.0ms)
+Completed 200 OK in 34ms (Views: 29.8ms | ActiveRecord: 0.9ms)

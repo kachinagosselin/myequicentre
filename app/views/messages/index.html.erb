@@ -20,7 +20,7 @@
     <td><%= message.from_name %></td>
     <td><%= message.title %></td>
     <td><%= message.content %></td>
-    <td><%= link_to 'Show', user_message_path(@user) %></td>
+    <td><%= link_to 'Show', user_message_path(@user, message) %></td>
     <td><%= link_to 'Edit', edit_user_message_path(@user, message) %></td>
     <td><%= link_to 'Destroy', [message.user, message], method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>

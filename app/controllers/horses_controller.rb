@@ -18,6 +18,8 @@ class HorsesController < ApplicationController
       @horse = @user.horses.find(params[:id])
   end
   
+  # GET user/:user_id/horses/new
+  # GET user/:user_id/horses/new.json
   def new
     @user = User.find(params[:user_id])
     @horse = @user.horses.new
