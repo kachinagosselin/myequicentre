@@ -24,11 +24,16 @@ user2.add_role :VIP
 user3.add_role :admin
 
 puts 'SETTING UP TEST HORSE OBJECTS'
-@user = User.find(3)
-horse1 = @user.horses.create! :name => 'First Horse', :breed => 'Arabian', :gender => 'Mare', :age => 12, :height => 15.1, :text_description => 'A lovely arab mare for sale', :price => 12000
-horse2 = @user.horses.create! :name => 'Second Horse', :breed => 'Andalusian', :gender => 'Stallion', :age => 9, :height => 15.3, :text_description => 'A spirited andalusian stallion.', :price => 25000
-horse3 = @user.horses.create! :name => 'Third Horse', :breed => 'Warmblood', :gender => 'Gelding', :age => 15, :height => 16.2, :text_description => 'A gentle warmblood gelding for lease.', :price => 19000
-puts 'New horse created: ' << horse1.text_description
-puts 'New horse created: ' << horse2.text_description
-puts 'New horse created: ' << horse3.text_description
+horse21 = user2.horses.create! :name => 'His Horse', :breed => 'Arabian', :gender => 'Gelding', :age => 12, :height => 15.1, :text_description => 'A docile arab gelding for sale', :price => 12000
+horse22 = user2.horses.create! :name => 'Our Horse', :breed => 'Arabian', :gender => 'Stallion', :age => 9, :height => 15.3, :text_description => 'An energetic arabian stallion.', :price => 25000
+horse23 = user2.horses.create! :name => 'My Horse', :breed => 'Warmblood', :gender => 'Mare', :age => 15, :height => 16.2, :text_description => 'A gentle warmblood mare for sale.', :price => 19000
+puts 'New horse created: ' << horse21.text_description
+puts 'New horse created: ' << horse22.text_description
+puts 'New horse created: ' << horse23.text_description
+horse31 = user3.horses.create! :name => 'First Horse', :breed => 'Arabian', :gender => 'Mare', :age => 12, :height => 15.1, :text_description => 'A lovely arab mare for sale', :price => 12000
+horse32 = user3.horses.create! :name => 'Second Horse', :breed => 'Andalusian', :gender => 'Stallion', :age => 9, :height => 15.3, :text_description => 'A spirited andalusian stallion.', :price => 25000
+horse33 = user3.horses.create! :name => 'Third Horse', :breed => 'Warmblood', :gender => 'Gelding', :age => 15, :height => 16.2, :text_description => 'A gentle warmblood gelding for lease.', :price => 19000
+puts 'New horse created: ' << horse31.text_description
+puts 'New horse created: ' << horse32.text_description
+puts 'New horse created: ' << horse33.text_description
 

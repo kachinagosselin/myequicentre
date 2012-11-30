@@ -12,4 +12,13 @@ class Horse < ActiveRecord::Base
     validates :price, :presence => true
     validates :text_description, :presence => true,
     :length => { :minimum => 2 }
+    
+    def self.search(search)
+    search_condition = "%" + search + "%"
+    if search_condition
+    find(:all, :conditions => ['breed LIKE ? OR name LIKE ?', search_condition, search_condition])
+    else
+    find(:all)
+    end
+end
 end

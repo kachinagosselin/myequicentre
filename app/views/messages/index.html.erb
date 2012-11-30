@@ -1,33 +1,47 @@
 <!-- This is the user inbox. -->
 <div class="white-background">
-<h1>Listing messages</h1>
-
-<table>
+<div class="row-fluid">
+<div class="span3" >
+    <div class="nav messages-sidenav" >    
+        <ul class="nav-list">
+          <li><div class="compose"><button class="btn btn-block" type="button"><%= link_to 'Compose Message', new_user_message_path(@user) %></button></div></li>
+          <li class="divider-horizontal"></li>
+          <li class="active"><a href="#typography">Inbox<i class="icon-chevron-right pull-right" ></i></a></li>
+          <li class="divider-horizontal"></li>
+          <li><a href="#code">Drafts<i class="icon-chevron-right pull-right"></i></a></li>
+          <li class="divider-horizontal"></li>
+          <li><a href="#tables">Sent<i class="icon-chevron-right pull-right"></i></a></li>
+          <li class="divider-horizontal"></li>
+          <li><a href="#forms">Archive<i class="icon-chevron-right pull-right"></i></a></li>
+          <li class="divider-horizontal"></li>
+          <li><a href="#buttons">Trash<i class="icon-chevron-right pull-right"></i></a></li>
+        </ul>
+    </div>
+</div>
+<div class="span9">
+<h1>Welcome to Your Message Center</h1>
+</br>
+<table class="table">
   <tr>
-    <th>To name</th>
     <th>From name</th>
     <th>Title</th>
     <th>Content</th>
-    <th></th>
-    <th></th>
     <th></th>
   </tr>
 
 <% @user = current_user %>
 <% @user.messages.each do |message| %>
   <tr>
-    <td><%= message.to_name %></td>
-    <td><%= message.from_name %></td>
-    <td><%= message.title %></td>
-    <td><%= message.content %></td>
-    <td><%= link_to 'Show', user_message_path(@user, message) %></td>
-    <td><%= link_to 'Edit', edit_user_message_path(@user, message) %></td>
-    <td><%= link_to 'Destroy', [message.user, message], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= link_to message.from_name,  user_message_path(@user, message) %></td>
+    <td><%= link_to message.title,  user_message_path(@user, message) %></td>
+    <td><%= link_to message.content,  user_message_path(@user, message) %></td>
+    <td><%= link_to 'Delete', [message.user, message], method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New Message', new_user_message_path(@user) %>
+</div>
+</div>
 </div>

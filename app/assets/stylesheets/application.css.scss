@@ -12,30 +12,7 @@
  *= require_tree .
 */
 
-.content {
-/*
-  padding: 20px;
-  margin: 0 -20px; 
-  -webkit-border-radius: 0 0 6px 6px;
-  -moz-border-radius: 0 0 6px 6px;
-  border-radius: 0 0 6px 6px;
-  -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.15);
-  -moz-box-shadow: 0 1px 2px rgba(0,0,0,.15);
-  box-shadow: 0 1px 2px rgba(0,0,0,.15);
-*/
-}
-
 /* MAIN PAGE ELEMENTS*/
-container {
-width: 940px;
-}
-
-body {
-font-family: "proxima-nova","Helvetica Neue","Helvetica","Arial","sans-serif";
-font-size: 14px;
-line-height: 20px;
-color: #2C2C2C;
-}
 
 li {
 line-height: 20px;
@@ -84,11 +61,6 @@ color: #424641;
 text-decoration: none;
 }
 
-.homecarousel a:link {
-color: #fff;
-text-decoration: none;
-}
-
 /* STATIC PAGE ELEMENTS*/
 .white-background {
 -webkit-box-shadow: 0px 1px 3px #424641;
@@ -129,7 +101,7 @@ margin-top: 10px;
 .text-box {
 background: #323232;
 border: solid 1px #333;
-opacity: 0.97;
+opacity: 0.9;
 filter: alpha(opacity=97);
 -webkit-box-shadow: 2px 2px 3px #222;
 -moz-box-shadow: 2px 2px 3px #222;
@@ -284,6 +256,7 @@ color: #424641;
 border-bottom: 0;
 }
 
+/*DIVIDERS*/
 .divider-vertical {
 height: 42px;
 width: 1px;

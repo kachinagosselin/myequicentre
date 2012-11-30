@@ -6,14 +6,15 @@
 <li><form class="form-search">
   <input type="text" class="input-large search-query" placeholder="search this site...">
 </form>
+
 </li>
 <li><%= link_to 'About', '/static_pages/about' %></li>
 <li class='divider-vertical'></li>
-<li><%= link_to 'Discover', '/static_pages/discover' %></li>
+<li><%= link_to 'Discover', 'horses/search?utf8=✓&search=&commit=Search' %></li>
 <li class='divider-vertical'></li>
 <li><%= link_to 'Share', '/static_pages/info_create' %></li>
 <li class='divider-vertical'></li>
-<li><%= link_to 'Blog', '/static_pages/blog' %></li>
+<li><%= link_to 'Blog', posts_path %></li>
 <li class='divider-vertical'></li>
   
   <% if user_signed_in? %>
@@ -31,7 +32,10 @@
       </li>
     <% end %>
     <li>
-    <%= link_to 'Dashboard', user_path(current_user) %>
+    <%= link_to 'Profile', user_path(current_user) %>
+    </li>
+    <li>
+    <%= link_to 'Dashboard', 'home/welcome' %>
     </li>
     <li>
     <%= link_to 'Edit account', edit_user_registration_path %>

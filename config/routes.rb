@@ -16,11 +16,11 @@ Railsapp::Application.routes.draw do
         resources :comments
         end
     
-    ## match  'inbox' => redirect('messages#index')
-    ## match  'horses' => redirect('horses#show')
-    ## match 'horse' => 'horses#show', :via => :get
-    ## match 'horses' => 'horses#index', :via => :get
-    ##match 'messages' => 'messages#show', :via => [:get, :post]
+    match ':controller(/:action(/:id(.:format)))' => ':controller#:action', :via => [:get]
+    #match 'horses/search(/:id)' => 'horses#search', :via => [:get]
+    #match 'horses(/:id)/search' => 'horses#search', :via => [:get]
+    match 'horses' => 'home#index', :via => [:get]
+
     get "static_pages/about"
     get "static_pages/discover"
     get "static_pages/info_create"

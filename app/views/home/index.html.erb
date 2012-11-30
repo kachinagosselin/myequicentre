@@ -11,44 +11,35 @@
   <div class="container">
   
   <div class="homecarousel">
-<div id="myCarousel" class="carousel slide">
-  <!-- Carousel items -->
-  <div class="carousel-inner">
+    <div id="myCarousel" class="carousel slide">
+    <!-- Carousel items -->
+        <div class="carousel-inner">
 
-    <% @users.each do |user| %>
-    <% user.horses.each do |horse| %>
-    <div class="item">
-<div class='span7'>
-<div class='text-box'>
-<h1><%=link_to horse.name, user_horse_path(user, horse) %></h1>
-</div>
-</div>
-    <%= image_tag("/images/single.jpg", :alt => "")%>
-      <div class="carousel-caption">
-      <p> <%= horse.text_description %></p>
-      <p><%=link_to 'view details', user_horse_path(user, horse) %></p>
-      </div>
-     </div>
-    <% end %>
-    <% end %>
-  </div>
+        <% @users.each do |user| %>
+        <% user.horses.each do |horse| %>
+            <div class="item">
+                <div class='span7'>
+                    <div class='text-box'>
+                        <h1><%=link_to horse.name, user_horse_path(user, horse) %></h1>
+                    </div>
+                </div>
+                <%= image_tag("/images/single.jpg", :alt => "")%>
+                <div class="carousel-caption">
+                    <p> <%= horse.text_description %></p>
+                    <p><%=link_to 'view details', user_horse_path(user, horse) %></p>
+                 </div>
+            </div>
+        <% end %>
+        <% end %>
+    </div>
   <!-- Carousel nav -->
   <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
   <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
 </div>
-
-
-
-
 </div>
 
-
-
 <div class="white-background">
-
-
-
-<h1> Welcome to MyRailsApp, Inc </h1>
+<h1> Welcome to MyEquiCentre </h1>
 <h3>
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam nec urna a nibh 
 elementum sodales luctus at lectus. Sed ut ipsum sapien, sodales tincidunt diam. 
@@ -70,7 +61,7 @@ congue aliquet. In mauris mauris, fermentum sit amet ullamcorper a, fermentum at
 Sed sit amet tellus lorem, id luctus dui.
 </h3>
 
-      <a href="/" class="btn-large btn"> Sign Up (it's free)</a>
+<a href="/" class="btn-large btn"> Sign Up (it's free)</a>
 
 </div>
 

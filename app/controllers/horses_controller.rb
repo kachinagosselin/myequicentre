@@ -62,6 +62,10 @@ class HorsesController < ApplicationController
       end
     end
   end
+    
+  def search
+      @horses = Horse.search(params[:search])
+  end
 
   # DELETE user/:user_id/horses/1
   # DELETE user/:user_id/horses/1.json

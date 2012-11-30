@@ -1,0 +1,30 @@
+<script>
+$(".card").onclick(function(){
+     window.location=$(this).find("a").attr("href"); 
+     return true;
+});
+</script>
+
+<div class='row'>
+<% @horses.each do |horse| %>
+<div class='span4'>
+
+<div class='card' style="background:url('/assets/619/main/image.jpg') no-repeat;background-size:cover;">
+<div class='banner'>
+<div class='title'>
+<%= link_to horse.name, user_horse_path(User.find(horse.user_id), horse) %>
+</div>
+<div class='tagline'>located: San Francisco, CA</div>
+<div class='amount'>
+<span class='dollar'>$</span>
+<span class='price'>horse.price</span>
+<span class='plus'> </span>
+</div>
+</div>
+</div>
+</div>
+
+<% end %>
+
+</div>
+
