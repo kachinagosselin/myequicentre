@@ -1,13 +1,9 @@
 <p id="notice"><%= notice %></p>
 <div class='white-background'>
-<div class="row-fluid">
-<div class="span4" id="profile-image">
 <h1>New horse</h1>
 <p> User: <%= current_user.name %> </p>
 
 <%= render 'form' %>
 
 <%= link_to 'Back', user_horses_path(@user) %>
-</div>
-</div>
 </div>

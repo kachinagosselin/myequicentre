@@ -1,7 +1,7 @@
 class Message < ActiveRecord::Base
     belongs_to :user
     
-    attr_accessible :content, :from_name, :title, :to_name
+    attr_accessible :content, :from_name, :title, :to_name, :folder
     
     validates :content,  :presence => true,
     :length => { :minimum => 5 }
@@ -9,5 +9,6 @@ class Message < ActiveRecord::Base
     validates :title, :presence => true,
     :length => { :minimum => 5 }
     validates :to_name,  :presence => true
+    validates :folder,  :presence => true
     
 end

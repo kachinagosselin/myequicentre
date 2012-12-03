@@ -15,33 +15,34 @@ Railsapp::Application.routes.draw do
     resources :posts do
         resources :comments
         end
-    
+            
     match ':controller(/:action(/:id(.:format)))' => ':controller#:action', :via => [:get]
     #match 'horses/search(/:id)' => 'horses#search', :via => [:get]
     #match 'horses(/:id)/search' => 'horses#search', :via => [:get]
     match 'horses' => 'home#index', :via => [:get]
 
-    get "static_pages/about"
-    get "static_pages/discover"
-    get "static_pages/info_create"
-  
-    get "static_pages/home"
-    get "static_pages/help"
-    
-    get "static_pages/guidelines"
-    get "static_pages/terms"
-    get "static_pages/privacy"
+    get "/pages/about"
+    get "/pages/info_create"
+      
+    get "/pages/guidelines"
+    get "/pages/terms"
+    get "/pages/privacy"
 
-    get "static_pages/press"
-    get "static_pages/contact"
+    get "/pages/press"
+    get "/pages/contact"
 
-    get "static_pages/team"
-    get "static_pages/stories"
-    get "static_pages/jobs"
+    get "/pages/stories"
+    get "/pages/jobs"
     
-    get "static_pages/sample_horse_profile"
-    get "static_pages/sample_dashboard"
-    get "static_pages/sample_search"
-    get "static_pages/sample_create_form"
+    get "/pages/sample_search"
+    get "/pages/sample_create_form"
+    
+    get "/messages/drafts"
+
+    match '/messages/inbox', :controller => 'messages', :action => 'inbox'
+    match '/users/:user_id/messages/:id/draft', :controller => 'messages', :action => 'drafts'
+    match '/messages/sent', :controller => 'messages', :action => 'sent'
+    match '/messages/archive', :controller => 'messages', :action => 'archive'
+    match '/messages/trash', :controller => 'messages', :action => 'trash'
 
 end

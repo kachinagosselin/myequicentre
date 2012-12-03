@@ -1,4 +1,30 @@
+<script>
+  $(document).ready(function(){
+   var breeds = ['ALL BREEDS', 'Akhal-Teke', 'American Saddlebred', 'American Warmblood',
+    'Andalusian', 'Appaloosa', 'Arabian', 'Belgian Horse', 'Belgian Sporthorse', 
+    'Belgian Warmblood', 'Black Forest Horse', 'Canadian Horse', 'Canadian Sport Horse', 
+    'Canadian Warmblood', 'Caspian Horse', 'Champagne Horse', 'Chincoteague Pony', 
+    'Cleveland Bay', 'Clydesdale', 'Connemara', 'Czech Warmblood', 'Dales Pony', 
+    'Danish Warmblood', 'Dartmoor Pony', 'Draft', 'Dutch Warmblood', 'Fell Pony', 'Fjord', 
+    'Friesian', 'German Riding Pony', 'German Warmblood', 'Grade Horse', 'Gypsy Horse', 
+    'Hackney Horse', 'Hackney Pony', 'Haflinger', 'Hanoverian', 'Highland Pony', 'Holsteiner',
+    'Hungarian Warmblood', 'Icelandic Horse', 'International Sporthorse', 'Irish Cob', 
+    'Irish Draught', 'Irish Sport Horse', 'Kentucky Mountain', 'Lipizzan', 'Lusitano', 
+    'Miniature', 'Missouri Fox Trotter Horse', 'Missouri Fox Trotter Pony', 'Morab', 
+    'Morgan', 'Mountain Pleasure Horse', 'Mustang', 'National Show Horse', 'New Forest Pony',
+    'New Zealand Warmblood', 'Newfoundland Pony', 'Oldenburg', 'Other', 'Paint Horse', 
+    'Palomino Horse', 'Paso Fino', 'Percheron', 'Peruvian Paso', 'Pintabian', 'Pintaloosa', 
+    'Pinto', 'Pinto Paso', 'Pleasure Saddle Horse Registry', 'POA', 'Pony', 'Quarab', 
+    'Quarter Horse', 'Quarter Pony', 'Racking Horse', 'Rocky Mountain', 'Selle Francais', 
+    'Shetland Pony', 'Shire', 'Spanish Barb', 'Spanish Mustang', 'Standardbred', 'Suffolk', 
+    'Swedish Warmblood', 'Swiss Warmblood', 'Tennessee Walker', 'Thoroughbred', 'Trakehner', 
+    'Warmblood', 'Welsh Cob', 'Welsh Pony'];   
+    $('#horse_breed').typeahead({source: breeds});
+  });
+</script>
+
 <p id="notice"><%= notice %></p>
+<div class="white-background">
 <h1>Editing horse</h1>
 
 <p> User: <%= current_user.name %> </p>
@@ -9,3 +35,4 @@
 
 <%= link_to 'Show', user_horses_path(@user) %> |
 <%= link_to 'Back', user_horses_path(@user) %>
+</div>

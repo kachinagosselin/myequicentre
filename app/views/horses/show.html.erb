@@ -3,6 +3,10 @@
 <div class="row-fluid">
 <div class="span4" id="profile-image">
 
+<%= link_to @horse.avatar_file_name%>
+<%= link_to @horse.avatar.url%>
+<%= image_tag @horse.avatar.url %>
+
 <p>
   <b>Breed:</b>
   <%= @horse.breed %>
@@ -25,13 +29,12 @@
 </div>
 <div class="span8">
 
-<p>
-  <b>Name:</b>
+<h2>
   <%= @horse.name %>
-</p>
-  <b>Text description:</b>
+</h2>
+<h3>
   <%= @horse.text_description %>
-</p>
+</h3>
 
 <p>
   <b>Price:</b>

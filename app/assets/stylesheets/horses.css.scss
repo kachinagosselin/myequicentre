@@ -1,3 +1,66 @@
 // Place all the styles related to the Horses controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+/*SEARCH RESULTS ELEMENTS*/
+.card {
+height: 245px;
+margin: 0px 0px 25px 0px;
+overflow: hidden;
+border: none;
+position: relative;
+-webkit-box-shadow: 0px 1px 3px #424641;
+-moz-box-shadow: 0px 1px 3px #424641;
+box-shadow: 0px 1px 3px #424641;
+}
+
+.card .banner {
+opacity: 0.95;
+filter: alpha(opacity=95);
+height: 50px;
+background: white;
+width: 100%;
+position: absolute;
+bottom: 0;
+}
+
+.card .banner .title {
+line-height: 10px;
+padding: 10px 8px 4px;
+font-weight: 700;
+font-family: "proxima-nova","Helvetica Neue","Helvetica","Arial","sans-serif";
+font-size: 16px;
+color: #424641;
+text-shadow: none;
+opacity: none;
+}
+
+.card .banner .tagline {
+color: #B4B8B7;
+font-size: 13px;
+padding: 2px 0px 0px 8px;
+}
+
+.card .banner .amount {
+display: inline-block;
+padding: 0px;
+margin: -21px 0px 25px 245px;
+color: #B4B8B7;
+}
+
+.card .banner .amount span.dollar {
+font-size: 14px;
+float: left;
+}
+
+.card .banner .amount span.price {
+margin-top: 0px;
+font-size: 20px;
+font-weight: bold;
+float: left;
+}
+
+card .banner .amount span.plus {
+font-size: 12px;
+float: right;
+}

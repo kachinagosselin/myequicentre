@@ -1,14 +1,14 @@
-<%= simple_form_for([@user, @horse]) do |f| %>
+<%= simple_form_for([@user, @horse], :html => { :multipart => true }) do |f| %>
   <%= f.error_notification %>
-
   <div class="form-inputs">
     <%= f.input :name %>
-    <%= f.input :breed %>
-    <%= f.input :gender %>
+    <%= f.input :breed, :autocomplete => "off"%>
+    <%= select_tag(:gender, options_for_select(['Mare', 'Gelding', 'Stallion']))%>
     <%= f.input :age %>
     <%= f.input :height %>
     <%= f.input :text_description %>
     <%= f.input :price %>
+    <%= f.file_field :avatar %>
   </div>
 
   <div class="form-actions">

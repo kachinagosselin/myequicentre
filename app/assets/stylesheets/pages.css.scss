@@ -1,3 +1,35 @@
 // Place all the styles related to the pages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.how-it-works .text-box {
+background: #323232;
+border: solid 1px #333;
+opacity: 0.9;
+filter: alpha(opacity=97);
+-webkit-box-shadow: 2px 2px 3px #222;
+-moz-box-shadow: 2px 2px 3px #222;
+box-shadow: 2px 2px 3px #222;
+position: relative;
+left: 0px;
+top: -585px;
+padding: 10px 10px 10px 10px;
+}
+
+.how-it-works .caption .text-box {
+background: #323232;
+border: solid 1px #333;
+opacity: 0.9;
+filter: alpha(opacity=97);
+-webkit-box-shadow: 2px 2px 3px #222;
+-moz-box-shadow: 2px 2px 3px #222;
+box-shadow: 2px 2px 3px #222;
+position: relative;
+left: -60px;
+top: -300px;
+padding: 10px 10px 10px 10px;
+}
+
+.how-it-works .caption .text-box .join{
+padding: 20px 10px 10px 10px;
+}

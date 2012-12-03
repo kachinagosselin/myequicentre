@@ -2,69 +2,85 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.carousel {
-margin-bottom: 20px;
-height: 500px;
+.homecarousel {
+height: 600px;
 width: 900px;
 background-color: none;
-background: url("/images//homepage/main_elephants.jpg") no-repeat;
 -webkit-box-shadow: 0px 1px 3px #424641;
 -moz-box-shadow: 0px 1px 3px #424641;
 box-shadow: 0px 1px 3px #424641;
 margin-left: 20px;
 }
 
-.carousel-inner {
-}
-
-.carousel .item {
-}
-
-
-.homecarousel a:link {
+.homecarousel a:link a:visited {
 color: #fff;
 text-decoration: none;
+}
+
+.homecarousel .carousel-inner {
+overflow: hidden;
+width: 100%;
+height: 100%;
+position: relative;
+}
+
+.carousel-image {
+background: #fff;
+position: relative;
+left: -20px;
+top: 0px;
+opacity: 0.9;
 }
 
 .carousel-inner .text-box {
 background: #323232;
 border: solid 1px #333;
-opacity: 0.8;
+opacity: 0.9;
 filter: alpha(opacity=97);
 -webkit-box-shadow: 2px 2px 3px #222;
 -moz-box-shadow: 2px 2px 3px #222;
 box-shadow: 2px 2px 3px #222;
 position: relative;
-left: -20px;
-top: 15px;
+left: -40px;
+top: -600px;
 padding: 10px 10px 10px 10px;
 }
 
-.carousel-inner .text-box .details {
-background: #323232;
+.details-section {
+background: #fff;
 border: solid 1px #333;
-opacity: 0.8;
+opacity: 0.65;
 filter: alpha(opacity=97);
 -webkit-box-shadow: 2px 2px 3px #222;
 -moz-box-shadow: 2px 2px 3px #222;
 box-shadow: 2px 2px 3px #222;
-position: relative;
-left: -20px;
-top: 15px;
+position: absolute;
+left: 0px;
+top: 72px;
 padding: 10px 10px 10px 10px;
 }
 
-.carousel-inner .text-box .price {
-background: #323232;
+.details-section h4 {
+color: black;
+padding: 10px 10px 0px 20px;
+margin-bottom: 0px;
+font-size: 18px;
+font-weight: 300;
+margin: 10px 0;
+line-height: 10px
+}
+
+.price-tag {
+background: white;
 border: solid 1px #333;
-opacity: 0.8;
+opacity: 0.9;
 filter: alpha(opacity=97);
 -webkit-box-shadow: 2px 2px 3px #222;
 -moz-box-shadow: 2px 2px 3px #222;
 box-shadow: 2px 2px 3px #222;
-position: relative;
+position: absolute;
 left: -20px;
-top: 15px;
+top: 72px;
 padding: 10px 10px 10px 10px;
 }
 
@@ -76,6 +92,16 @@ position: relative;
 font-size: 45px;
 text-align: center;
 margin-bottom: 0px;
+}
+
+.carousel-inner .text-box > a:link {
+color: white;
+text-decoration: none;
+}
+
+.carousel-inner .text-box > a:visited {
+color: white;
+text-decoration: none;
 }
 
 .carousel-inner .text-box h4 {
@@ -96,11 +122,52 @@ font-weight: 300;
 }
 
 .carousel-caption {
-position: absolute;
-left: 0;
-right: 0;
-bottom: 0;
-padding: 15px;
+position: relative;
+left: -20px;
+right: 0px;
+top: -54px;
+padding: 0px;
 background: #333;
 background: rgba(0, 0, 0, 0.75);
+}
+
+.text-box {
+background: #323232;
+border: solid 1px #333;
+opacity: 0.9;
+filter: alpha(opacity=97);
+-webkit-box-shadow: 2px 2px 3px #222;
+-moz-box-shadow: 2px 2px 3px #222;
+box-shadow: 2px 2px 3px #222;
+position: relative;
+left: -20px;
+top: 15px;
+padding: 10px 10px 10px 10px;
+}
+
+.text-box h1 {
+color: white;
+padding: 0px 10px 0px 10px;
+font-weight: 300;
+position: relative;
+font-size: 45px;
+text-align: center;
+margin-bottom: 0px;
+}
+
+.caption .text-box h4 {
+font-family: "Helvetica Neue","Helvetica","Arial","sans-serif";
+font-size: 30px;
+font-weight: 500px;
+color: white;
+padding: 10px 10px 0px 15px;
+text-align: center;
+}
+
+.caption .text-box p {
+color: white;
+padding: 10px 10px 0px 20px;
+margin-bottom: 0px;
+font-size: 18px;
+font-weight: 300;
 }

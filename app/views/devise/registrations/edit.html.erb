@@ -1,14 +1,41 @@
 <!-- This is where we edit settings for user. -->
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<div class="white-background">
+<h2>Edit <%= resource_name.to_s.humanize %> Account Details</h2>
+
 <%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put, :class => 'form-vertical' }) do |f| %>
   <%= f.error_notification %>
+  
+  <p><b>Basic Account Details</b></p>
   <%= f.input :name, :autofocus => true %>
   <%= f.input :email, :required => true %>
+  
+  <p><b>Your Contact Information</b></p>
+  <%= label_tag(:website, "Website") %>
+  <%= url_field(:user, :website) %>
+  <%= label_tag(:phone_number, "Phone Number") %>
+  <%= telephone_field(:user, :phone_number) %>
+  <p>Format for phone number is xxx-xxx-xxxx</p>
+  
+  <p><b>Notification Settings</b></p>
+  <%= label_tag(:preferred_contact, "I prefer users contact me via:") %>
+  Email: 
+  <%= radio_button_tag(:preferred_contact, "email") %> 
+  Phone: 
+  <%= radio_button_tag(:preferred_contact, "phone") %>
+  <%= check_box_tag(:receive_newsletter) %> I would like to receive newsletters from MyEquiCentre
+  
+  <p><b>Change Your Password</b></p>
   <%= f.input :password, :autocomplete => "off", :hint => "leave it blank if you don't want to change it", :required => false %>
   <%= f.input :password_confirmation, :required => false %>
-  <%= f.input :current_password, :hint => "we need your current password to confirm your changes", :required => true %>
+  
+  <p><b>Enter your current password to confirm changes</b></p>
+  <%= f.input :current_password, :required => true %>
   <%= f.button :submit, 'Update', :class => 'btn-primary' %>
+  
 <% end %>
-<h3>Cancel my account</h3>
+
+<p><b>Cancel my account</b></p>
 <p>Unhappy? <%= link_to "Cancel my account", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete %>.</p>
 <%= link_to "Back", :back %>
+
+</div>

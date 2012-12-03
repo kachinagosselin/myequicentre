@@ -23,6 +23,7 @@ class HorsesController < ApplicationController
   def new
     @user = User.find(params[:user_id])
     @horse = @user.horses.new
+      
   end
 
   # POST user/:user_id/horses
@@ -30,7 +31,7 @@ class HorsesController < ApplicationController
   def create
       @user = User.find(params[:user_id])
       @horse = @user.horses.build(params[:horse])
-       
+
     respond_to do |format|
       if @horse.save
         format.html { redirect_to user_horse_path(@user, @horse), notice: 'Horse was successfully created.' }
@@ -51,8 +52,10 @@ class HorsesController < ApplicationController
   def update
       @user = User.find(params[:user_id])
       @horse = @user.horses.find(params[:id])
-      
+
     respond_to do |format|
+        #@horse.avatar_file_name => "/deserthorses_equicentre_slideshow.jpg"
+        #@horse.avatar(:url=>"/images/avatars/6/original/deserthorses_equicentre_slideshow.jpg")
       if @horse.update_attributes(params[:horse])
         format.html { redirect_to user_horse_path(@user, @horse), notice: 'Horse was successfully updated.' }
         format.json { head :no_content }

@@ -1,22 +1,26 @@
 <div class='logo'>
-<%= link_to "MyRailsApp", root_path, :class => 'brand' %>
+<%= link_to "EquiCentre", root_path, :class => 'brand' %>
 </div>
 <div class='main-nav'>
 <ul class="nav pull-right">
-<li><form class="form-search">
-  <input type="text" class="input-large search-query" placeholder="search this site...">
-</form>
-
+<li>
 </li>
-<li><%= link_to 'About', '/static_pages/about' %></li>
+<li><%= link_to 'About', '/pages/about' %></li>
 <li class='divider-vertical'></li>
-<li><%= link_to 'Discover', 'horses/search?utf8=✓&search=&commit=Search' %></li>
+<li><%= link_to 'Discover', '/horses/search?utf8=✓&search=&commit=Search' %></li>
 <li class='divider-vertical'></li>
-<li><%= link_to 'Share', '/static_pages/info_create' %></li>
+<li><%= link_to 'Share', '/pages/info_create' %></li>
 <li class='divider-vertical'></li>
-<li><%= link_to 'Blog', posts_path %></li>
+<% if user_signed_in? %>
+<% if current_user.has_role? :admin %>
+<li><%= link_to 'Blog', "http://blog.myequicentre.com/wp-admin" %></li>
+<% end %>
+<% else %>
+<li><%= link_to 'Blog', "http://blog.myequicentre.com/" %></li>
+<% end %>
+
 <li class='divider-vertical'></li>
-  
+
   <% if user_signed_in? %>
     <li><%= link_to 'Inbox', user_messages_path(current_user) %></li>
 <li class='divider-vertical'></li>
@@ -35,7 +39,7 @@
     <%= link_to 'Profile', user_path(current_user) %>
     </li>
     <li>
-    <%= link_to 'Dashboard', 'home/welcome' %>
+    <%= link_to 'Dashboard', 'home/dashboard' %>
     </li>
     <li>
     <%= link_to 'Edit account', edit_user_registration_path %>

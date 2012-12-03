@@ -28,3 +28,5 @@ gem "quiet_assets", ">= 1.0.1", :group => :development
 gem 'thin'
 gem 'bcrypt-ruby'
 gem 'foreman'
+gem "paperclip", "~> 3.0"
+gem "rmagick", "2.12.0", :require => 'RMagick'

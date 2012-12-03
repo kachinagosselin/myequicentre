@@ -33,6 +33,19 @@ class MessagesController < ApplicationController
       @user = User.find(params[:user_id])
       @message = @user.messages.find(params[:id])  
   end
+  
+  # GET user/:user_id/messages/1/edit
+  def archive
+      @user = User.find(params[:user_id])
+      @message = @user.messages.find(params[:id])  
+  end
+  
+  # GET user/:user_id/messages/1/trash
+  def trash
+      @user = User.find(params[:user_id])
+      @message = @user.messages.find(params[:id])
+      @message.folder = 'trash'  
+  end
 
   # POST user/:user_id/messages
   # POST user/:user_id/messages.json

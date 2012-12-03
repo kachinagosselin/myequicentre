@@ -33,16 +33,18 @@ Once you&rsquo;ve enabled Javascript you can
 </p>
 </div>
 </noscript>
-
-
-<div id="search">
-    <%= render 'horses/search' %>
-  </div>
   
 <script>
 $('.dropdown-toggle').dropdown()
 </script>
+
     <div id="main" role="main">
+    
+    
+    <% if !current_page?(root_path) %>
+    
+    <%end%>
+    
       <div class="container">
         <div class="content">
         

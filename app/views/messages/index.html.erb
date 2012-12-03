@@ -6,15 +6,15 @@
         <ul class="nav-list">
           <li><div class="compose"><button class="btn btn-block" type="button"><%= link_to 'Compose Message', new_user_message_path(@user) %></button></div></li>
           <li class="divider-horizontal"></li>
-          <li class="active"><a href="#typography">Inbox<i class="icon-chevron-right pull-right" ></i></a></li>
+          <li class="active"><%= link_to 'Inbox', user_messages_path(@user) %></li>
           <li class="divider-horizontal"></li>
-          <li><a href="#code">Drafts<i class="icon-chevron-right pull-right"></i></a></li>
+          <li><%= link_to 'Drafts', 'draft_messages_path(@user)' %></li>
           <li class="divider-horizontal"></li>
-          <li><a href="#tables">Sent<i class="icon-chevron-right pull-right"></i></a></li>
+          <li><%= link_to 'Sent', 'sent_messages_path(@user)'  %></li>
           <li class="divider-horizontal"></li>
-          <li><a href="#forms">Archive<i class="icon-chevron-right pull-right"></i></a></li>
+          <li><%= link_to 'Archive', 'archive_messages_path(@user)'  %></li>
           <li class="divider-horizontal"></li>
-          <li><a href="#buttons">Trash<i class="icon-chevron-right pull-right"></i></a></li>
+          <li><%= link_to 'Trash', 'trash_messages_path(@user)'  %></li>
         </ul>
     </div>
 </div>
@@ -35,6 +35,7 @@
     <td><%= link_to message.from_name,  user_message_path(@user, message) %></td>
     <td><%= link_to message.title,  user_message_path(@user, message) %></td>
     <td><%= link_to message.content,  user_message_path(@user, message) %></td>
+    
     <td><%= link_to 'Delete', [message.user, message], method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
 <% end %>
