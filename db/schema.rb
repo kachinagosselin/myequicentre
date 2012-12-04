@@ -87,13 +87,15 @@ ActiveRecord::Schema.define(:version => 20121201232958) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
-    t.string   "name"
+    t.string   "first_name"
+    t.string   "last_name"
     t.string   "avatar_file_name"
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
     t.integer  "phone_number"
     t.string   "website"
+    t.string   "preferred_contact"
     t.boolean  "receive_newsletter"
   end
 

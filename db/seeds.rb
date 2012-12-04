@@ -13,12 +13,12 @@ Role.create([
 ], :without_protection => true)
 
 puts 'SETTING UP DEFAULT USER LOGIN'
-user = User.create! :name => 'First User', :email => 'user@example.com', :password => 'please', :password_confirmation => 'please'
-puts 'New user created: ' << user.name
-user2 = User.create! :name => 'Second User', :email => 'user2@example.com', :password => 'please', :password_confirmation => 'please'
-puts 'New user created: ' << user2.name
-user3 = User.create! :name => 'Kachina Gosselin', :email => 'kachina@alum.mit.edu', :password => 'please', :password_confirmation => 'please'
-puts 'New user created: ' << user3.name
+user = User.create! :first_name => 'First', :last_name => 'User', :email => 'user@example.com', :password => 'please', :password_confirmation => 'please'
+puts 'New user created: ' << user.first_name
+user2 = User.create! :first_name => 'Second', :last_name => 'User', :email => 'user2@example.com', :password => 'please', :password_confirmation => 'please'
+puts 'New user created: ' << user2.first_name
+user3 = User.create! :first_name => 'Kachina', :last_name => 'Gosselin', :email => 'kachina@alum.mit.edu', :password => 'please', :password_confirmation => 'please'
+puts 'New user created: ' << user3.first_name
 user.add_role :admin
 user2.add_role :VIP
 user3.add_role :admin

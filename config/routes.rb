@@ -22,7 +22,7 @@ Railsapp::Application.routes.draw do
     match 'horses' => 'home#index', :via => [:get]
 
     get "/pages/about"
-    get "/pages/info_create"
+    get "/pages/info"
       
     get "/pages/guidelines"
     get "/pages/terms"
@@ -38,6 +38,7 @@ Railsapp::Application.routes.draw do
     get "/pages/sample_create_form"
     
     get "/messages/drafts"
+    match '/users/:user_id/dashboard', :controller => 'users', :action => 'dashboard'
 
     match '/messages/inbox', :controller => 'messages', :action => 'inbox'
     match '/users/:user_id/messages/:id/draft', :controller => 'messages', :action => 'drafts'

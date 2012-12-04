@@ -7,13 +7,15 @@
 </li>
 <li><%= link_to 'About', '/pages/about' %></li>
 <li class='divider-vertical'></li>
-<li><%= link_to 'Discover', '/horses/search?utf8=✓&search=&commit=Search' %></li>
+<li><%= link_to 'How It Works', '/pages/info' %></li>
 <li class='divider-vertical'></li>
-<li><%= link_to 'Share', '/pages/info_create' %></li>
+<li><%= link_to 'Discover', '/horses/search' %></li>
 <li class='divider-vertical'></li>
 <% if user_signed_in? %>
 <% if current_user.has_role? :admin %>
 <li><%= link_to 'Blog', "http://blog.myequicentre.com/wp-admin" %></li>
+<% else %>
+<li><%= link_to 'Blog', "http://blog.myequicentre.com/" %></li>
 <% end %>
 <% else %>
 <li><%= link_to 'Blog', "http://blog.myequicentre.com/" %></li>
@@ -39,7 +41,7 @@
     <%= link_to 'Profile', user_path(current_user) %>
     </li>
     <li>
-    <%= link_to 'Dashboard', 'home/dashboard' %>
+    <%= link_to 'Dashboard', user_horses_path(current_user) %>
     </li>
     <li>
     <%= link_to 'Edit account', edit_user_registration_path %>

@@ -4,7 +4,10 @@ class HorsesController < ApplicationController
   def index
       @user = User.find(params[:user_id])
       @horse = @user.horses.all
-
+      
+      @search = Horse.search(params[:search])
+      @horses = @search.all 
+      
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: user_horses_path(@user) }
@@ -67,7 +70,10 @@ class HorsesController < ApplicationController
   end
     
   def search
-      @horses = Horse.search(params[:search])
+      #@search = Horse.joins.where(:user_id => User.all).search(params)
+      @search = Horse.search(params[:search])
+      @horses = @search.all
+      #@horses = @search.paginate(..) 
   end
 
   # DELETE user/:user_id/horses/1

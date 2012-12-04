@@ -4,26 +4,38 @@ $(".card").onclick(function(){
      return true;
 });
 </script>
-
 <div class='row'>
+<% if @horses.nil? %>
+<p> Loading all horses </p>
+<% @horses = Horse.joins.where(:user_id => User.all).search({:name_contains => ""}) %>
+<% end %>
+
 <% @horses.each do |horse| %>
 <div class='span4'>
-
-<div class='card' style="background:url('/assets/619/main/image.jpg') no-repeat;background-size:cover;">
+<div class='card' style="background: no-repeat;background-size:cover;">
+<%=image_tag horse.avatar.url %>
 <div class='banner'>
-<div class='title'>
-<%= link_to horse.name, user_horse_path(User.find(horse.user_id), horse) %>
+    <div class='mainline'>
+    <%= link_to horse.name, user_horse_path(User.find(horse.user_id), horse) %>
+        <div class='amount'>
+            <div class='dollar'>$</div>
+            <div class='price'><%= number_to_currency(horse.price.round, :unit => "", :precision => 0) %></div>
+        </div>
+    </div>
+    <div class='tagline'> 
+        <p><%= horse.breed %> 
+        <%= horse.gender %>,
+        <%= horse.age %> 
+        yrs, 
+        <%= horse.height %> 
+        hh</p>
+        <p>located in: San Francisco, CA
+        <span class='more-details'><%= link_to 'view details', user_horse_path(User.find(horse.user_id), horse) %></span>
+        </p>
+    </div>
 </div>
-<div class='tagline'>located: San Francisco, CA</div>
-<div class='amount'>
-<span class='dollar'>$</span>
-<span class='price'><%= horse.price %></span>
-<span class='plus'> </span>
 </div>
 </div>
-</div>
-</div>
-
 <% end %>
 
 </div>

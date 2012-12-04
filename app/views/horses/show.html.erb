@@ -5,8 +5,9 @@
 
 <%= link_to @horse.avatar_file_name%>
 <%= link_to @horse.avatar.url%>
+<div class='profile-image'>
 <%= image_tag @horse.avatar.url %>
-
+</div>
 <p>
   <b>Breed:</b>
   <%= @horse.breed %>
@@ -19,19 +20,19 @@
 
 <p>
   <b>Age:</b>
-  <%= @horse.age %>
+  <%= @horse.age %> yrs
 </p>
 
 <p>
   <b>Height:</b>
-  <%= @horse.height %>
+  <%= @horse.height %> hh
 </p>
 </div>
 <div class="span8">
 
-<h2>
+<h4>
   <%= @horse.name %>
-</h2>
+</h4>
 <h3>
   <%= @horse.text_description %>
 </h3>
@@ -41,9 +42,14 @@
   <%= @horse.price %>
 </p>
 
-
+<% if current_user == @user %>
 <%= link_to 'Edit', edit_user_horse_path(@user, @horse) %> |
 <%= link_to 'Back', user_horses_path(@user) %>
+<%else%>
+<p><%= link_to 'View Horse for Sale by Owner', user_horses_path(@user) %></p>
+<p><%= link_to 'View Owner Profile', user_path(@user) %></p>
+<%end%>
+
 </div>
 
 </div>

@@ -30,3 +30,4 @@ gem 'bcrypt-ruby'
 gem 'foreman'
 gem "paperclip", "~> 3.0"
 gem "rmagick", "2.12.0", :require => 'RMagick'
+gem "meta_search"

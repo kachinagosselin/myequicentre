@@ -2,6 +2,7 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+/*INFO PAGE ELEMENTS*/
 .how-it-works .text-box {
 background: #323232;
 border: solid 1px #333;
@@ -10,9 +11,9 @@ filter: alpha(opacity=97);
 -webkit-box-shadow: 2px 2px 3px #222;
 -moz-box-shadow: 2px 2px 3px #222;
 box-shadow: 2px 2px 3px #222;
-position: relative;
-left: 0px;
-top: -585px;
+position: absolute;
+left: 42px;
+margin-top: 96px;
 padding: 10px 10px 10px 10px;
 }
 
@@ -25,11 +26,84 @@ filter: alpha(opacity=97);
 -moz-box-shadow: 2px 2px 3px #222;
 box-shadow: 2px 2px 3px #222;
 position: relative;
-left: -60px;
-top: -300px;
+left: 0px;
+margin-right: 25px;
+margin-top: -325px;
 padding: 10px 10px 10px 10px;
 }
 
 .how-it-works .caption .text-box .join{
 padding: 20px 10px 10px 10px;
+}
+
+/*JOBS PAGE ELEMENTS*/
+.job {
+-webkit-border-radius: 5px;
+-moz-border-radius: 5px;
+border-radius: 5px;
+background-color: #FAFAFA;
+background-image: -moz-linear-gradient(top, #FCFCFC, #F9F9F9);
+background-image: -ms-linear-gradient(top, #FCFCFC, #F9F9F9);
+background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#FCFCFC), to(#F9F9F9));
+background-image: -webkit-linear-gradient(top, #FCFCFC, #F9F9F9);
+background-image: -o-linear-gradient(top, #FCFCFC, #F9F9F9);
+background-image: linear-gradient(top, #FCFCFC, #F9F9F9);
+background-repeat: repeat-x;
+filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFFCFCFC', endColorstr='#FFF9F9F9', GradientType=0);
+border-color: #F9F9F9 #F9F9F9 lightGrey;
+border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) fadein(rgba(0, 0, 0, 0.1), 15%);
+filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
+border: solid 1px #EFEFEF;
+margin: 20px;
+padding: 10px;
+}
+
+.job .btn {
+color: white;
+}
+
+.job h2 {
+padding: 0px 0px 10px 0px;
+font-size: 20px;
+line-height: 30px;
+color: inherit;
+text-rendering: optimizelegibility;
+}
+
+.job h3 {
+padding: 10px 0px 0px 20px;
+font-size: 15px;
+line-height: 10px;
+color: inherit;
+text-rendering: optimizelegibility;
+}
+
+.job h2, .job h3 {
+margin-right: 20px;
+font-family: "proxima-nova","Helvetica Neue","Helvetica","Arial","sans-serif";
+font-weight: 500;
+}
+
+.job ul {
+list-style: disc;
+padding: 0;
+margin: 0 0 10px 25px;
+list-style-position: inside;
+color: #424641;
+}
+
+.jobs-panel .nav-panel {
+-webkit-box-shadow: 0 -2px 3px #CCC;
+-moz-box-shadow: 0 -2px 3px #ccc;
+box-shadow: 0 -2px 3px #CCC;
+position: fixed;
+bottom: 0px;
+height: 100px;
+width: 100%;
+background-color: white;
+z-index: 1000;
+}
+
+.jobs-panel .nav-panel h1{
+font-size: 12px;
 }

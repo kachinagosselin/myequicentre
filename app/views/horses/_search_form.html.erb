@@ -1,0 +1,44 @@
+  <%= form_for(@search, :url => { :search => "search" }, :html => {:method => 'get'}) do |f| %>
+
+<div class="accordion" id="accordion2">
+    <div class="accordion-heading">
+      <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
+        Advanced Search Options
+          <b class='caret'></b>
+      </a>
+    </div>
+    <div id="collapseOne" class="accordion-body collapse">
+      <div class="accordion-inner">
+        <%= f.label :name_contains %>
+        <%= f.text_field :name_contains %><br />
+
+        <%= f.label :age_greater_than_or_equal_to, 'Age greater than' %>
+        <%= f.text_field :age_greater_than_or_equal_to, :include_blank => true %><br />
+
+        <%= f.label :age_less_than_or_equal_to, 'Age less than' %>
+        <%= f.text_field :age_less_than_or_equal_to, :include_blank => true %><br />
+
+        <%= f.label :height_greater_than_or_equal_to, 'Height greater than' %>
+        <%= f.text_field :age_greater_than_or_equal_to, :include_blank => true %><br />
+
+        <%= f.label :height_less_than_or_equal_to, 'Height less than' %>
+        <%= f.text_field :height_less_than_or_equal_to, :include_blank => true %><br />
+
+        <%= f.label :breed_contains %>
+        <%= f.text_field :breed_contains %><br />
+
+        <%= f.label :gender_contains, "The horse's gender is:" %>
+        <%= f.text_field :gender_contains %><br />      
+        
+        <%= f.label :price_greater_than_or_equal_to, 'Price greater than' %>
+        <%= f.text_field :price_greater_than_or_equal_to, :include_blank => true %><br />
+
+        <%= f.label :price_less_than_or_equal_to, 'Price less than' %>
+        <%= f.text_field :price_less_than_or_equal_to, :include_blank => true %><br />
+        <%= f.submit "Search"%> 
+
+      </div>
+    </div>
+</div>
+
+<% end %> 

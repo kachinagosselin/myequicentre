@@ -2,11 +2,16 @@
 <div class='white-background'>
 <div class="row-fluid">
 <div class="span4" id="profile-image">
+<div class='profile-image'>
 <%= image_tag @user.avatar.url %>
 </div>
+</div>
 <div class="span8">
-
-<h1><%= @user.name %></h1>
+<% if current_user == @user %>
+<h1><%= @user.first_name %> <%= @user.last_name %></h1>
+<% else %>
+<h1><%= @user.first_name %> <%= @user.last_name[0] %>.</h1>
+<% end %>
 <h2>Contact Information</h2>
 <h3>Website: <%= @user.website if @user.website %></h3>
 <h3>Email: <%= @user.phone_number if @user.phone_number %></h3>
@@ -21,19 +26,25 @@
 <% @user.horses.each do |horse| %>
 <div class='row-fluid'>
 <div class="span4" id="profile-image">
-<%= image_tag '/images/avatars/:id/medium/:avatar_file_name' %>
+<div class='profile-image'>
+<%= image_tag horse.avatar.url %>
 </div>
-<div class="span8">
-    <p><%= horse.name %></p>
-    <p><%= horse.breed %></p>
-    <p><%= horse.gender %></p>
-    <p><%= horse.age %></p>
-    <p><%= horse.height %></p>
+</div>
+<div class='span8'>
+<h4><%= horse.name %></h4>
+<%= number_to_currency(horse.price.round, :precision => 0) %>
+</div>
+<div class="span3">
+    <p><b>Breed: </b><%= horse.breed %></p>
+    <p><b>Gender: </b><%= horse.gender %></p>
+    <p><b>Age: </b><%= horse.age %> yrs</p>
+    <p><b>Height: </b><%= horse.height %> hh</p>
+</div>
+<div class="span5">
     <p><%= horse.text_description %></p>
-    <p><%= horse.price %></p>
     <%= link_to 'View Details', user_horse_path(@user, horse) %>
 </div>
-
+<div class='divider-horizontal'></div>
 </div>
 <% end %>
 </div>
