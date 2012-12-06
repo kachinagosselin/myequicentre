@@ -2,13 +2,15 @@
 <div class="span6 offset3">
 <div class="white-background">
 <h2>Sign in</h2>
+<div class="middle-form">
 <%= simple_form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => {:class => 'form-vertical' }) do |f| %>
-  <%= f.input :email, :autofocus => true %>
+  <%= f.input :email, :autofocus => true, :autocomplete => "on" %>
   <%= f.input :password %>
   <%= f.input :remember_me, :as => :boolean if devise_mapping.rememberable? %>
   <%= f.button :submit, "Sign in", :class => 'btn-primary' %>
 <% end %>
 <%= render "devise/shared/links" %>
+</div>
 </div>
 </div>
 </div>

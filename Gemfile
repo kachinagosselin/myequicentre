@@ -5,6 +5,7 @@ group :development, :test do
 end
 group :production do
   gem 'pg'
+  gem 'thin'
 end
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
@@ -25,9 +26,16 @@ gem "cancan", ">= 1.6.8"
 gem "rolify", ">= 3.2.0"
 gem "simple_form", ">= 2.0.4"
 gem "quiet_assets", ">= 1.0.1", :group => :development
-gem 'thin'
 gem 'bcrypt-ruby'
 gem 'foreman'
-gem "paperclip", "~> 3.0"
+gem "paperclip", :git => "git://github.com/thoughtbot/paperclip.git"
 gem "rmagick", "2.12.0", :require => 'RMagick'
 gem "meta_search"
+gem 'will_paginate', "~> 3.0"
+gem 'will_paginate-bootstrap'
+gem 'aws-sdk'
+gem "autocomplete-off"
+gem "devise_mailchimp"
+gem 'delayed_job'
+gem 'delayed_job_active_record'
+gem 'gibbon', "0.3.5"

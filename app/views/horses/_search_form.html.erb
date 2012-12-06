@@ -1,6 +1,5 @@
   <%= form_for(@search, :url => { :search => "search" }, :html => {:method => 'get'}) do |f| %>
-
-<div class="accordion" id="accordion2">
+    <div class="accordion" id="accordion2">
     <div class="accordion-heading">
       <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
         Advanced Search Options
@@ -12,14 +11,8 @@
         <%= f.label :name_contains %>
         <%= f.text_field :name_contains %><br />
 
-        <%= f.label :age_greater_than_or_equal_to, 'Age greater than' %>
-        <%= f.text_field :age_greater_than_or_equal_to, :include_blank => true %><br />
-
-        <%= f.label :age_less_than_or_equal_to, 'Age less than' %>
-        <%= f.text_field :age_less_than_or_equal_to, :include_blank => true %><br />
-
         <%= f.label :height_greater_than_or_equal_to, 'Height greater than' %>
-        <%= f.text_field :age_greater_than_or_equal_to, :include_blank => true %><br />
+        <%= f.text_field :height_greater_than_or_equal_to, :include_blank => true %><br />
 
         <%= f.label :height_less_than_or_equal_to, 'Height less than' %>
         <%= f.text_field :height_less_than_or_equal_to, :include_blank => true %><br />

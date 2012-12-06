@@ -21,8 +21,14 @@
                 <div class='span12'>
                 <div class="carousel-image">
                 <%= image_tag("/images/carousel.jpg", :alt => "")%>
+                    <div class="carousel-caption">
+                    <div class='span11'>
+                    <p><%= truncate(horse.text_description, :length => 140) %></p>
+                    <p><%=link_to 'view details', user_horse_path(user, horse) %></p>
+                    </div>
+                    </div>
                 </div>
-                <div class='span7'>
+                <div class='span6'>
                     <div class='text-box'>
                     <h1><%=link_to horse.name, user_horse_path(user, horse) %></h1>
                     </div>
@@ -30,13 +36,9 @@
                     <h4><%= horse.gender %></h4>
                     <h4><%= horse.age %> years</h4>
                     <h4><%= horse.height %> hands</h4>
-                    <h4>$ <%= horse.price %></h4>
+                    <h4><%= number_to_currency(horse.price.round, :precision => 0) %></h4>
                     </div>
                 </div>
-                <div class="carousel-caption">
-                <p> <%= horse.text_description %></p>
-                <p><%=link_to 'view details', user_horse_path(user, horse) %></p>
-                </div>
             </div>
             </div>
         <% end %>

@@ -16,15 +16,13 @@
   <%= label_tag(:phone_number, "Phone Number") %>
   <%= telephone_field(:user, :phone_number) %>
   <p>Format for phone number is xxx-xxx-xxxx</p>
-  
-  <p><b>Notification Settings</b></p>
   <%= label_tag(:preferred_contact, "I prefer users contact me via:") %>
   Email: 
   <%= radio_button_tag(:preferred_contact, "email") %> 
   Phone: 
   <%= radio_button_tag(:preferred_contact, "phone") %>
-  <%= check_box_tag(:receive_newsletter) %> I would like to receive newsletters from MyEquiCentre
-  
+  <%= f.input :join_mailing_list, :as => :boolean %>
+
   <p><b>Change Your Password</b></p>
   <%= f.input :password, :autocomplete => "off", :hint => "leave it blank if you don't want to change it", :required => false %>
   <%= f.input :password_confirmation, :required => false %>

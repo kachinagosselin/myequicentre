@@ -1,51 +1,45 @@
-<!-- This is the user profile page. -->
 <div class='white-background'>
 <div class="row-fluid">
-<div class="span4" id="profile-image">
-<div class='profile-image'>
-<%= image_tag @user.avatar.url %>
-</div>
-</div>
-<div class="span8">
-<% if current_user == @user %>
-<h1><%= @user.first_name %> <%= @user.last_name %></h1>
-<% else %>
-<h1><%= @user.first_name %> <%= @user.last_name[0] %>.</h1>
-<% end %>
-<h2>Contact Information</h2>
-<h3>Website: <%= @user.website if @user.website %></h3>
-<h3>Email: <%= @user.phone_number if @user.phone_number %></h3>
-<h3>Phone: <%= @user.email if @user.email %></h3>
-</div>
-</div>
-</div>
+<div class="span12">
+<h1>Listing horses</h1>
+    <div class="fb-send" data-href="http://example.com" data-font="lucida grande"></div>
+<a href="https://twitter.com/share" class="twitter-share-button" data-related="jasoncosta" data-lang="en" data-count="none">Tweet</a>
 
-
-<div class='white-background'>
-<h1>Sales Barn</h1>
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Breed</th>
+    <th>Gender</th>
+    <th>Age</th>
+    <th>Height</th>
+    <th>Text description</th>
+    <th>Price</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+  <% @user = current_user %>
 <% @user.horses.each do |horse| %>
-<div class='row-fluid'>
-<div class="span4" id="profile-image">
-<div class='profile-image'>
-<%= image_tag horse.avatar.url %>
-</div>
-</div>
-<div class='span8'>
-<h4><%= horse.name %></h4>
-<%= number_to_currency(horse.price.round, :precision => 0) %>
-</div>
-<div class="span3">
-    <p><b>Breed: </b><%= horse.breed %></p>
-    <p><b>Gender: </b><%= horse.gender %></p>
-    <p><b>Age: </b><%= horse.age %> yrs</p>
-    <p><b>Height: </b><%= horse.height %> hh</p>
-</div>
-<div class="span5">
-    <p><%= horse.text_description %></p>
-    <%= link_to 'View Details', user_horse_path(@user, horse) %>
-</div>
-<div class='divider-horizontal'></div>
-</div>
+  <tr>
+    <td><%= horse.name %></td>
+    <td><%= horse.breed %></td>
+    <td><%= horse.gender %></td>
+    <td><%= horse.age %> yrs</td> 
+    <td><%= horse.height %> hh</td>
+    <td><%= horse.format_description %></td>
+    <td><%= horse.price %></td>
+    <td><%= link_to 'Show', user_horse_path(@user, horse) %></td>
+    <td><%= link_to 'Edit', edit_user_horse_path(@user, horse) %></td>
+    <td><%= link_to 'Destroy', [horse.user, horse], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
 <% end %>
-</div>
+</table>
 
+<br />
+
+<%= link_to 'New Horse', new_user_horse_path(@user) %>
+<%= link_to 'Back', user_path(@user) %>
+
+</div>
+</div>
+</div>

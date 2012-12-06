@@ -11,9 +11,9 @@ filter: alpha(opacity=97);
 -webkit-box-shadow: 2px 2px 3px #222;
 -moz-box-shadow: 2px 2px 3px #222;
 box-shadow: 2px 2px 3px #222;
-position: absolute;
-left: 42px;
-margin-top: 96px;
+position: relative;
+left: -20px;
+margin-top: -565px;
 padding: 10px 10px 10px 10px;
 }
 
@@ -27,8 +27,8 @@ filter: alpha(opacity=97);
 box-shadow: 2px 2px 3px #222;
 position: relative;
 left: 0px;
-margin-right: 25px;
-margin-top: -325px;
+margin-right: 50px;
+margin-top: -300px;
 padding: 10px 10px 10px 10px;
 }
 
@@ -98,6 +98,7 @@ color: #424641;
 box-shadow: 0 -2px 3px #CCC;
 position: fixed;
 bottom: 0px;
+left: 0px;
 height: 100px;
 width: 100%;
 background-color: white;

@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
-
+  before_filter :authenticate_user!
+      
   def index
-    before_filter :authenticate_user!
     authorize! :index, @user, :message => 'Not authorized as an administrator.'
     @users = User.all
   end
@@ -9,13 +9,8 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
   end
-  
-    def profile
-        @user = User.find(params[:id])
-    end
     
   def update
-    before_filter :authenticate_user!
     authorize! :update, @user, :message => 'Not authorized as an administrator.'
     @user = User.find(params[:id])
     if @user.update_attributes(params[:user], :as => :admin)
@@ -26,9 +21,10 @@ class UsersController < ApplicationController
   end
     
   def destroy
-    before_filter :authenticate_user!
-    authorize! :destroy, @user, :message => 'Not authorized as an administrator.'
+    authorize! :destroy, @user, :message => 'Not authorized as an administrator'
     user = User.find(params[:id])
+    gb.list_unsubscribe(:id => list_id, :email_address => user.email, :delete_member => true, :send_goodbye => false, :send_notify => false)
+      
     unless user == current_user
       user.destroy
       redirect_to users_path, :notice => "User deleted."

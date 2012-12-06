@@ -14,7 +14,7 @@ h3 {
 }
 
 /* Control label on form and marker - NOT ACTIVE*/
-.control-label {
+.middle-form .control-label {
 float: left;
 width: 100px;
 padding-top: 5px;
@@ -24,7 +24,7 @@ color: #777;
 vertical-align: middle;
 }
 
-.controls {
+.middle-form .controls {
 display: inline;
 margin-left: 20px;
 }

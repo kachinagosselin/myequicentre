@@ -1,4 +1,4 @@
-Railsapp::Application.routes.draw do
+Railsapp::Application.routes.draw do    
     ## For the auth
     authenticated :user do
         root :to => 'home#index'
@@ -8,14 +8,14 @@ Railsapp::Application.routes.draw do
   
     ## Object resources
     resources :users do
-        resources :horses
+        resources :horses 
         resources :messages
         end
     
     resources :posts do
         resources :comments
         end
-            
+    
     match ':controller(/:action(/:id(.:format)))' => ':controller#:action', :via => [:get]
     #match 'horses/search(/:id)' => 'horses#search', :via => [:get]
     #match 'horses(/:id)/search' => 'horses#search', :via => [:get]

@@ -2,3 +2,6 @@
 <%= text_field_tag :search, params[:search], :id => 'search_field', :class => 'input-large search-query' %>
 <%= submit_tag "Search", :class => 'btn'%> 
 <% end %> 
+
+
+<%= f.text_field :name_contains, :class => 'input-large search-query' %>

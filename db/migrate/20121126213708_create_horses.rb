@@ -4,7 +4,7 @@ class CreateHorses < ActiveRecord::Migration
       t.string :name
       t.string :breed
       t.string :gender
-      t.integer :age
+      t.date :dob
       t.decimal :height
       t.text :text_description
       t.decimal :price

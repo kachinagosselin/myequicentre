@@ -1,14 +1,63 @@
+<script>
+  $(document).ready(function(){
+   var breeds = ['Akhal-Teke', 'American Saddlebred', 'American Warmblood',
+    'Andalusian', 'Appaloosa', 'Arabian', 'Belgian Horse', 'Belgian Sporthorse', 
+    'Belgian Warmblood', 'Black Forest Horse', 'Canadian Horse', 'Canadian Sport Horse', 
+    'Canadian Warmblood', 'Caspian Horse', 'Champagne Horse', 'Chincoteague Pony', 
+    'Cleveland Bay', 'Clydesdale', 'Connemara', 'Czech Warmblood', 'Dales Pony', 
+    'Danish Warmblood', 'Dartmoor Pony', 'Draft', 'Dutch Warmblood', 'Fell Pony', 'Fjord', 
+    'Friesian', 'German Riding Pony', 'German Warmblood', 'Grade Horse', 'Gypsy Horse', 
+    'Hackney Horse', 'Hackney Pony', 'Haflinger', 'Hanoverian', 'Highland Pony', 'Holsteiner',
+    'Hungarian Warmblood', 'Icelandic Horse', 'International Sporthorse', 'Irish Cob', 
+    'Irish Draught', 'Irish Sport Horse', 'Kentucky Mountain', 'Lipizzan', 'Lusitano', 
+    'Miniature', 'Missouri Fox Trotter Horse', 'Missouri Fox Trotter Pony', 'Morab', 
+    'Morgan', 'Mountain Pleasure Horse', 'Mustang', 'National Show Horse', 'New Forest Pony',
+    'New Zealand Warmblood', 'Newfoundland Pony', 'Oldenburg', 'Other', 'Paint Horse', 
+    'Palomino Horse', 'Paso Fino', 'Percheron', 'Peruvian Paso', 'Pintabian', 'Pintaloosa', 
+    'Pinto', 'Pinto Paso', 'Pleasure Saddle Horse Registry', 'POA', 'Pony', 'Quarab', 
+    'Quarter Horse', 'Quarter Pony', 'Racking Horse', 'Rocky Mountain', 'Selle Francais', 
+    'Shetland Pony', 'Shire', 'Spanish Barb', 'Spanish Mustang', 'Standardbred', 'Suffolk', 
+    'Swedish Warmblood', 'Swiss Warmblood', 'Tennessee Walker', 'Thoroughbred', 'Trakehner', 
+    'Warmblood', 'Welsh Cob', 'Welsh Pony'];   
+    $('#horse_breed').typeahead({source: breeds});
+    
+    var genders = ['Mare', 'Gelding', 'Stallion'];   
+    $('#horse_gender').typeahead({source: genders});
+  
+    var heights = [4.0, 4.1, 4.2, 4.3, 5.0, 5.1, 5.2, 5.3, 6.0, 6.1, 6.2, 6.3, 7.0, 7.1, 7.2, 
+    7.3, 8.0, 8.1, 8.2, 8.3, 9.0, 9.1, 9.2, 9.3, 10.0, 10.1, 10.2, 10.3, 11.0, 11.1, 11.2, 
+    11.3, 12.0, 12.1, 12.2, 12.3, 13.0, 13.1, 13.2, 13.3, 14.0, 14.1, 14.2, 14.3, 15.0, 15.1, 
+    15.2, 15.3, 16.0, 16.1, 16.2, 16.3, 17.0, 17.1, 17.2, 17.3, 18.0, 18.1, 18.2, 18.3, 19.0, 
+    19.1, 19.2, 19.3, 20.0];
+    $('#horse_height').typeahead({source: heights});
+
+    $('#horse_text_description').simplyCountable({
+    counter: '#counter',
+    countable: 'characters',
+    maxCount: 500,
+    strictMax: true,
+    countDirection: 'up',
+    safeClass: 'safe',
+    overClass: 'over',
+    thousandSeparator: ','});
+
+});
+  
+</script>
+
 <%= simple_form_for([@user, @horse], :html => { :multipart => true }) do |f| %>
   <%= f.error_notification %>
   <div class="form-inputs">
     <%= f.input :name %>
-    <%= f.input :breed, :autocomplete => "off"%>
-    <%= f.select(:gender, options_for_select(['Mare', 'Gelding', 'Stallion']))%>
-    <%= f.input :age %>
-    <%= f.input :height %>
-    <%= f.input :text_description %>
-    <%= f.input :price %>
-    <%= f.file_field :avatar %>
+    <%= f.input :breed%>
+    <%= f.input :gender, :as => :select, :collection => ["Mare","Gelding","Stallion"]%>
+    <%= f.input :dob, :start_year => Time.now.utc.to_date.year-50%>
+    <%= f.number_field :height, :class => "numeric decimal required", :min => 4, :max => 20, :step => 0.1  %>
+    <%= f.input :text_description%>
+  	<p>You have used <span id="counter"></span> characters.</p>
+    <%= f.number_field :price, :class => "numeric decimal required", :min => 1, :step => 100 %>
+    </br>
+    <%= f.file_field :avatar, :as => :avatar%>
   </div>
 
   <div class="form-actions">

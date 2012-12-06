@@ -38,5 +38,9 @@ $(".card").onclick(function(){
 </div>
 <% end %>
 
+<div class="search-paginate">
+<%= will_paginate @horses, :renderer => BootstrapPagination::Rails %>
+</div>
+
 </div>
 

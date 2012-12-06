@@ -59,7 +59,7 @@ class HorsesController < ApplicationController
     respond_to do |format|
         #@horse.avatar_file_name => "/deserthorses_equicentre_slideshow.jpg"
         #@horse.avatar(:url=>"/images/avatars/6/original/deserthorses_equicentre_slideshow.jpg")
-      if @horse.update_attributes(params[:horse])
+        if @horse.update_attributes(params[:horse]) #&& @horse.avatar.update_attributes(params[:avatar])
         format.html { redirect_to user_horse_path(@user, @horse), notice: 'Horse was successfully updated.' }
         format.json { head :no_content }
       else
@@ -72,8 +72,8 @@ class HorsesController < ApplicationController
   def search
       #@search = Horse.joins.where(:user_id => User.all).search(params)
       @search = Horse.search(params[:search])
-      @horses = @search.all
-      #@horses = @search.paginate(..) 
+      #@horses = @search.all
+      @horses = @search.paginate(:page => params[:page], :per_page => 9)
   end
 
   # DELETE user/:user_id/horses/1
