@@ -1,0 +1,49 @@
+<!-- This is the user inbox. -->
+<div class="white-background">
+<div class="row-fluid">
+<div class="span3" >
+    <div class="nav messages-sidenav" >    
+        <ul class="nav-list">
+          <li><div class="compose"><button class="btn btn-block" type="button"><%= link_to 'Compose Message', new_user_message_path(@user) %></button></div></li>
+          <li class="divider-horizontal"></li>
+          <li><%= link_to 'Inbox', user_messages_path(@user) %></li>
+          <li class="divider-horizontal"></li>
+          <li><%= link_to 'Drafts', 'draft_messages_path(@user)' %></li>
+          <li class="divider-horizontal"></li>
+          <li><%= link_to 'Sent', 'messages_sent_path(@user)'  %></li>
+          <li class="divider-horizontal"></li>
+          <li class="active"><%= link_to 'Archive', user_messages_archive_path(@user)  %></li>
+          <li class="divider-horizontal"></li>
+          <li><%= link_to 'Trash', user_messages_trash_path(@user)  %></li>
+        </ul>
+    </div>
+</div>
+<div class="span9">
+<h1>Welcome to Your Message Center</h1>
+</br>
+<table class="table">
+  <tr>
+    <th>From name</th>
+    <th>Title</th>
+    <th>Content</th>
+    <th></th>
+  </tr>
+
+<% @user = current_user %>
+<% @user.messages.each do |message| %>
+<% if message.folder == "archive" %>
+  <tr>
+    <td><%= link_to message.from_name,  user_message_path(@user, message) %></td>
+    <td><%= link_to message.title,  user_message_path(@user, message) %></td>
+    <td><%= link_to 'Return to Inbox', {:controller => 'messages', :action => 'inbox', :id => message.id} %></td>
+    <td><%= link_to 'Trash', {:controller => 'messages', :action => 'trash', :id => message.id} %></td>
+  </tr>
+<% end %>
+<% end %>
+</table>
+
+<br />
+
+</div>
+</div>
+</div>

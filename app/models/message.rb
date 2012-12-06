@@ -9,6 +9,5 @@ class Message < ActiveRecord::Base
     validates :title, :presence => true,
     :length => { :minimum => 5 }
     validates :to_name,  :presence => true
-    validates :folder,  :presence => true
-    
+
 end
