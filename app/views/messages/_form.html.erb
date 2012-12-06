@@ -2,8 +2,8 @@
   <%= f.error_notification %>
 
   <div class="form-inputs">
-    <%= f.input :to_name %>
-    <%= f.input :from_name %>
+    <%= f.input :to_user_id %>
+    <%= f.hidden_field :from_user_id, :value => @user.id %>
     <%= f.input :title %>
     <%= f.input :content %>
   </div>

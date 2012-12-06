@@ -8,9 +8,9 @@
           <li class="divider-horizontal"></li>
           <li><%= link_to 'Inbox', user_messages_path(@user) %></li>
           <li class="divider-horizontal"></li>
-          <li><%= link_to 'Drafts', 'draft_messages_path(@user)' %></li>
+          <li><%= link_to 'Drafts', user_messages_drafts_path(@user) %></li>
           <li class="divider-horizontal"></li>
-          <li><%= link_to 'Sent', 'messages_sent_path(@user)'  %></li>
+          <li><%= link_to 'Sent', user_messages_sent_path(@user)  %></li>
           <li class="divider-horizontal"></li>
           <li class="active"><%= link_to 'Archive', user_messages_archive_path(@user)  %></li>
           <li class="divider-horizontal"></li>
@@ -33,7 +33,7 @@
 <% @user.messages.each do |message| %>
 <% if message.folder == "archive" %>
   <tr>
-    <td><%= link_to message.from_name,  user_message_path(@user, message) %></td>
+    <td><%= message.from_name %></td>
     <td><%= link_to message.title,  user_message_path(@user, message) %></td>
     <td><%= link_to 'Return to Inbox', {:controller => 'messages', :action => 'inbox', :id => message.id} %></td>
     <td><%= link_to 'Trash', {:controller => 'messages', :action => 'trash', :id => message.id} %></td>

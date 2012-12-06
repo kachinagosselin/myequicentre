@@ -59,13 +59,15 @@ ActiveRecord::Schema.define(:version => 20121206154535) do
   add_index "horses", ["user_id"], :name => "index_horses_on_user_id"
 
   create_table "messages", :force => true do |t|
-    t.string   "to_name"
-    t.string   "from_name"
+    t.string   "to_user_id"
+    t.string   "from_user_id"
     t.string   "title"
     t.text     "content"
     t.integer  "user_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.boolean  "sent"
+    t.decimal  "thread_count"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
     t.string   "folder"
   end
 

@@ -1,7 +1,29 @@
 <!-- This is where we create new messages or responses. -->
-<h1>New message</h1>
+<div class="white-background">
+<div class="row-fluid">
+<div class="span3" >
+    <div class="nav messages-sidenav" >    
+        <ul class="nav-list">
+          <li><div class="compose"><button class="btn btn-block" type="button"><%= link_to 'Compose Message', new_user_message_path(@user) %></button></div></li>
+          <li class="divider-horizontal"></li>
+          <li class="active"><%= link_to 'Inbox', user_messages_path(@user) %></li>
+          <li class="divider-horizontal"></li>
+          <li><%= link_to 'Drafts', user_messages_drafts_path(@user) %></li>
+          <li class="divider-horizontal"></li>
+          <li><%= link_to 'Sent', user_messages_sent_path(@user)  %></li>
+          <li class="divider-horizontal"></li>
+          <li><%= link_to 'Archive', user_messages_archive_path(@user)  %></li>
+          <li class="divider-horizontal"></li>
+          <li><%= link_to 'Trash', user_messages_trash_path(@user)  %></li>
+        </ul>
+    </div>
+</div>
+<div class="span9"><h1>New message</h1>
 <% @user = current_user %>
 
-<%= render 'form' %>
+<%= render 'form_new' %>
 
 <%= link_to 'Back', user_messages_path(@user) %>
+</div>
+</div>
+</div>

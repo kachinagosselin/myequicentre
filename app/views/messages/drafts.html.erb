@@ -8,13 +8,13 @@
           <li class="divider-horizontal"></li>
           <li><%= link_to 'Inbox', user_messages_path(@user) %></li>
           <li class="divider-horizontal"></li>
-          <li class="active"><%= link_to 'Drafts', draft_messages_path(@user) %></li>
+          <li><%= link_to 'Drafts', user_messages_drafts_path(@user) %></li>
           <li class="divider-horizontal"></li>
-          <li><%= link_to 'Sent', sent_messages_path(@user)  %></li>
+          <li><%= link_to 'Sent', user_messages_sent_path(@user)  %></li>
           <li class="divider-horizontal"></li>
-          <li><%= link_to 'Archive', archive_messages_path(@user)  %></li>
+          <li class="active"><%= link_to 'Archive', user_messages_archive_path(@user)  %></li>
           <li class="divider-horizontal"></li>
-          <li><%= link_to 'Trash', trash_messages_path(@user)  %></li>
+          <li><%= link_to 'Trash', user_messages_trash_path(@user)  %></li>
         </ul>
     </div>
 </div>
@@ -23,20 +23,22 @@
 </br>
 <table class="table">
   <tr>
-    <th>From name</th>
+    <th>To name</th>
     <th>Title</th>
-    <th>Content</th>
+    <th></th>
     <th></th>
   </tr>
 
 <% @user = current_user %>
 <% @user.messages.each do |message| %>
+<% if message.folder == "inbox" %>
   <tr>
-    <td><%= link_to message.from_name,  user_message_path(@user, message) %></td>
+    <td><%= message.to_name %></td>
     <td><%= link_to message.title,  user_message_path(@user, message) %></td>
-    <td><%= link_to message.content,  user_message_path(@user, message) %></td>
+    <td><%= link_to 'Edit', edit_user_message_path(@user, @message) %> |</td>
     <td><%= link_to 'Delete', [message.user, message], method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
+<% end %>
 <% end %>
 </table>
 

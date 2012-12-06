@@ -14,10 +14,10 @@
 <% end %>
 <h2>Contact Information</h2>
 <h3>Website: <%= link_to @user.website if @user.website %></h3>
-<h3>Email: (<%= @user.phone_number.to_s[0,3] if @user.phone_number %>)
+<h3>Email: <%= @user.email if @user.email %> </h3>
+<h3>Phone: (<%= @user.phone_number.to_s[0,3] if @user.phone_number %>)
 <%= @user.phone_number.to_s[3,3] if @user.phone_number %>-<%= @user.phone_number.to_s[6,@user.phone_number.size] if @user.phone_number %>
 </h3>
-<h3>Phone: <%= @user.email if @user.email %></h3>
 </div>
 </div>
 </div>

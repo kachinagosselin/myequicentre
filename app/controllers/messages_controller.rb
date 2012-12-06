@@ -53,6 +53,16 @@ class MessagesController < ApplicationController
           end
       end
   end
+    
+  def sent
+        @user = User.find(params[:user_id])
+        @message = @user.messages.all 
+          respond_to do |format|
+            format.html # index.html.erb
+            format.json { render json: user_messages_path(@user) }
+        end
+  end
+    
   # GET user/:user_id/messages/archive
   # GET user/:user_id/messages/archive/1
   def archive
@@ -100,18 +110,22 @@ class MessagesController < ApplicationController
   # POST user/:user_id/messages
   # POST user/:user_id/messages.json
   def create
-      @user = User.find(params[:user_id])
-      @message = @user.messages.build(params[:message])
-      @message.folder = "inbox"
+      @sender = User.find(params[:user_id])
+      @message_sent = @sender.messages.build(params[:message])
+      @message_sent.folder = "sent"
+      @recipient = User.find(@message_sent.to_user_id)
+      @message_recieved = @recipient.messages.build(params[:message])
+      @message_recieved.folder = "inbox"
+      
     respond_to do |format|
-      if @message.save
-        format.html { redirect_to user_message_path(@user, @message), notice: 'Message was successfully created.' }
+      if @message_sent.save && @message_recieved.save
+        format.html { redirect_to user_messages_path(@sender), notice: 'Message was successfully created.' }
         #format.json { render json: @message, status: :created, location: @message }
         format.json { head :no_content }
       else
         #format.html { render action: "new" }
-        format.html { redirect_to user_messages_path(@user), alert: 'Message was unsuccessfully created.' }
-        format.json { render json: @message.errors, status: :unprocessable_entity}
+        format.html { redirect_to user_messages_path(@sender), alert: 'Message was unsuccessfully created.' }
+        format.json { render json: @message_sent.errors, status: :unprocessable_entity}
       end
     end
   end
