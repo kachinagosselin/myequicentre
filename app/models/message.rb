@@ -1,7 +1,7 @@
 class Message < ActiveRecord::Base
     belongs_to :user
     
-    attr_accessible :content, :from_user_id, :title, :to_user_id, :folder, :sent, :thread_count
+    attr_accessible :content, :from_user_id, :title, :to_user_id, :folder, :sent, :thread_count, :parent_id, :created_at, :updated_at
     
     validates :content,  :presence => true,
     :length => { :minimum => 5 }

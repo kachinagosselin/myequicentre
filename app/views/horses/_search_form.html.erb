@@ -11,6 +11,12 @@
         <%= f.label :name_contains %>
         <%= f.text_field :name_contains %><br />
 
+        <%= f.label :dob_less_than_or_equal_to, 'Age greater than' %>
+        <%= f.text_field :dob_less_than_or_equal_to, :include_blank => true %><br />
+
+        <%= f.label :dob_greater_than_or_equal_to, 'Age less than' %>
+        <%= f.text_field :dob_greater_than_or_equal_to, :include_blank => true %><br />
+
         <%= f.label :height_greater_than_or_equal_to, 'Height greater than' %>
         <%= f.text_field :height_greater_than_or_equal_to, :include_blank => true %><br />
 

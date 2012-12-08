@@ -19,24 +19,33 @@
     </div>
 </div>
 <div class="span9">
-<h1>Welcome to Your Message Center</h1>
+<h1>Welcome to Your Sent Folder</h1>
 </br>
 <table class="table">
   <tr>
     <th>From name</th>
     <th>Title</th>
     <th></th>
+    <th></th>
   </tr>
 
 <% @user = current_user %>
-<% @user.messages.each do |message| %>
+<% @distinct_messages = @user.messages.select("DISTINCT(PARENT_ID)") %>
+<% @distinct_messages.each do |m| %>
+<% @messages = @user.messages.find(:all, :conditions => { :parent_id => m.parent_id }) %>
+<% @messages.sort_by(&:thread_count) %>
+<% message = @messages[-1] %>
 <% if message.folder == "sent" %>
   <tr>
     <td><%= message.to_name %></td>
+    <td><%= message.parent_id %></td>
+    <td><%= message.id %></td>
+    <td><%= message.thread_count if message.thread_count %></td>
     <td><%= link_to message.title,  user_message_path(@user, message) %></td>
     <td><%= link_to 'Delete', [message.user, message], method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
 <% end %>
+
 <% end %>
 </table>
 

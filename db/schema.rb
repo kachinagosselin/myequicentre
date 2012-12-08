@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121206154535) do
+ActiveRecord::Schema.define(:version => 20121207182341) do
 
   create_table "comments", :force => true do |t|
     t.string   "commenter"
@@ -69,6 +69,7 @@ ActiveRecord::Schema.define(:version => 20121206154535) do
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
     t.string   "folder"
+    t.decimal  "parent_id"
   end
 
   add_index "messages", ["user_id"], :name => "index_messages_on_user_id"
@@ -91,6 +92,13 @@ ActiveRecord::Schema.define(:version => 20121206154535) do
 
   add_index "roles", ["name", "resource_type", "resource_id"], :name => "index_roles_on_name_and_resource_type_and_resource_id"
   add_index "roles", ["name"], :name => "index_roles_on_name"
+
+  create_table "saved_horses", :force => true do |t|
+    t.decimal  "horse_id"
+    t.boolean  "saved"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false

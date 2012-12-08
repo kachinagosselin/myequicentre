@@ -6,7 +6,7 @@
         <ul class="nav-list">
           <li><div class="compose"><button class="btn btn-block" type="button"><%= link_to 'Compose Message', new_user_message_path(@user) %></button></div></li>
           <li class="divider-horizontal"></li>
-          <li class="active"><%= link_to 'Inbox', user_messages_path(@user) %></li>
+          <li><%= link_to 'Inbox', user_messages_path(@user) %></li>
           <li class="divider-horizontal"></li>
           <li><%= link_to 'Drafts', user_messages_drafts_path(@user) %></li>
           <li class="divider-horizontal"></li>
@@ -34,7 +34,86 @@
   <%= @message.content %>
 </p>
 
+    <p>Thread: <%= @message.thread_count %></p>
+    <p>Parent: <%= @message.parent_id %></p>
+    <p>Id: <%= @message.id %></p>
+        
+    <div class="accordion" id="accordion1">
+    <div class="accordion-heading">
+      <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion1" href="#one">
+        Reply to Message
+      </a>
+    </div>
+    <div id="one" class="accordion-body collapse">
+      <div class="accordion-inner">
+        <%= render :partial => 'response_form' %>
+      </div>
+    </div>
+    
+  <div class="accordion-group">
+    <div class="accordion-heading">
+      <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
+        Collapsible Group Item #1
+      </a>
+    </div>
+    <div id="collapseOne" class="accordion-body collapse in">
+      <div class="accordion-inner">
+        Anim pariatur cliche...
+      </div>
+    </div>
+  </div>
+  <div class="accordion-group">
+    <div class="accordion-heading">
+      <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">
+        Collapsible Group Item #2
+      </a>
+    </div>
+    <div id="collapseTwo" class="accordion-body collapse">
+      <div class="accordion-inner">
+        Anim pariatur cliche...
+      </div>
+    </div>
+  </div>
+</div>
+ 
+
+    
+    <% @user = current_user %>
+    <% @messages = @user.messages.find(:all, :conditions => { :parent_id => @message.parent_id }) %>
+    <% @messages.sort_by(&:thread_count) %>
+    <% if @messages[0].id == @message.id %>
+    <p> There are no threads for this message </p>
+    <% else %>
+    <p> There are threads for this message </p>
+    <% @messages.each do |message| %>
+    <% if message.id == @message.id %>
+    <% elsif message.id >= @message.id %>
+    <p> There are more messages in this thread </p>
+    <% else %>    
+    <li class="divider-horizontal"></li>
+    <div data-toggle="collapse" data-target="#{message.id}">
+    <p><b>Title: </b><%= message.title %></p>
+    </div>
+    <div id= '{message.id}' class="collapse">
+    <p>Content: <%= message.content %></p>
+    <p>Thread: <%= message.thread_count %></p>
+    <p>Parent: <%= message.parent_id %></p>
+    <p>Id: <%= message.id %></p>
+    </div>
+    <% end %>
+    <% end %>
+    </div>
+    <% end %>
+
+<% if @message.folder == 'inbox' %>
 <%= link_to 'Back', user_messages_path(@user) %>
+<% elsif @message.folder == 'sent' %>
+<%= link_to 'Back', user_messages_sent_path(@user) %>
+<% elsif @message.folder == 'archive' %>
+<%= link_to 'Back', user_messages_archive_path(@user) %>
+<% elsif @message.folder == 'trash' %>
+<%= link_to 'Back', user_messages_trash_path(@user) %>
+<% end %>
 
 </div>
 </div>

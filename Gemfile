@@ -39,3 +39,4 @@ gem "devise_mailchimp"
 gem 'delayed_job'
 gem 'delayed_job_active_record'
 gem 'gibbon', "0.3.5"
+gem "haml-rails"

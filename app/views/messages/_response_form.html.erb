@@ -1,11 +1,21 @@
-<%= simple_form_for([@user, @message]) do |f| %>
+<%= simple_form_for([@user, @user.messages.new]) do |f| %>
   <%= f.error_notification %>
 
   <div class="form-inputs">
+    <% if @message.folder == 'sent' %>
+    <%= f.hidden_field :to_user_id, :value => @message.to_user_id %>
+    <% else %>
+    <%= f.hidden_field :to_user_id, :value => @message.from_user_id %>
+    <% end %>
+    <%= f.hidden_field :from_user_id, :value => @user.id %>
+    <%= f.hidden_field :title, :value => @message.title %>
+    <%= f.hidden_field :parent_id, :value => @message.parent_id %>
+    <%= f.hidden_field :thread_count, :value => @message.thread_count+1 %>
     <%= f.input :content %>
   </div>
-
+  
   <div class="form-actions">
-    <%= f.button :submit %>
+    <%= f.button :submit, 'Save', :name => 'save_button' %>
+    <%= f.button :submit %>  
   </div>
 <% end %>

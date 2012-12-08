@@ -25,4 +25,8 @@ class User < ActiveRecord::Base
     
   #Horses
   has_many :horses, :dependent => :destroy
+    
+  def name
+      name ="#{self.first_name} #{self.last_name}"  
+  end
 end

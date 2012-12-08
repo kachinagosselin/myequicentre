@@ -16,6 +16,7 @@ Railsapp::Application.routes.draw do
     resources :users do
         resources :horses 
         resources :messages
+        resources :saved_horses
         end
     
     resources :posts do

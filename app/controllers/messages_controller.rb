@@ -122,7 +122,7 @@ class MessagesController < ApplicationController
   # POST user/:user_id/messages.json
   def create
       if params[:save_button]
-              @user = User.find(params[:user_id])
+      @user = User.find(params[:user_id])
       @message = @user.messages.build(params[:message])
       @message.folder = "drafts"
         respond_to do |format|
@@ -141,10 +141,14 @@ class MessagesController < ApplicationController
       @message_sent.folder = "sent"
       @recipient = User.find(@message_sent.to_user_id)
       @message_recieved = @recipient.messages.build(params[:message])
+      @message_recieved.thread_count = @message_sent.thread_count
       @message_recieved.folder = "inbox"
     respond_to do |format|
       if @message_sent.save && @message_recieved.save
-        @message_sent.sent = true
+        if @message_sent.thread_count == 0
+        @message_sent.update_attribute(:parent_id, @message_sent.id)
+        @message_recieved.update_attribute(:parent_id, @message_sent.id)
+        end
         format.html { redirect_to user_messages_path(@sender), notice: 'Message was successfully created.' }
         #format.json { render json: @message, status: :created, location: @message }
         format.json { head :no_content }
@@ -167,9 +171,15 @@ class MessagesController < ApplicationController
       @message_recieved = @recipient.messages.build(params[:message])
       @message_sent.folder = "sent"
       @message_recieved.folder = "inbox"
-        respond_to do |format|
+      @message_recieved.thread_count = @message_sent.thread_count
+      respond_to do |format|
         if @message_sent.save && @message_recieved.save
-        @message_sent.sent = true
+        if @message_sent.thread_count == 0
+        @message_sent.update_attribute(:parent_id, @message_sent.id)
+        @message_recieved.update_attribute(:parent_id, @message_sent.id)
+        else
+        @message_recieved.update_attribute(:parent_id, @message_sent.parent_id)
+        end
         format.html { redirect_to user_messages_path(@sender), notice: 'Message was successfully created.' }
         #format.json { render json: @message, status: :created, location: @message }
         format.json { head :no_content }

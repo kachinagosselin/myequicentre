@@ -27,18 +27,25 @@
     <th>Title</th>
     <th>Content</th>
     <th></th>
+    <th></th>
   </tr>
 
 <% @user = current_user %>
-<% @user.messages.each do |message| %>
+<% @distinct_messages = @user.messages.select("DISTINCT(PARENT_ID)") %>
+<% if @distinct_messages %>
+<% @distinct_messages.each do |m| %>
+<% @messages = @user.messages.find(:all, :conditions => { :parent_id => m.parent_id }) %>
+<% @messages.sort_by(&:thread_count) %>
+<% message = @messages[-1] %>
 <% if message.folder == "inbox" %>
   <tr>
-    <td><%= link_to message.from_name %></td>
+    <td><%= message.from_name %></td>
     <td><%= link_to message.title,  user_message_path(@user, message) %></td>
-    <td><%= link_to message.content,  user_message_path(@user, message) %></td>
+    <td><%= message.updated_at.in_time_zone('Hawaii').to_formatted_s(:long_ordinal) %></td>
     <td><%= link_to 'Archive', {:controller => 'messages', :action => 'archive', :id => message.id} %></td>
     <td><%= link_to 'Trash', {:controller => 'messages', :action => 'trash', :id => message.id} %></td>
   </tr>
+<% end %>
 <% end %>
 <% end %>
 </table>

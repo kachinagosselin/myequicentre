@@ -7,7 +7,7 @@ class CreateMessages < ActiveRecord::Migration
       t.text :content
       t.references :user
       t.boolean :sent
-      t.decimal :thread_count
+      t.integer :thread_count
         
       t.timestamps
     end
