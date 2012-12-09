@@ -56,6 +56,11 @@
     <%= f.input :text_description%>
   	<p>You have used <span id="counter"></span> characters.</p>
     <%= f.number_field :price, :class => "numeric decimal required", :min => 1, :step => 100 %>
+  	<p>Note: Change horse location if different than yours.</p>
+    <%= f.label :city, 'City' %>
+    <%= f.text_field :city, :value => @user.city %>
+    <%= f.label :state, 'State' %>
+    <%= f.text_field :state, :value => @user.state %>
     </br>
     <%= f.file_field :avatar, :as => :avatar%>
   </div>

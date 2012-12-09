@@ -1,45 +1,88 @@
+<!-- This is the user dashboard page. -->
 <div class='white-background'>
-<div class="row-fluid">
-<div class="span12">
-<h1>Listing horses</h1>
-    <div class="fb-send" data-href="http://example.com" data-font="lucida grande"></div>
-<a href="https://twitter.com/share" class="twitter-share-button" data-related="jasoncosta" data-lang="en" data-count="none">Tweet</a>
-<a href="http://pinterest.com/pin/create/button/?url=http%3A%2F%2Fexample.com&media=http%3A%2F%2Fexample.com%2Fimage&description=Description%20Text" class="pin-it-button" count-layout="horizontal"><img border="0" src="//assets.pinterest.com/images/PinExt.png" title="Pin It" /></a>
-<table>
+<div class='center-align'>
+<h4>This dashboard is NOT private. Need to require that authorized user is current user!</h4>
+</div>
+</div>
+
+<div class='white-background'>
+<div class='center-align'>
+<h4>Welcome <%= @user.name %>, to your private dashboard!</h4>
+<h3>
+This is the place for you to keep track of your listings and your favorite horses from our site. 
+</h3>
+</div>
+</div>
+
+<% if true %>
+<div class='white-background'>
+<h1>Your Saved Horses</h1>
+<table class="table table-condensed">
+  <thead>
   <tr>
-    <th>Name</th>
+    <th>Horse Name</th>
     <th>Breed</th>
     <th>Gender</th>
     <th>Age</th>
     <th>Height</th>
-    <th>Text description</th>
     <th>Price</th>
+    <th>Status</th>
     <th></th>
     <th></th>
     <th></th>
   </tr>
+  </thead>
   <% @user = current_user %>
-<% @user.horses.each do |horse| %>
+  <% @user.horses.each do |horse| %>
+  <tbody>
   <tr>
     <td><%= horse.name %></td>
     <td><%= horse.breed %></td>
     <td><%= horse.gender %></td>
     <td><%= horse.age %> yrs</td> 
     <td><%= horse.height %> hh</td>
-    <td><%= horse.format_description %></td>
-    <td><%= horse.price %></td>
-    <td><%= link_to 'Show', user_horse_path(@user, horse) %></td>
-    <td><%= link_to 'Edit', edit_user_horse_path(@user, horse) %></td>
-    <td><%= link_to 'Destroy', [horse.user, horse], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= number_to_currency(horse.price.round, :precision => 0) %></td>
+    <td></td>
+    <td>View Note</td>
+    <td><%= link_to 'View Listing', user_horse_path(@user, horse) %></td>
+    <td><%= link_to 'Remove from List', [horse.user, horse], method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
+  </tbody>
 <% end %>
 </table>
+</div>
+<% end %>
 
-<br />
-
+<div class='white-background'>
+<h1>Sales Barn</h1>
 <%= link_to 'New Horse', new_user_horse_path(@user) %>
-<%= link_to 'Back', user_path(@user) %>
 
+<% @user.horses.each do |horse| %>
+<div class='row-fluid'>
+<div class="span4" id="profile-image">
+<div class='profile-image'>
+<%= image_tag horse.avatar.url %>
 </div>
 </div>
+<div class='span8'>
+<h4><%= horse.name %></h4>
+<p><%= number_to_currency(horse.price.round, :precision => 0) %></p>
+<p>
+<%= link_to 'Show', user_horse_path(@user, horse) %> | <%= link_to 'Edit', 
+edit_user_horse_path(@user, horse) %> | <%= link_to 'Delete', [horse.user, horse], method: 
+:delete, data: { confirm: 'Are you sure?' } %>
+</p>
+</div>
+<div class="span3">
+    <p><b>Breed: </b><%= horse.breed %></p>
+    <p><b>Gender: </b><%= horse.gender %></p>
+    <p><b>Age: </b><%= horse.age %> yrs</p>
+    <p><b>Height: </b><%= horse.height %> hh</p>
+</div>
+<div class="span5">
+    <p><%= horse.text_description %></p>
+</div>
+<div class='divider-horizontal'></div>
+</div>
+<% end %>
 </div>

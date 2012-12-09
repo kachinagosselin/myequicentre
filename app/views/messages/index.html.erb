@@ -40,8 +40,13 @@
 <% if message.folder == "inbox" %>
   <tr>
     <td><%= message.from_name %></td>
+    <% if message.read %>
+    <td>Read</td>
+    <% else %>
+    <td>Unread</td>
+    <% end %>
     <td><%= link_to message.title,  user_message_path(@user, message) %></td>
-    <td><%= message.updated_at.in_time_zone('Hawaii').to_formatted_s(:long_ordinal) %></td>
+    <td><%= message.return_time %></td>
     <td><%= link_to 'Archive', {:controller => 'messages', :action => 'archive', :id => message.id} %></td>
     <td><%= link_to 'Trash', {:controller => 'messages', :action => 'trash', :id => message.id} %></td>
   </tr>

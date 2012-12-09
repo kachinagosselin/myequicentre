@@ -20,19 +20,33 @@
 </div>
 <div class="span9">
 
-<p>
-  <b>Title:</b>
-  <%= @message.title %>
-</p>
-
-<p>
-  <b>From name:</b>
-  <%= @message.from_name %>
-</p>
-
-<p>
-  <%= @message.content %>
-</p>
+    <% @user = current_user %>
+    <% @messages = @user.messages.find(:all, :conditions => { :parent_id => @message.parent_id }) %>
+    <% @messages.sort_by(&:thread_count) %>
+    <% if @messages[0].id == @message.id %>
+    <p> There are no threads for this message </p>
+    <% else %>
+    <p> There are threads for this message </p>
+    <% @messages.each do |message| %>
+    <% if message.id == @message.id %>
+    <% elsif message.id >= @message.id %>
+    <p> There are more messages in this thread, <%= link_to 'view here', user_message_path(@user, @user.messages.find(@messages[-1])) %></p>
+    <% else %>    
+    <li class="divider-horizontal">1</li>
+    <div data-toggle="collapse" data-target="#item<%= message.id %>">
+    <p><b>Title: </b><%= message.title %></p>
+    </div>
+    <div class='collapse' id='item<%= message.id %>'>
+    <p>Content: <%= message.content %></p>
+    </div>
+    <% end %>
+    <% end %>
+    <% end %>
+    <li class="divider-horizontal"></li>
+    
+    <p><b>Title:</b><%= @message.title %></p>
+    <p><b>From name:</b><%= @message.from_name %></p>
+    <p><%= @message.content %></p>
 
     <p>Thread: <%= @message.thread_count %></p>
     <p>Parent: <%= @message.parent_id %></p>
@@ -50,61 +64,6 @@
       </div>
     </div>
     
-  <div class="accordion-group">
-    <div class="accordion-heading">
-      <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
-        Collapsible Group Item #1
-      </a>
-    </div>
-    <div id="collapseOne" class="accordion-body collapse in">
-      <div class="accordion-inner">
-        Anim pariatur cliche...
-      </div>
-    </div>
-  </div>
-  <div class="accordion-group">
-    <div class="accordion-heading">
-      <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">
-        Collapsible Group Item #2
-      </a>
-    </div>
-    <div id="collapseTwo" class="accordion-body collapse">
-      <div class="accordion-inner">
-        Anim pariatur cliche...
-      </div>
-    </div>
-  </div>
-</div>
- 
-
-    
-    <% @user = current_user %>
-    <% @messages = @user.messages.find(:all, :conditions => { :parent_id => @message.parent_id }) %>
-    <% @messages.sort_by(&:thread_count) %>
-    <% if @messages[0].id == @message.id %>
-    <p> There are no threads for this message </p>
-    <% else %>
-    <p> There are threads for this message </p>
-    <% @messages.each do |message| %>
-    <% if message.id == @message.id %>
-    <% elsif message.id >= @message.id %>
-    <p> There are more messages in this thread </p>
-    <% else %>    
-    <li class="divider-horizontal"></li>
-    <div data-toggle="collapse" data-target="#{message.id}">
-    <p><b>Title: </b><%= message.title %></p>
-    </div>
-    <div id= '{message.id}' class="collapse">
-    <p>Content: <%= message.content %></p>
-    <p>Thread: <%= message.thread_count %></p>
-    <p>Parent: <%= message.parent_id %></p>
-    <p>Id: <%= message.id %></p>
-    </div>
-    <% end %>
-    <% end %>
-    </div>
-    <% end %>
-
 <% if @message.folder == 'inbox' %>
 <%= link_to 'Back', user_messages_path(@user) %>
 <% elsif @message.folder == 'sent' %>

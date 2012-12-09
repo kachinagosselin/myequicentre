@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121207182341) do
+ActiveRecord::Schema.define(:version => 20121209002650) do
 
   create_table "comments", :force => true do |t|
     t.string   "commenter"
@@ -54,6 +54,9 @@ ActiveRecord::Schema.define(:version => 20121207182341) do
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
+    t.string   "city"
+    t.string   "state"
+    t.integer  "zip_id"
   end
 
   add_index "horses", ["user_id"], :name => "index_horses_on_user_id"
@@ -70,6 +73,7 @@ ActiveRecord::Schema.define(:version => 20121207182341) do
     t.datetime "updated_at",   :null => false
     t.string   "folder"
     t.decimal  "parent_id"
+    t.boolean  "read"
   end
 
   add_index "messages", ["user_id"], :name => "index_messages_on_user_id"
@@ -123,6 +127,11 @@ ActiveRecord::Schema.define(:version => 20121207182341) do
     t.string   "website"
     t.string   "preferred_contact"
     t.boolean  "receive_newsletter"
+    t.string   "address"
+    t.string   "city"
+    t.string   "state"
+    t.integer  "zip_id"
+    t.string   "bio"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
@@ -134,5 +143,15 @@ ActiveRecord::Schema.define(:version => 20121207182341) do
   end
 
   add_index "users_roles", ["user_id", "role_id"], :name => "index_users_roles_on_user_id_and_role_id"
+
+  create_table "zips", :force => true do |t|
+    t.string   "code"
+    t.string   "city"
+    t.string   "state"
+    t.decimal  "lat",        :precision => 15, :scale => 10
+    t.decimal  "lon",        :precision => 15, :scale => 10
+    t.datetime "created_at",                                 :null => false
+    t.datetime "updated_at",                                 :null => false
+  end
 
 end

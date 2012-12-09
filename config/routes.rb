@@ -30,6 +30,7 @@ Railsapp::Application.routes.draw do
 
     get "/pages/about"
     get "/pages/info"
+    get "/pages/help"
       
     get "/pages/guidelines"
     get "/pages/terms"

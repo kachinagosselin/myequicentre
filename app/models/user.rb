@@ -9,6 +9,8 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
     attr_accessible :role_ids, :as => :admin
     attr_accessible :first_name, :last_name, :email, :password, :password_confirmation, :remember_me, :phone_number, :website
+    attr_accessible :address, :city, :state, :zip_id
+    attr_accessible :bio
     attr_accessible :join_mailing_list
 
     validates :first_name, :last_name, :email, :presence => true
@@ -20,11 +22,9 @@ class User < ActiveRecord::Base
     attr_accessor :avatar_file_name
     has_attached_file :avatar, :default_url => "/images/default/:style/default_user.jpg", :styles => { :medium => "275x275#", :thumb => "100x100#" }, :path => ":rails_root/images/system/:attachment/:id/:style/:filename", :url => "/images/:attachment/:id/:style/:filename"
     
-  # For Inbox
   has_many :messages, :dependent => :destroy
-    
-  #Horses
   has_many :horses, :dependent => :destroy
+  belongs_to :zip
     
   def name
       name ="#{self.first_name} #{self.last_name}"  

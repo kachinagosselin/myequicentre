@@ -4,10 +4,10 @@ class Message < ActiveRecord::Base
     attr_accessible :content, :from_user_id, :title, :to_user_id, :folder, :sent, :thread_count, :parent_id, :created_at, :updated_at
     
     validates :content,  :presence => true,
-    :length => { :minimum => 5 }
+    :length => { :minimum => 3 }
     validates :from_user_id,  :presence => true
     validates :title, :presence => true,
-    :length => { :minimum => 5 }
+    :length => { :minimum => 3 }
     validates :to_user_id,  :presence => true
     
     def from_name
@@ -22,4 +22,7 @@ class Message < ActiveRecord::Base
         to_name ="#{fn} #{ln}"
     end
     
+    def return_time
+    self.updated_at.in_time_zone('Hawaii').to_formatted_s(:long_ordinal)
+    end
 end

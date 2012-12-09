@@ -15,6 +15,7 @@ class MessagesController < ApplicationController
   def show
       @user = User.find(params[:user_id])
       @message = @user.messages.find(params[:id])
+      @message.update_attribute(:read, true)
         respond_to do |format|
             format.html # index.html.erb
             format.json { render json: user_messages_path(@user) }
@@ -131,7 +132,7 @@ class MessagesController < ApplicationController
               format.json { head :no_content }
               else
               #format.html { render action: "new" }
-              format.html { redirect_to new_user_messages_path(@user), alert: 'Message was unsuccessfully saved.' }
+              format.html { redirect_to user_messages_path(@user), alert: 'Message was unsuccessfully saved.' }
               format.json { render json: @message.errors, status: :unprocessable_entity}
           end
         end

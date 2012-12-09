@@ -5,10 +5,6 @@ $(".card").onclick(function(){
 });
 </script>
 <div class='row'>
-<% if @horses.nil? %>
-<p> Loading all horses </p>
-<% @horses = Horse.joins.where(:user_id => User.all).search({:name_contains => ""}) %>
-<% end %>
 
 <% @horses.each do |horse| %>
 <div class='span4'>

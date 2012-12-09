@@ -2,6 +2,7 @@ class Horse < ActiveRecord::Base
     belongs_to :user
     
     attr_accessible :dob, :breed, :gender, :height, :name, :price, :text_description
+    attr_accessible :city, :state, :zip_id
     
     attr_accessible :avatar, :avatar_file_name
     attr_accessor :avatar_file_name
@@ -20,19 +21,23 @@ class Horse < ActiveRecord::Base
     validates :name, :presence => true, :length => { :minimum => 3 }
     validates :price, :presence => true, :numericality => { :greater_than_or_equal_to => 0 }
     validates :text_description, :presence => true, :length => { :minimum => 10}
-    
+    validates :city
+    validates :state
+    validates :zip_id
+   
     #validates :avatar, :attachment_presence => true, :on => :update
 
     def age
         now = Time.now.utc.to_date
         now.year - self.dob.year - ((now.month > self.dob.month || (now.month == self.dob.month && now.day >= self.dob.day)) ? 0 : 1)
     end
-    
-    def date_of_birth(age)
+
+    def self.date_of_birth(value)
         now = Time.now.utc.to_date
-        dob.year = now.year - age 
-        dob.month = now.month 
-        dob.day = now.day
+        date_of_birth.year = now.year - value 
+        date_of_birth.month = now.month 
+        date_of_birth.day = now.day
+        date_of_birth
     end
 
     def capitalize_fields
@@ -44,5 +49,11 @@ class Horse < ActiveRecord::Base
         self.text_description
         #self.text_description.gsub(/\n/, '<br/>')
     end
+    
+    #scope :age_greater_than_or_equal_to, lambda {|value| where(:dob <= self.date_of_birth(value.to_i))}
+    scope :age_greater_than_or_equal_to, lambda {|value| where(:dob >= value.to_date)}
+    scope :age_less_than_or_equal_to, lambda {|value| where(:dob <= value.to_date)}
+    search_methods :age_greater_than_or_equal_to
+    search_methods :age_less_than_or_equal_to
     
 end

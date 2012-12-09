@@ -1,32 +1,140 @@
-<!-- This is the users individual dashboard. -->
-<h3>Users</h3>
-<div class="span8">
+<!-- This is the admin dashboard. -->
+<% if false %>
+<div class='white-background'>
+<div class='center-align'>
+<h4>Welcome to the admin dashboard!</h4>
+<h3>
+Below you will see a list of the users on this site. 
+</h3>
+</div>
+
+<h3>
+There is a link on the table to allow
+you to view additional information about the user and a table of the horse listings they have
+on the site. You can preform basic actions on these users' accounts and their listings such
+as changing their role (to promote administrators), their status and to delete the account.
+You can perform similar actions on the listings including extending the lifetime of an ad,
+changing it's status, and deleting the listing. 
+</h3>
+
+<h3>
+If there are users that have been flagged by viewers of this site their accounts will be 
+displayed at the top of the page for further investigation. When investigating accounts
+you should first view the users profile page and if you believe the issue is addressable 
+send an email from this dashboard.
+</h3>
+<h3>
+While the issue is being addressed you can choose to change the user's status from flagged to 
+disabled. This will prevent any user from being able to see this users account. This will 
+automatically hide the users horse listings. Once the issue has been resolved you can choose 
+to restore the users status to normal. We will keep track of how many times this user and
+their listings have been flagged for future reference.
+</h3>
+<h3>
+If there are any specific listings that have been flagged by viewers of this site they will
+also be displayed at the top of this page for further investigation. You can choose to investigate
+the listing and contact the horses owner. In the meantime you can choose to change the status
+of the listing to disabled to prevent it from being viewed by other users. This will not change 
+the viewing status of the user. 
+</h3>
+<h3>
+If issues regarding a user or a listing cannot or should not be resolved then you can choose to 
+delete the listing or account. Be mindful that this action cannot be reversed. 
+</h3>
+
+<div class='center-align'>
+<h3>
+Seen this message enough times? Click here to hide it. 
+</h3>
+</div>
+
+<div class='center-align'>
+<h4>This dashboard is NOT active.</h4>
+<h4>Once it has complete functionality this message will be removed.</h4>
+<h4>In the meantime be careful not to click on any of the buttons below!</h4>
+</div>
+
+</div>
+<% end %>
+
+<% if false %>
+<div class='white-background'>
+<div class='center-align'>
+<h4>These users have been flagged for investigation!</h4>
+</div>
+</div>
+<% end %>
+
+<% if true %>
+<div class='white-background'>
+<div class='center-align'>
+<h4>These listings have been flagged for investigation!</h4>
+</div>
+</div>
+<% end %>
+
+<div class='white-background'>
+<div class='center-align'>
+<h4>List of All Users and Listings</h4>
+</div>
 <table class="table table-condensed">
 	  <thead>
       <tr>
-          <th>Username</th>
-          <th>Email</th>
-          <th>Registered</th>
-          <th>Role</th>
           <th></th>
+          <th>User Name</th>
+          <th>Registered Email</th>
+          <th>Signed Up</th>
+          <th>User Role</th>
+          <th>Status</th>
+          <th></th>                                      
           <th></th>                                      
       </tr>
-  </thead>   
-  <tbody>
-  <% @users.each do |user| %>
+    </thead>   
+    <tbody>
+    <% @users.each do |user| %>
     <tr>
-        <td><%= link_to user.first_name, user %></td>
+        <td><a data-toggle="modal" href="#role-options-<%= user.id %>" class="btn btn-mini" type="button">Message</a>
+        <%= render user %></td>                                       
+        <td><%= link_to user.name, user %></td>
         <td><%= user.email %></td>
         <td><%= user.created_at.to_date %></td>
         <td><%= user.roles.first.name.titleize unless user.roles.first.nil? %></td>
-        <td>
-          <a data-toggle="modal" href="#role-options-<%= user.id %>" class="btn btn-mini" type="button">Change role</a>
-          <%= render user %>
-        </td>
-        <td><%= link_to("Delete user", user_path(user), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => 'btn btn-mini') unless user == current_user %></td>                                       
+        <td><a data-toggle="modal" href="#role-options-<%= user.id %>" class="btn btn-mini" type="button">Role</a>
+        <%= render user %></td>   
+        <td><div data-toggle="collapse" data-target="#item<%= user.id %>"><p>Show More</p></div></td>
+        <td><a data-toggle="modal" href="#role-options-<%= user.id %>" class="btn btn-mini" type="button">Change Status</a>
+        <%= render user %></td>  
+        <td><%= link_to("Delete Account", user_path(user), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => 'btn btn-mini') unless user == current_user %></td>                                       
     </tr>
-  <% end %>
-  </tbody>
+        <div>
+        <tr class='collapse' id='item<%= user.id %>'>
+        <thead>
+        <tr>
+          <th></th>
+          <th>Horse Name</th>
+          <th>Price</th>
+          <th>Created</th>
+          <th>Expires</th>
+          <th>Status</th>
+          <th>Flagged?</th>                                      
+          <th></th>                                      
+        </tr>
+        </thead>
+        <% user.horses.all.each do |horse| %>
+        <td></td>
+        <td><%= horse.name %></td>
+        <td><%= number_to_currency(horse.price.round, :precision => 0) %></td>
+        <td><%= horse.created_at.to_date %></td>
+        <td>expires</td>
+        <td>sstatus</td>
+        <td>status</td>
+        <td><%= link_to 'Extend Listing', [horse.user, horse], method: :delete, class: 'btn btn-mini', data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Delete Listing', [horse.user, horse], method: :delete, class: 'btn btn-mini', data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+        <% end %>
+        </div>
+    <% end %>
+    </tbody>
 </table>
-
+        
 </div>
