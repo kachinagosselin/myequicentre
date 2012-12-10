@@ -1,0 +1,21 @@
+<div id="message-user-<%= user.id %>" class="modal" style="display: none;">
+    <div class="modal-header">
+      <a class="close" data-dismiss="modal">&#215;</a>
+      <h3>Message <%= @user.name %></h3>
+    </div>
+    <div class="modal-body">
+    <% if user_signed_in? %>
+        <%= render :partial => 'messages/form_profile_contact' %>
+    <% else %>
+        <div class='center-align'>
+        <p> <%= link_to 'Sign up', new_user_registration_path %> or <%= link_to 'Login', new_user_session_path %> to message owner!   </p>
+        </div>
+    <% end %>
+    </div>
+    <div class="modal-footer">
+      <a class="btn" data-dismiss="modal" href="#">Close</a>
+    </div>
+    
+      
+
+</div>

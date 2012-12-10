@@ -3,6 +3,7 @@ class Horse < ActiveRecord::Base
     
     attr_accessible :dob, :breed, :gender, :height, :name, :price, :text_description
     attr_accessible :city, :state, :zip_id
+    attr_accessible :status, :sale_status, :flagged
     
     attr_accessible :avatar, :avatar_file_name
     attr_accessor :avatar_file_name
@@ -21,9 +22,9 @@ class Horse < ActiveRecord::Base
     validates :name, :presence => true, :length => { :minimum => 3 }
     validates :price, :presence => true, :numericality => { :greater_than_or_equal_to => 0 }
     validates :text_description, :presence => true, :length => { :minimum => 10}
-    validates :city
-    validates :state
-    validates :zip_id
+    #validates :city
+    #validates :state
+    #validates :zip_id
    
     #validates :avatar, :attachment_presence => true, :on => :update
 

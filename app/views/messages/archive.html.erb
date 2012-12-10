@@ -23,22 +23,41 @@
 </br>
 <table class="table">
   <tr>
+    <th>Status</th>
     <th>From name</th>
     <th>Title</th>
-    <th>Content</th>
+    <th>Date</th>
+    <th></th>
     <th></th>
   </tr>
 
 <% @user = current_user %>
-<% @user.messages.each do |message| %>
-<% if message.folder == "archive" %>
+<% @distinct_messages = @user.messages.select("DISTINCT(PARENT_ID)") %>
+<% @messages_in_folder = Array.new%>
+<% @distinct_messages.each do |m| %>
+<% @messages = @user.messages.find(:all, :conditions => {:parent_id => m.parent_id}) %>
+<% @messages_sorted = @messages.sort_by(&:thread_count).reverse %>
+<% @messages_sorted.each do |m| %>
+<% if m.folder == "archive" %>
+<% @messages_in_folder << m%>
+<% break %>
+<% end %>
+<% end %>
+<% end %>
+<% @mif = @messages_in_folder.sort_by(&:created_at).reverse %>
+<% @mif.each do |message| %>
   <tr>
+    <% if message.read %>
+    <td>Read</td>
+    <% else %>
+    <td>Unread</td>
+    <% end %>
     <td><%= message.from_name %></td>
     <td><%= link_to message.title,  user_message_path(@user, message) %></td>
+    <td><%= message.return_time %></td>
     <td><%= link_to 'Return to Inbox', {:controller => 'messages', :action => 'inbox', :id => message.id} %></td>
     <td><%= link_to 'Trash', {:controller => 'messages', :action => 'trash', :id => message.id} %></td>
   </tr>
-<% end %>
 <% end %>
 </table>
 

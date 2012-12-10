@@ -7,7 +7,11 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
+   @user = User.find(params[:id])
+    if @user == current_user
+    else
+    authorize! :index, @user, :message => 'You are not authorized to view this page.'
+    end
   end
     
   def update

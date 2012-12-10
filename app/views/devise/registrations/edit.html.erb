@@ -14,7 +14,10 @@
   <p><b>Your Contact Information</b></p>
   <%= f.input :address %>
   <%= f.input :city %>
-  <%= f.input :state %>
+  <%= f.input :state, :as => :select, :collection => ["AL","AK","AZ","AR","CA","CO","CT",
+  "DE","FL","GA","HI","ID","ID","IL","IN","IA","KS","KY","LA","ME","MD","MA","MI","MN",
+  "MS","MO","MT","NE","NV","NH","NJ","NM","NY","NC","ND","OH","OK","OR","PA","RI","SC",
+  "SD","TN","TX","UT","VT","VA","WA","WV","WI","WY"]%>
   <%= label_tag(:website, "Website") %>
   <%= url_field(:user, :website) %>
   <%= label_tag(:phone_number, "Phone Number") %>

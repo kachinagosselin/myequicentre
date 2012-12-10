@@ -1,12 +1,6 @@
 <!-- This is the user dashboard page. -->
 <div class='white-background'>
 <div class='center-align'>
-<h4>This dashboard is NOT private. Need to require that authorized user is current user!</h4>
-</div>
-</div>
-
-<div class='white-background'>
-<div class='center-align'>
 <h4>Welcome <%= @user.name %>, to your private dashboard!</h4>
 <h3>
 This is the place for you to keep track of your listings and your favorite horses from our site. 
@@ -33,19 +27,19 @@ This is the place for you to keep track of your listings and your favorite horse
   </tr>
   </thead>
   <% @user = current_user %>
-  <% @user.horses.each do |horse| %>
+  <% @user.saved_horses.each do |s| %>
   <tbody>
   <tr>
-    <td><%= horse.name %></td>
-    <td><%= horse.breed %></td>
-    <td><%= horse.gender %></td>
-    <td><%= horse.age %> yrs</td> 
-    <td><%= horse.height %> hh</td>
-    <td><%= number_to_currency(horse.price.round, :precision => 0) %></td>
+    <td><%= Horse.find(s.horse_id).name %></td>
+    <td><%= Horse.find(s.horse_id).breed %></td>
+    <td><%= Horse.find(s.horse_id).gender %></td>
+    <td><%= Horse.find(s.horse_id).age %> yrs</td> 
+    <td><%= Horse.find(s.horse_id).height %> hh</td>
+    <td><%= number_to_currency(Horse.find(s.horse_id).price.round, :precision => 0) %></td>
     <td></td>
-    <td>View Note</td>
-    <td><%= link_to 'View Listing', user_horse_path(@user, horse) %></td>
-    <td><%= link_to 'Remove from List', [horse.user, horse], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= link_to 'Add Note', user_horse_path(User.find(s.user_id), Horse.find(s.horse_id)) %></td>
+    <td><%= link_to 'View Listing', user_horse_path(User.find(Horse.find(s.horse_id).user_id), Horse.find(s.horse_id)) %></td>
+    <td><%= link_to 'Remove from List', [s.user, s], method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
   </tbody>
 <% end %>

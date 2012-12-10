@@ -29,7 +29,8 @@
   </tr>
 
 <% @user = current_user %>
-<% @user.messages.each do |message| %>
+<% @messages_in_folder = @user.messages.sort_by(&:updated_at).reverse %>
+<% @messages_in_folder.each do |message| %>
 <% if message.folder == "drafts" %>
   <tr>
     <td><%= message.to_name %></td>

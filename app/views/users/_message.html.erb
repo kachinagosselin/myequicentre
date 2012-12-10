@@ -1,0 +1,28 @@
+<div id="message-user" class="modal" style="display: none;">
+        <div class="modal-header">
+          <a class="close" data-dismiss="modal">&#215;</a>
+          <h3>Message <%= user.name %></h3>
+        </div>
+        <div class="modal-body">
+        <%= simple_form_for([current_user, current_user.messages.new]) do |f| %>
+        <%= f.error_notification %>
+
+        <div class="form-inputs">
+        <%= f.hidden_field :to_user_id, :value => user.id %>
+        <p> From: <%= current_user.name %> </p>
+        <%= f.hidden_field :from_user_id, :value => current_user.id %>
+        <%= f.input :title %>
+        <%= f.hidden_field :thread_count, :value => 0 %>
+        <%= f.input :content %>
+        </div>
+  
+        <div class="form-actions">
+        <%= f.button :submit, 'Save', :name => 'save_button' %>
+        <%= f.button :submit %>  
+        </div>
+        <% end %>
+        </div>
+        <div class="modal-footer">
+          <a class="btn" data-dismiss="modal" href="#">Close</a>
+        </div>
+        </div>

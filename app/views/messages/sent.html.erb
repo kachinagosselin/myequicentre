@@ -23,25 +23,20 @@
 </br>
 <table class="table">
   <tr>
-    <th>From name</th>
+    <th>To name</th>
     <th>Title</th>
-    <th></th>
+    <th>Date</th>
     <th></th>
   </tr>
 
 <% @user = current_user %>
-<% @distinct_messages = @user.messages.select("DISTINCT(PARENT_ID)") %>
-<% @distinct_messages.each do |m| %>
-<% @messages = @user.messages.find(:all, :conditions => { :parent_id => m.parent_id }) %>
-<% @messages.sort_by(&:thread_count) %>
-<% message = @messages[-1] %>
+<% @messages_in_folder = @user.messages.sort_by(&:updated_at).reverse %>
+<% @messages_in_folder.each do |message| %>
 <% if message.folder == "sent" %>
   <tr>
     <td><%= message.to_name %></td>
-    <td><%= message.parent_id %></td>
-    <td><%= message.id %></td>
-    <td><%= message.thread_count if message.thread_count %></td>
     <td><%= link_to message.title,  user_message_path(@user, message) %></td>
+    <td><%= message.return_time %></td>
     <td><%= link_to 'Delete', [message.user, message], method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
 <% end %>

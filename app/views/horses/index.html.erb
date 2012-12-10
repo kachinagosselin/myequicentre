@@ -6,26 +6,8 @@
     <%= image_tag @user.avatar.url(:medium) %>
     </div>
 
-        <% if user_signed_in? %>
-        <div class="accordion" id="first_contact">
-        <div class="accordion-heading">
-        <a class="accordion-toggle" data-toggle="collapse" data-parent="#first_contact" href="#collapseOne">
-        <button class="btn btn-block" type="button"> Message Owner</button>
-        </a>
-        </div>
-        <div id="collapseOne" class="accordion-body collapse">
-            <div class="accordion-inner">
-            <%= render :partial => 'messages/form_profile_contact' %>
-            </div>
-        </div>
-        </div>
-        <% else %>
-        <div class='center-align'>
-        <p> 
-        <%= link_to 'Sign up', new_user_registration_path %> or <%= link_to 'Login', new_user_session_path %> to message owner!   
-        </p>
-        </div>
-        <% end %>
+        <a data-toggle="modal" href="#message-user-<%= @user.id %>" class="btn btn-block" type="button">Message Owner</a>
+        <%= render 'users/user_message' %> 
     
 </div>
 
@@ -40,6 +22,7 @@
 <h3>Phone: (<%= @user.phone_number.to_s[0,3] if @user.phone_number %>)
 <%= @user.phone_number.to_s[3,3] if @user.phone_number %>-<%= @user.phone_number.to_s[6,@user.phone_number.size] if @user.phone_number %>
 </h3>
+<h3>Zipcode: <%= link_to @user.zipcode[0].code if false %></h3>
 </div>
 </div>
 </div>

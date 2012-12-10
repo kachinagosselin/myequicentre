@@ -57,25 +57,10 @@ Seen this message enough times? Click here to hide it.
 </div>
 <% end %>
 
-<% if false %>
+<% if User.where(:flagged => true).length > 0 %>
 <div class='white-background'>
 <div class='center-align'>
 <h4>These users have been flagged for investigation!</h4>
-</div>
-</div>
-<% end %>
-
-<% if true %>
-<div class='white-background'>
-<div class='center-align'>
-<h4>These listings have been flagged for investigation!</h4>
-</div>
-</div>
-<% end %>
-
-<div class='white-background'>
-<div class='center-align'>
-<h4>List of All Users and Listings</h4>
 </div>
 <table class="table table-condensed">
 	  <thead>
@@ -106,13 +91,143 @@ Seen this message enough times? Click here to hide it.
         <%= render user %></td>  
         <td><%= link_to("Delete Account", user_path(user), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => 'btn btn-mini') unless user == current_user %></td>                                       
     </tr>
+    <% end %>
+    </tbody>
+</table>
+</div>
+<% end %>
+
+<% if Horse.where(:flagged => true).length > 0 %>
+<div class='white-background'>
+<div class='center-align'>
+<h4>These listings have been flagged for investigation!</h4>
+<table class="table table-condensed">
+    <thead>
+        <tr>
+          <th></th>
+          <th>Horse Name</th>
+          <th>Created</th>
+          <th>Expires</th>
+          <th>Status</th>
+          <th>Flagged?</th>                                      
+          <th></th>                                      
+        </tr>
+        </thead>
+        <tbody>
+        <% Horse.where(:flagged => true).each do |horse| %>
+        <tr>
+        <td><a data-toggle="modal" href="#message-listing-owner" class="btn btn-mini" type="button">Message</a>
+        <div id="message-listing-owner" class="modal" style="display: none;">
+        <div class="modal-header">
+          <a class="close" data-dismiss="modal">&#215;</a>
+          <h3>Message <%= horse.user_id %></h3>
+        </div>
+        <div class="modal-body">
+        <%= simple_form_for([current_user, current_user.messages.new]) do |f| %>
+        <%= f.error_notification %>
+
+        <div class="form-inputs">
+        <%= f.hidden_field :to_user_id, :value => horse.user_id %>
+        <p> From: <%= current_user.name %> </p>
+        <%= f.hidden_field :from_user_id, :value => current_user.id %>
+        <%= f.input :title %>
+        <%= f.hidden_field :thread_count, :value => 0 %>
+        <%= f.input :content %>
+        </div>
+  
+        <div class="form-actions">
+        <%= f.button :submit, 'Save', :name => 'save_button' %>
+        <%= f.button :submit %>  
+        </div>
+        <% end %>
+        </div>
+        <div class="modal-footer">
+          <a class="btn" data-dismiss="modal" href="#">Close</a>
+        </div>
+        </div>
+        </td> 
+        <td><%= horse.name %></td>
+        <td><%= horse.created_at.to_date %></td>
+        <td>expires</td>
+        <td><%= horse.user_id %></td>
+        <td><%= horse.flagged %></td>
+        <td><%= link_to 'Change Status', [horse.user, horse], method: :change_status, class: 'btn btn-mini' %></td>
+        <td><%= link_to 'Delete', [horse.user, horse], method: :delete, class: 'btn btn-mini', data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+        <% end %>
+        </tbody>
+</table>
+</div>
+</div>
+<% end %>
+
+<div class='white-background'>
+<div class='center-align'>
+<h4>List of All Users and Listings</h4>
+</div>
+<table class="table table-condensed">
+	  <thead>
+      <tr>
+          <th></th>
+          <th>User Name</th>
+          <th>Registered Email</th>
+          <th>Signed Up</th>
+          <th>User Role</th>
+          <th>Status</th>
+          <th></th>                                      
+          <th></th>                                      
+      </tr>
+    </thead>   
+    <tbody>
+    <% @users.each do |user| %>
+    <tr>
+        <td><a data-toggle="modal" href="#message-user" class="btn btn-mini" type="button">Message</a>
+        <div id="message-user" class="modal" style="display: none;">
+        <div class="modal-header">
+          <a class="close" data-dismiss="modal">&#215;</a>
+          <h3>Message <%= user.name %></h3>
+        </div>
+        <div class="modal-body">
+        <%= simple_form_for([current_user, current_user.messages.new]) do |f| %>
+        <%= f.error_notification %>
+
+        <div class="form-inputs">
+        <%= f.hidden_field :to_user_id, :value => user.id %>
+        <p> From: <%= current_user.name %> </p>
+        <%= f.hidden_field :from_user_id, :value => current_user.id %>
+        <%= f.input :title %>
+        <%= f.hidden_field :thread_count, :value => 0 %>
+        <%= f.input :content %>
+        </div>
+  
+        <div class="form-actions">
+        <%= f.button :submit, 'Save', :name => 'save_button' %>
+        <%= f.button :submit %>  
+        </div>
+        <% end %>
+        </div>
+        <div class="modal-footer">
+          <a class="btn" data-dismiss="modal" href="#">Close</a>
+        </div>
+        </div>
+        </td>                                    
+        <td><%= link_to user.name, user %></td>
+        <td><%= user.email %></td>
+        <td><%= user.created_at.to_date %></td>
+        <td><%= user.roles.first.name.titleize unless user.roles.first.nil? %></td>
+        <td><a data-toggle="modal" href="#role-options-<%= user.id %>" class="btn btn-mini" type="button">Role</a>
+        <%= render user %></td>   
+        <td><div data-toggle="collapse" data-target="#item<%= user.id %>"><p>Show More</p></div></td>
+        <td><a data-toggle="modal" href="#role-options-<%= user.id %>" class="btn btn-mini" type="button">Change Status</a>
+        <%= render user %></td>  
+        <td><%= link_to("Delete Account", user_path(user), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => 'btn btn-mini') unless user == current_user %></td>                                       
+    </tr>
         <div>
         <tr class='collapse' id='item<%= user.id %>'>
         <thead>
         <tr>
           <th></th>
           <th>Horse Name</th>
-          <th>Price</th>
           <th>Created</th>
           <th>Expires</th>
           <th>Status</th>
@@ -123,18 +238,16 @@ Seen this message enough times? Click here to hide it.
         <% user.horses.all.each do |horse| %>
         <td></td>
         <td><%= horse.name %></td>
-        <td><%= number_to_currency(horse.price.round, :precision => 0) %></td>
         <td><%= horse.created_at.to_date %></td>
         <td>expires</td>
-        <td>sstatus</td>
-        <td>status</td>
-        <td><%= link_to 'Extend Listing', [horse.user, horse], method: :delete, class: 'btn btn-mini', data: { confirm: 'Are you sure?' } %></td>
-        <td><%= link_to 'Delete Listing', [horse.user, horse], method: :delete, class: 'btn btn-mini', data: { confirm: 'Are you sure?' } %></td>
+        <td><%= horse.status %></td>
+        <td><%= horse.flagged %></td>
+        <td><%= link_to 'Change Status', [horse.user, horse], method: :change_status, class: 'btn btn-mini' %></td>
+        <td><%= link_to 'Delete', [horse.user, horse], method: :delete, class: 'btn btn-mini', data: { confirm: 'Are you sure?' } %></td>
         </tr>
         <% end %>
         </div>
     <% end %>
     </tbody>
-</table>
-        
+</table>    
 </div>

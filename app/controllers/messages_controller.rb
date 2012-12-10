@@ -4,6 +4,7 @@ class MessagesController < ApplicationController
     def index
         @user = User.find(params[:user_id])
         @message = @user.messages.all
+        #@message = @message.paginate(:page => params[:page], :per_page => 9)
         respond_to do |format|
             format.html # index.html.erb
             format.json { render json: user_messages_path(@user) }
@@ -45,11 +46,11 @@ class MessagesController < ApplicationController
       @message.folder = "inbox"  
       respond_to do |format|
           if @message.save
-              format.html { redirect_to user_messages_path(@user), notice: 'Message was successfully moved to inbox.' }
+              format.html { redirect_to :back, notice: 'Message was successfully moved to inbox.' }
               format.json { head :no_content }
               else
               #format.html { render action: "new" }
-              format.html { redirect_to user_messages_path(@user), alert: 'Message was unsuccessfully moved to inbox.' }
+              format.html { redirect_to :back, alert: 'Message was unsuccessfully moved to inbox.' }
               format.json { render json: @message.errors, status: :unprocessable_entity}
           end
       end
@@ -79,7 +80,6 @@ class MessagesController < ApplicationController
   # GET user/:user_id/messages/archive/1
   def archive
       @user = User.find(params[:user_id])
-
       if params[:id].nil?
       else
       @message = @user.messages.find(params[:id])  
@@ -174,7 +174,9 @@ class MessagesController < ApplicationController
       @message_recieved.folder = "inbox"
       @message_recieved.thread_count = @message_sent.thread_count
       respond_to do |format|
-        if @message_sent.save && @message_recieved.save
+        if @message_sent.update_attributes(params[:message]) && 
+        @message_recieved.update_attributes(params[:message]) && 
+        @message_sent.save && @message_recieved.save
         if @message_sent.thread_count == 0
         @message_sent.update_attribute(:parent_id, @message_sent.id)
         @message_recieved.update_attribute(:parent_id, @message_sent.id)
@@ -197,7 +199,7 @@ class MessagesController < ApplicationController
       
     respond_to do |format|
       if @message.update_attributes(params[:message])
-        format.html { redirect_to user_message_path(@user, @message), notice: 'Message was successfully updated.' }
+        format.html { redirect_to user_messages_drafts_path(@user), notice: 'Message was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

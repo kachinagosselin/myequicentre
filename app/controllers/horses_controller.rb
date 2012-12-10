@@ -78,6 +78,22 @@ class HorsesController < ApplicationController
 
   # DELETE user/:user_id/horses/1
   # DELETE user/:user_id/horses/1.json
+  def changestatus
+      @user = User.find(params[:user_id])
+      @horse = @user.horses.find(params[:id])
+      @horse.update_attribute(:status, "normal")
+      @horse.update_attribute(:flagged, "false")
+      redirect_to users_path
+  end
+  
+  def flag
+      @user = User.find(params[:user_id])
+      @horse = @user.horses.find(params[:id])
+      @horse.update_attribute(:status, "flagged")
+      @horse.update_attribute(:flagged, "true")
+      redirect_to users_path
+  end
+  
   def destroy
       @user = User.find(params[:user_id])
       @horse = @user.horses.find(params[:id])

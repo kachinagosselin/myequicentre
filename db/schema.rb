@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121209002650) do
+ActiveRecord::Schema.define(:version => 20121209041607) do
 
   create_table "comments", :force => true do |t|
     t.string   "commenter"
@@ -57,6 +57,9 @@ ActiveRecord::Schema.define(:version => 20121209002650) do
     t.string   "city"
     t.string   "state"
     t.integer  "zip_id"
+    t.string   "sale_status"
+    t.string   "status"
+    t.boolean  "flagged"
   end
 
   add_index "horses", ["user_id"], :name => "index_horses_on_user_id"
@@ -102,6 +105,7 @@ ActiveRecord::Schema.define(:version => 20121209002650) do
     t.boolean  "saved"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.integer  "user_id"
   end
 
   create_table "users", :force => true do |t|
@@ -132,6 +136,8 @@ ActiveRecord::Schema.define(:version => 20121209002650) do
     t.string   "state"
     t.integer  "zip_id"
     t.string   "bio"
+    t.string   "status"
+    t.boolean  "flagged"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

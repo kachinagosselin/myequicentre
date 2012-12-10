@@ -12,6 +12,7 @@ class User < ActiveRecord::Base
     attr_accessible :address, :city, :state, :zip_id
     attr_accessible :bio
     attr_accessible :join_mailing_list
+    attr_accessible :status, :flagged
 
     validates :first_name, :last_name, :email, :presence => true
     validates :email, :uniqueness => true
@@ -24,9 +25,15 @@ class User < ActiveRecord::Base
     
   has_many :messages, :dependent => :destroy
   has_many :horses, :dependent => :destroy
+  has_many :saved_horses, :dependent => :destroy
   belongs_to :zip
     
   def name
       name ="#{self.first_name} #{self.last_name}"  
+  end
+    
+  def zipcode
+      Zip.find(:all, :conditions => ["city = ? and state = ?", self.city, self.state])
+
   end
 end
