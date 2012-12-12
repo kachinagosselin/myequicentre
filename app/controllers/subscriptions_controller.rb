@@ -8,7 +8,6 @@ class SubscriptionsController < ApplicationController
   def create
     @subscription = Subscription.new(params[:subscription])
     @subscription.user_id = current_user.id
-    if 
     if @subscription.save_with_payment
       redirect_to user_path(current_user), :notice => "Thank you for subscribing!"
     else
