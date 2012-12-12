@@ -14,7 +14,7 @@ namespace :load do
       time = Benchmark.measure do      
         require 'csv' 
         require 'open-uri'
-        CSV.parse(open(ZIP_CODE_DATA_URL).read) do |row|
+        CSV.parse(open(Documents/zipcode/zipcode.csv).read) do |row|
           # Connascence of Position, Jim Weirich forgive me!
           zip = Zip.create!(
             :code => row[1],

@@ -1,10 +1,9 @@
 class AddReceiveNewsletterToUsers < ActiveRecord::Migration
         def change
-            add_column :users, :receive_newsletter, :boolean
-            User.update_all ["receive_newsletter = ?", true]
+            add_column :users, :join_mailing_list, :boolean
         end
         
         def down
-            remove_column :users, :receive_newsletter
+            remove_column :users, :join_mailing_list
         end
 end

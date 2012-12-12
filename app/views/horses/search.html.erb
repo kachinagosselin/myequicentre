@@ -3,9 +3,7 @@
     <div id="search-form">
         <%= render 'horses/search_form' %>
     </div>
-    <%= sort_link @search, :price %>
-    <%= sort_link @search, :dob %>
-    <%= sort_link @search, :height %>
+    <p> Sort by: <%= sort_link @search, :price %> | <%= sort_link @search, :dob, "Age" %></p>
 
     <div id="search-results">
         <%= render 'horses/search_results' %>

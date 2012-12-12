@@ -20,8 +20,6 @@ This is the place for you to keep track of your listings and your favorite horse
     <th>Age</th>
     <th>Height</th>
     <th>Price</th>
-    <th>Status</th>
-    <th></th>
     <th></th>
     <th></th>
   </tr>
@@ -36,9 +34,7 @@ This is the place for you to keep track of your listings and your favorite horse
     <td><%= Horse.find(s.horse_id).age %> yrs</td> 
     <td><%= Horse.find(s.horse_id).height %> hh</td>
     <td><%= number_to_currency(Horse.find(s.horse_id).price.round, :precision => 0) %></td>
-    <td></td>
-    <td><%= link_to 'Add Note', user_horse_path(User.find(s.user_id), Horse.find(s.horse_id)) %></td>
-    <td><%= link_to 'View Listing', user_horse_path(User.find(Horse.find(s.horse_id).user_id), Horse.find(s.horse_id)) %></td>
+    <td><%= link_to 'View Listing', user_horse_path(Horse.find(s.horse_id).user_id, Horse.find(s.horse_id)) %></td>
     <td><%= link_to 'Remove from List', [s.user, s], method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
   </tbody>
@@ -49,7 +45,7 @@ This is the place for you to keep track of your listings and your favorite horse
 
 <div class='white-background'>
 <h1>Sales Barn</h1>
-<%= link_to 'New Horse', new_user_horse_path(@user) %>
+<%= link_to 'New Horse', new_user_horse_path(@user), class: 'btn btn-mini' %>
 
 <% @user.horses.each do |horse| %>
 <div class='row-fluid'>

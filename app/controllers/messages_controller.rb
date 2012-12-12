@@ -124,6 +124,7 @@ class MessagesController < ApplicationController
   def create
       if params[:save_button]
       @user = User.find(params[:user_id])
+      #params[:message].to_user = 
       @message = @user.messages.build(params[:message])
       @message.folder = "drafts"
         respond_to do |format|

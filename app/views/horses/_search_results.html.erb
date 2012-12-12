@@ -4,6 +4,7 @@ $(".card").onclick(function(){
      return true;
 });
 </script>
+
 <div class='row'>
 
 <% @horses.each do |horse| %>
@@ -25,7 +26,9 @@ $(".card").onclick(function(){
         yrs, 
         <%= horse.height %> 
         hh</p>
-        <p>located in: San Francisco, CA
+        <% if horse.state %>
+        <p>located in: <%= horse.city if horse.city %>, <%= horse.state %>
+        <% end %>
         <span class='more-details'><%= link_to 'view details', user_horse_path(User.find(horse.user_id), horse) %></span>
         </p>
     </div>

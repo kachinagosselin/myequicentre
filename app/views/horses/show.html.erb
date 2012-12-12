@@ -40,13 +40,16 @@
   <%= @horse.price %>
 </p>
 
-<td><%= link_to 'Flag?', user_horse_flag_path(@user, @horse), method: :flag, class: 'btn btn-mini' %></td>
+<td><%= link_to 'Report Listing', user_horse_flag_path(@user, @horse), method: :flag, class: 'btn btn-mini' %></td>
 
-<% @search = SavedHorse.where(:horse_id => @horse.id) %>
-<% if false %>
-<td><%= link_to 'Unsave Horse', [s.user, ], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+<% @savedhorses = SavedHorse.where(:horse_id => @horse.id) %>
+<% s = @savedhorses[0] %>
+<% if s %>
+<% if s.saved %>
+<td><%= link_to 'Unsave Horse', [s.user, s ], method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-mini' %></td>
+<% end %>
 <% else %>
-<%= link_to 'Save Horse', new_user_saved_horse_path(@user, @horse) %>
+<%= link_to 'Save Horse', new_user_saved_horse_path(@user, @horse), class: 'btn btn-mini' %>
 <% end %>
 
 <% if current_user == @user %>

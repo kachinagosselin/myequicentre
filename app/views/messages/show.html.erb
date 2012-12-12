@@ -37,6 +37,7 @@
     <p><b>Title: </b><%= message.title %></p>
     </div>
     <div class='collapse' id='item<%= message.id %>'>
+    <p><b>From: </b><%= message.from_name %>, <b>To:</b> <%= message.to_name %></p>
     <p>Content: <%= message.content %></p>
     </div>
     <% end %>
@@ -44,13 +45,15 @@
     <% end %>
     <li class="divider-horizontal"></li>
     
-    <p><b>Title:</b><%= @message.title %></p>
-    <p><b>From name:</b><%= @message.from_name %></p>
+    <p><b>Title: </b><%= @message.title %></p>
+    <p><b>From: </b><%= @message.from_name %>, <b>To: </b><%= @message.to_name %></p>
     <p><%= @message.content %></p>
 
-    <p>Thread: <%= @message.thread_count %></p>
-    <p>Parent: <%= @message.parent_id %></p>
-    <p>Id: <%= @message.id %></p>
+<!--
+    <p>Thread: <% @message.thread_count %></p>
+    <p>Parent: <% @message.parent_id %></p>
+    <p>Id: <% @message.id %></p>
+-->
         
     <div class="accordion" id="accordion1">
     <div class="accordion-heading">

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121209041607) do
+ActiveRecord::Schema.define(:version => 20121212164643) do
 
   create_table "comments", :force => true do |t|
     t.string   "commenter"
@@ -22,6 +22,13 @@ ActiveRecord::Schema.define(:version => 20121209041607) do
   end
 
   add_index "comments", ["post_id"], :name => "index_comments_on_post_id"
+
+  create_table "customers", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "stripe_customer_token"
+    t.datetime "created_at",            :null => false
+    t.datetime "updated_at",            :null => false
+  end
 
   create_table "delayed_jobs", :force => true do |t|
     t.integer  "priority",   :default => 0
@@ -71,15 +78,23 @@ ActiveRecord::Schema.define(:version => 20121209041607) do
     t.text     "content"
     t.integer  "user_id"
     t.boolean  "sent"
-    t.decimal  "thread_count"
+    t.integer  "thread_count"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
     t.string   "folder"
-    t.decimal  "parent_id"
+    t.integer  "parent_id"
     t.boolean  "read"
   end
 
   add_index "messages", ["user_id"], :name => "index_messages_on_user_id"
+
+  create_table "plans", :force => true do |t|
+    t.string   "name"
+    t.decimal  "price"
+    t.integer  "months"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "posts", :force => true do |t|
     t.string   "name"
@@ -108,6 +123,18 @@ ActiveRecord::Schema.define(:version => 20121209041607) do
     t.integer  "user_id"
   end
 
+  create_table "subscriptions", :force => true do |t|
+    t.integer  "plan_id"
+    t.integer  "user_id"
+    t.integer  "number_of_listings"
+    t.datetime "created_at",            :null => false
+    t.datetime "updated_at",            :null => false
+    t.string   "stripe_customer_token"
+    t.string   "email"
+  end
+
+  add_index "subscriptions", ["user_id"], :name => "index_subscriptions_on_user_id"
+
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
     t.string   "encrypted_password",     :default => "", :null => false
@@ -130,12 +157,12 @@ ActiveRecord::Schema.define(:version => 20121209041607) do
     t.integer  "phone_number"
     t.string   "website"
     t.string   "preferred_contact"
-    t.boolean  "receive_newsletter"
+    t.boolean  "join_mailing_list"
     t.string   "address"
     t.string   "city"
     t.string   "state"
     t.integer  "zip_id"
-    t.string   "bio"
+    t.text     "bio"
     t.string   "status"
     t.boolean  "flagged"
   end

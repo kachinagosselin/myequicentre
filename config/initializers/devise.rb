@@ -231,6 +231,6 @@ Devise.setup do |config|
   # config.omniauth_path_prefix = "/my_engine/users/auth"
     
   # MailChimp initializers
-  mailchimp_api_key = '843bfbffb60710fdfc28d19ddf8102c9-us5'
-  mailing_list_name = 'EquiCentre List'
+  Devise.mailchimp_api_key = '843bfbffb60710fdfc28d19ddf8102c9-us5'
+  Devise.mailing_list_name = 'EquiCentre'
 end

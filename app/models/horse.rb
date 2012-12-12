@@ -35,10 +35,11 @@ class Horse < ActiveRecord::Base
 
     def self.date_of_birth(value)
         now = Time.now.utc.to_date
-        date_of_birth.year = now.year - value 
+        date_of_birth.year = now.year - value
         date_of_birth.month = now.month 
         date_of_birth.day = now.day
-        date_of_birth
+        puts date_of_birth
+        puts value
     end
 
     def capitalize_fields

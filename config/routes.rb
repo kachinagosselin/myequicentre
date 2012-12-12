@@ -12,7 +12,7 @@ Railsapp::Application.routes.draw do
     match '/users/:user_id/messages/archive(/:id(.:format))', :controller => 'messages', :action => 'archive', :via => [:get], :as => 'user_messages_archive'
     match '/users/:user_id/messages/trash(/:id(.:format))', :controller => 'messages', :action => 'trash', :via => [:get], :as => 'user_messages_trash'
 
-    match '/users/:user_id/horses/(/:id(.:format))', :controller => 'horses', :action => 'changestatus', :via => [:post]
+    match '/users/:user_id/horses/changestatus(/:id(.:format))', :controller => 'horses', :action => 'changestatus', :via => [:post]
     match '/users/:user_id/horses/flagged(/:id(.:format))', :controller => 'horses', :action => 'flag', :via => [:post], :as => 'user_horse_flag'
 
     
@@ -21,7 +21,10 @@ Railsapp::Application.routes.draw do
         resources :horses 
         resources :messages
         resources :saved_horses
-        end
+        resources :subscriptions
+    end
+    
+    resources :plans
     
     resources :posts do
         resources :comments

@@ -6,6 +6,10 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
     :recoverable, :rememberable, :trackable, :validatable, :mailchimp
 
+    before_validation do
+    phone_number = phone_number.to_s.gsub('-','').to_i
+    end
+
   # Setup accessible (or protected) attributes for your model
     attr_accessible :role_ids, :as => :admin
     attr_accessible :first_name, :last_name, :email, :password, :password_confirmation, :remember_me, :phone_number, :website
@@ -26,6 +30,7 @@ class User < ActiveRecord::Base
   has_many :messages, :dependent => :destroy
   has_many :horses, :dependent => :destroy
   has_many :saved_horses, :dependent => :destroy
+  has_many :subscriptions
   belongs_to :zip
     
   def name

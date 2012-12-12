@@ -17,12 +17,22 @@
 <% else %>
 <h1><%= @user.first_name %> <%= @user.last_name[0] %>.</h1>
 <% end %>
+<h3><%= @user.bio if @user.bio %></h3>
+
+<% if (@user.website && !@user.website.blank?) || @user.phone_number %>
 <h2>Contact Information</h2>
-<h3>Website: <%= link_to @user.website if @user.website %></h3>
-<h3>Phone: (<%= @user.phone_number.to_s[0,3] if @user.phone_number %>)
-<%= @user.phone_number.to_s[3,3] if @user.phone_number %>-<%= @user.phone_number.to_s[6,@user.phone_number.size] if @user.phone_number %>
+<% end %>
+<% if @user.website && !@user.website.blank? %>
+<h3>Website: <%= link_to @user.website%></h3>
+<% end %>
+<% if @user.phone_number %>
+<h3>Phone: (<%= @user.phone_number.to_s[0,3] %>)
+<%= @user.phone_number.to_s[3,3] %>-<%= @user.phone_number.to_s[6,@user.phone_number.size]%>
 </h3>
+<% end %>
+<% if false %>
 <h3>Zipcode: <%= link_to @user.zipcode[0].code if false %></h3>
+<% end %>
 </div>
 </div>
 </div>

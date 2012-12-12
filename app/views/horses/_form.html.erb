@@ -58,12 +58,28 @@
     <%= f.number_field :price, :class => "numeric decimal required", :min => 1, :step => 100 %>
   	<p>Note: Change horse location if different than yours.</p>
     <%= f.label :city, 'City' %>
-    <%= f.text_field :city, :value => @user.city %>
+    <%= f.text_field :city %>
     <%= f.label :state, 'State' %>
-    <%= f.text_field :state, :value => @user.state %>
+    <%= f.text_field :state %>
     </br>
     <%= f.file_field :avatar, :as => :avatar%>
+
+
+<div class="field">
+      <%= label_tag :card_number, "Credit Card Number " %>
+      <%= text_field_tag :card_number, nil, name: nil %>
   </div>
+  <div class="field">
+      <%= label_tag :card_code, "Security Code on Card (CVV)" %>
+      <%= text_field_tag :card_code, nil, name: nil %>
+  </div>
+  <div class="field">
+    <%= label_tag :card_month, "Card Expiration" %>
+    <%= select_month nil, {add_month_numbers_true: true}, {name: nil, id: "card_month"}%>
+    <%= select_year nil, {start_year: Date.today.year, end_year: Date.today.year+15}, {name: nil, id: "card_year"}%>
+  </div>
+  
+    </div>
 
   <div class="form-actions">
     <%= f.button :submit %>

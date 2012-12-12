@@ -12,6 +12,11 @@ Role.create([
   { :name => 'VIP' }
 ], :without_protection => true)
 
+puts 'CREATING PLANS'
+Plan.create!(:name => "Free Account", :price => 0, :months => 3)
+Plan.create!(:name => "Basic Account", :price => 30, :months => 3)
+Plan.create!(:name => "Premium Account", :price => 100, :months => 3)
+
 puts 'SETTING UP DEFAULT USER LOGIN'
 user2 = User.create! :first_name => 'Second', :last_name => 'User', :email => 'info@myequicentre.com', :password => 'please', :password_confirmation => 'please'
 puts 'New user created: ' << user2.first_name
@@ -32,7 +37,7 @@ puts 'New horse created: ' << horse22.text_description
 puts 'New horse created: ' << horse23.text_description
 horse31 = user3.horses.create! :name => 'First Horse', :breed => 'Arabian', :gender => 'Mare', :dob => '2000-01-05', :height => 15.1, :text_description => 'A lovely arab mare for sale.', :price => 12000
 horse32 = user3.horses.create! :name => 'Second Horse', :breed => 'Andalusian', :gender => 'Stallion', :dob => '2003-02-15', :height => 15.3, :text_description => 'A spirited andalusian stallion.', :price => 25000
-horse33 = user3.horses.create! :name => 'Third Horse', :breed => 'Warmblood', :gender => 'Gelding', :dob => '1988-08-24', :height => 16.2, :text_description => 'A gentle warmblood gelding for lease. Validates: Name Breed in list, Text description within range, with a character counter, Gender with dropdown menu, Limit age to acceptable range. Need to validate: Limit height to select values, though needs to store as int, Avatar* Add Horse location, inherits from owner Formatting of text', :price => 19000
+horse33 = user3.horses.create! :name => 'Third Horse', :breed => 'Warmblood', :gender => 'Gelding', :dob => '1988-08-24', :height => 16.2, :text_description => 'A gentle warmblood gelding for lease.', :price => 19000
 puts 'New horse created: ' << horse31.text_description
 puts 'New horse created: ' << horse32.text_description
 puts 'New horse created: ' << horse33.text_description

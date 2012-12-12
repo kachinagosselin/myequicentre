@@ -19,9 +19,9 @@
   "MS","MO","MT","NE","NV","NH","NJ","NM","NY","NC","ND","OH","OK","OR","PA","RI","SC",
   "SD","TN","TX","UT","VT","VA","WA","WV","WI","WY"]%>
   <%= label_tag(:website, "Website") %>
-  <%= url_field(:user, :website) %>
-  <%= label_tag(:phone_number, "Phone Number") %>
-  <%= telephone_field(:user, :phone_number) %>
+  <%= f.text_field :website %>
+  <%= f.label(:phone_number, "Phone Number") %>
+  <%= f.text_field :phone_number %>
   <p>Format for phone number is xxx-xxx-xxxx</p>
   <%= f.input :join_mailing_list, :as => :boolean %>
 

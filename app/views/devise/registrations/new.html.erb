@@ -19,7 +19,7 @@
   <%= f.input :email, :required => true %>
   <%= f.input :password, :required => true %>
   <%= f.input :password_confirmation, :required => true %>
-  <%= render :partial => "devise/shared/mailchimp/form", :locals => {:form => f} %>
+  <%= f.input :join_mailing_list, :as => :boolean %>
   <%= f.button :submit, 'Sign up', :class => 'btn-primary' %>
 <% end %>
 <%= render "devise/shared/links" %>
