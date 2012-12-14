@@ -7,21 +7,22 @@ class Subscription < ActiveRecord::Base
   validates_presence_of :horse_id
   validates_presence_of :email
     
-    attr_accessible :user_id, :horse_id, :plan_id, :email, :stripe_card_token, :number_of_listings
+    attr_accessible :user_id, :horse_id, :plan_id, :email, :stripe_customer_token, :stripe_cardvalid_token, :number_of_listings
   attr_accessor :stripe_card_token
   
   def save_with_payment
     customer = Customer.where(:user_id => user_id).first
     if customer.present?
-      strip_customer = Stripe::Customer.retrieve(customer.stripe_customer_token)
-      self.stripe_customer_token = strip_customer.id
-      save!
-    elsif valid?
-      strip_customer = Stripe::Customer.create(description: email, plan: plan_id, card: stripe_card_token)
+      stripe_customer = Stripe::Customer.retrieve(customer.stripe_customer_token)
+      self.stripe_customer_token = stripe_customer.id
+      self.save!
+    else
+      stripe_customer = Stripe::Customer.create(description: self.email, plan: self.plan_id, card: self.stripe_card_token)
+        ddd
       customer = Customer.new(:stripe_customer_token => stripe_customer.id, :user_id => user_id)
       if customer.save
-      self.stripe_customer_token = strip_customer.id
-      save!
+      self.stripe_customer_token = stripe_customer.id
+      self.save!
       end
     end
   rescue Stripe::InvalidRequestError => e

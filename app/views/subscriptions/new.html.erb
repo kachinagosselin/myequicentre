@@ -31,7 +31,8 @@ function stripeResponseHandler(status, response) {
     } else {
         var token = response['id'];
         // insert the token into the form so it gets submitted to the server
-        document.getElementById('subscription_stripe_card_token').value = response['id']
+        $("#new_subscription").append("<input type='hidden' name='stripe_card_token' value='" + token + "'/>");
+        //document.getElementById('subscription_stripe_card_token').value = response['id']
         // and submit
         $('#new_subscription').get(0).submit();
         //alert(token);
@@ -61,7 +62,6 @@ function stripeResponseHandler(status, response) {
   <%= f.hidden_field :plan_id, :value => params[:plan_id] %>
   <%= f.hidden_field :user_id, :value => params[:user_id] %>
   <%= f.hidden_field :horse_id, :value => params[:horse_id] %>
-  <%= f.hidden_field :stripe_card_token %>
   <%= f.hidden_field :email, :value => current_user.email %>
   <% customer = Customer.where(:user_id => current_user.id).first %>
   <% if customer.present? %>

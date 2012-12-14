@@ -27,13 +27,19 @@ class SubscriptionsController < ApplicationController
     stripe_customer.update_subscription(:plan => "45454545", :quantity => 1)    
     else
     # if the credit card is valid create new customer and subscriptions
-    @subscription = Subscription.new(params[:subscription])
-    @subscription.number_of_listings = 1 
+    @subscription = @horse.subscriptions.build(:plan_id => params[:subscription][:plan_id], 
+    :user_id => params[:subscription][:user_id], :horse_id => params[:subscription][:horse_id], 
+    :email => params[:subscription][:email],)
+    @stripe_customer = Stripe::Customer.create(description: params[:subscription][:email], 
+    plan: params[:subscription][:plan_id], card: params[:stripe_card_token])
+    @customer = Customer.new(:stripe_customer_token => @stripe_customer.id, :user_id => params[:user_id])
+    @subscription.stripe_customer_token = @stripe_customer.id
     @subscription.state = "active"
     @horse.update_attribute(:sale_status, "active")
     end
 
-    if @subscription.save #_with_payment
+    if @subscription.save
+        @customer.save
         redirect_to user_path(current_user), :notice => "Thank you for activating your listing!"
     else
         redirect_to :back, :alert => "Failed to activate listing"
