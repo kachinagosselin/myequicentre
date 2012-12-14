@@ -1,3 +1,15 @@
+<script>
+$(document).ready(function() {
+  $("#new_subscription").submit(function(event) {
+        var user_id = response['id'];
+        // insert the token into the form so it gets submitted to the server
+        form$.append("<input type='text' name='subscription[stripe_card_token]' value='" + token + "'/>");
+        // and submit
+        form$.get(0).submit();
+  });
+});  
+</script>
+   
 <%= simple_form_for([@user, @message]) do |f| %>
   <%= f.error_notification %>
 
@@ -5,11 +17,13 @@
     <%= f.input :to_user_id %>
     <%= f.hidden_field :from_user_id, :value => @user.id %>
     <%= f.input :title %>
-    <%= f.input :content %>
+    <%= f.label :content %>
+    <%= f.text_area :content, :cols => 20, :rows => 20 %>
     <%= f.hidden_field :thread_count, :value => 0 %>
   </div>
 
   <div class="form-actions">
+    <%= link_to 'Cancel', user_messages_path(@user), :class => 'btn'%>
     <%= f.button :submit, 'Save', :name => 'save_button' %>
     <%= f.button :submit %>
     

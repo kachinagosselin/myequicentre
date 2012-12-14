@@ -1,11 +1,9 @@
 class AddAttachmentAvatarToHorses < ActiveRecord::Migration
   def self.up
-    change_table :horses do |t|
-      t.has_attached_file :avatar
-    end
+    add_attachment :horses, :avatar
   end
 
   def self.down
-    drop_attached_file :horses, :avatar
+    remove_attachment :horses, :avatar
   end
 end

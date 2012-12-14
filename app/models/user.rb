@@ -25,12 +25,11 @@ class User < ActiveRecord::Base
   # Images
     attr_accessible :avatar, :avatar_file_name
     attr_accessor :avatar_file_name
-    has_attached_file :avatar, :default_url => "/images/default/:style/default_user.jpg", :styles => { :medium => "275x275#", :thumb => "100x100#" }, :path => ":rails_root/images/system/:attachment/:id/:style/:filename", :url => "/images/:attachment/:id/:style/:filename"
+    has_attached_file :avatar, :default_url => "/images/default/:style/default_user.jpg", :styles => { :medium => "275x275#", :thumb => "100x100#" }, :path => ":rails_root/images/system/:attachment/:id/:basename_:style.:extension", :url => "/images/:attachment/:id/:style/:basename_:style.:extension"
     
   has_many :messages, :dependent => :destroy
   has_many :horses, :dependent => :destroy
   has_many :saved_horses, :dependent => :destroy
-  has_many :subscriptions
   belongs_to :zip
     
   def name
@@ -39,6 +38,5 @@ class User < ActiveRecord::Base
     
   def zipcode
       Zip.find(:all, :conditions => ["city = ? and state = ?", self.city, self.state])
-
   end
 end

@@ -1,3 +1,3 @@
 class Customer < ActiveRecord::Base
-  attr_accessible :customer_id, :user_id
+  attr_accessible :stripe_customer_token, :user_id
 end

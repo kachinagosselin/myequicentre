@@ -1,14 +1,23 @@
 <!-- This is the user profile page. -->
+<% if @user.status == "disabled" %>
+<div class='white-background'>
+<div class='center-align'>
+<p><b>This account and associated listings have been disabled please contact <%= mail_to "support@myequicentre.com" %> 
+to inquire into the details.</b></p>
+</div>
+</div>
+
+<% else %>
 <div class='white-background'>
 <div class="row-fluid">
 <div class="span4" id="profile-image">
     <div class='profile-image'>
     <%= image_tag @user.avatar.url(:medium) %>
     </div>
-
+        <% if current_user != @user %>
         <a data-toggle="modal" href="#message-user-<%= @user.id %>" class="btn btn-block" type="button">Message Owner</a>
-        <%= render 'users/user_message' %> 
-    
+        <%= render 'users/user_message', :user => @user %> 
+        <% end %>
 </div>
 
 <div class="span8">
@@ -65,4 +74,4 @@
 </div>
 <% end %>
 </div>
-
+<% end %>

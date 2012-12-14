@@ -1,20 +1,75 @@
 class SubscriptionsController < ApplicationController
   def new
-    plan = Plan.find(params[:plan_id])
-    @subscription = plan.subscriptions.build
-    @subscription.user_id = current_user.id
+    @user = User.find(params[:user_id])
+    @horse = @user.horses.find(params[:horse_id])
+    @subscription = @horse.subscriptions.new
+    @subscription.user_id = params[:user_id]
   end
 
   def create
-    @subscription = Subscription.new(params[:subscription])
-    @subscription.user_id = current_user.id
-    if @subscription.save_with_payment
-      redirect_to user_path(current_user), :notice => "Thank you for subscribing!"
+    @user = User.find(params[:user_id])
+    @horse = @user.horses.find(params[:subscription][:horse_id])
+    @customer = Customer.where(:user_id => params[:user_id]).first
+    @existing_subscription = Subscription.where(:user_id => params[:user_id]).first
+    if @customer.present? &&  @existing_subscription.present?
+    stripe_customer = Stripe::Customer.retrieve(@customer.stripe_customer_token)
+    number = stripe_customer.subscription.quantity
+    new_number = number + 1
+    @subscription = @horse.subscriptions.build(params[:subscription])
+    @subscription.update_attribute(:state, "active")
+    @horse.update_attribute(:sale_status, "active")
+    stripe_customer.update_subscription(:plan => "45454545", :quantity => new_number)    
+    elsif @customer.present?
+    stripe_customer = Stripe::Customer.retrieve(@customer.stripe_customer_token)
+    @subscription = @horse.subscriptions.build(params[:subscription])
+    @subscription.state = "active"
+    @horse.update_attribute(:sale_status, "active")
+    stripe_customer.update_subscription(:plan => "45454545", :quantity => 1)    
     else
-      render :new
+    # if the credit card is valid create new customer and subscriptions
+    @subscription = Subscription.new(params[:subscription])
+    @subscription.number_of_listings = 1 
+    @subscription.state = "active"
+    @horse.update_attribute(:sale_status, "active")
+    end
+
+    if @subscription.save #_with_payment
+        redirect_to user_path(current_user), :notice => "Thank you for activating your listing!"
+    else
+        redirect_to :back, :alert => "Failed to activate listing"
     end
   end
 
+
+  def unsubscribe
+    @user = User.find(params[:user_id])
+    @horse = @user.horses.find(params[:horse_id])
+    @customer = Customer.where(:user_id => params[:user_id]).first
+    @subscription = Subscription.find(params[:id])
+    
+    #If customer and subscription
+    if @customer.present?
+    stripe_customer = Stripe::Customer.retrieve(@customer.stripe_customer_token)
+    number = stripe_customer.subscription.quantity
+    #if there are multiple subscriptions then decrement count
+    if number > 1
+    new_number = number - 1  
+    @subscription.destroy
+    @horse.update_attribute(:sale_status, "inactive")
+    stripe_customer = Stripe::Customer.retrieve(@customer.stripe_customer_token)
+    stripe_customer.update_subscription(:plan => "45454545", :quantity => new_number)  
+    redirect_to user_path(current_user), :notice => "You have successfully unsubscribed!"
+    else
+    #if this is the last subscription, cancel the subscription
+    @subscription.destroy
+    @horse.update_attribute(:sale_status, "inactive")
+    stripe_customer.cancel_subscription
+    redirect_to user_path(current_user), :notice => "You have successfully unsubscribed! 
+    And you have no more subscriptions"
+    end
+    end
+  end
+  
   def show
     @subscription = Subscription.find(params[:id])
   end

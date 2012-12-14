@@ -1,0 +1,33 @@
+<div class='white-background'>
+<h1>Sales Barn</h1>
+<%= link_to 'New Horse', new_user_horse_path(@user), class: 'btn btn-mini' %>
+
+<% @user.horses.each do |horse| %>
+<div class='row-fluid'>
+<div class="span4" id="profile-image">
+<div class='profile-image'>
+<%= image_tag horse.avatar.url %>
+</div>
+</div>
+<div class='span8'>
+<h4><%= horse.name %></h4>
+<p><%= number_to_currency(horse.price.round, :precision => 0) %></p>
+<p>
+<%= link_to 'Show', user_horse_path(@user, horse) %> | <%= link_to 'Edit', 
+edit_user_horse_path(@user, horse) %> | <%= link_to 'Delete', [horse.user, horse], method: 
+:delete, data: { confirm: 'Are you sure?' } %>
+</p>
+</div>
+<div class="span3">
+    <p><b>Breed: </b><%= horse.breed %></p>
+    <p><b>Gender: </b><%= horse.gender %></p>
+    <p><b>Age: </b><%= horse.age %> yrs</p>
+    <p><b>Height: </b><%= horse.height %> hh</p>
+</div>
+<div class="span5">
+    <p><%= horse.text_description %></p>
+</div>
+<div class='divider-horizontal'></div>
+</div>
+<% end %>
+</div>

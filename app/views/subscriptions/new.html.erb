@@ -1,7 +1,41 @@
+<script>
+$(document).ready(function() {
+  $("#new_subscription").submit(function(event) {
+    // disable the submit button to prevent repeated clicks
+    $('.submit-button').attr("disabled", "disabled");
+
+    Stripe.createToken({
+        number: $('.card_number').val(),
+        cvc: $('.card_code').val(),
+        exp_month: $('.card_month').val(),
+        exp_year: $('.card_year').val()
+    }, stripeResponseHandler);
+
+    // prevent the form from submitting with the default action
+    return false;
+  });
+});
+
+function stripeResponseHandler(status, response) {
+    if (response.error) {
+        // show the errors on the form
+        $(".payment-errors").text(response.error.message);
+        $(".submit-button").removeAttr("disabled");
+    } else {
+        var token = response['id'];
+        // insert the token into the form so it gets submitted to the server
+        $('#subscription_stripe_card_token').val(response['id'])
+        // and submit
+        $('#new_subscription').get(0).submit();
+        alert(token);
+        
+    }
+}
+</script>
 
 <div class='white-background'>
-<h1>Signing up for "<%= @subscription.plan.name %>"</h1>
-<p>Costs <strong><%= number_to_currency @subscription.plan.price %></strong> per month per listing!</p>
+<h1>Activate Listing for <%= Horse.find(params[:horse_id]).name%> </h1>
+<p>Costs <strong>$10</strong> per month per listing!</p>
 
 <%= simple_form_for([current_user, @subscription]) do |f| %>
   <% if @subscription.errors.any? %>
@@ -15,13 +49,14 @@
     </div>
   <% end %>
 
-  <%= f.hidden_field :plan_id %>
+  <%= f.hidden_field :plan_id, :value => params[:plan_id] %>
+  <%= f.hidden_field :user_id, :value => params[:user_id] %>
+  <%= f.hidden_field :horse_id, :value => params[:horse_id] %>
   <%= f.hidden_field :email, :value => current_user.email %>
-  <%= f.hidden_field :stripe_card_token %>
-  <%= customer = Customer.where(:user_id => current_user.id)[0] %>
-  <% if customer %>
-  <%= stripe_customer = Stripe::Customer.retrieve(customer.stripe_customer_token) %>
-  <% if stripe_customer.stripe_card_token.present? %>
+  <% customer = Customer.where(:user_id => current_user.id).first %>
+  <% if customer.present? %>
+  <% stripe_customer = Stripe::Customer.retrieve(customer.stripe_customer_token) %>
+  <% if stripe_customer.active_card.fingerprint.present? %>
     Credit card has been provided.
   <% end %>
   <% else %>

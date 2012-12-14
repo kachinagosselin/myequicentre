@@ -1,0 +1,38 @@
+<div class='white-background'>
+<h1>Your Saved Horses</h1>
+<table class="table table-condensed">
+  <% if @user.saved_horses.present? %>
+  <thead>
+  <tr>
+    <th>Horse Name</th>
+    <th>Breed</th>
+    <th>Gender</th>
+    <th>Age</th>
+    <th>Height</th>
+    <th>Price</th>
+    <th></th>
+    <th></th>
+  </tr>
+  </thead>
+  <% @user.saved_horses.each do |s| %>
+  <% id = s.horse_id.to_i %>
+  <tbody>
+  <tr>
+    <td><%= Horse.find(id).name %></td>
+    <td><%= Horse.find(id).breed %></td>
+    <td><%= Horse.find(id).gender %></td>
+    <td><%= Horse.find(id).age %> yrs</td> 
+    <td><%= Horse.find(id).height %> hh</td>
+    <td><%= number_to_currency(Horse.find(id).price.round, :precision => 0) %></td>
+    <td><%= link_to 'View Listing', user_horse_path(Horse.find(id).user_id, Horse.find(id)) %></td>
+    <td><%= link_to 'Remove from List', [s.user, s], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+  </tbody>
+<% end %>
+<% else %>
+<div class="center-align">
+<p> As you browse our site and save your favorite horses they will appear here. </p>
+</div>
+<% end %>
+</table>
+</div>

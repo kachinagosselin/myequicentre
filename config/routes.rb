@@ -12,13 +12,16 @@ Railsapp::Application.routes.draw do
     match '/users/:user_id/messages/archive(/:id(.:format))', :controller => 'messages', :action => 'archive', :via => [:get], :as => 'user_messages_archive'
     match '/users/:user_id/messages/trash(/:id(.:format))', :controller => 'messages', :action => 'trash', :via => [:get], :as => 'user_messages_trash'
 
-    match '/users/:user_id/horses/changestatus(/:id(.:format))', :controller => 'horses', :action => 'changestatus', :via => [:post]
+    match '/users/:user_id/horses/changestatus(/:id(.:format))', :controller => 'horses', :action => 'changestatus', :via => [:post], :as => 'user_horse_changestatus'
     match '/users/:user_id/horses/flagged(/:id(.:format))', :controller => 'horses', :action => 'flag', :via => [:post], :as => 'user_horse_flag'
-
+    match '/users/:id/changestatus(.:format)', :controller => 'users', :action => 'changestatus', :via => [:post], :as => 'user_changestatus'
+    match '/users/:user_id/horses/:horse_id/subscriptions/unsubscribe/:id(.:format)', :controller => 'subscriptions', :action => 'unsubscribe', :via => [:get], :as => 'user_horse_unsubscribe'
     
     ## Object resources
     resources :users do
-        resources :horses 
+        resources :horses do
+            resources :subscriptions
+        end
         resources :messages
         resources :saved_horses
         resources :subscriptions

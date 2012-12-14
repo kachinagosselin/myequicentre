@@ -89,9 +89,15 @@ class HorsesController < ApplicationController
   def changestatus
       @user = User.find(params[:user_id])
       @horse = @user.horses.find(params[:id])
+      if @horse.status == "disabled"
       @horse.update_attribute(:status, "normal")
       @horse.update_attribute(:flagged, "false")
       redirect_to users_path
+      else
+      @horse.update_attribute(:status, "disabled")
+      @horse.update_attribute(:flagged, "true")
+      redirect_to users_path
+      end
   end
   
   def flag

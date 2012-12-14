@@ -28,7 +28,6 @@ class UsersController < ApplicationController
   def destroy
     authorize! :destroy, @user, :message => 'Not authorized as an administrator'
     user = User.find(params[:id])
-    gb.list_unsubscribe(:id => list_id, :email_address => user.email, :delete_member => true, :send_goodbye => false, :send_notify => false)
       
     unless user == current_user
       user.destroy
@@ -37,4 +36,19 @@ class UsersController < ApplicationController
       redirect_to users_path, :notice => "Can't delete yourself."
     end
   end
+    
+  def changestatus
+    authorize! :changestatus, @user, :message => 'Not authorized as an administrator.'
+    user = User.find(params[:id])
+    if user.status == "disabled"
+       user.update_attribute(:status, "normal")
+       user.update_attribute(:flagged, "false")
+       redirect_to users_path
+    else
+       user.update_attribute(:status, "disabled")
+       user.update_attribute(:flagged, "true")
+       redirect_to users_path
+    end
+  end
+    
 end

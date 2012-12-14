@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121212164643) do
+ActiveRecord::Schema.define(:version => 20121213220403) do
 
   create_table "comments", :force => true do |t|
     t.string   "commenter"
@@ -131,6 +131,8 @@ ActiveRecord::Schema.define(:version => 20121212164643) do
     t.datetime "updated_at",            :null => false
     t.string   "stripe_customer_token"
     t.string   "email"
+    t.integer  "horse_id"
+    t.string   "state"
   end
 
   add_index "subscriptions", ["user_id"], :name => "index_subscriptions_on_user_id"

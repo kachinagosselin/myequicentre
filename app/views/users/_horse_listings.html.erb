@@ -1,0 +1,42 @@
+<div class='white-background'>
+<h1>Your Horse Listings</h1>
+<table class="table table-condensed">
+  <% if @user.horses.present? %>
+  <thead>
+  <tr>
+    <th>Horse Name</th>
+    <th>Breed</th>
+    <th>Gender</th>
+    <th>Age</th>
+    <th>Height</th>
+    <th>Price</th>
+    <th>Status</th>
+    <th></th>
+  </tr>
+  </thead>
+  <% @user.horses.each do |horse| %>
+  <tbody>
+  <tr>
+    <td><%= horse.name %></td>
+    <td><%= horse.breed %></td>
+    <td><%= horse.gender %></td>
+    <td><%= horse.age %> yrs</td> 
+    <td><%= horse.height %> hh</td>
+    <td><%= number_to_currency(horse.price.round, :precision => 0) %></td>
+    <td><%= horse.sale_status%></td>
+    <% if horse.sale_status == "active" %>
+    <td><%= link_to "Deactivate", user_horse_unsubscribe_path(current_user, horse, horse.subscriptions.first), :class => 'btn btn-mini' %></td>
+    <% else %>
+    <td><%= link_to "Activate", new_user_horse_subscription_path(current_user, horse, :plan_id => 45454545), :class => 'btn btn-mini' %></td>
+    <% end %>
+    <td><%= link_to 'Delete Listing', [horse.user, horse], method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-mini' %></td>
+  </tr>
+  </tbody>
+<% end %>
+<% else %>
+<div class="center-align">
+<p> As you browse our site and save your favorite horses they will appear here. </p>
+</div>
+<% end %>
+</table>
+</div>
