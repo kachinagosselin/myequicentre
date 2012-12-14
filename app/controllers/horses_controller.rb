@@ -70,22 +70,10 @@ class HorsesController < ApplicationController
   end
     
   def search
-      #@search = Horse.joins.where(:user_id => User.all).search(params)
-      if params[:dob_less_than_of_equal_to] != ""
-      @age_less = params[:dob_less_than_of_equal_to]
-      #params[:dob_less_than_of_equal_to] = Horse.date_of_birth(@age_less.to_i)
-      end
-      if params[:dob_greater_than_or_equal_to] != ""
-      @age_greater = params[:dob_less_than_of_equal_to]
-      #params[:dob_greater_than_or_equal_to] = Horse.date_of_birth(@age_greater.to_i)
-      end      
       @search = Horse.search(params[:search])
-      #@horses = @search.all
       @horses = @search.paginate(:page => params[:page], :per_page => 9)
   end
 
-  # DELETE user/:user_id/horses/1
-  # DELETE user/:user_id/horses/1.json
   def changestatus
       @user = User.find(params[:user_id])
       @horse = @user.horses.find(params[:id])

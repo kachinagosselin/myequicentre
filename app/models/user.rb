@@ -28,6 +28,7 @@ class User < ActiveRecord::Base
     has_attached_file :avatar, :default_url => "/images/default/:style/default_user.jpg", :styles => { :medium => "275x275#", :thumb => "100x100#" }, :path => ":rails_root/images/system/:attachment/:id/:basename_:style.:extension", :url => "/images/:attachment/:id/:style/:basename_:style.:extension"
     
   has_many :messages, :dependent => :destroy
+  has_many :contacts, :dependent => :destroy
   has_many :horses, :dependent => :destroy
   has_many :saved_horses, :dependent => :destroy
   belongs_to :zip

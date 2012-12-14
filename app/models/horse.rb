@@ -1,11 +1,11 @@
 class Horse < ActiveRecord::Base
     belongs_to :user
-    has_many :subscriptions
+    has_many :subscriptions, :dependent => :destroy
 
     attr_accessible :dob, :breed, :gender, :height, :name, :price, :text_description
     attr_accessible :city, :state, :zip_id
     attr_accessible :status, :sale_status, :flagged
-    
+
     attr_accessible :avatar, :avatar_file_name
     attr_accessor :avatar_file_name
     has_attached_file :avatar, :styles => { :large => "900x600#", :medium => "275x245#", :thumb => "100x100#" }, :url => "/:attachment/:id/:style/:avatar_file_name.:extension", :path => ":rails_root/public/:attachment/:id/:style/:avatar_file_name", :default_url => "/images/default/:style/default_horse.jpg"
@@ -33,30 +33,9 @@ class Horse < ActiveRecord::Base
         now = Time.now.utc.to_date
         now.year - self.dob.year - ((now.month > self.dob.month || (now.month == self.dob.month && now.day >= self.dob.day)) ? 0 : 1)
     end
-
-    def self.date_of_birth(value)
-        now = Time.now.utc.to_date
-        date_of_birth.year = now.year - value
-        date_of_birth.month = now.month 
-        date_of_birth.day = now.day
-        puts date_of_birth
-        puts value
-    end
-
-    def capitalize_fields
-        self.breed.capitalize
-        self.gender.capitalize
-    end
     
     def format_description
         self.text_description
-        #self.text_description.gsub(/\n/, '<br/>')
     end
-    
-    #scope :age_greater_than_or_equal_to, lambda {|value| where(:dob <= self.date_of_birth(value.to_i))}
-    scope :age_greater_than_or_equal_to, lambda {|value| where(:dob >= value.to_date)}
-    scope :age_less_than_or_equal_to, lambda {|value| where(:dob <= value.to_date)}
-    search_methods :age_greater_than_or_equal_to
-    search_methods :age_less_than_or_equal_to
     
 end

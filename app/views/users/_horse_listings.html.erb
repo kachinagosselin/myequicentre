@@ -27,15 +27,17 @@
     <% if horse.sale_status == "active" %>
     <td><%= link_to "Deactivate", user_horse_unsubscribe_path(current_user, horse, horse.subscriptions.first), :class => 'btn btn-mini' %></td>
     <% else %>
-    <td><%= link_to "Activate", new_user_horse_subscription_path(current_user, horse, :plan_id => 45454545), :class => 'btn btn-mini' %></td>
+    <td><%= link_to " Activate ", new_user_horse_subscription_path(current_user, horse, :plan_id => 45454545), :class => 'btn btn-mini' %></td>
     <% end %>
-    <td><%= link_to 'Delete Listing', [horse.user, horse], method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-mini' %></td>
+    <td><%= link_to 'Delete Listing', [horse.user, horse], method: :delete, data: { confirm: 'Are you sure? This action cannot be undone.' }, :class => 'btn btn-mini' %></td>
   </tr>
   </tbody>
 <% end %>
+<%= link_to 'Add New Horse', new_user_horse_path(@user), class: 'btn btn-mini' %>
 <% else %>
 <div class="center-align">
-<p> As you browse our site and save your favorite horses they will appear here. </p>
+<p> You don't have any horse listings. Create one by clicking the "Add New Horse" button below: </p>
+<%= link_to 'Add New Horse', new_user_horse_path(@user), class: 'btn btn-mini' %>
 </div>
 <% end %>
 </table>

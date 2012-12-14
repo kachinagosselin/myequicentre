@@ -42,7 +42,6 @@
     thousandSeparator: ','});
 
 });
-  
 </script>
 
 <%= simple_form_for([@user, @horse], :html => { :multipart => true }) do |f| %>
@@ -63,25 +62,10 @@
     <%= f.text_field :state %>
     </br>
     <%= f.file_field :avatar%>
-
-
-<div class="field">
-      <%= label_tag :card_number, "Credit Card Number " %>
-      <%= text_field_tag :card_number, nil, name: nil %>
-  </div>
-  <div class="field">
-      <%= label_tag :card_code, "Security Code on Card (CVV)" %>
-      <%= text_field_tag :card_code, nil, name: nil %>
-  </div>
-  <div class="field">
-    <%= label_tag :card_month, "Card Expiration" %>
-    <%= select_month nil, {add_month_numbers_true: true}, {name: nil, id: "card_month"}%>
-    <%= select_year nil, {start_year: Date.today.year, end_year: Date.today.year+15}, {name: nil, id: "card_year"}%>
-  </div>
-  
     </div>
 
   <div class="form-actions">
+    <%= link_to 'Cancel', user_horses_path(@user), class: 'btn' %>
     <%= f.button :submit %>
   </div>
 <% end %>

@@ -25,6 +25,7 @@ Railsapp::Application.routes.draw do
         resources :messages
         resources :saved_horses
         resources :subscriptions
+        resources :contacts
     end
     
     resources :plans

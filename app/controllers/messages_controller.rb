@@ -145,6 +145,13 @@ class MessagesController < ApplicationController
       @message_recieved = @recipient.messages.build(params[:message])
       @message_recieved.thread_count = @message_sent.thread_count
       @message_recieved.folder = "inbox"
+    
+      if @recipient.contacts.where(:user_id => @sender.id).first.present?
+      else
+          @new_contact = @recipient.contacts.build(:contact_name => @sender.name, :contact_id => @sender.id, :user_id => @recipient.id)
+      @new_contact.save
+      end
+
     respond_to do |format|
       if @message_sent.save && @message_recieved.save
         if @message_sent.thread_count == 0

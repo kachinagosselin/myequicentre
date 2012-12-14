@@ -1,3 +1,58 @@
+<script>
+$(document).ready(function(){
+        var display_dob_greater = document.getElementById('search_dob_greater_than_or_equal_to').value;
+        var display_dob_less = document.getElementById('search_dob_less_than_or_equal_to').value;
+        if (display_dob_greater != ""){
+        var display_age_less = calculateAge(display_dob_greater);
+        document.getElementById('search_dob_greater_than_or_equal_to').value = display_age_less;
+        }
+        if (display_dob_less != ""){
+        var display_age_greater = calculateAge(display_dob_less);
+        document.getElementById('search_dob_less_than_or_equal_to').value = display_age_greater;
+        }
+        
+    // when you submit this form
+  $("#horse_search").submit(function(event) {
+       $('.submit-button').attr("disabled", "disabled");
+        // you get the variable from the search form
+        var age_less = document.getElementById('search_dob_greater_than_or_equal_to').value;
+        var age_greater = document.getElementById('search_dob_less_than_or_equal_to').value;
+        // perform basic calculations to convert to dob
+        if (age_less != ""){
+        var dob_greater = getDOB(age_less);
+        document.getElementById('search_dob_greater_than_or_equal_to').value = dob_greater;
+        }
+        if (age_greater != ""){
+        var dob_less = getDOB(age_greater);
+        document.getElementById('search_dob_less_than_or_equal_to').value = dob_less;
+        }
+        //alert('DOB less: ' + dob_less + '   DOB greater: ' + dob_greater);
+        // and submit
+        $("#horse_search").get(0).submit();
+  });
+
+function getDOB(age) {
+    var today = new Date();
+    var dob = new Date(today.getFullYear() - age, today.getMonth(), today.getDate());
+    return dob;
+}
+
+function calculateAge(dobString) {
+    var dob = new Date(dobString);
+    var currentDate = new Date();
+    var currentYear = currentDate.getFullYear();
+    var birthdayThisYear = new Date(currentYear, dob.getMonth(), dob.getDate());
+    var age = currentYear - dob.getFullYear();
+
+    if(birthdayThisYear > currentDate) {
+        age--;
+    }
+
+    return age;
+}
+});
+</script>
+
   <%= form_for(@search, :url => { :search => "search" }, :html => {:method => 'get'}) do |f| %>
         <div class = 'span12'>
         <span class = 'span3 offset1'> 
@@ -13,8 +68,8 @@
         <%= f.text_field :gender_contains %><br />    
         </div>
         <div class ='span3 offset1'>
-        <%= f.label :dob_greater_than_or_equal_to, 'Age greater than' %>
-        <%= f.text_field :dob_greater_than_or_equal_to, :include_blank => true %><br />
+        <%= f.label :dob_less_than_or_equal_to, 'Age greater than' %>
+        <%= f.text_field :dob_less_than_or_equal_to, :include_blank => true %><br />
         </div>
         <div class ='span3'>
         <%= f.label :height_greater_than_or_equal_to, 'Height greater than' %>
@@ -25,8 +80,8 @@
         <%= f.text_field :price_greater_than_or_equal_to, :include_blank => true %><br />
         </div>
         <div class ='span3 offset1'>
-        <%= f.label :dob_less_than_or_equal_to, 'Age less than' %>
-        <%= f.text_field :dob_less_than_or_equal_to, :include_blank => true %><br />
+        <%= f.label :dob_greater_than_or_equal_to, 'Age less than' %>
+        <%= f.text_field :dob_greater_than_or_equal_to, :include_blank => true %><br />
         </div>
         <div class ='span3'>
         <%= f.label :height_less_than_or_equal_to, 'Height less than' %>

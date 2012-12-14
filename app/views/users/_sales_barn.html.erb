@@ -1,8 +1,8 @@
 <div class='white-background'>
 <h1>Sales Barn</h1>
-<%= link_to 'New Horse', new_user_horse_path(@user), class: 'btn btn-mini' %>
 
 <% @user.horses.each do |horse| %>
+<% if horse.sale_status == "active" %>
 <div class='row-fluid'>
 <div class="span4" id="profile-image">
 <div class='profile-image'>
@@ -29,5 +29,6 @@ edit_user_horse_path(@user, horse) %> | <%= link_to 'Delete', [horse.user, horse
 </div>
 <div class='divider-horizontal'></div>
 </div>
+<% end %>
 <% end %>
 </div>

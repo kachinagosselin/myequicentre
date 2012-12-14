@@ -28,7 +28,7 @@
   <p><b>Change Your Password</b></p>
   <%= f.input :password, :autocomplete => "off", :hint => "leave it blank if you don't want to change it", :required => false %>
   <%= f.input :password_confirmation, :required => false %>
-  
+
   <p><b>Enter your current password to confirm changes</b></p>
   <%= f.input :current_password, :required => true %>
   <%= f.button :submit, 'Update', :class => 'btn-primary' %>
