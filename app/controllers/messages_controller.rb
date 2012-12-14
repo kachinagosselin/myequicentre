@@ -140,6 +140,7 @@ class MessagesController < ApplicationController
       @message_sent = @sender.messages.build(params[:message])
       @message_sent.folder = "sent"
       @contact = @sender.contacts.where(:contact_name => params[:message][:name]).first
+      if @contact.present? || params[:message][:to_user_id].present?
       if @contact.present?
       @message_sent.to_user_id = @contact.contact_id
       @recipient = User.find(@message_sent.to_user_id)
@@ -156,6 +157,7 @@ class MessagesController < ApplicationController
       if !@recipient.contacts.where(:contact_id => @sender.id).first.present?
       @new_contact = @recipient.contacts.build(:contact_name => @sender.name, :contact_id => @sender.id, :user_id => @recipient.id)
       @new_contact.save
+      end
       end
     respond_to do |format|
       if @message_sent.save && @message_recieved.save
@@ -183,6 +185,7 @@ class MessagesController < ApplicationController
       @message_sent = @sender.messages.find(params[:id])
       @message_sent.folder = "sent"
       @contact = @sender.contacts.where(:contact_name => params[:message][:name]).first
+      if @contact.present? || params[:message][:to_user_id].present?
       if @contact.present?
       @message_sent.to_user_id = @contact.contact_id
       @recipient = User.find(@message_sent.to_user_id)
@@ -200,7 +203,7 @@ class MessagesController < ApplicationController
       @new_contact = @recipient.contacts.build(:contact_name => @sender.name, :contact_id => @sender.id, :user_id => @recipient.id)
       @new_contact.save
       end
-      
+      end
       respond_to do |format|
         if @message_sent.update_attributes(params[:message]) && 
         @message_recieved.update_attributes(params[:message]) && 

@@ -1,8 +1,13 @@
 <p id="notice"><%= notice %></p>
-    
+ 
     <div id="search-form">
+        <div class = "center-align">
+        <h4>Search Criteria</h4>
+        </div>
         <%= render 'horses/search_form' %>
     </div>
+
+
     <p> Sort by: <%= sort_link @search, :price %> | <%= sort_link @search, :dob, "Age" %></p>
 
     <div id="search-results">

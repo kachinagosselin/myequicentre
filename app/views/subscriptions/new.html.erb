@@ -3,12 +3,17 @@ $(document).ready(function() {
   $("#new_subscription").submit(function(event) {
     // disable the submit button to prevent repeated clicks
     $('.submit-button').attr("disabled", "disabled");
-
+    var card_number = document.getElementById('card_number').value;
+    var card_code = document.getElementById('card_code').value;
+    var card_month = document.getElementById('card_month').value;
+    var card_year = document.getElementById('card_year').value;
+    alert('Number: ' + card_number + ' CVC: ' + card_code + ' Month:' + card_month + 'Year:' + card_year);
+    
     Stripe.createToken({
-        number: $('.card_number').val(),
-        cvc: $('.card_code').val(),
-        exp_month: $('.card_month').val(),
-        exp_year: $('.card_year').val()
+        number: $('#card_number').val(),
+        cvc: $('#card_code').val(),
+        exp_month: $('#card_month').val(),
+        exp_year: $('#card_year').val()
     }, stripeResponseHandler);
 
     // prevent the form from submitting with the default action
@@ -17,6 +22,7 @@ $(document).ready(function() {
 });
 
 function stripeResponseHandler(status, response) {
+    alert('Status: ' + status + 'Response: ' + response);
     if (response.error) {
         // show the errors on the form
         $(".payment-errors").text(response.error.message);
@@ -24,13 +30,15 @@ function stripeResponseHandler(status, response) {
     } else {
         var token = response['id'];
         // insert the token into the form so it gets submitted to the server
-        $('#subscription_stripe_card_token').val(response['id'])
+        document.getElementById('subscription_stripe_card_token').value = response['id']
         // and submit
         $('#new_subscription').get(0).submit();
-        alert(token);
+        //alert(token);
         
     }
+    return false;
 }
+
 </script>
 
 <div class='white-background'>
@@ -52,6 +60,7 @@ function stripeResponseHandler(status, response) {
   <%= f.hidden_field :plan_id, :value => params[:plan_id] %>
   <%= f.hidden_field :user_id, :value => params[:user_id] %>
   <%= f.hidden_field :horse_id, :value => params[:horse_id] %>
+  <%= f.hidden_field :stripe_card_token %>
   <%= f.hidden_field :email, :value => current_user.email %>
   <% customer = Customer.where(:user_id => current_user.id).first %>
   <% if customer.present? %>

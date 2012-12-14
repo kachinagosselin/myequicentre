@@ -47,7 +47,6 @@ function calculateAge(dobString) {
     if(birthdayThisYear > currentDate) {
         age--;
     }
-
     return age;
 }
 });
@@ -59,41 +58,40 @@ function calculateAge(dobString) {
         <%= f.label :name_contains %>
         <%= f.text_field :name_contains %><br />
         </span>
-        <div class ='span3'>
+        <span class ='span3'>
         <%= f.label :breed_contains, 'Breed Is' %>
         <%= f.text_field :breed_contains %><br />
-        </div>
-        <div class ='span3'>
+        </span>
+        <span class ='span3'>
         <%= f.label :gender_contains, "Gender Is" %>
         <%= f.text_field :gender_contains %><br />    
-        </div>
-        <div class ='span3 offset1'>
+        </span>
+        <span class ='span3 offset1'>
         <%= f.label :dob_less_than_or_equal_to, 'Age greater than' %>
         <%= f.text_field :dob_less_than_or_equal_to, :include_blank => true %><br />
-        </div>
-        <div class ='span3'>
+        </span>
+        <span class ='span3'>
         <%= f.label :height_greater_than_or_equal_to, 'Height greater than' %>
         <%= f.text_field :height_greater_than_or_equal_to, :include_blank => true %><br />
-        </div>
-        <div class ='span3'>        
+        </span>
+        <span class ='span3'>        
         <%= f.label :price_greater_than_or_equal_to, 'Price greater than' %>
         <%= f.text_field :price_greater_than_or_equal_to, :include_blank => true %><br />
-        </div>
-        <div class ='span3 offset1'>
+        </span>
+        <span class ='span3 offset1'>
         <%= f.label :dob_greater_than_or_equal_to, 'Age less than' %>
         <%= f.text_field :dob_greater_than_or_equal_to, :include_blank => true %><br />
-        </div>
-        <div class ='span3'>
+        </span>
+        <span class ='span3'>
         <%= f.label :height_less_than_or_equal_to, 'Height less than' %>
         <%= f.text_field :height_less_than_or_equal_to, :include_blank => true %><br />  
-        </div>
-        <div class ='span3'>
+        </span>
+        <span class ='span3'>
         <%= f.label :price_less_than_or_equal_to, 'Price less than' %>
         <%= f.text_field :price_less_than_or_equal_to, :include_blank => true %><br />
+        </span>
+        <span class ='span3 offset9'>
+        <%= f.submit "Search", :class => "btn btn-primary"%> 
+        </span>
         </div>
-        <div class ='span3 offset9'>
-        <%= f.submit "Search"%> 
-        </div>
-        </div>
-
 <% end %> 

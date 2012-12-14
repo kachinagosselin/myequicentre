@@ -58,11 +58,11 @@ The most beautiful and elegant site available for selling and buying horses onli
 </div>
 
 <% if user_signed_in? %>
+<div class='center-align'>
 <h3>
-Feel free to search this site for your ideal horse by breed, age, height and location. 
-Go to your dashboard to manage your account. Use this site to create and search beautiful
-classified ads. 
+Go to your dashboard to manage your account or begin <%= link_to 'browsing our horses', '/horses/search' %>...
 </h3>
+</div>
  <% else %>
 <h3>
 Browse the site as you please, or sign up for a free account to post your own horses.</h3>
