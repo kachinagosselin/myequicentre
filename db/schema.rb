@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121214035435) do
+ActiveRecord::Schema.define(:version => 20121214161933) do
 
   create_table "comments", :force => true do |t|
     t.string   "commenter"
@@ -92,6 +92,7 @@ ActiveRecord::Schema.define(:version => 20121214035435) do
     t.string   "folder"
     t.integer  "parent_id"
     t.boolean  "read"
+    t.string   "name"
   end
 
   add_index "messages", ["user_id"], :name => "index_messages_on_user_id"

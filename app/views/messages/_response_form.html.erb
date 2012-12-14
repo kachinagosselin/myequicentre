@@ -4,8 +4,10 @@
   <div class="form-inputs">
     <% if @message.folder == 'sent' %>
     <%= f.hidden_field :to_user_id, :value => @message.to_user_id %>
+    <%= f.hidden_field :name, :value => User.find(@message.to_user_id).name %>
     <% else %>
     <%= f.hidden_field :to_user_id, :value => @message.from_user_id %>
+    <%= f.hidden_field :name, :value => User.find(@message.from_user_id).name %>
     <% end %>
     <%= f.hidden_field :from_user_id, :value => @user.id %>
     <%= f.hidden_field :title, :value => @message.title %>

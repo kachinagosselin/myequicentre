@@ -124,7 +124,6 @@ class MessagesController < ApplicationController
   def create
       if params[:save_button]
       @user = User.find(params[:user_id])
-      #params[:message].to_user = 
       @message = @user.messages.build(params[:message])
       @message.folder = "drafts"
         respond_to do |format|
@@ -132,7 +131,6 @@ class MessagesController < ApplicationController
               format.html { redirect_to user_messages_drafts_path(@user), notice: 'Message was successfully saved.' }
               format.json { head :no_content }
               else
-              #format.html { render action: "new" }
               format.html { redirect_to user_messages_path(@user), alert: 'Message was unsuccessfully saved.' }
               format.json { render json: @message.errors, status: :unprocessable_entity}
           end
@@ -141,17 +139,24 @@ class MessagesController < ApplicationController
       @sender = User.find(params[:user_id])
       @message_sent = @sender.messages.build(params[:message])
       @message_sent.folder = "sent"
+      @contact = @sender.contacts.where(:contact_name => params[:message][:name]).first
+      if @contact.present?
+      @message_sent.to_user_id = @contact.contact_id
       @recipient = User.find(@message_sent.to_user_id)
       @message_recieved = @recipient.messages.build(params[:message])
+      @message_recieved.to_user_id = @contact.contact_id
+      else
+      @message_sent.to_user_id = params[:message][:to_user_id]
+      @recipient = User.find(@message_sent.to_user_id)
+      @message_recieved = @recipient.messages.build(params[:message])
+      @message_recieved.to_user_id = params[:message][:to_user_id]
+      end
       @message_recieved.thread_count = @message_sent.thread_count
       @message_recieved.folder = "inbox"
-    
-      if @recipient.contacts.where(:user_id => @sender.id).first.present?
-      else
-          @new_contact = @recipient.contacts.build(:contact_name => @sender.name, :contact_id => @sender.id, :user_id => @recipient.id)
+      if !@recipient.contacts.where(:contact_id => @sender.id).first.present?
+      @new_contact = @recipient.contacts.build(:contact_name => @sender.name, :contact_id => @sender.id, :user_id => @recipient.id)
       @new_contact.save
       end
-
     respond_to do |format|
       if @message_sent.save && @message_recieved.save
         if @message_sent.thread_count == 0
