@@ -1,4 +1,5 @@
 <script>
+Stripe.setPublishableKey($('meta[name="stripe-key"]').attr('content'));
 $(document).ready(function() {
   $("#new_subscription").submit(function(event) {
     // disable the submit button to prevent repeated clicks
