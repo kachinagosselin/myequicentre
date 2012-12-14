@@ -181,11 +181,26 @@ class MessagesController < ApplicationController
     if params[:send_button]
       @sender = User.find(params[:user_id])
       @message_sent = @sender.messages.find(params[:id])
+      @message_sent.folder = "sent"
+      @contact = @sender.contacts.where(:contact_name => params[:message][:name]).first
+      if @contact.present?
+      @message_sent.to_user_id = @contact.contact_id
       @recipient = User.find(@message_sent.to_user_id)
       @message_recieved = @recipient.messages.build(params[:message])
-      @message_sent.folder = "sent"
-      @message_recieved.folder = "inbox"
+      @message_recieved.to_user_id = @contact.contact_id
+      else
+      @message_sent.to_user_id = params[:message][:to_user_id]
+      @recipient = User.find(@message_sent.to_user_id)
+      @message_recieved = @recipient.messages.build(params[:message])
+      @message_recieved.to_user_id = params[:message][:to_user_id]
+      end
       @message_recieved.thread_count = @message_sent.thread_count
+      @message_recieved.folder = "inbox"
+      if !@recipient.contacts.where(:contact_id => @sender.id).first.present?
+      @new_contact = @recipient.contacts.build(:contact_name => @sender.name, :contact_id => @sender.id, :user_id => @recipient.id)
+      @new_contact.save
+      end
+      
       respond_to do |format|
         if @message_sent.update_attributes(params[:message]) && 
         @message_recieved.update_attributes(params[:message]) && 
@@ -208,8 +223,7 @@ class MessagesController < ApplicationController
       
     else
       @user = User.find(params[:user_id])
-      @message = @user.messages.find(params[:id])
-      
+      @message = @user.messages.find(params[:id])    
     respond_to do |format|
       if @message.update_attributes(params[:message])
         format.html { redirect_to user_messages_drafts_path(@user), notice: 'Message was successfully updated.' }
