@@ -6,8 +6,8 @@ $(".card").onclick(function(){
 </script>
 
 <div class='row'>
-
 <% @horses.each do |horse| %>
+<% if horse.sale_status == "active" && horse.user.status != "disabled" && horse.user.status != "disabled" %>
 <div class='span4'>
 <div class='card' style="background: no-repeat;background-size:cover;">
 <%=image_tag horse.avatar.url %>
@@ -36,7 +36,7 @@ $(".card").onclick(function(){
 </div>
 </div>
 <% end %>
-
+<% end %>
 <div class="search-paginate">
 <%= will_paginate @horses, :renderer => BootstrapPagination::Rails %>
 </div>

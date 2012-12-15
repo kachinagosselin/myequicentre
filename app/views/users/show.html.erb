@@ -16,6 +16,7 @@ This is the place for you to keep track of your listings and your favorite horse
 <%= render 'horse_listings' %>
 <% end %>
 
-<% if true %>
+<% active_horses = @user.horses.where(:sale_status => "active").first%>
+<% if active_horses.present? %>
 <%= render 'sales_barn' %>
 <% end %>

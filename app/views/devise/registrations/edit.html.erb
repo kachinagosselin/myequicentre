@@ -9,9 +9,20 @@
   <%= f.input :first_name, :autofocus => true %> 
   <%= f.input :last_name, :autofocus => true %> 
   <%= f.input :email, :required => true %>
-  <%= f.input :bio %>
- 
-  <p><b>Your Contact Information</b></p>
+  <%= f.label :bio %>
+  <%= f.text_area :bio, :cols => 10, :rows => 10 %>
+
+  <p><b>Billing Information</b><p>
+  <% customer = Customer.where(:user_id => current_user.id).first %>
+  <% if customer.present? %>
+  <p>You have input a credit card. The last four digits are: <%= customer.last_4_digits %></p>
+  <p> If you would like to change the credit card click here </p>
+  <% else %>
+  <p>You have not added a credit card.</p>
+  <% end %>
+  
+  
+  <p><b>Contact Information</b></p>
   <%= f.input :address %>
   <%= f.input :city %>
   <%= f.input :state, :as => :select, :collection => ["AL","AK","AZ","AR","CA","CO","CT",
@@ -26,7 +37,7 @@
   <%= f.input :join_mailing_list, :as => :boolean %>
 
   <p><b>Change Your Password</b></p>
-  <%= f.input :password, :autocomplete => "off", :hint => "leave it blank if you don't want to change it", :required => false %>
+  <%= f.input :password, :autocomplete => "off", :required => false %>
   <%= f.input :password_confirmation, :required => false %>
 
   <p><b>Enter your current password to confirm changes</b></p>

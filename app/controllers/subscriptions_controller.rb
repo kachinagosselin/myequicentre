@@ -60,17 +60,17 @@ class SubscriptionsController < ApplicationController
     #if there are multiple subscriptions then decrement count
     if number > 1
     new_number = number - 1  
-    @subscription.destroy
     @horse.update_attribute(:sale_status, "inactive")
+    @subscription.destroy
     stripe_customer = Stripe::Customer.retrieve(@customer.stripe_customer_token)
     stripe_customer.update_subscription(:plan => "45454545", :quantity => new_number)  
-    redirect_to user_path(current_user), :notice => "You have successfully unsubscribed!"
+    redirect_to :back, :notice => "You have successfully unsubscribed!"
     else
     #if this is the last subscription, cancel the subscription
-    @subscription.destroy
     @horse.update_attribute(:sale_status, "inactive")
     stripe_customer.cancel_subscription
-    redirect_to user_path(current_user), :notice => "You have successfully unsubscribed! 
+    @subscription.destroy
+    redirect_to :back, :notice => "You have successfully unsubscribed! 
     And you have no more subscriptions"
     end
     end

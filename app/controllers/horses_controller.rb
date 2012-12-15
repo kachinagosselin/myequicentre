@@ -99,7 +99,29 @@ class HorsesController < ApplicationController
   def destroy
       @user = User.find(params[:user_id])
       @horse = @user.horses.find(params[:id])
-      @horse.destroy  
-      redirect_to user_horses_path(@user)
+      @subscription = Subscription.where(:horse_id => @horse.id).first
+      if @subscription.present?
+        @customer = Customer.where(:user_id => params[:user_id]).first    
+        #If customer and subscription
+        if @customer.present?
+        stripe_customer = Stripe::Customer.retrieve(@customer.stripe_customer_token)
+        number = stripe_customer.subscription.quantity
+        #if there are multiple subscriptions then decrement count
+            if number > 1
+            new_number = number - 1  
+            @horse.update_attribute(:sale_status, "inactive")
+            @subscription.destroy
+            stripe_customer = Stripe::Customer.retrieve(@customer.stripe_customer_token)
+            stripe_customer.update_subscription(:plan => "45454545", :quantity => new_number)  
+            else
+            #if this is the last subscription, cancel the subscription
+            @horse.update_attribute(:sale_status, "inactive")
+            stripe_customer.cancel_subscription
+            @subscription.destroy
+            end
+        end
+      end
+        @horse.destroy  
+        redirect_to user_path(@user)
   end
 end
