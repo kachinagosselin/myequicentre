@@ -31,7 +31,6 @@ to inquire into the details.</b></p>
 <div class='white-background'>
 <div class="row-fluid">
 <div class="span4" id="profile-image">
-<%= @horse.avatar.url(:medium)%>
 <div class='profile-image'>
 <%= image_tag @horse.avatar.url(:medium)%>
 </div>
@@ -57,17 +56,14 @@ to inquire into the details.</b></p>
 </div>
 <div class="span8">
 
-<h2>
+<h4>
   <%= @horse.name %>
-</h2>
+</h4>
 <h3>
   <%= simple_format(@horse.format_description) %>
 </h3>
 
-<p>
-  <b>Price:</b>
-  <%= @horse.price %>
-</p>
+<h4><%= number_to_currency(@horse.price.round, :unit => "$", :precision => 0) %></h4>
 
 <td><%= link_to 'Report Listing', user_horse_flag_path(@user, @horse), method: :flag, class: 'btn btn-mini' %></td>
 
@@ -86,7 +82,7 @@ to inquire into the details.</b></p>
 <%= link_to 'Back', user_horses_path(@user) %>
 <%else%>
 <p>
-<%= link_to 'View Horse for Sale by Owner', user_horses_path(@user) %>
+<%= link_to 'View Horses for Sale by Owner', user_horses_path(@user) %>
 <%end%>
 
 </div>

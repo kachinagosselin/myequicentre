@@ -23,7 +23,7 @@ gem "simple_form", ">= 2.0.4"
 gem "quiet_assets", ">= 1.0.1", :group => :development
 gem 'bcrypt-ruby'
 gem 'foreman'
-gem "paperclip", :git => "git://github.com/thoughtbot/paperclip.git"
+gem "paperclip", "~> 2.7"
 gem "rmagick", "2.12.0", :require => 'RMagick'
 gem "meta_search"
 gem 'will_paginate', "~> 3.0"
@@ -36,3 +36,4 @@ gem 'delayed_job_active_record'
 gem 'gibbon', "0.3.5"
 gem "haml-rails"
 gem "stripe"
+gem 'cocaine', '0.3.2'

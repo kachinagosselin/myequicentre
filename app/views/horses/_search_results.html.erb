@@ -22,10 +22,8 @@ $(".card").onclick(function(){
     <div class='tagline'> 
         <p><%= horse.breed %> 
         <%= horse.gender %>,
-        <%= horse.age %> 
-        yrs, 
-        <%= horse.height %> 
-        hh</p>
+        <%= horse.age %> yrs, 
+        <%= horse.height %> hh</p>
         <% if horse.state %>
         <p>located in: <%= horse.city if horse.city %>, <%= horse.state %>
         <% end %>

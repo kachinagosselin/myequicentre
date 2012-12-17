@@ -17,6 +17,8 @@ Railsapp::Application.routes.draw do
     match '/users/:id/changestatus(.:format)', :controller => 'users', :action => 'changestatus', :via => [:post], :as => 'user_changestatus'
     match '/users/:user_id/horses/:horse_id/subscriptions/unsubscribe/:id(.:format)', :controller => 'subscriptions', :action => 'unsubscribe', :via => [:get], :as => 'user_horse_unsubscribe'
     
+    match '/avatar/:id/:style/:avatar_file_name(.:format)', :controller => 'horses', :action => 'url', :via => [:get], :as => 'user_horse_url'
+
     ## Object resources
     resources :users do
         resources :horses do
