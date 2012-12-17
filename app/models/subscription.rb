@@ -18,7 +18,6 @@ class Subscription < ActiveRecord::Base
       self.save!
     else
       stripe_customer = Stripe::Customer.create(description: self.email, plan: self.plan_id, card: self.stripe_card_token)
-        ddd
       customer = Customer.new(:stripe_customer_token => stripe_customer.id, :user_id => user_id)
       if customer.save
       self.stripe_customer_token = stripe_customer.id
