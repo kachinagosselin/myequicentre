@@ -40,7 +40,7 @@ to inquire into the details.</b></p>
 </h3>
 <% end %>
 <% if false %>
-<h3>Zipcode: <%= link_to @user.zipcode[0].code if false %></h3>
+<h3>Zipcode: <%= link_to @user.zipcode[0].code if @user.city.present? %></h3>
 <% end %>
 </div>
 </div>

@@ -57,9 +57,21 @@
     <%= f.number_field :price, :class => "numeric decimal required", :min => 1, :step => 100 %>
   	<p>Note: Change horse location if different than yours.</p>
     <%= f.label :city, 'City' %>
+    <% if @user.city.present? && !@horse.city.present?%>
+    <%= f.text_field :city, :value => @user.city%>
+    <% elsif @horse.city.present? %>
+    <%= f.text_field :city, :value => @horse.city%>
+    <% else %>
     <%= f.text_field :city %>
-    <%= f.label :state, 'State' %>
+    <% end %>
+    <%= f.label :state, 'State', :value => @user.state %>
+    <% if @user.state.present? && !@horse.state.present?%>
+    <%= f.text_field :state, :value => @user.state%>
+    <% elsif @horse.state.present? %>
+    <%= f.text_field :state, :value => @horse.state%>
+    <% else %>
     <%= f.text_field :state %>
+    <% end %>
     </br>
     <%= f.file_field :avatar%>
     </div>

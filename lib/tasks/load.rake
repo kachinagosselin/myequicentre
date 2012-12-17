@@ -14,14 +14,14 @@ namespace :load do
       time = Benchmark.measure do      
         require 'csv' 
         require 'open-uri'
-        CSV.parse(open(Documents/zipcode/zipcode.csv).read) do |row|
+        CSV.parse(open('/Users/kachinagosselin/Documents/zipcode/zipcode.csv').read) do |row|
           # Connascence of Position, Jim Weirich forgive me!
           zip = Zip.create!(
-            :code => row[1],
+            :code => row[0],
             :state => row[2],
-            :city => row[3],
-            :lat => row[4],
-            :lon => row[5])
+            :city => row[1],
+            :lat => row[3],
+            :lon => row[4])
           puts "%20s, %2s, %5s" % [zip.city, zip.state, zip.code]
         end
       end
@@ -30,6 +30,5 @@ namespace :load do
       puts "This rake task requires fastercsv.  To install, run this command:\n\n  sudo gem install fastercsv\n\n"
     end
   end
-
 
 end
