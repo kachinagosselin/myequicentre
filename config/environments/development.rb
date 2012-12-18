@@ -31,8 +31,6 @@ Railsapp::Application.configure do
     password: ENV["GMAIL_PASSWORD"]
   }
 
-
-
   # Print deprecation notices to the Rails logger
   config.active_support.deprecation = :log
 
@@ -53,5 +51,5 @@ Railsapp::Application.configure do
   # Expands the lines which load the assets
   config.assets.debug = true
     
-    #Paperclip.options[:command_path] = "/usr/local/bin/"
+  #Paperclip.options[:command_path] = "/usr/local/bin/"
 end
