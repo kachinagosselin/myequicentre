@@ -31,73 +31,60 @@ to inquire into the details.</b></p>
 
 
 <p id="notice"><%= notice %></p>
-<div class='white-background'>
-<div class="row-fluid">
-<div class="span4" id="profile-image">
-<div class='profile-image'>
-<%= image_tag @horse.avatar.url(:medium)%>
-</div>
-<p>
-  <b>Breed:</b>
-  <%= @horse.breed %>
-</p>
-
-<p>
-  <b>Gender:</b>
-  <%= @horse.gender %>
-</p>
-
-<p>
-  <b>Age:</b>
-  <%= @horse.age %> yrs
-</p>
-
-<p>
-  <b>Height:</b>
-  <%= @horse.height %> hh
-</p>
-</div>
+<div class="span12">
 <div class="span8">
 
-<h4>
-  <%= @horse.name %>
-</h4>
-<h3>
-  <%= simple_format(@horse.format_description) %>
-</h3>
+<div class='ad'>
+<div class='infobox'>
+<div class='center-align'>
+<h4><%= @horse.name %></h4>
+</div>
+<div class='show-profile-image'>
+<%= image_tag @horse.avatar.url(:medium)%>
+</div>
+<div class='share pull-right'>
+    <div class="fb-send" data-font="arial"></div>
+    <a href="https://twitter.com/share" class="twitter-share-button" data-related="jasoncosta" data-lang="en" data-count="none">Tweet</a>
+    <!--
+    <a href="http://pinterest.com/pin/create/button/?url=<%=user_path(@user)%>&media=http%3A%2F%2Fexample.com%2Fimage&description=Description%20Text" class="pin-it-button" count-layout="horizontal"><img border="0" src="//assets.pinterest.com/images/PinExt.png" title="Pin It" /></a>
+    -->
+</div>
+    <h3><%= simple_format(@horse.format_description) %></h3>
+    <td><%= link_to 'Report Listing', user_horse_flag_path(@user, @horse), method: :flag, class: 'btn btn-mini' %></td>
+    <% @savedhorses = SavedHorse.where(:horse_id => @horse.id) %>
+    <% s = @savedhorses[0] %>
+    <% if s %>
+    <% if s.saved %>
+    <td><%= link_to 'Unsave Horse', [s.user, s ], method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-mini' %></td>
+    <% end %>
+    <% else %>
+    <%= link_to 'Save Horse', new_user_saved_horse_path(current_user, @horse), class: 'btn btn-mini' %>
+    <% end %>
 
-<h4><%= number_to_currency(@horse.price.round, :unit => "$", :precision => 0) %></h4>
-
-<td><%= link_to 'Report Listing', user_horse_flag_path(@user, @horse), method: :flag, class: 'btn btn-mini' %></td>
-
-<% @savedhorses = SavedHorse.where(:horse_id => @horse.id) %>
-<% s = @savedhorses[0] %>
-<% if s %>
-<% if s.saved %>
-<td><%= link_to 'Unsave Horse', [s.user, s ], method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-mini' %></td>
-<% end %>
-<% else %>
-<%= link_to 'Save Horse', new_user_saved_horse_path(current_user, @horse), class: 'btn btn-mini' %>
-<% end %>
-
-<% if current_user == @user %>
-<%= link_to 'Edit', edit_user_horse_path(@user, @horse) %> |
-<%= link_to 'Back', user_horses_path(@user) %>
-<%else%>
-<p>
-<%= link_to 'View Horses for Sale by Owner', user_horses_path(@user) %>
-<%end%>
-
-
-
-<div class="fb-send" data-font="lucida grande"></div>
-<a href="https://twitter.com/share" class="twitter-share-button" data-related="jasoncosta" data-lang="en" data-count="none">Tweet</a>
-<!--
-<a href="http://pinterest.com/pin/create/button/?url=<%=user_path(@user)%>&media=http%3A%2F%2Fexample.com%2Fimage&description=Description%20Text" class="pin-it-button" count-layout="horizontal"><img border="0" src="//assets.pinterest.com/images/PinExt.png" title="Pin It" /></a>
--->
-
+    <% if current_user == @user %>
+    <%= link_to 'Edit', edit_user_horse_path(@user, @horse) %> |
+    <%= link_to 'Back', user_horses_path(@user) %>
+    <%else%>
+    <p>
+    <%= link_to 'View Horses for Sale by Owner', user_horses_path(@user) %>
+    <%end%>
+    </div>
+</div>
 </div>
 
+<div class="span3" id="ad-sidebar">
+<div class="inner">
+<div class='displayprice'>
+<div class='display'>
 </div>
+</div>
+<p><b>Breed: </b><%= @horse.breed %></p>
+<p><b>Gender: </b><%= @horse.gender %></p>
+<p><b>Age: </b><%= @horse.age %> yrs</p>
+<p><b>Height: </b><%= @horse.height %> hh</p>
+</div>
+<div class='point'></div>
+</div>
+
 </div>
 <% end %>

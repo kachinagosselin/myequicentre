@@ -16,14 +16,14 @@
     <!-- Carousel items -->
         <div class="carousel-inner">
         <% Horse.all(:order => 'Random()').each do |horse| %>
+        <% if horse.avatar.present? %>
             <div class="item">
                 <div class='span12'>
                 <div class="carousel-image">
-                <%= image_tag("/images/carousel.jpg", :alt => "")%>
+                <%= image_tag horse.avatar.url(:large)%>
                     <div class="carousel-caption">
                     <div class='span11'>
-                    <p><%= truncate(horse.text_description, :length => 140) %></p>
-                    <p><%=link_to 'view details', user_horse_path(User.find(horse.user_id), horse) %></p>
+                    <p><%= truncate(horse.text_description, :length => 250) %><%=link_to 'view details', user_horse_path(User.find(horse.user_id), horse) %></p>
                     </div>
                     </div>
                 </div>
@@ -40,6 +40,7 @@
                 </div>
             </div>
             </div>
+        <% end %>
         <% end %>
     </div>
   <!-- Carousel nav -->

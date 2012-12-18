@@ -23,9 +23,8 @@ class User < ActiveRecord::Base
     validates_format_of :email, :with => /^([^@\s]+)@((?:[-a-z0-9]+.)+[a-z]{2,})$/i
 
   # Images
-    attr_accessible :avatar, :avatar_file_name
-    attr_accessor :avatar_file_name
-    has_attached_file :avatar, :default_url => "/images/default/:style/default_user.jpg", :styles => { :medium => "275x275#", :thumb => "100x100#" }, :path => ":rails_root/images/system/:attachment/:id/:basename_:style.:extension", :url => "/images/:attachment/:id/:style/:basename_:style.:extension"
+    attr_accessible :avatar
+    has_attached_file :avatar, :default_url => "/images/default/:style/default_user.jpg", :styles => { :medium => "275x275#", :thumb => "100x100#" }#, :path => ":rails_root/images/system/:attachment/:id/:basename_:style.:extension", :url => "/images/:attachment/:id/:style/:basename_:style.:extension"
     
   has_many :messages, :dependent => :destroy
   has_many :contacts, :dependent => :destroy

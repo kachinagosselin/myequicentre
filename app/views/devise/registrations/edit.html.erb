@@ -11,6 +11,7 @@
   <%= f.input :email, :required => true %>
   <%= f.label :bio %>
   <%= f.text_area :bio, :cols => 10, :rows => 10 %>
+  <%= f.file_field :avatar%>
 
   <p><b>Billing Information</b><p>
   <% customer = Customer.where(:user_id => current_user.id).first %>
