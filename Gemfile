@@ -24,7 +24,7 @@ gem "simple_form", ">= 2.0.4"
 gem "quiet_assets", ">= 1.0.1", :group => :development
 gem 'bcrypt-ruby'
 gem 'foreman'
-gem "paperclip", "~> 2.7"
+gem "paperclip", "~> 3.2"
 gem "rmagick", "2.12.0", :require => 'RMagick'
 gem "meta_search"
 gem 'will_paginate', "~> 3.0"
