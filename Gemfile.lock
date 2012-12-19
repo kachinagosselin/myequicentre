@@ -144,7 +144,7 @@ GEM
     multi_xml (0.5.1)
     nokogiri (1.5.5)
     orm_adapter (0.4.0)
-    paperclip (2.3.16)
+    paperclip (2.8.0)
       activerecord (>= 2.3.0)
       activesupport (>= 2.3.2)
       cocaine (>= 0.0.2)
@@ -266,7 +266,7 @@ DEPENDENCIES
   jquery-rails
   launchy (>= 2.1.2)
   meta_search
-  paperclip (~> 2.3.8)
+  paperclip (~> 2.7)
   pg
   quiet_assets (>= 1.0.1)
   rails (= 3.2.9)
