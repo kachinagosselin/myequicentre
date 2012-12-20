@@ -24,12 +24,13 @@
     <td><%= horse.height %> hh</td>
     <td><%= number_to_currency(horse.price.round, :precision => 0) %></td>
     <td><%= horse.sale_status%></td>
+    <td><%= link_to 'Preview', user_horse_path(@user, horse) %> | <%= link_to 'Edit', edit_user_horse_path(@user, horse) %></td>
     <% if horse.sale_status == "active" %>
     <td><%= link_to "Deactivate", user_horse_unsubscribe_path(current_user, horse, horse.subscriptions.first), :class => 'btn btn-mini' %></td>
     <% else %>
     <td><%= link_to " Activate ", new_user_horse_subscription_path(current_user, horse, :plan_id => 45454545), :class => 'btn btn-mini' %></td>
     <% end %>
-    <td><%= link_to 'Delete Listing', [horse.user, horse], method: :delete, data: { confirm: 'Are you sure? This action cannot be undone.' }, :class => 'btn btn-mini' %></td>
+    <td><%= link_to 'Delete', [horse.user, horse], method: :delete, data: { confirm: 'Are you sure? This action cannot be undone.' }, :class => 'btn btn-mini' %></td>
   </tr>
   </tbody>
 <% end %>
