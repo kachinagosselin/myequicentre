@@ -34,6 +34,7 @@ class HorsesController < ApplicationController
   def create
       @user = User.find(params[:user_id])
       @horse = @user.horses.build(params[:horse])
+      @horse.sale_status = "inactive"
 
     respond_to do |format|
       if @horse.save
