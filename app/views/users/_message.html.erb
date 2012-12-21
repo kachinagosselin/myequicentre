@@ -6,9 +6,10 @@
         </div>
         <div class="modal-body">
         <%= f.error_notification %>
-
-        <div class="form-inputs inline_field_wrapper">
+        
+        <div class="form-inputs">
         <%= f.hidden_field :to_user_id, :value => user.id %>
+        <%= f.hidden_field :name, :value => user.name %>
         <p> From: <%= current_user.name %> </p>
         <%= f.hidden_field :from_user_id, :value => current_user.id %>
         <%= f.input :title %>
@@ -16,7 +17,7 @@
         <%= f.label :content %>
         <%= f.text_area :content, :cols => 10, :rows => 10 %>
         </div>
-          
+        
         </div>
         <div class="modal-footer">
         <div class="form-actions">
