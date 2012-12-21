@@ -79,7 +79,7 @@ Railsapp::Application.configure do
     password: ENV["GMAIL_PASSWORD"]
   }
 
-    config.paperclip_defaults = {
+  config.paperclip_defaults = {
         :storage => :s3,
         :s3_credentials => {
             :bucket => ENV['AWS_BUCKET'],
