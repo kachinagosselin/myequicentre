@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121220202747) do
+ActiveRecord::Schema.define(:version => 20121223001552) do
 
   create_table "comments", :force => true do |t|
     t.string   "commenter"
@@ -64,18 +64,35 @@ ActiveRecord::Schema.define(:version => 20121220202747) do
     t.text     "text_description"
     t.decimal  "price"
     t.integer  "user_id"
-    t.datetime "created_at",          :null => false
-    t.datetime "updated_at",          :null => false
-    t.string   "avatar_file_name"
-    t.string   "avatar_content_type"
-    t.integer  "avatar_file_size"
-    t.datetime "avatar_updated_at"
+    t.datetime "created_at",             :null => false
+    t.datetime "updated_at",             :null => false
     t.string   "city"
     t.string   "state"
     t.integer  "zip_id"
     t.string   "sale_status"
     t.string   "status"
     t.boolean  "flagged"
+    t.boolean  "active"
+    t.string   "mainimage_file_name"
+    t.string   "mainimage_content_type"
+    t.integer  "mainimage_file_size"
+    t.datetime "mainimage_updated_at"
+    t.string   "image1_file_name"
+    t.string   "image1_content_type"
+    t.integer  "image1_file_size"
+    t.datetime "image1_updated_at"
+    t.string   "image2_file_name"
+    t.string   "image2_content_type"
+    t.integer  "image2_file_size"
+    t.datetime "image2_updated_at"
+    t.string   "image3_file_name"
+    t.string   "image3_content_type"
+    t.integer  "image3_file_size"
+    t.datetime "image3_updated_at"
+    t.string   "image4_file_name"
+    t.string   "image4_content_type"
+    t.integer  "image4_file_size"
+    t.datetime "image4_updated_at"
   end
 
   add_index "horses", ["user_id"], :name => "index_horses_on_user_id"

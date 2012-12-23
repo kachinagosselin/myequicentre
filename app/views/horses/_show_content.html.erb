@@ -7,7 +7,7 @@
 <h4><%= @horse.name %></h4>
 </div>
 <div class='show-profile-image'>
-<%= image_tag @horse.avatar.url(:medium)%>
+<%= image_tag @horse.mainimage.url(:medium)%>
 </div>
 <div class='share pull-right'>
     <div class="fb-send" data-font="arial"></div>
@@ -52,5 +52,15 @@
 </div>
 <div class='point'></div>
 </div>
+
+<div class="span8">
+<div class='ad'>
+<% if @horse.image1.present? %><%= image_tag @horse.image1.url(:thumb)%><%end%>
+<% if @horse.image2.present? %><%= image_tag @horse.image2.url(:thumb)%><%end%>
+<% if @horse.image3.present? %><%= image_tag @horse.image3.url(:thumb)%><%end%>
+<% if @horse.image4.present? %><%= image_tag @horse.image4.url(:thumb)%><%end%>
+</div>
+</div>
+
 
 </div>

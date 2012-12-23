@@ -64,7 +64,7 @@
     <% else %>
     <%= f.text_field :city %>
     <% end %>
-    <%= f.label :state, 'State', :value => @user.state %>
+    <%= f.label :state, 'State'%>
     <% if @user.state.present? && !@horse.state.present?%>
     <%= f.text_field :state, :value => @user.state%>
     <% elsif @horse.state.present? %>
@@ -73,7 +73,18 @@
     <%= f.text_field :state %>
     <% end %>
     </br>
-    <%= f.file_field :avatar%>
+    <p>Note: Only the main image is mandatory, all others will be added to a slideshow at the bottom of the listing. 
+    It is recommended to upload an image that meets or exceeds 900 x 600px</p>
+    <%= f.label :mainimage, 'Main Image'%>
+    <%= f.file_field :mainimage %>
+    <%= f.label :image1, 'Extra Image 1'%>
+    <%= f.file_field :image1 %>
+    <%= f.label :image2, 'Extra Image 2'%>
+    <%= f.file_field :image2 %>
+    <%= f.label :image3, 'Extra Image 3'%>
+    <%= f.file_field :image3 %>
+    <%= f.label :image4, 'Extra Image 4'%>
+    <%= f.file_field :image4 %>
     </div>
 
   <div class="form-actions">

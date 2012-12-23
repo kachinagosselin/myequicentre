@@ -10,7 +10,7 @@ $(".card").onclick(function(){
 <% if horse.sale_status == "active" && horse.user.status != "disabled" && horse.user.status != "disabled" %>
 <div class='span4'>
 <div class='card' style="background: no-repeat;background-size:cover;">
-<%=image_tag horse.avatar.url %>
+<%=image_tag horse.mainimage.url %>
 <div class='banner'>
     <div class='mainline'>
     <%= link_to horse.name, user_horse_path(User.find(horse.user_id), horse) %>

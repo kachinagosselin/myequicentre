@@ -75,5 +75,5 @@ class SubscriptionsController < ApplicationController
     And you have no more subscriptions"
     end
   end
-
+  
 end

@@ -36,11 +36,11 @@
             </div>
             </div>
         <% Horse.all(:order => 'Random()').each do |horse| %>
-        <% if horse.avatar.present? && horse.sale_status == "active" %>
+        <% if horse.mainimage.present? && horse.sale_status == "active" %>
             <div class="item">
                 <div class='span12'>
                 <div class="carousel-image">
-                <%= image_tag horse.avatar.url(:large)%>
+                <%= image_tag horse.mainimage.url(:large)%>
                     <div class="carousel-caption">
                     <div class='span11'>
                     <p><%= truncate(horse.text_description, :length => 250) %><%=link_to 'view details', user_horse_path(User.find(horse.user_id), horse) %></p>
