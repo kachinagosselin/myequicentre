@@ -102,6 +102,7 @@ class HorsesController < ApplicationController
   end
 
   def destroy
+Stripe.api_key = ENV['STRIPE_API_KEY']
       @user = User.find(params[:user_id])
       @horse = @user.horses.find(params[:id])
       @subscription = @user.subscriptions.where(:horse_id => @horse.id).first
