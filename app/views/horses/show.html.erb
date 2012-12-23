@@ -13,7 +13,7 @@ to inquire into the details.</b></p>
 </div>
 </div>
 
-<% elsif @horse.sale_status == "inactive" && current_user == @user%>
+<% elsif @horse.active == false && current_user == @user%>
 <div class='white-background'>
 <div class='center-align'>
 <p><b>This listing is NOT active.</b></p>
@@ -26,7 +26,7 @@ to inquire into the details.</b></p>
 </br>
 <%= render 'show_content' %>
 
-<% elsif @horse.sale_status == "inactive" %>
+<% elsif @horse.active == false %>
 <div class='white-background'>
 <div class='center-align'>
 <p><b>This listing is not yet available!</b></p>

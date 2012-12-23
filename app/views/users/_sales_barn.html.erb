@@ -3,7 +3,7 @@
 <div class='divider-horizontal'></div>
 
 <% @user.horses.each do |horse| %>
-<% if horse.sale_status == "active" %>
+<% if horse.active == true %>
 <div class='row-fluid'>
 <div class="span4" id="profile-image">
 <div class='smaller-profile-image'>
