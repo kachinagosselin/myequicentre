@@ -64,7 +64,7 @@ Stripe.api_key = "sk_test_I4Ci5lTRq3QtUQsejxMZBk71"
     #if there are multiple subscriptions then decrement count
     if number > 1
     new_number = number - 1  
-    stripe_customer.update_subscription(:plan => @subscription.plan_id, :quantity => new_number)  
+    stripe_customer.update_subscription(:plan => "001", :quantity => new_number)  
     @horse.update_attribute(:active, false)
     @subscription.destroy
     redirect_to :back, :notice => "You have successfully unsubscribed!"
