@@ -14,6 +14,7 @@ Railsapp::Application.routes.draw do
 
     match '/users/:user_id/horses/changestatus(/:id(.:format))', :controller => 'horses', :action => 'changestatus', :via => [:post], :as => 'user_horse_changestatus'
     match '/users/:user_id/horses/flagged(/:id(.:format))', :controller => 'horses', :action => 'flag', :via => [:post], :as => 'user_horse_flag'
+    match '/users/:user_id/horses/unflagged(/:id(.:format))', :controller => 'horses', :action => 'unflag', :via => [:post], :as => 'user_horse_unflag'
     match '/users/:id/changestatus(.:format)', :controller => 'users', :action => 'changestatus', :via => [:post], :as => 'user_changestatus'
     match '/users/:user_id/horses/:horse_id/subscriptions/unsubscribe/:id(.:format)', :controller => 'subscriptions', :action => 'unsubscribe', :via => [:get], :as => 'user_horse_unsubscribe'
     
@@ -27,9 +28,9 @@ Railsapp::Application.routes.draw do
         resources :messages
         resources :saved_horses
         resources :subscriptions
+        resources :customers
         resources :contacts
     end
-    
     resources :plans
     
     resources :posts do

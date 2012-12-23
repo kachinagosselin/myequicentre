@@ -8,7 +8,9 @@ $(document).ready(function() {
     var card_code = document.getElementById('card_code').value;
     var card_month = document.getElementById('card_month').value;
     var card_year = document.getElementById('card_year').value;
-    alert('Number: ' + card_number + ' CVC: ' + card_code + ' Month:' + card_month + 'Year:' + card_year);
+    
+    var end = card_number.length
+    $("#new_subscription").append("<input type='hidden' name='last_4_digits' value='" + card_number[end-4,end] + "'/>");
     
     Stripe.createToken({
         number: $('#card_number').val(),
@@ -17,13 +19,13 @@ $(document).ready(function() {
         exp_year: $('#card_year').val()
     }, stripeResponseHandler);
 
+
     // prevent the form from submitting with the default action
     return false;
   });
 });
 
 function stripeResponseHandler(status, response) {
-    alert('Status: ' + status + 'Response: ' + response);
     if (response.error) {
         // show the errors on the form
         $(".payment-errors").text(response.error.message);
@@ -43,11 +45,11 @@ function stripeResponseHandler(status, response) {
 
 </script>
 
-<div id="activate-user" class="modal" style="display: none;">
+<div id="activate-horselisting-<%= horse.id %>" class="modal" style="display: none;">
         <div class="modal-header">
           <a class="close" data-dismiss="modal">&#215;</a>
         <h2>Activate Listing for <%= horse.name %></h2>
-        <div class="center-align"><p>Costs <strong>$10</strong> per month per listing!</p></div>
+        <div class="center-align"><p>Costs <strong>$9.99</strong> per month per listing!</p></div>
         </div>
 
     <div class="modal-body">
@@ -70,7 +72,8 @@ function stripeResponseHandler(status, response) {
   <%= f.hidden_field :user_id, :value => params[:id] %>
   <%= f.hidden_field :horse_id, :value => horse.id %>
   <%= f.hidden_field :email, :value => current_user.email %>
-  <% customer = Customer.where(:user_id => current_user.id).first %>
+  
+  <% customer = current_user.customer %>
   <% if customer.present? %>
   <% stripe_customer = Stripe::Customer.retrieve(customer.stripe_customer_token) %>
   <% if stripe_customer.active_card.fingerprint.present? %>

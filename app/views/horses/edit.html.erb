@@ -1,11 +1,7 @@
 
 <p id="notice"><%= notice %></p>
 <div class="white-background">
-<h1>Editing horse</h1>
-
-<p> User: <%= current_user.first_name %> </p>
-
-<p> Horse: <%= current_user.horses.find(params[:id]).name %></p>
+<h1>Editing <%= current_user.horses.find(params[:id]).name %></h1>
 
 <%= render 'form' %>
 

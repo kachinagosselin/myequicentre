@@ -9,8 +9,9 @@ class SubscriptionsController < ApplicationController
   def create
     @user = User.find(params[:user_id])
     @horse = @user.horses.find(params[:subscription][:horse_id])
-    @customer = Customer.where(:user_id => params[:user_id]).first
-    @existing_subscription = Subscription.where(:user_id => params[:user_id]).first
+    @customer = @user.customer
+    @existing_subscription = @user.subscriptions.first
+    
     if @customer.present? &&  @existing_subscription.present?
     stripe_customer = Stripe::Customer.retrieve(@customer.stripe_customer_token)
     number = stripe_customer.subscription.quantity
@@ -18,13 +19,15 @@ class SubscriptionsController < ApplicationController
     @subscription = @horse.subscriptions.build(params[:subscription])
     @subscription.update_attribute(:state, "active")
     @horse.update_attribute(:sale_status, "active")
-    stripe_customer.update_subscription(:plan => "45454545", :quantity => new_number)    
+    stripe_customer.update_subscription(:plan => params[:subscription][:plan_id], :quantity => new_number)
+        
     elsif @customer.present?
     stripe_customer = Stripe::Customer.retrieve(@customer.stripe_customer_token)
     @subscription = @horse.subscriptions.build(params[:subscription])
     @subscription.state = "active"
     @horse.update_attribute(:sale_status, "active")
-    stripe_customer.update_subscription(:plan => "45454545", :quantity => 1)    
+    stripe_customer.update_subscription(:plan => params[:subscription][:plan_id], :quantity => 1)
+        
     else
     # if the credit card is valid create new customer and subscriptions
     @subscription = @horse.subscriptions.build(:plan_id => params[:subscription][:plan_id], 
@@ -32,8 +35,10 @@ class SubscriptionsController < ApplicationController
     :email => params[:subscription][:email],)
     @stripe_customer = Stripe::Customer.create(description: params[:subscription][:email], 
     plan: params[:subscription][:plan_id], card: params[:stripe_card_token])
-    @customer = Customer.new(:stripe_customer_token => @stripe_customer.id, :user_id => params[:user_id])
+    @customer = @user.build_customer(:stripe_customer_token => @stripe_customer.id)
+    @customer.save
     @subscription.stripe_customer_token = @stripe_customer.id
+    @customer.last_4_digits = params[:last_4_digits]
     @subscription.state = "active"
     @horse.update_attribute(:sale_status, "active")
     end
@@ -50,33 +55,25 @@ class SubscriptionsController < ApplicationController
   def unsubscribe
     @user = User.find(params[:user_id])
     @horse = @user.horses.find(params[:horse_id])
-    @customer = Customer.where(:user_id => params[:user_id]).first
-    @subscription = Subscription.find(params[:id])
-    
-    #If customer and subscription
-    if @customer.present?
+    @customer = @user.customer
+    @subscription = @user.subscriptions.find(params[:id])
     stripe_customer = Stripe::Customer.retrieve(@customer.stripe_customer_token)
     number = stripe_customer.subscription.quantity
     #if there are multiple subscriptions then decrement count
     if number > 1
     new_number = number - 1  
+    stripe_customer.update_subscription(:plan => @subscription.plan_id, :quantity => new_number)  
     @horse.update_attribute(:sale_status, "inactive")
     @subscription.destroy
-    stripe_customer = Stripe::Customer.retrieve(@customer.stripe_customer_token)
-    stripe_customer.update_subscription(:plan => "45454545", :quantity => new_number)  
     redirect_to :back, :notice => "You have successfully unsubscribed!"
     else
     #if this is the last subscription, cancel the subscription
-    @horse.update_attribute(:sale_status, "inactive")
     stripe_customer.cancel_subscription
     @subscription.destroy
+    @horse.update_attribute(:sale_status, "inactive")
     redirect_to :back, :notice => "You have successfully unsubscribed! 
     And you have no more subscriptions"
     end
-    end
   end
-  
-  def show
-    @subscription = Subscription.find(params[:id])
-  end
+
 end

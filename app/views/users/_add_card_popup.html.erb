@@ -1,0 +1,71 @@
+<script>
+Stripe.setPublishableKey($('meta[name="stripe-key"]').attr('content'));
+  function onAddCard() {
+    // disable the submit button to prevent repeated clicks
+    $('.submit-button').attr("disabled", "disabled");
+    var card_number = document.getElementById('card_number').value;
+    var card_code = document.getElementById('card_code').value;
+    var card_month = document.getElementById('card_month').value;
+    var card_year = document.getElementById('card_year').value;
+    
+    Stripe.createToken({
+        number: $('#card_number').val(),
+        cvc: $('#card_code').val(),
+        exp_month: $('#card_month').val(),
+        exp_year: $('#card_year').val()
+    }, stripeResponseHandler);
+
+    // prevent the form from submitting with the default action
+    return false;
+  };
+
+function stripeResponseHandler(status, response) {
+    if (response.error) {
+        $(".payment-errors").text(response.error.message);
+    } else {
+        var token = response['id'];
+        alert('Token: ' + token);
+        $.ajax({
+        url:  $("customer#edit").attr("action"),
+        data: {user_id: current_user.id, card_token: token} 
+        });
+    }
+    return false;
+}
+
+</script>
+
+<div id="add-card" class="modal" style="display: none;">
+    <% Stripe.api_key = "sk_test_I4Ci5lTRq3QtUQsejxMZBk71" %>
+        <div class="modal-header">
+          <a class="close" data-dismiss="modal">&#215;</a>
+        <h2>Add credit card</h2>
+        </div>
+
+        <div class="modal-body">
+             <div class="field">
+                <%= label_tag :card_number, "Credit Card Number" %>
+                <%= text_field_tag :card_number, nil, name: nil %>
+                </div>
+                <div class="field">
+                <%= label_tag :card_code, "Security Code on Card (CVV)" %>
+                <%= text_field_tag :card_code, nil, name: nil %>
+                </div>
+                <div class="field">
+                <%= label_tag :card_month, "Card Expiration" %>
+                <%= select_month nil, {add_month_numbers: true}, {name: nil, id: "card_month"} %>
+                <%= select_year nil, {start_year: Date.today.year, end_year: Date.today.year+15}, {name: nil, id: "card_year"} %>
+                </div>
+            <div id="stripe_error">
+                <noscript>JavaScript is not enabled and is required for this form. First enable it in your web browser settings.</noscript>
+            </div>
+        </div>
+  
+        <div class="modal-footer">
+        <div class="actions">
+            <a class="btn" data-dismiss="modal" href="#">Cancel</a>
+        <%= button_tag "Add Card", :class =>"btn submit-button"%>
+        </div>
+        </div>
+</div>
+        

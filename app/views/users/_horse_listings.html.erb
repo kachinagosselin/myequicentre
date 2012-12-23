@@ -28,7 +28,7 @@
     <% if horse.sale_status == "active" %>
     <td><%= link_to "Deactivate", user_horse_unsubscribe_path(current_user, horse, horse.subscriptions.first), :class => 'btn btn-mini' %></td>
     <% else %>
-    <td><a data-toggle="modal" href="#activate-user" class="btn btn-mini" type="button">Activate</a>
+    <td><a data-toggle="modal" href="#activate-horselisting-<%= horse.id %>" class="btn btn-mini" type="button">Activate</a>
         <%= render 'subscriptions/activate_popup', :horse => horse %>
     </td>   
     <!--

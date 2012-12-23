@@ -4,7 +4,7 @@
     $('.carousel').carousel({
       interval: 7000
     });
-    $('.item').eq(Math.floor((Math.random() * $('.item').length))).addClass("active");
+    //$('.item').eq(Math.floor((Math.random() * $('.item').length))).addClass("active");
   });
 </script>
 
@@ -15,6 +15,26 @@
     <div id="myCarousel" class="carousel slide">
     <!-- Carousel items -->
         <div class="carousel-inner">
+            <div class="item active">
+            <div class='span12'>
+                <div class="carousel-image">
+                <%= image_tag "/images/carousel.jpg"%>
+                    <div class="carousel-caption">
+                    <div class='span11'>
+                    <p>We have the most beautiful horse ads with an amazing interface that 
+                    is simple and straightforward to use! We love horses and are dedicated
+                    to seeing each of the horses listed here find the home that is perfect 
+                    for them. Sign up today to check out our services!</p>
+                    </div>
+                    </div>
+                </div>
+                <div class='span6'>
+                    <div class='text-box'>
+                    <h1>Imagine Your Horse Listed Here!</h1>
+                    </div>
+                </div>
+            </div>
+            </div>
         <% Horse.all(:order => 'Random()').each do |horse| %>
         <% if horse.avatar.present? && horse.sale_status == "active" %>
             <div class="item">
@@ -40,27 +60,6 @@
                 </div>
             </div>
             </div>
-        <% else %>
-            <div class="item">
-                <div class='span12'>
-                <div class="carousel-image">
-                <%= image_tag "/images/carousel.jpg"%>
-                    <div class="carousel-caption">
-                    <div class='span11'>
-                    <p>We have the most beautiful horse ads with an amazing interface that 
-                    is simple and straightforward to use! We love horses and are dedicated
-                    to seeing each of the horses listed here find the home that is perfect 
-                    for them. Sign up today to check out our services!</p>
-                    </div>
-                    </div>
-                </div>
-                <div class='span6'>
-                    <div class='text-box'>
-                    <h1>Imagine Your Horse Listed Here!</h1>
-                    </div>
-                </div>
-            </div>
-            </div>
         <% end %>
         <% end %>
     </div>
@@ -77,7 +76,6 @@
 <h3>
 The most beautiful and elegant site available for selling and buying horses online.
 </h3>
-</div>
 
 <% if user_signed_in? %>
 <div class='center-align'>
@@ -89,10 +87,12 @@ Go to your dashboard to manage your account or begin <%= link_to 'browsing our h
 <h3>
 Browse the site as you please, or sign up for a free account to post your own horses.</h3>
 <div class="join">
-    <%= link_to "Sign Up (it's free)", new_user_registration_path, :class => "btn-large btn" %>
+    <%= link_to "Sign Up (it's free)", new_user_registration_path, :class => "btn-large btn-primary btn" %>
 
 </div>
 <%end%>
+</div>
+
 </div>
 
 </div>

@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
   # :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
     :recoverable, :rememberable, :trackable, :validatable, :mailchimp
-
+    
     before_validation do
     phone_number = phone_number.to_s.gsub('-','').to_i
     end
@@ -30,6 +30,8 @@ class User < ActiveRecord::Base
   has_many :contacts, :dependent => :destroy
   has_many :horses, :dependent => :destroy
   has_many :saved_horses, :dependent => :destroy
+  has_one :customer, :dependent => :destroy
+  has_many :subscriptions, :dependent => :destroy
   belongs_to :zip
     
   def name

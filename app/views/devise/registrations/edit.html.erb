@@ -1,3 +1,5 @@
+
+
 <!-- This is where we edit settings for user. -->
 <div class="white-background">
 <h2>Edit <%= resource_name.to_s.humanize %> Account Details</h2>
@@ -13,15 +15,20 @@
   <%= f.text_area :bio, :cols => 10, :rows => 10 %>
   <%= f.file_field :avatar%>
 
+<!--
   <p><b>Billing Information</b><p>
   <% customer = Customer.where(:user_id => current_user.id).first %>
   <% if customer.present? %>
   <p>You have input a credit card. The last four digits are: <%= customer.last_4_digits %></p>
-  <p> If you would like to change the credit card click here </p>
+  <p><a data-toggle="modal" href="#update-card" class="btn btn-mini" type="button">Change Card</a>
+        <%= render 'users/update_card_popup'%></p> 
   <% else %>
   <p>You have not added a credit card.</p>
-  <% end %>
   
+    <p><a data-toggle="modal" href="#add-card" class="btn btn-mini" type="button">Add Card</a>
+    <%= render 'users/add_card_popup'%></p> 
+  <% end %>
+-->
   
   <p><b>Contact Information</b></p>
   <%= f.input :address %>
@@ -41,10 +48,24 @@
   <%= f.input :password, :autocomplete => "off", :required => false %>
   <%= f.input :password_confirmation, :required => false %>
 
-  <p><b>Enter your current password to confirm changes</b></p>
-  <%= f.input :current_password, :required => true %>
-  <%= f.button :submit, 'Update', :class => 'btn-primary' %>
+  <p><a data-toggle="modal" href="#enter-password" class="btn btn-primary" type="button">Confirm Update</a>
+    <div id="enter-password" class="modal" style="display: none;">
+        <div class="modal-header"><a class="close" data-dismiss="modal">&#215;</a>
+        <h2>Confirm Password</h2>
+        </div>
+
+        <div class="modal-body">    
+        <p><b>Enter your current password to confirm changes</b></p>
+        <%= f.input :current_password, :required => true %>
+        </div>
   
+        <div class="modal-footer">
+        <div class="actions">
+        <a class="btn" data-dismiss="modal" href="#">Cancel</a>
+        <%= f.button :submit, 'Confirm', :class => 'btn-primary' %>
+        </div>
+        </div>
+    </div>
 <% end %>
 
 <p><b>Cancel my account</b></p>

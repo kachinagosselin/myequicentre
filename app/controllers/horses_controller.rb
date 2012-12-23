@@ -85,7 +85,14 @@ class HorsesController < ApplicationController
       redirect_to users_path
       end
   end
-  
+
+  def unflag
+      @user = User.find(params[:user_id])
+      @horse = @user.horses.find(params[:id])
+      @horse.update_attribute(:flagged, "false")
+      redirect_to users_path
+  end
+    
   def flag
       @user = User.find(params[:user_id])
       @horse = @user.horses.find(params[:id])
@@ -93,13 +100,13 @@ class HorsesController < ApplicationController
       @horse.update_attribute(:flagged, "true")
       redirect_to users_path
   end
-  
+
   def destroy
       @user = User.find(params[:user_id])
       @horse = @user.horses.find(params[:id])
-      @subscription = Subscription.where(:horse_id => @horse.id).first
+      @subscription = @user.subscriptions.where(:horse_id => @horse.id).first
       if @subscription.present?
-        @customer = Customer.where(:user_id => params[:user_id]).first    
+        @customer = @user.customer   
         #If customer and subscription
         if @customer.present?
         stripe_customer = Stripe::Customer.retrieve(@customer.stripe_customer_token)
@@ -110,7 +117,7 @@ class HorsesController < ApplicationController
             @horse.update_attribute(:sale_status, "inactive")
             @subscription.destroy
             stripe_customer = Stripe::Customer.retrieve(@customer.stripe_customer_token)
-            stripe_customer.update_subscription(:plan => "45454545", :quantity => new_number)  
+            stripe_customer.update_subscription(:plan => "001", :quantity => new_number)  
             else
             #if this is the last subscription, cancel the subscription
             @horse.update_attribute(:sale_status, "inactive")
@@ -121,5 +128,5 @@ class HorsesController < ApplicationController
       end
         @horse.destroy  
         redirect_to user_path(@user)
+      end
   end
-end

@@ -24,8 +24,13 @@
         <td>expires</td>
         <td><%= horse.status %></td>
         <td><%= horse.flagged %></td>
-        <td><%= link_to 'Change Status', user_horse_changestatus_path(horse.user, horse), method: :change_status, class: 'btn btn-mini' %></td>
-        <td><%= link_to 'Delete Listing', [horse.user, horse], method: :delete, class: 'btn btn-mini', data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Unflag', user_horse_unflag_path(horse.user, horse), method: :unflag, class: 'btn btn-mini' %></td>
+        <% if horse.status != "disable" %>
+        <td><%= link_to 'Disable', user_horse_changestatus_path(horse.user, horse), method: :change_status, class: 'btn btn-mini' %></td>
+        <% else %>
+        <td><%= link_to 'Enable', user_horse_changestatus_path(horse.user, horse), method: :change_status, class: 'btn btn-mini' %></td>
+        <% end %>
+        <td><%= link_to 'Delete', [horse.user, horse], method: :delete, class: 'btn btn-mini', data: { confirm: 'Are you sure?' } %></td>
         </tr>
         <% end %>
         </tbody>

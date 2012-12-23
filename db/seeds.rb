@@ -26,7 +26,8 @@ user2.add_role :VIP
 user3.add_role :admin
 
 puts 'CREATING TEST CUSTOMER'
-customer = Customer.create! :user_id => 2, :stripe_customer_token => "cus_0tisPGGrwF0J3H"
+customer = user3.build_customer(:stripe_customer_token => "cus_0tisPGGrwF0J3H")
+customer.save
 puts 'First customer created: ' << customer.stripe_customer_token
 
 puts 'SETTING UP TEST HORSE OBJECTS'

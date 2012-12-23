@@ -53,7 +53,7 @@ function stripeResponseHandler(status, response) {
   <%= f.hidden_field :user_id, :value => params[:user_id] %>
   <%= f.hidden_field :horse_id, :value => params[:horse_id] %>
   <%= f.hidden_field :email, :value => current_user.email %>
-  <% customer = Customer.where(:user_id => current_user.id).first %>
+  <% customer = current_user.customer %>
   <% if customer.present? %>
   <% stripe_customer = Stripe::Customer.retrieve(customer.stripe_customer_token) %>
   <% if stripe_customer.active_card.fingerprint.present? %>

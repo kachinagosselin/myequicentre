@@ -30,10 +30,13 @@ class UsersController < ApplicationController
     user = User.find(params[:id])
       
     unless user == current_user
-      user.destroy
-      redirect_to users_path, :notice => "User deleted."
+        @customer = user.customer
+        stripe_customer = Stripe::Customer.retrieve(@customer.stripe_customer_token)
+        stripe_customer.cancel_subscription        
+        user.destroy
+        redirect_to users_path, :notice => "User deleted."
     else
-      redirect_to users_path, :notice => "Can't delete yourself."
+        redirect_to users_path, :notice => "Can't delete yourself."
     end
   end
     
