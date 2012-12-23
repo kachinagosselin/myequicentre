@@ -94,12 +94,10 @@ Seen this message enough times? Click here to hide it.
         <td><%= user.roles.first.name.titleize unless user.roles.first.nil? %> | <a data-toggle="modal" href="#role-options-<%= user.id %>" >edit</a>
         <%= render user %></td>  
         <td><%= user.status %></td> 
-        <td><div data-toggle="collapse" data-target="#item<%= user.id %>"><p>Show More</p></div></td>
+        <td><a href="#item<%=user.id%>" data-toggle="collapse" >Show More</a></td>
         <td><%= link_to 'Change Status', user_changestatus_path(user), method: :change_status, class: 'btn btn-mini' %></td> 
         <td><%= link_to("Delete Account", user_path(user), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => 'btn btn-mini') unless user == current_user %></td>                                       
     </tr>
-        <div>
-        <tr class='collapse' id='item<%= user.id %>'>
         <thead>
         <tr>
           <th></th>
@@ -114,6 +112,7 @@ Seen this message enough times? Click here to hide it.
         </tr>
         </thead>
         <% user.horses.all.each do |horse| %>
+        <tr>
         <td></td>
         <td><%= horse.name %></td>
         <td>N/A</td>
@@ -125,8 +124,7 @@ Seen this message enough times? Click here to hide it.
         <td><%= link_to 'Delete Listing', [horse.user, horse], method: :delete, class: 'btn btn-mini', data: { confirm: 'Are you sure?' } %></td>
         </tr>
         <% end %>
-        </div>
-            <% end %>
+    <% end %>
     </tbody>
 </table>    
 </div>

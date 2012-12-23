@@ -18,14 +18,14 @@ class SubscriptionsController < ApplicationController
     new_number = number + 1
     @subscription = @horse.subscriptions.build(params[:subscription])
     @subscription.update_attribute(:state, "active")
-    @horse.update_attribute(:sale_status, "active")
+    @horse.update_attribute(:active, true)
     stripe_customer.update_subscription(:plan => params[:subscription][:plan_id], :quantity => new_number)
         
     elsif @customer.present?
     stripe_customer = Stripe::Customer.retrieve(@customer.stripe_customer_token)
     @subscription = @horse.subscriptions.build(params[:subscription])
-    @subscription.state = "active"
-    @horse.update_attribute(:sale_status, "active")
+    @subscription.update_attribute(:state, "active")
+    @horse.update_attribute(:active, true)
     stripe_customer.update_subscription(:plan => params[:subscription][:plan_id], :quantity => 1)
         
     else
@@ -39,8 +39,8 @@ class SubscriptionsController < ApplicationController
     @customer.save
     @subscription.stripe_customer_token = @stripe_customer.id
     @customer.last_4_digits = params[:last_4_digits]
-    @subscription.state = "active"
-    @horse.update_attribute(:sale_status, "active")
+    @subscription.update_attribute(:state, "active")
+    @horse.update_attribute(:active, true)
     end
 
     if @subscription.save
@@ -63,14 +63,14 @@ class SubscriptionsController < ApplicationController
     if number > 1
     new_number = number - 1  
     stripe_customer.update_subscription(:plan => @subscription.plan_id, :quantity => new_number)  
-    @horse.update_attribute(:sale_status, "inactive")
+    @horse.update_attribute(:active, false)
     @subscription.destroy
     redirect_to :back, :notice => "You have successfully unsubscribed!"
     else
     #if this is the last subscription, cancel the subscription
     stripe_customer.cancel_subscription
     @subscription.destroy
-    @horse.update_attribute(:sale_status, "inactive")
+    @horse.update_attribute(:active, false)
     redirect_to :back, :notice => "You have successfully unsubscribed! 
     And you have no more subscriptions"
     end

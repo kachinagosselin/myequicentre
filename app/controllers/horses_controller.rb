@@ -34,7 +34,7 @@ class HorsesController < ApplicationController
   def create
       @user = User.find(params[:user_id])
       @horse = @user.horses.build(params[:horse])
-      @horse.sale_status = "inactive"
+      @horse.active = false
 
     respond_to do |format|
       if @horse.save
@@ -114,13 +114,13 @@ class HorsesController < ApplicationController
         #if there are multiple subscriptions then decrement count
             if number > 1
             new_number = number - 1  
-            @horse.update_attribute(:sale_status, "inactive")
+            @horse.update_attribute(:active, false)
             @subscription.destroy
             stripe_customer = Stripe::Customer.retrieve(@customer.stripe_customer_token)
             stripe_customer.update_subscription(:plan => "001", :quantity => new_number)  
             else
             #if this is the last subscription, cancel the subscription
-            @horse.update_attribute(:sale_status, "inactive")
+            @horse.update_attribute(:active, false)
             stripe_customer.cancel_subscription
             @subscription.destroy
             end

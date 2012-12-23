@@ -4,13 +4,9 @@ class Horse < ActiveRecord::Base
 
     attr_accessible :dob, :breed, :gender, :height, :name, :price, :text_description
     attr_accessible :city, :state, :zip_id
-    attr_accessible :status, :sale_status, :flagged
+    attr_accessible :status, :sale_status, :flagged, :active
 
-    attr_accessible :mainimage
-    attr_accessible :image1
-    attr_accessible :image2
-    attr_accessible :image3
-    attr_accessible :image4
+    attr_accessible :mainimage, :image1, :image2, :image3, :image4
 
     has_attached_file :mainimage, :styles => { :large => "900x600#", :medium => "452x368#", :thumb => "100x100#" }, :default_url => "/images/default/:style/default_horse.jpg" #, :url => "/:attachment/:id/:style/:avatar_file_name.:extension", :path => ":rails_root/public/:attachment/:id/:style/:avatar_file_name"
     has_attached_file :image1, :styles => { :large => "900x600#", :medium => "452x368#", :thumb => "100x100#" }, :default_url => "/images/default/:style/default_horse.jpg" #, :url => "/:attachment/:id/:style/:avatar_file_name.:extension", :path => ":rails_root/public/:attachment/:id/:style/:avatar_file_name"

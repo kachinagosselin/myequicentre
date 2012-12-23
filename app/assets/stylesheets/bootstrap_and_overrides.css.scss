@@ -95,7 +95,8 @@ margin-right: auto;
 }
 
 .navbar-inner .main-nav {
-width: 940px;
+min-width: 640px;
+width: auto;
 }
 
 .navbar .divider-vertical {
