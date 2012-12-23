@@ -7,6 +7,7 @@ class SubscriptionsController < ApplicationController
   end
 
   def create
+Stripe.api_key = "sk_test_I4Ci5lTRq3QtUQsejxMZBk71"
     @user = User.find(params[:user_id])
     @horse = @user.horses.find(params[:subscription][:horse_id])
     @customer = @user.customer
@@ -53,6 +54,7 @@ class SubscriptionsController < ApplicationController
 
 
   def unsubscribe
+Stripe.api_key = "sk_test_I4Ci5lTRq3QtUQsejxMZBk71"
     @user = User.find(params[:user_id])
     @horse = @user.horses.find(params[:horse_id])
     @customer = @user.customer
