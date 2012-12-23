@@ -7,7 +7,7 @@ $(".card").onclick(function(){
 
 <div class='row'>
 <% @horses.each do |horse| %>
-<% if horse.sale_status == "active" && horse.user.status != "disabled" && horse.user.status != "disabled" %>
+<% if horse.active == true && horse.user.status != "disabled" && horse.user.status != "disabled" %>
 <div class='span4'>
 <div class='card' style="background: no-repeat;background-size:cover;">
 <%=image_tag horse.mainimage.url %>
