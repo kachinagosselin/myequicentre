@@ -1,3 +1,13 @@
+<script>
+  $(document).ready(function(){
+    $('#horseCarousel').carousel({
+      interval: 5000,
+      pause: "hover"
+    });
+    
+  });
+</script>
+  
 <div class="span12">
 <div class="span8">
 
@@ -21,9 +31,10 @@
 <script type="text/javascript">var addthis_config = {"data_track_addressbar":true};</script>
 <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-50d8b33900a66959"></script>
 <!-- AddThis Button END -->
-
+       
 </div>
     <h3><%= simple_format(@horse.format_description) %></h3>
+    <p>
     <td><%= link_to 'Report Listing', user_horse_flag_path(@user, @horse), method: :flag, class: 'btn btn-mini' %></td>
     <% @savedhorses = SavedHorse.where(:horse_id => @horse.id) %>
     <% s = @savedhorses[0] %>
@@ -34,14 +45,17 @@
     <% else %>
     <%= link_to 'Save Horse', new_user_saved_horse_path(current_user, @horse), class: 'btn btn-mini' %>
     <% end %>
-
+    <%= render 'users/user_message', :user => @user %>
+    </p>
+    
+    <p>
     <% if current_user == @user %>
     <%= link_to 'Edit', edit_user_horse_path(@user, @horse) %> |
     <%= link_to 'Back', user_horses_path(@user) %>
     <%else%>
-    <p>
     <%= link_to 'View Horses for Sale by Owner', user_horses_path(@user) %>
     <%end%>
+    </p>
     </div>
 </div>
 </div>
@@ -52,14 +66,25 @@
 <div class='display'>
 </div>
 </div>
+<div class="center-align">
+<h4>Horse Owner</h4>
+<p> <%= @user.name %> </p>
+</div>
+<%= image_tag @user.avatar.url(:medium), :class => "img-circle", :id => "horse-owner-img"%>
+<a data-toggle="modal" href="#message-user-<%= @user.id %>" class="btn btn-info btn-block" type="button">Message Owner</a>
+<%= image_tag "/images/get_in_touch.png"%>
+<h4  class="center-align">Horse Details</h4>
 <p><b>Breed: </b><%= @horse.breed %></p>
 <p><b>Gender: </b><%= @horse.gender %></p>
 <p><b>Age: </b><%= @horse.age %> yrs</p>
-<p><b>Height: </b><%= @horse.height %> hh</p>
+<p><b>Height: </b><%= @horse.height %> hh</p> 
+<p><b>Price: </b><%= number_to_currency(@horse.price.round, :precision => 0) %> </p>
+
 </div>
 <div class='point'></div>
 </div>
 
+<% if @horse.image1.present? || @horse.image2.present? || @horse.image3.present? || @horse.image4.present?%>
 <div class="span8">
 <div class='ad'>
 <% if @horse.image1.present? %><%= image_tag @horse.image1.url(:thumb)%><%end%>
@@ -67,7 +92,52 @@
 <% if @horse.image3.present? %><%= image_tag @horse.image3.url(:thumb)%><%end%>
 <% if @horse.image4.present? %><%= image_tag @horse.image4.url(:thumb)%><%end%>
 </div>
-</div>
+<% end %>
 
+<% if @horse.image1.present? || @horse.image2.present? || @horse.image3.present? || @horse.image4.present?%>
+<div class='ad'>
+<div class='horse-slideshow'>
+    <div id="horseCarousel" class="carousel slide">
+    <!-- Carousel items -->
+    <div class="carousel-inner">
+        <% if @horse.image1.present?%>
+            <div class="item active" id="image1">
+            <div class="carousel-image">
+                <%= image_tag @horse.image1.url(:medium)%>
+            </div>
+            </div>
+        <% end %>
+        <% if @horse.image2.present?%>
+            <div class="item" id="image2">
+            <div class="carousel-image">
+                <%= image_tag @horse.image2.url(:medium)%>
+            </div>
+            </div>
+        <% end %>
+        <% if @horse.image3.present?%>
+            <div class="item" id="image3">
+            <div class="carousel-image">
+                <%= image_tag @horse.image3.url(:medium)%>
+            </div>
+            </div>
+        <% end %>
+        <% if @horse.image4.present?%>
+            <div class="item" id="image4">
+            <div class="carousel-image">
+                <%= image_tag @horse.image4.url(:medium)%>
+            </div>
+            </div>
+        <% end %>        
+  </div>
+  <!-- Carousel nav -->
+  <!--
+  <a class="carousel-control left" href="#horseCarousel" data-slide="prev">&lsaquo;</a>
+  <a class="carousel-control right" href="#horseCarousel" data-slide="next">&rsaquo;</a>
+  -->
+</div>
+</div>
+</div>
+<% end %>
+</div>
 
 </div>

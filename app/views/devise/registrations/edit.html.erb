@@ -11,9 +11,9 @@
   <%= f.input :first_name, :autofocus => true %> 
   <%= f.input :last_name, :autofocus => true %> 
   <%= f.input :email, :required => true %>
-  <%= f.label :bio %>
+  <%= f.label :bio, :label => "Tell us a bit about yourself:" %>
   <%= f.text_area :bio, :cols => 10, :rows => 10 %>
-  <%= f.file_field :avatar%>
+  <%= f.input :avatar%>
 
 <!--
   <p><b>Billing Information</b><p>

@@ -58,13 +58,13 @@ to inquire into the details.</b></p>
 </div>
 <div class='span8'>
 <h4><%= horse.name %></h4>
-<%= number_to_currency(horse.price.round, :precision => 0) %>
 </div>
 <div class="span3">
     <p><b>Breed: </b><%= horse.breed %></p>
     <p><b>Gender: </b><%= horse.gender %></p>
     <p><b>Age: </b><%= horse.age %> yrs</p>
     <p><b>Height: </b><%= horse.height %> hh</p>
+    <p><b>Price: </b><%= number_to_currency(horse.price.round, :precision => 0) %></p>
 </div>
 <div class="span5">
     <p><%= horse.text_description %></p>

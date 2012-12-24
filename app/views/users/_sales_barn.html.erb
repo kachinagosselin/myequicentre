@@ -2,8 +2,7 @@
 <h1>Your Sales Barn</h1>
 <div class='divider-horizontal'></div>
 
-<% @user.horses.each do |horse| %>
-<% if horse.active == true %>
+<% @user.horses.where(:active => true)each do |horse| %>
 <div class='row-fluid'>
 <div class="span4" id="profile-image">
 <div class='smaller-profile-image'>
@@ -30,6 +29,5 @@ edit_user_horse_path(@user, horse) %> | <%= link_to 'Delete', [horse.user, horse
 </div>
 <div class='divider-horizontal'></div>
 </div>
-<% end %>
 <% end %>
 </div>
