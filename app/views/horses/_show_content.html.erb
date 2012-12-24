@@ -10,11 +10,18 @@
 <%= image_tag @horse.mainimage.url(:medium)%>
 </div>
 <div class='share pull-right'>
-    <div class="fb-send" data-font="arial"></div>
-    <a href="https://twitter.com/share" class="twitter-share-button" data-related="jasoncosta" data-lang="en" data-count="none">Tweet</a>
-    <!--
-    <a href="http://pinterest.com/pin/create/button/?url=<%=user_path(@user)%>&media=http%3A%2F%2Fexample.com%2Fimage&description=Description%20Text" class="pin-it-button" count-layout="horizontal"><img border="0" src="//assets.pinterest.com/images/PinExt.png" title="Pin It" /></a>
-    -->
+
+<!-- AddThis Button BEGIN -->
+<div class="addthis_toolbox addthis_default_style ">
+<a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+<a class="addthis_button_tweet"></a>
+<a class="addthis_button_pinterest_pinit"></a>
+<a class="addthis_counter addthis_pill_style"></a>
+</div>
+<script type="text/javascript">var addthis_config = {"data_track_addressbar":true};</script>
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-50d8b33900a66959"></script>
+<!-- AddThis Button END -->
+
 </div>
     <h3><%= simple_format(@horse.format_description) %></h3>
     <td><%= link_to 'Report Listing', user_horse_flag_path(@user, @horse), method: :flag, class: 'btn btn-mini' %></td>
