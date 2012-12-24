@@ -38,3 +38,5 @@ gem 'gibbon', "0.3.5"
 gem "haml-rails"
 gem "stripe"
 gem 'cocaine', '0.3.2'
+gem 'google-analytics-rails'
+gem "dynamic_form"

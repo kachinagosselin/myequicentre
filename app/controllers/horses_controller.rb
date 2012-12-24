@@ -26,7 +26,6 @@ class HorsesController < ApplicationController
   def new
     @user = User.find(params[:user_id])
     @horse = @user.horses.new
-      
   end
 
   # POST user/:user_id/horses
@@ -38,10 +37,10 @@ class HorsesController < ApplicationController
 
     respond_to do |format|
       if @horse.save
-        format.html { redirect_to user_path(@user, @horse), notice: 'Horse was successfully created.' }
+        format.html { redirect_to user_path(@user), notice: 'Horse was successfully created.' }
         format.json { head :no_content }
       else
-        format.html { redirect_to user_path(@user), alert: 'Horse was unsuccessfully created.' }
+        format.html { render :action => 'new', alert: 'Horse was unsuccessfully created.' }
         format.json { render json: @message.errors, status: :unprocessable_entity }
      end 
     end

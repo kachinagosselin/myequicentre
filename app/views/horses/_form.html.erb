@@ -40,57 +40,57 @@
     safeClass: 'safe',
     overClass: 'over',
     thousandSeparator: ','});
+    
+    $("#new_horse").submit(function(event) {
+    var price_string = document.getElementById('horse_price').value.replace(/[A-Za-z$-,-]/g, "").replace(/[^\d\.\-\ ]/g, '');
+    var price_int = Number(price_string);
+    document.getElementById('horse_price').value = price_int;
+    });
 
 });
 </script>
 
-<%= simple_form_for([@user, @horse], :html => { :multipart => true }) do |f| %>
+<%= simple_form_for([@user, @horse], :html => {:class => 'form-horizontal', :multipart => true }) do |f| %>
   <%= f.error_notification %>
-  <div class="form-inputs">
-    <%= f.input :name %>
-    <%= f.input :breed%>
+  <div class="form-inputs">    
+    <%=h f.input :name %>
+    <%=h f.input :breed, :error_html => { :id => "breed_error"}%>
     <%= f.input :gender, :as => :select, :collection => ["Mare","Gelding","Stallion"]%>
-    <%= f.input :dob, :start_year => Time.now.utc.to_date.year-50, :end_year => Time.now.utc.to_date.year %>
-    <%= f.label :height, '* Height (hh)' %>
-    <%= f.number_field :height, :class => "numeric decimal required", :min => 4, :max => 20, :step => 0.1  %>
-    <%= f.input :text_description%>
-  	<p>You have used <span id="counter"></span> characters.</p>
-    <%= f.label :price, '* Price'%>
-    <%= f.number_field :price, :class => "numeric decimal required", :min => 1, :step => 100 %>
-  	<p>Note: Change horse location if different than yours.</p>
-    <%= f.label :city, 'City' %>
+    <%= f.input :dob, :as => :date, :discard_day => true, :order => [:month, :year],
+                              :start_year => Time.now.utc.to_date.year-50, :end_year => Time.now.utc.to_date.year %>
+    <%=h f.input :height, :as => :string, :label => 'Height (hh)' %>
+    <%=h f.input :text_description, :as => :text, :input_html => { :cols => 10, :rows => 15 }, :hint => 'Note: You have used <span id="counter"></span> characters.'%>
+    <%=h f.input :price, :as => :string%>
+  	
     <% if @user.city.present? && !@horse.city.present?%>
-    <%= f.text_field :city, :value => @user.city%>
+    <%=h f.input :city, :value => @user.city, :hint => 'Note: Change horse location if different than yours.'%>
     <% elsif @horse.city.present? %>
-    <%= f.text_field :city, :value => @horse.city%>
+    <%=h f.input :city, :value => @horse.city%>
     <% else %>
-    <%= f.text_field :city %>
+    <%=h f.input :city %>
     <% end %>
-    <%= f.label :state, 'State'%>
+    
     <% if @user.state.present? && !@horse.state.present?%>
-    <%= f.text_field :state, :value => @user.state%>
+    <%=h f.input :state, :value => @user.state%>
     <% elsif @horse.state.present? %>
-    <%= f.text_field :state, :value => @horse.state%>
+    <%=h f.input :state, :value => @horse.state%>
     <% else %>
-    <%= f.text_field :state %>
+    <%=h f.input :state %>
     <% end %>
-    </br>
-    <p>Note: Only the main image is mandatory, all others will be added to a slideshow at the bottom of the listing. 
-    It is recommended to upload an image that meets or exceeds 900 x 600px</p>
-    <%= f.label :mainimage, 'Main Image'%>
-    <%= f.file_field :mainimage %>
-    <%= f.label :image1, 'Extra Image 1'%>
-    <%= f.file_field :image1 %>
-    <%= f.label :image2, 'Extra Image 2'%>
-    <%= f.file_field :image2 %>
-    <%= f.label :image3, 'Extra Image 3'%>
-    <%= f.file_field :image3 %>
-    <%= f.label :image4, 'Extra Image 4'%>
-    <%= f.file_field :image4 %>
+    
+    <%= f.input :mainimage, :label => 'Main Image', :hint => 'Note: It is recommended to 
+    upload an image that meets or exceeds 900 x 600px.' %>
+    <%= f.input :image1, :label => 'Extra Image 1' %>
+    <%= f.input :image2, :label => 'Extra Image 2' %>
+    <%= f.input :image3, :label => 'Extra Image 3' %>
+    <%= f.input :image4, :label => 'Extra Image 4', :hint => 'Note: All extra images will 
+    only appear in a slideshow at the bottom of the horse listing.' %>
     </div>
 
   <div class="form-actions">
-    <%= link_to 'Cancel', user_horses_path(@user), class: 'btn' %>
-    <%= f.button :submit %>
+    <span class="pull-right">
+      <%= link_to 'Cancel', user_horses_path(@user), class: 'btn' %>
+      <%= f.button :submit %>
+    </span>
   </div>
 <% end %>

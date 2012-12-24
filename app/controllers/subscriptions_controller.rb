@@ -12,7 +12,7 @@ Stripe.api_key = ENV['STRIPE_API_KEY']
     @horse = @user.horses.find(params[:subscription][:horse_id])
     @customer = @user.customer
     @existing_subscription = @user.subscriptions.first
-    
+
     if @customer.present? &&  @existing_subscription.present?
     stripe_customer = Stripe::Customer.retrieve(@customer.stripe_customer_token)
     number = stripe_customer.subscription.quantity
