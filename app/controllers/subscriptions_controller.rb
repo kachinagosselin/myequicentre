@@ -7,7 +7,7 @@ class SubscriptionsController < ApplicationController
   end
 
   def create
-Stripe.api_key = "sk_test_I4Ci5lTRq3QtUQsejxMZBk71"
+Stripe.api_key = ENV['STRIPE_API_KEY']
     @user = User.find(params[:user_id])
     @horse = @user.horses.find(params[:subscription][:horse_id])
     @customer = @user.customer
