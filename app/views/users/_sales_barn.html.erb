@@ -2,11 +2,11 @@
 <h1>Your Sales Barn</h1>
 <div class='divider-horizontal'></div>
 
-<% @user.horses.where(:active => true)each do |horse| %>
+<% @user.horses.where(:active => true).each do |horse| %>
 <div class='row-fluid'>
     <div class="span4" id="profile-image">
     <div class='smaller-profile-image'>
-    <%= image_tag horse.mainimage.url %>
+    <%= image_tag horse.mainimage.url(:medium) %>
     </div>
     <div class='center-align'>
     <%= link_to 'Show', user_horse_path(@user, horse) %> | <%= link_to 'Edit', 
@@ -25,7 +25,7 @@
     <p><b>Price: </b><%= number_to_currency(horse.price.round, :precision => 0) %> </p>
     </div>
     <div class="span6">
-    <p><%= horse.text_description %></p>
+        <p><%= horse.text_description %></p>
     </div>
     <div class='divider-horizontal'></div>
 </div>
