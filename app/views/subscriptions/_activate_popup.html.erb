@@ -69,7 +69,11 @@ function stripeResponseHandler(status, response) {
     </div>
   <% end %>
 
-  <%= f.hidden_field :plan_id, :value => "001"%>
+  <% if current_user.has_role? :admin %>
+  <%= f.hidden_field :plan_id, :value => "1"%>
+  <% else %>
+  <%= f.hidden_field :plan_id, :value => "1000"%>
+  <% end %>
   <%= f.hidden_field :user_id, :value => params[:id] %>
   <%= f.hidden_field :horse_id, :value => horse.id %>
   <%= f.hidden_field :email, :value => current_user.email %>

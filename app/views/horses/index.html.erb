@@ -49,7 +49,7 @@ to inquire into the details.</b></p>
 
 <div class='white-background'>
 <h1>Sales Barn</h1>
-<% @user.horses.each do |horse| %>
+<% @user.horses.where(:active => true).each do |horse| %>
 <div class='row-fluid'>
 <div class="span4" id="profile-image">
 <div class='smaller-profile-image'>

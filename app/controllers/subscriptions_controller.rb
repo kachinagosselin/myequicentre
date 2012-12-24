@@ -64,7 +64,11 @@ Stripe.api_key = ENV['STRIPE_API_KEY']
     #if there are multiple subscriptions then decrement count
     if number > 1
     new_number = number - 1  
-    stripe_customer.update_subscription(:plan => "001", :quantity => new_number)  
+    if current_user.has_role? :admin
+    stripe_customer.update_subscription(:plan => "1", :quantity => new_number)  
+    else
+    stripe_customer.update_subscription(:plan => "1000", :quantity => new_number)  
+    end
     @horse.update_attribute(:active, false)
     @subscription.destroy
     redirect_to :back, :notice => "You have successfully unsubscribed!"
