@@ -4,30 +4,31 @@
 
 <% @user.horses.where(:active => true)each do |horse| %>
 <div class='row-fluid'>
-<div class="span4" id="profile-image">
-<div class='smaller-profile-image'>
-<%= image_tag horse.mainimage.url %>
-</div>
-<div class='center-align'>
-<%= link_to 'Show', user_horse_path(@user, horse) %> | <%= link_to 'Edit', 
-edit_user_horse_path(@user, horse) %> | <%= link_to 'Delete', [horse.user, horse], method: 
-:delete, data: { confirm: 'Are you sure?' } %>
-</div>
-</div>
-<div class='span8'>
-<h4><%= horse.name %> </h4>
-</div>
-<div class="span2">
+    <div class="span4" id="profile-image">
+    <div class='smaller-profile-image'>
+    <%= image_tag horse.mainimage.url %>
+    </div>
+    <div class='center-align'>
+    <%= link_to 'Show', user_horse_path(@user, horse) %> | <%= link_to 'Edit', 
+    edit_user_horse_path(@user, horse) %> | <%= link_to 'Delete', [horse.user, horse], method: 
+    :delete, data: { confirm: 'Are you sure?' } %>
+    </div>
+    </div>
+    <div class='span8'>
+    <h4><%= horse.name %> </h4>
+    </div>
+    <div class="span2">
     <p><b>Breed: </b><%= horse.breed %></p>
     <p><b>Gender: </b><%= horse.gender %></p>
     <p><b>Age: </b><%= horse.age %> yrs</p>
     <p><b>Height: </b><%= horse.height %> hh</p>
     <p><b>Price: </b><%= number_to_currency(horse.price.round, :precision => 0) %> </p>
-</div>
-<div class="span6">
+    </div>
+    <div class="span6">
     <p><%= horse.text_description %></p>
+    </div>
+    <div class='divider-horizontal'></div>
 </div>
-<div class='divider-horizontal'></div>
-</div>
+
 <% end %>
 </div>
