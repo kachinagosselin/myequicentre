@@ -174,13 +174,28 @@ list-style: none;
 }
 
 /* LINK ELEMENTS*/
-a:link {
+.footer_links a:link {
 color: #424641;
 text-decoration: none;
 }
 
-a:visited {
+.footer_links a:visited {
 color: #424641;
+text-decoration: none;
+}
+
+.text-box a:link {
+color: #fff;
+text-decoration: none;
+}
+
+.text-box a:hover {
+color: #fff;
+text-decoration: none;
+}
+
+.text-box a:visited {
+color: #fff;
 text-decoration: none;
 }
 

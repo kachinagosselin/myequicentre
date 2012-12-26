@@ -94,11 +94,12 @@ Seen this message enough times? Click here to hide it.
         <td><%= user.roles.first.name.titleize unless user.roles.first.nil? %> | <a data-toggle="modal" href="#role-options-<%= user.id %>" >edit</a>
         <%= render user %></td>  
         <td><%= user.status %></td> 
-        <td><a href="#item<%=user.id%>" data-toggle="collapse" >Show More</a></td>
-        <td><%= link_to 'Change Status', user_changestatus_path(user), method: :change_status, class: 'btn btn-mini' %></td> 
-        <td><%= link_to("Delete Account", user_path(user), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => 'btn btn-mini') unless user == current_user %></td>                                       
+        <td></td>
+        <td><%= link_to 'Change', user_changestatus_path(user), method: :change_status, class: 'btn btn-mini' %></td> 
+        <td><%= link_to("Delete", user_path(user), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => 'btn btn-mini') unless user == current_user %></td>                                       
     </tr>
         <thead>
+        <% if user.horses.first.present?%>
         <tr>
           <th></th>
           <th>Horse Name</th>
@@ -110,6 +111,7 @@ Seen this message enough times? Click here to hide it.
           <th></th>                                      
           <th></th>                                      
         </tr>
+        <% end %>
         </thead>
         <% user.horses.all.each do |horse| %>
         <tr>
@@ -120,8 +122,8 @@ Seen this message enough times? Click here to hide it.
         <td><%= horse.status %></td>
         <td><%= horse.flagged %></td>
         <td><%= link_to 'View Listing', user_horse_path(horse.user, horse) %></td>
-        <td><%= link_to 'Change Status', user_horse_changestatus_path(horse.user, horse), method: :change_status, class: 'btn btn-mini' %></td>
-        <td><%= link_to 'Delete Listing', [horse.user, horse], method: :delete, class: 'btn btn-mini', data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Change', user_horse_changestatus_path(horse.user, horse), method: :change_status, class: 'btn btn-mini' %></td>
+        <td><%= link_to 'Delete', [horse.user, horse], method: :delete, class: 'btn btn-mini', data: { confirm: 'Are you sure?' } %></td>
         </tr>
         <% end %>
     <% end %>

@@ -1,4 +1,50 @@
-<p id="notice"><%= notice %></p>
+<script type="text/javascript">
+	function initialize() {
+		var latlng = new google.maps.LatLng(42.3583, -71.0603);
+		var settings = {
+			zoom: 10,
+			center: latlng,
+			mapTypeControl: true,
+			mapTypeControlOptions: {style: google.maps.MapTypeControlStyle.DROPDOWN_MENU},
+			navigationControl: true,
+			navigationControlOptions: {style: google.maps.NavigationControlStyle.SMALL},
+			mapTypeId: google.maps.MapTypeId.ROADMAP
+            };
+			
+            var map = new google.maps.Map(document.getElementById("map_canvas"), settings);
+
+            var contentString = '<div id="content">'+
+            '<div id="siteNotice">'+
+            '</div>'+
+            '<h1 id="firstHeading" class="firstHeading">Høgenhaug</h1>'+
+            '<div id="bodyContent">'+
+            '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>'+
+            '</div>'+
+            '</div>';
+ 
+            var infowindow = new google.maps.InfoWindow({
+            content: contentString
+            });
+            
+            var companyPos = new google.maps.LatLng(57.0442, 9.9116);
+            var companyMarker = new google.maps.Marker({
+            position: companyPos,
+            map: map,
+            title:"Title"
+            });
+
+			google.maps.event.addListener(companyMarker, 'click', function() {
+            infowindow.open(map,companyMarker);
+            });
+            }
+</script>
+
+<!--
+<body onload="initialize()">
+  <div id="map_canvas" style="width:800px; height:500px"></div>
+</body>
+-->
+    <p id="notice"><%= notice %></p>
  
     <div id="search-form">
         <div class = "center-align">
@@ -6,6 +52,7 @@
         </div>
         <%= render 'horses/search_form' %>
     </div>
+
 
 
     <p> Sort by: <%= sort_link @search, :price %> | <%= sort_link @search, :dob, "Age" %></p>
