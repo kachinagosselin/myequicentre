@@ -2,6 +2,21 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+/*HELP PAGE ELEMENTS*/
+.faq b{
+font-size: 15px;
+line-height: 18px;
+}
+
+.faq p{
+font-family: "proxima-nova","Helvetica Neue","Helvetica","Arial","sans-serif";
+color: grey;
+font-size: 15px;
+line-height: 20px;
+font-weight: 300;
+padding: 10px 20px 20px 20px;
+}
+
 /*INFO PAGE ELEMENTS*/
 .how-it-works .text-box {
 background: #323232;
@@ -58,10 +73,6 @@ margin: 20px;
 padding: 10px;
 }
 
-.job .btn {
-color: white;
-}
-
 .job h2 {
 padding: 0px 0px 10px 0px;
 font-size: 20px;
@@ -107,4 +118,9 @@ z-index: 1000;
 
 .jobs-panel .nav-panel h1{
 font-size: 12px;
+margin-bottom: 0px;
+}
+
+.jobs-panel .job-link {
+padding: 0px 0px 0px 200px;
 }

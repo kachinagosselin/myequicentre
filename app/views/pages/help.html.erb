@@ -1,3 +1,4 @@
+<div class="faq">
 <div class="white-background">
 <h1> Something go wrong? </h1>
 <h3>
@@ -5,54 +6,31 @@ Please feel free to contact us with your questions and concerns. We will get in 
 you regarding any updates. In the meantime check out our FAQ section and suppport documentation.
 </h3>
 <div class='center-align'>
-<h3>
-Contact <%= mail_to "support@myequicentre.com" %> to get in touch. 
-</h3>
+<h3>Contact <%= mail_to "support@myequicentre.com" %> to get in touch. </h3>
 </div>
 </div>
 
 <div class="white-background">
 <h1> FAQ Section</h1>
 
-<h4>How can MyEquiCentre help me market my horse?</h4>
-<h3>
-We provide the best experience for horse owners and seekers to search and view horses online. 
-If you would like to promote your own horse listing you can share the link to your horse 
-listings through twitter and facebook, or contact us to discuss premium advertising. 
-</h3>
+    <h4>General Questions </h4>
+    <%= render 'general_questions' %>
 
-<h4>How much does it cost?</h4>
-<h3>
-If you are signing up to use the site to browse horses than your account is free. If you are
-using the site to advertise horses the cost is $30 for 90 days per listing. 
-</h3>
+    <h4>Activating Listings </h4>
+    <%= render 'activation_questions' %>
+    
+    <h4> Marketing your Listings </h4>
+    <%= render 'marketing_questions' %>
 
-<h4>How can I add horses to my favorites?</h4>
-<h3>
-You can add horses to your favorites from the horse listing page. In the future you will be able 
-to add horses to your favorites from the search results page. You can manage your favorites from
-your own personal dashboard.
-</h3>
+    <h4>Questions about Billing </h4>
+    <%= render 'billing_questions' %>
 
-<h4>Can I contact anyone through my message center?</h4>
-<h3>
-You can only contact members of our site who are in your contact list. If you would like to
-message a member who is not in your list you will have to navigate to their profile page or 
-contact them from one of their horse listings.
-</h3>
-
-<h4>How do I add someone to my contacts list?</h4>
-<h3>
-Only those people who have sent an email to you get added to your contacts list. That means
-that in order to contact a new person you need to go to their profile page or their horse listings
-to send them a message again. Once they respond to your message they will be added to your 
-contacts list so that you can message them at anytime.
-</h3>
-
-<h4>How do I remove myself from someone's contact's list?</h4>
-<h3>
-Right now the capability to remove yourself from a user's contact list or to block them is
-not available. If there is interest we will update that feature moving forward.
-</h3>
-
+<!--
+    <h4>Profiles and User Information </h4>
+    <%= render 'user_info_questions' %>
+-->
+    
+    <h4>Communicating with Users </h4>
+    <%= render 'communication_questions' %>
+</div>
 </div>

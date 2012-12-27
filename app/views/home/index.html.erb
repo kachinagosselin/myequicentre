@@ -1,109 +1,24 @@
-<script src="js/bootstrap.min.js"></script>
-<script>
-  $(document).ready(function(){
-    $('.carousel').carousel({
-      interval: 7000
-    });
-    //$('.item').eq(Math.floor((Math.random() * $('.item').length))).addClass("active");
-  });
-</script>
+<!-- This is the homepage! -->
 
-<body>
-  <div class="container">
-  
-  <div class="homecarousel">
-    <div id="myCarousel" class="carousel slide">
-    <!-- Carousel items -->
-        <div class="carousel-inner">
-            <div class="item active">
-            <div class='span12'>
-                <div class="carousel-image">
-                <%= image_tag "/images/carousel.jpg"%>
-                    <div class="carousel-caption">
-                    <div class='span11'>
-                    <p>We have the most beautiful horse ads with an amazing interface that 
-                    is simple and straightforward to use! We love horses and are dedicated
-                    to seeing each of the horses listed here find the home that is perfect 
-                    for them. Sign up today to check out our services!</p>
-                    </div>
-                    </div>
-                </div>
-                <div class='span6'>
-                    <div class='text-box'>
-                    <h1>Imagine Your Horse Listed Here!</h1>
-                    </div>
-                </div>
-            </div>
-            </div>
-        <% Horse.where(:active => true).all(:order => 'Random()').each do |horse| %>
-        <% if horse.mainimage.present?%>
-            <div class="item">
-                <div class='span12'>
-                <div class="carousel-image">
-                <%= image_tag horse.mainimage.url(:large), :class => "img-polaroid"%>
-                    <div class="carousel-caption">
-                    <div class='span11'>
-                    <p><%= truncate(horse.text_description, :length => 250) %><%=link_to 'view details', user_horse_path(User.find(horse.user_id), horse) %></p>
-                    </div>
-                    </div>
-                </div>
-                <div class='span6'>
-                    <div class='text-box'>
-                    <h1><%=link_to horse.name, user_horse_path(User.find(horse.user_id), horse) %></h1>
-                    </div>
-                    <div class='details-section'>
-                    <h4><%= horse.gender %></h4>
-                    <h4><%= horse.age %> years</h4>
-                    <h4><%= horse.height %> hands</h4>
-                    <h4><%= number_to_currency(horse.price.round, :precision => 0) %></h4>
-                    </div>
-                </div>
-            </div>
-            </div>
-        <% end %>
-        <% end %>
-    </div>
-  <!-- Carousel nav -->
-  <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
-  <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
-</div>
-</div>
+<!-- This renders the home carousel that shows horse images from the site. -->
+<%= render 'carousel' %>
 
-<div class="white-background">
+<!-- This is the page content-->
+<div class="white-background center-align">
 <h1> Welcome to MyEquiCentre </h1>
+<h3>The most beautiful and elegant site available for selling and buying horses online.</h3>
 
-<div class='center-align'>
-<h3>
-The most beautiful and elegant site available for selling and buying horses online.
-</h3>
-
+<!-- For users that are logged in --> 
 <% if user_signed_in? %>
-<div class='center-align'>
-<h3>
-Go to your dashboard to manage your account or begin <%= link_to 'browsing our horses', '/horses/search' %>...
-</h3>
-</div>
- <% else %>
-<h3>Browse the site as you please, or sign up for a free account to post your own horses.</h3>
-
-<div class="center-align"><%= link_to "Sign Up (it's free)", new_user_registration_path, :class => "btn btn-primary btn-large" %></div>
-
-<!-- Begin MailChimp Signup Form -->
-<div class="center-align">
-<div id="mc_embed_signup">
-<form action="http://daedalusinnovation.us5.list-manage1.com/subscribe/post?u=6b599f220526ed76b813b95c9&amp;id=c5917e2e5d" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate horizontal" target="_blank" novalidate>
-	<h4>Subscribe to our mailing list: </h4>
-	<input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required>
-	<input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="btn btn-mini btn-info">
-</form>
-</div>
-</div>
-<!--End mc_embed_signup-->
-
+    <h3>Go to your dashboard to manage your account or begin 
+    <%= link_to 'browsing our horses', '/horses/search' %>...</h3>
+<!-- For users that aren't logged in --> 
+<% else %>
+    <h3>Browse the site as you please, or sign up for a free account to post your own horses.</h3>
+    <%= link_to "Sign Up (it's free)", new_user_registration_path, :class => "btn btn-primary
+    btn-large" %>
+    
+    <!-- The newsletter signup form for the EquiCentre mailing list --> 
+    <%= render 'newletter_signup' %>
 <%end%>
 </div>
-
-</div>
-
-</div>
-</body>

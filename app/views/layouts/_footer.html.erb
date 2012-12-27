@@ -1,86 +1,53 @@
-<!--
-<div class='press'>
-<div class='row'>
-<div class='span3 featured-in'>
-We hope one day to feature in: 
-</div>
-</div>
-<div class='row'>
-<div class='span3'>
-<%= image_tag("/images/press/logos/nyt.png", :alt => "New York Times")%></li>
-</div>
-<div class='span1'>
-<%= image_tag("/images/press/logos/cnn-logo.png", :alt => "CNN")%>
-</div>
-<div class='span3'>
-<%= image_tag("/images/press/logos/the-wall-street-journal.png", :alt => "The Wall Street Journal")%>
-</div>
-<div class='span2'>
-<%= image_tag("/images/press/logos/cbs.png", :alt => "CBS News")%>
-</div>
-<div class='span2'>
-<%= image_tag("/images/press/logos/fast-company-logo.png", :alt => "Fast Company")%>
-</div>
-</div>
-</div>
--->
-</br>
+<% render 'press_footer' if false %>
+
 <div class='footer_links'>
 <div class='row links'>
 
 <div class='span2 offset1'>
 <b>Info</b>
 <ul>
-<li><%= link_to 'About', '/pages/about' %></li>
-<!--
-<li><%= link_to 'Press', '/static_pages/press' %></li>
-<li><%= link_to 'Help', "http://support.mysite.com/" %></li>
--->
-<li><%= link_to 'Help', "/pages/help" %></li>
-<li><%= link_to 'Contact', '/pages/contact' %></li>
+    <li><%= link_to 'About', '/pages/about' %></li>
+    <li><%= link_to 'Press', '/static_pages/press' if false %></li>
+    <li><%= link_to 'Help', "http://support.mysite.com/" if false %></li>
+    <li><%= link_to 'Help', "/pages/help" %></li>
+    <li><%= link_to 'Contact', '/pages/contact' %></li>
 </ul>
 </div>
 
 <div class='span2'>
 <b>Connect</b>
 <ul>
-<!--
-<li><%= link_to 'Success Stories', '/pages/stories' %></li>
--->
-<li><%= link_to 'Read Our Blog', "http://blog.myequicentre.com/" %></li>
-<li><%= link_to 'Open Positions', '/pages/jobs' %></li>
+    <li><%= link_to 'Success Stories', '/pages/stories' if false %></li>
+    <li><%= link_to 'Read Our Blog', "http://blog.myequicentre.com/" %></li>
+    <li><%= link_to 'Open Positions', '/pages/jobs' %></li>
 </ul>
 </div>
 
 <div class='span2'>
 <b>Find us</b>
 <ul>
-<li><%= link_to 'Facebook', "http://www.facebook.com/pages/EquiCentre/284495924975888?" %></li>
-<li><%= link_to 'Twitter', "https://twitter.com/myequicentre" %></li>
+    <li><%= link_to 'Facebook', "http://www.facebook.com/pages/EquiCentre/284495924975888?" %></li>
+    <li><%= link_to 'Twitter', "https://twitter.com/myequicentre" %></li>
 </ul>
 </div>
 
 <div class='span2'>
 <b>Policies</b>
 <ul>
-<!--
-<li><%= link_to 'Guidelines', '/static_pages/guidelines' %></li>
--->
-<li><%= link_to 'Terms of Service', '/pages/terms' %></li>
-<li><%= link_to 'Privacy Policy', '/pages/privacy' %></li>
+    <li><%= link_to 'Guidelines', '/static_pages/guidelines' if false %></li>
+    <li><%= link_to 'Terms of Service', '/pages/terms' %></li>
+    <li><%= link_to 'Privacy Policy', '/pages/privacy' %></li>
 </ul>
 </div>
-
 
 <div class='span3'>
 <b>Search Our Site</b>
 <ul>
-<li><%= link_to 'See all our Horses', '/horses/search' %></li>
+    <li><%= link_to 'See all our Horses', '/horses/search' %></li>
 </ul>
 </div>
 
 </div>
-
 </div>
 
 <div class='span3'>
