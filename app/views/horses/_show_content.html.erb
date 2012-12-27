@@ -103,28 +103,28 @@
         <% if @horse.image1.present?%>
             <div class="item active" id="image1">
             <div class="carousel-image">
-                <%= image_tag @horse.image1.url(:medium)%>
+                <%= image_tag @horse.image1.url(:medium), :class => "img-polaroid"%>
             </div>
             </div>
         <% end %>
         <% if @horse.image2.present?%>
             <div class="item" id="image2">
             <div class="carousel-image">
-                <%= image_tag @horse.image2.url(:medium)%>
+                <%= image_tag @horse.image2.url(:medium), :class => "img-polaroid"%>
             </div>
             </div>
         <% end %>
         <% if @horse.image3.present?%>
             <div class="item" id="image3">
             <div class="carousel-image">
-                <%= image_tag @horse.image3.url(:medium)%>
+                <%= image_tag @horse.image3.url(:medium), :class => "img-polaroid"%>
             </div>
             </div>
         <% end %>
         <% if @horse.image4.present?%>
             <div class="item" id="image4">
             <div class="carousel-image">
-                <%= image_tag @horse.image4.url(:medium)%>
+                <%= image_tag @horse.image4.url(:medium), :class => "img-polaroid"%>
             </div>
             </div>
         <% end %>        
