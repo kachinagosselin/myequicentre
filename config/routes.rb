@@ -30,6 +30,7 @@ Railsapp::Application.routes.draw do
         resources :subscriptions
         resources :customers
         resources :contacts
+        resources :testimonials
     end
     resources :plans
     
