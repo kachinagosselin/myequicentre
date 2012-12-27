@@ -1,0 +1,9 @@
+<%= simple_form_for([@user, @user.testimonials.build]) do |f| %>
+  <div class="field">
+    <%= f.input :body, :as => :text, :label => false, :input_html => { :cols => 5, :rows => 5 } %>
+    <%= f.hidden_field :horse_id, :value => @horse.id %>
+  </div>
+  <div class="actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

@@ -40,7 +40,7 @@
             <div class="item">
                 <div class='span12'>
                 <div class="carousel-image">
-                <%= image_tag horse.mainimage.url(:large)%>
+                <%= image_tag horse.mainimage.url(:large) :class => "img-polaroid"%>
                     <div class="carousel-caption">
                     <div class='span11'>
                     <p><%= truncate(horse.text_description, :length => 250) %><%=link_to 'view details', user_horse_path(User.find(horse.user_id), horse) %></p>

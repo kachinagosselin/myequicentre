@@ -1,0 +1,17 @@
+<div class="span8">
+<div class="ad">
+<h4>Here are the testimonials</h4>
+<div class='infobox'>
+<% if @user.testimonials.first.present?%>
+<% @user.testimonials.each do |t| %>
+<%= image_tag @user.avatar.url(:thumb), :class => "img-rounded" if @user.avatar.present? %>
+<%= t.body %>
+<%= link_to 'Delete', [t.user, t], method: 
+    :delete, data: { confirm: 'Are you sure?' } %>
+<% end %>
+<% end %>
+</div>
+<p>Know this horse and owner? Add a testimonials:</p>
+<%= render "testimonials/form", :horse_id => @horse.id %>
+</div>
+</div>
