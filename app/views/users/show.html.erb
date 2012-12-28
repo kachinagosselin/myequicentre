@@ -16,5 +16,19 @@ This is the place for you to keep track of your listings and your favorite horse
 <%= render 'horse_listings' %>
 <% end %>
 
-<% active_horses = @user.horses.where(:active => true).first%>
-<%= render 'sales_barn' if active_horses.present? %>
+<div class='white-background'>
+<h1>Your Sales Barn</h1>
+<div class='divider-horizontal'></div>
+<% @horses.each do |horse| %>
+<%= render 'sales_barn', :horse => horse %>
+    <div class='horse-controls'>
+    <%= link_to 'Show', user_horse_path(@user, horse) %> | <%= link_to 'Edit', 
+    edit_user_horse_path(@user, horse) %> | <%= link_to 'Delete', [horse.user, horse], method: 
+    :delete, data: { confirm: 'Are you sure?' } %>
+    </div>
+    <div class='divider-horizontal'></div>
+<% end %>
+</div>
+<div class="search-paginate">
+<%= will_paginate @horses, :renderer => BootstrapPagination::Rails %>
+</div>

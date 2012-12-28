@@ -3,11 +3,8 @@ class HorsesController < ApplicationController
   # GET user/:user_id/horses.json
   def index
       @user = User.find(params[:user_id])
-      @horse = @user.horses.all
-      
-      @search = Horse.search(params[:search])
-      @horses = @search.all 
-      @json = @horses.to_gmaps4rails
+
+      @horses = Horse.where(:user_id => @user.id, :active => true).paginate(:page => params[:page], :per_page => 3)
 
     respond_to do |format|
       format.html # index.html.erb

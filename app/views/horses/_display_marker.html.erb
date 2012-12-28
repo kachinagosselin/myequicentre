@@ -3,7 +3,7 @@
  		<div class="marker-image">
  	     <%= image_tag object.mainimage.url(:thumb) %>
  	 </div>
-         <p><b><%= object.name %></b></p> <%= truncate(object.text_description, :length => 275) %><%=link_to 'view details', user_horse_path(User.find(object.user_id), object) %>
+         <p><b><%= object.name %></b> </p> <%= truncate(object.text_description, :length => 275) %><%=link_to 'view details', user_horse_path(User.find(object.user_id), object) %>
    <% else %>
         <p><b><%= object.name %></b></p> <%= truncate(object.text_description, :length => 275) %><%=link_to 'view details', user_horse_path(User.find(object.user_id), object) %>
  	<% end %>

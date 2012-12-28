@@ -9,6 +9,7 @@ class UsersController < ApplicationController
 
   def show
    @user = User.find(params[:id])
+   @horses = Horse.where(:user_id => @user.id, :active => true).paginate(:page => params[:page], :per_page => 3)
     if @user == current_user
     else
     authorize! :index, @user, :message => 'You are not authorized to view this page.'
