@@ -36,7 +36,7 @@ function stripeResponseHandler(status, response) {
 </script>
 
 <div id="add-card" class="modal" style="display: none;">
-    <% Stripe.api_key = ENV['STRIPE_API_KEY']%>
+<% Stripe.api_key %>
         <div class="modal-header">
           <a class="close" data-dismiss="modal">&#215;</a>
         <h2>Add credit card</h2>

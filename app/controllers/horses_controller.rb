@@ -71,7 +71,7 @@ class HorsesController < ApplicationController
       
       @json = @horses.to_gmaps4rails do |horse, marker|
         marker.infowindow render_to_string(:partial => "/horses/display_marker", :locals => {:object => horse})
-        #marker.title   "i'm the title"
+        #marker.title   horse.name
         #marker.sidebar "i'm the sidebar"
         #marker.json({ :id => @horse.id })
       end
@@ -107,7 +107,7 @@ end
   end
 
   def destroy
-      Stripe.api_key = ENV['STRIPE_API_KEY']
+      Stripe.api_key
       @user = User.find(params[:user_id])
       @horse = @user.horses.find(params[:id])
       @subscription = @user.subscriptions.where(:horse_id => @horse.id).first
@@ -121,14 +121,12 @@ end
             if number > 1
             new_number = number - 1  
             @horse.update_attribute(:active, false)
-            @subscription.destroy
             stripe_customer = Stripe::Customer.retrieve(@customer.stripe_customer_token)
-            stripe_customer.update_subscription(:plan => "001", :quantity => new_number)  
+            stripe_customer.update_subscription(:plan => @subscription.plan_id, :quantity => new_number)  
             else
             #if this is the last subscription, cancel the subscription
             @horse.update_attribute(:active, false)
             stripe_customer.cancel_subscription
-            @subscription.destroy
             end
         end
       end

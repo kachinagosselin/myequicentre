@@ -7,7 +7,7 @@ class SubscriptionsController < ApplicationController
   end
 
   def create
-Stripe.api_key = ENV['STRIPE_API_KEY']
+    Stripe.api_key
     @user = User.find(params[:user_id])
     @horse = @user.horses.find(params[:subscription][:horse_id])
     @customer = @user.customer
@@ -54,7 +54,7 @@ Stripe.api_key = ENV['STRIPE_API_KEY']
 
 
   def unsubscribe
-Stripe.api_key = ENV['STRIPE_API_KEY']
+    Stripe.api_key
     @user = User.find(params[:user_id])
     @horse = @user.horses.find(params[:horse_id])
     @customer = @user.customer

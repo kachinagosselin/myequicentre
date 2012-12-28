@@ -1,5 +1,6 @@
 <script>
 Stripe.setPublishableKey($('meta[name="stripe-key"]').attr('content'));
+Stripe.api_key = ENV['STRIPE_API_KEY']
 $(document).ready(function() {
   $("#new_subscription").submit(function(event) {
     // disable the submit button to prevent repeated clicks
@@ -46,7 +47,7 @@ function stripeResponseHandler(status, response) {
 </script>
 
 <div id="activate-horselisting-<%= horse.id %>" class="modal" style="display: none;">
-    <% Stripe.api_key = ENV['STRIPE_API_KEY']%>
+    <% Stripe.api_key %>
         <div class="modal-header">
           <a class="close" data-dismiss="modal">&#215;</a>
         <h2>Activate Listing for <%= horse.name %></h2>

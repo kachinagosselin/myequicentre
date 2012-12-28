@@ -102,6 +102,7 @@ GEM
     ffi (1.2.0)
     foreman (0.60.2)
       thor (>= 0.13.6)
+    geocoder (1.1.6)
     gherkin (2.11.5)
       json (>= 1.4.6)
     gibbon (0.3.5)
@@ -266,6 +267,7 @@ DEPENDENCIES
   email_spec (>= 1.4.0)
   factory_girl_rails (>= 4.1.0)
   foreman
+  geocoder
   gibbon (= 0.3.5)
   gmaps4rails
   google-analytics-rails

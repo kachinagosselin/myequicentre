@@ -10,7 +10,6 @@
     
     $("#edit_user").submit(function(event) {
     var number_string = document.getElementById('user_phone_number').value.replace(/[A-Za-z$-,-]/g, "").replace(/[^\d\.\-\ ]/g, '');
-    alert(number_string);
     if(number_string.charAt(0) === '1'){
     number_string = number_string.substr(1);
     }
