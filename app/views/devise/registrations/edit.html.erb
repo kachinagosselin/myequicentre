@@ -1,4 +1,36 @@
-
+<script>
+  $(document).ready(function(){
+    var num = document.getElementById('user_phone_number').value;
+    if (num != ""){ 
+    number = "(" +num.charAt(0)+num.charAt(1)+num.charAt(2)+ ") " 
+        +num.charAt(3)+num.charAt(4)+num.charAt(5)+ "-" 
+        +num.charAt(6)+num.charAt(7)+num.charAt(8)+num.charAt(9)
+    document.getElementById('user_phone_number').value = number;
+    }
+    
+    $("#edit_user").submit(function(event) {
+    var number_string = document.getElementById('user_phone_number').value.replace(/[A-Za-z$-,-]/g, "").replace(/[^\d\.\-\ ]/g, '');
+    alert(number_string);
+    if(number_string.charAt(0) === '1'){
+    number_string = number_string.substr(1);
+    }
+    var number = Number(number_string);
+    document.getElementById('user_phone_number').value = number;
+    });
+       
+    $('#user_bio').simplyCountable({
+    counter: '#counter',
+    countable: 'characters',
+    maxCount: 1000,
+    strictMax: true,
+    countDirection: 'up',
+    safeClass: 'safe',
+    overClass: 'over',
+    thousandSeparator: ','});
+   
+    });
+     
+</script>
 
 <!-- This is where we edit settings for user. -->
 <div class="white-background">
@@ -6,15 +38,22 @@
 
 <%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put, :class => 'form-vertical' }) do |f| %>
   <%= f.error_notification %>
-  
-  <p><b>Basic Account Details</b></p>
-  <%= f.input :first_name, :autofocus => true %> 
-  <%= f.input :last_name, :autofocus => true %> 
-  <%= f.input :email, :required => true %>
-  <%= f.label :bio, :label => "Tell us a bit about yourself:" %>
-  <%= f.text_area :bio, :cols => 10, :rows => 10 %>
-  <%= f.input :avatar%>
-
+  <div class="divider-horizontal"></div>  
+  <h4>Basic Account Details</h4>
+  <div class="row">
+  <div class="span5">
+  <%=h f.input :first_name, :autofocus => true %> 
+  <%=h f.input :last_name, :autofocus => true %> 
+  <%=h f.input :email, :required => true %>
+  <%= f.input :avatar, :label => "Upload Profile Image"%>
+  </div>
+  <div class="span5">
+  <%=h f.input :bio,  :as => :text, :label => "Tell us a bit about yourself:", 
+  :input_html => { :style => 'width: 430px', :rows => 12 }, 
+  :hint => 'Note: You have used <span id="counter"></span> characters.'%>
+  </div>
+  </div>
+  <div class="divider-horizontal"></div>
 <!--
   <p><b>Billing Information</b><p>
   <% customer = Customer.where(:user_id => current_user.id).first %>
@@ -29,24 +68,31 @@
     <%= render 'users/add_card_popup'%></p> 
   <% end %>
 -->
-  
-  <p><b>Contact Information</b></p>
-  <%= f.input :address %>
-  <%= f.input :city %>
-  <%= f.input :state, :as => :select, :collection => ["AL","AK","AZ","AR","CA","CO","CT",
-  "DE","FL","GA","HI","ID","ID","IL","IN","IA","KS","KY","LA","ME","MD","MA","MI","MN",
-  "MS","MO","MT","NE","NV","NH","NJ","NM","NY","NC","ND","OH","OK","OR","PA","RI","SC",
-  "SD","TN","TX","UT","VT","VA","WA","WV","WI","WY"]%>
-  <%= label_tag(:website, "Website") %>
-  <%= f.text_field :website %>
+  <h4>Contact Information</h4>
+  <div class="row">
+  <div class="span5">
+  <%=h f.input :address %>
+  <%=h f.input :city %>
+  <%= f.input :state, :as => :select, :collection => STATES %>
+  </div>
+  <div class="span5">
+  <%=h f.input :website%>
   <%= f.label(:phone_number, "Phone Number") %>
-  <%= f.text_field :phone_number %>
-  <p>Format for phone number is xxx-xxx-xxxx</p>
-  <%= f.input :join_mailing_list, :as => :boolean %>
+  <%=h f.text_field :phone_number %>
+  <%= f.input :join_mailing_list, :as => :boolean, :boolean_style => 'nested' %>
+  </div>
+  </div>
+  <div class="divider-horizontal"></div>
 
-  <p><b>Change Your Password</b></p>
-  <%= f.input :password, :autocomplete => "off", :required => false %>
-  <%= f.input :password_confirmation, :required => false %>
+  <h4>Change Your Password</h4>
+  <div class="row">
+  <div class="span5">
+  <%=h f.input :password, :autocomplete => "off", :required => false %>
+  </div>
+  <div class="span5">
+  <%=h f.input :password_confirmation, :required => false %>
+  </div>
+  </div>
 
   <p><a data-toggle="modal" href="#enter-password" class="btn btn-primary" type="button">Confirm Update</a>
     <div id="enter-password" class="modal" style="display: none;">
@@ -56,13 +102,13 @@
 
         <div class="modal-body">    
         <p><b>Enter your current password to confirm changes</b></p>
-        <%= f.input :current_password, :required => true %>
+        <%=h f.input :current_password, :required => true %>
         </div>
   
         <div class="modal-footer">
         <div class="actions">
         <a class="btn" data-dismiss="modal" href="#">Cancel</a>
-        <%= f.button :submit, 'Confirm', :class => 'btn-primary' %>
+        <%=h f.button :submit, 'Confirm', :class => 'btn-primary' %>
         </div>
         </div>
     </div>

@@ -1,10 +1,8 @@
 
 <p id="notice"><%= notice %></p>
 <div class="white-background">
-<h1>Editing <%= current_user.horses.find(params[:id]).name %></h1>
+<h2>Update <%= current_user.horses.find(params[:id]).name %>'s Listing</h2>
 
 <%= render 'form' %>
 
-<%= link_to 'Show', user_horses_path(@user) %> |
-<%= link_to 'Back', user_horses_path(@user) %>
 </div>

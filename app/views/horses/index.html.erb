@@ -39,9 +39,6 @@ to inquire into the details.</b></p>
 <%= @user.phone_number.to_s[3,3] %>-<%= @user.phone_number.to_s[6,@user.phone_number.size]%>
 </h3>
 <% end %>
-<% if false %>
-<h3>Zipcode: <%= link_to @user.zipcode[0].code if @user.city.present? %></h3>
-<% end %>
 </div>
 </div>
 </div>

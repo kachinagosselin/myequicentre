@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121227001458) do
+ActiveRecord::Schema.define(:version => 20121228060841) do
 
   create_table "comments", :force => true do |t|
     t.string   "commenter"
@@ -68,7 +68,6 @@ ActiveRecord::Schema.define(:version => 20121227001458) do
     t.datetime "updated_at",             :null => false
     t.string   "city"
     t.string   "state"
-    t.integer  "zip_id"
     t.string   "sale_status"
     t.string   "status"
     t.boolean  "flagged"
@@ -93,6 +92,10 @@ ActiveRecord::Schema.define(:version => 20121227001458) do
     t.string   "image4_content_type"
     t.integer  "image4_file_size"
     t.datetime "image4_updated_at"
+    t.float    "latitude"
+    t.float    "longitude"
+    t.string   "address"
+    t.boolean  "gmaps"
   end
 
   add_index "horses", ["user_id"], :name => "index_horses_on_user_id"
@@ -175,34 +178,36 @@ ActiveRecord::Schema.define(:version => 20121227001458) do
   add_index "testimonials", ["user_id"], :name => "index_testimonials_on_user_id"
 
   create_table "users", :force => true do |t|
-    t.string   "email",                  :default => "", :null => false
-    t.string   "encrypted_password",     :default => "", :null => false
+    t.string   "email",                               :default => "", :null => false
+    t.string   "encrypted_password",                  :default => "", :null => false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          :default => 0
+    t.integer  "sign_in_count",                       :default => 0
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.datetime "created_at",                             :null => false
-    t.datetime "updated_at",                             :null => false
+    t.datetime "created_at",                                          :null => false
+    t.datetime "updated_at",                                          :null => false
     t.string   "first_name"
     t.string   "last_name"
     t.string   "avatar_file_name"
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
-    t.integer  "phone_number"
+    t.integer  "phone_number",           :limit => 8
     t.string   "website"
     t.string   "preferred_contact"
     t.string   "address"
     t.string   "city"
     t.string   "state"
-    t.integer  "zip_id"
     t.text     "bio"
     t.string   "status"
     t.boolean  "flagged"
+    t.float    "latitude"
+    t.float    "longitude"
+    t.boolean  "gmaps"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
@@ -214,15 +219,5 @@ ActiveRecord::Schema.define(:version => 20121227001458) do
   end
 
   add_index "users_roles", ["user_id", "role_id"], :name => "index_users_roles_on_user_id_and_role_id"
-
-  create_table "zips", :force => true do |t|
-    t.string   "code"
-    t.string   "city"
-    t.string   "state"
-    t.decimal  "lat",        :precision => 15, :scale => 10
-    t.decimal  "lon",        :precision => 15, :scale => 10
-    t.datetime "created_at",                                 :null => false
-    t.datetime "updated_at",                                 :null => false
-  end
 
 end

@@ -41,3 +41,4 @@ gem 'cocaine', '0.3.2'
 gem 'google-analytics-rails'
 gem "dynamic_form"
 gem "rake", '10.0.2'
+gem 'gmaps4rails'

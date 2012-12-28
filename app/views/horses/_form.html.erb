@@ -1,5 +1,11 @@
 <script>
   $(document).ready(function(){
+    var raw_price = document.getElementById('horse_price').value;
+    if (raw_price != ""){
+    var formated_price = '$' + raw_price;
+    document.getElementById('horse_price').value = formated_price;
+    }
+        
    var breeds = ['Akhal-Teke', 'American Saddlebred', 'American Warmblood',
     'Andalusian', 'Appaloosa', 'Arabian', 'Belgian Horse', 'Belgian Sporthorse', 
     'Belgian Warmblood', 'Black Forest Horse', 'Canadian Horse', 'Canadian Sport Horse', 
@@ -45,23 +51,44 @@
     var price_string = document.getElementById('horse_price').value.replace(/[A-Za-z$-,-]/g, "").replace(/[^\d\.\-\ ]/g, '');
     var price_int = Number(price_string);
     document.getElementById('horse_price').value = price_int;
+    var breed = document.getElementById('horse_breed').value;
+    document.getElementById('horse_breed').value = capitalize(breed);
     });
 
+    $("#edit_horse").submit(function(event) {
+    var price_string = document.getElementById('horse_price').value.replace(/[A-Za-z$-,-]/g, "").replace(/[^\d\.\-\ ]/g, '');
+    var price_int = Number(price_string);
+    document.getElementById('horse_price').value = price_int;
+    var breed = document.getElementById('horse_breed').value;
+    document.getElementById('horse_breed').value = capitalize(breed);
+    });
+    
+    function capitalize(text) {
+    return text.charAt(0).toUpperCase() + text.slice(1).toLowerCase();
+    }
 });
 </script>
 
-<%= simple_form_for([@user, @horse], :html => {:class => 'form-horizontal', :multipart => true }) do |f| %>
+<%= simple_form_for([@user, @horse], :html => {:id => 'edit_horse', :class => 'form-vertical', :multipart => true }) do |f| %>
   <%= f.error_notification %>
   <div class="form-inputs">    
+  <div class="row">
+  <div class="span5">
+    <b>Basic Horse Details</b>
     <%=h f.input :name %>
     <%=h f.input :breed, :error_html => { :id => "breed_error"}%>
     <%= f.input :gender, :as => :select, :collection => ["Mare","Gelding","Stallion"]%>
     <%= f.input :dob, :as => :date, :discard_day => true, :order => [:month, :year],
                               :start_year => Time.now.utc.to_date.year-50, :end_year => Time.now.utc.to_date.year %>
     <%=h f.input :height, :as => :string, :label => 'Height (hh)' %>
-    <%=h f.input :text_description, :as => :text, :input_html => { :cols => 10, :rows => 15 }, :hint => 'Note: You have used <span id="counter"></span> characters.'%>
     <%=h f.input :price, :as => :string%>
-  	
+
+    <% if @horse.address.present? %>
+    <%=h f.input :address, :value => @horse.address%>
+    <% else %>
+    <%=h f.input :address %>
+    <% end %>
+      	
     <% if @user.city.present? && !@horse.city.present?%>
     <%=h f.input :city, :value => @user.city, :hint => 'Note: Change horse location if different than yours.'%>
     <% elsif @horse.city.present? %>
@@ -71,20 +98,26 @@
     <% end %>
     
     <% if @user.state.present? && !@horse.state.present?%>
-    <%=h f.input :state, :value => @user.state%>
+    <%= f.input :state, :as => :select, :collection => STATES, :value => @user.state%>
     <% elsif @horse.state.present? %>
-    <%=h f.input :state, :value => @horse.state%>
+    <%= f.input :state, :as => :select, :collection => STATES, :value => @horse.state%>
     <% else %>
-    <%=h f.input :state %>
+    <%= f.input :state, :as => :select, :collection => STATES %>
     <% end %>
-    
+    </div>
+    <div class="span6">
+    <b>Horse Description</b>    
+    <%=h f.input :text_description, :label => false, :as => :text, :input_html => { :style => 'width: 430px', :rows => 10 }, :hint => 'Note: You have used <span id="counter"></span> characters.'%>
+    <b>Images for Display</b>
     <%= f.input :mainimage, :label => 'Main Image', :hint => 'Note: It is recommended to 
-    upload an image that meets or exceeds 900 x 600px.' %>
+    upload an image that at least 900 x 600px.' %>
     <%= f.input :image1, :label => 'Extra Image 1' %>
     <%= f.input :image2, :label => 'Extra Image 2' %>
     <%= f.input :image3, :label => 'Extra Image 3' %>
     <%= f.input :image4, :label => 'Extra Image 4', :hint => 'Note: All extra images will 
-    only appear in a slideshow at the bottom of the horse listing.' %>
+    only appear in a slideshow on the horse listing.' %>
+    </div>
+    </div>
     </div>
 
   <div class="form-actions">

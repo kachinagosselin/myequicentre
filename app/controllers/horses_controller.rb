@@ -7,7 +7,8 @@ class HorsesController < ApplicationController
       
       @search = Horse.search(params[:search])
       @horses = @search.all 
-      
+      @json = @horses.to_gmaps4rails
+
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: user_horses_path(@user) }
@@ -69,7 +70,15 @@ class HorsesController < ApplicationController
   def search
       @search = Horse.search(params[:search])
       @horses = @search.paginate(:page => params[:page], :per_page => 9)
-  end
+      #@json = @horses.to_gmaps4rails
+      
+      @json = @horses.to_gmaps4rails do |user, marker|
+        #marker.infowindow render_to_string(:partial => "/users/my_template", :locals => { :object => user})
+        #marker.title   "i'm the title"
+        #marker.sidebar "i'm the sidebar"
+        #marker.json({ :id => @horse.id })
+      end
+end
 
   def changestatus
       @user = User.find(params[:user_id])
@@ -101,7 +110,7 @@ class HorsesController < ApplicationController
   end
 
   def destroy
-Stripe.api_key = ENV['STRIPE_API_KEY']
+      Stripe.api_key = ENV['STRIPE_API_KEY']
       @user = User.find(params[:user_id])
       @horse = @user.horses.find(params[:id])
       @subscription = @user.subscriptions.where(:horse_id => @horse.id).first

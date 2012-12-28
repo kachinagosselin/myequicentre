@@ -46,7 +46,7 @@ function stripeResponseHandler(status, response) {
 </script>
 
 <div id="activate-horselisting-<%= horse.id %>" class="modal" style="display: none;">
-<% Stripe.api_key = ENV['STRIPE_API_KEY'] %>
+    <% Stripe.api_key = ENV['STRIPE_API_KEY']%>
         <div class="modal-header">
           <a class="close" data-dismiss="modal">&#215;</a>
         <h2>Activate Listing for <%= horse.name %></h2>

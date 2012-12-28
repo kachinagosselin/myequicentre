@@ -1,9 +1,11 @@
 class Horse < ActiveRecord::Base
+    acts_as_gmappable :check_process => false
+    
     belongs_to :user
     has_many :subscriptions, :dependent => :destroy
 
     attr_accessible :dob, :breed, :gender, :height, :name, :price, :text_description
-    attr_accessible :city, :state, :zip_id
+    attr_accessible :address, :city, :state
     attr_accessible :status, :sale_status, :flagged, :active
     attr_accessible :mainimage, :image1, :image2, :image3, :image4
 
@@ -43,4 +45,11 @@ class Horse < ActiveRecord::Base
         super(num)
     end
     
+    def gmaps4rails_address
+        "#{self.address} #{self.city}, #{self.state}" 
+    end
+    
+    def gmaps4rails_sidebar
+        "<span>#{name}</span>"
+    end
 end

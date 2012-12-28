@@ -1,9 +1,10 @@
 class User < ActiveRecord::Base
-  rolify
-  # Include default devise modules. Others available are:
-  # :token_authenticatable, :confirmable,
-  # :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable,
+    rolify
+    acts_as_gmappable :check_process => false
+    # Include default devise modules. Others available are:
+    # :token_authenticatable, :confirmable,
+    # :lockable, :timeoutable and :omniauthable
+    devise :database_authenticatable, :registerable,
     :recoverable, :rememberable, :trackable, :validatable, :mailchimp
     
     before_validation do
@@ -13,7 +14,7 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
     attr_accessible :role_ids, :as => :admin
     attr_accessible :first_name, :last_name, :email, :password, :password_confirmation, :remember_me, :phone_number, :website
-    attr_accessible :address, :city, :state, :zip_id
+    attr_accessible :address, :city, :state
     attr_accessible :bio
     attr_accessible :join_mailing_list
     attr_accessible :status, :flagged
@@ -21,25 +22,26 @@ class User < ActiveRecord::Base
     validates :first_name, :last_name, :email, :presence => true
     validates :email, :uniqueness => true
     validates_format_of :email, :with => /^([^@\s]+)@((?:[-a-z0-9]+.)+[a-z]{2,})$/i
+    #validates_format_of :website, :allow_blank => true, :with => /^(http|https)://[a-z0-9]+([-.]{1}[a-z0-9]+)*.[a-z]{2,5}(([0-9]{1,5})?/.*)?$/ix
+    validates :phone_number, :length => { :is => 10 }, :allow_blank => true 
 
   # Images
     attr_accessible :avatar
-    has_attached_file :avatar, :default_url => "/images/default/:style/default_user.jpg", :styles => { :medium => "275x275#", :thumb => "100x100#" }#, :path => ":rails_root/images/system/:attachment/:id/:basename_:style.:extension", :url => "/images/:attachment/:id/:style/:basename_:style.:extension"
+    has_attached_file :avatar, :default_url => "/images/default/:style/default_user.jpg", :styles => { :medium => "275x275#", :thumb => "100x100#" }
 
-  has_many :testimonials, :dependent => :destroy
-  has_many :messages, :dependent => :destroy
-  has_many :contacts, :dependent => :destroy
-  has_many :horses, :dependent => :destroy
-  has_many :saved_horses, :dependent => :destroy
-  has_one :customer, :dependent => :destroy
-  has_many :subscriptions, :dependent => :destroy
-  belongs_to :zip
+    has_many :testimonials, :dependent => :destroy
+    has_many :messages, :dependent => :destroy
+    has_many :contacts, :dependent => :destroy
+    has_many :horses, :dependent => :destroy
+    has_many :saved_horses, :dependent => :destroy
+    has_one :customer, :dependent => :destroy
+    has_many :subscriptions, :dependent => :destroy
     
-  def name
+    def name
       name ="#{self.first_name} #{self.last_name}"  
-  end
+    end
     
-  def zipcode
-      Zip.find(:all, :conditions => ["city = ? and state = ?", self.city, self.state])
-  end
+    def gmaps4rails_address
+      "#{self.address} #{self.city}, #{self.state}" 
+    end
 end
