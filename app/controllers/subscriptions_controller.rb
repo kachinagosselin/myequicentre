@@ -7,7 +7,11 @@ class SubscriptionsController < ApplicationController
   end
 
   def create
+    if Rails.env.development?
     Stripe.api_key
+    else
+    Stripe.api_key = ENV['STRIPE_API_KEY']
+    end
     @user = User.find(params[:user_id])
     @horse = @user.horses.find(params[:subscription][:horse_id])
     @customer = @user.customer
