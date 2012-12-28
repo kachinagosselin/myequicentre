@@ -72,8 +72,8 @@ class HorsesController < ApplicationController
       @horses = @search.paginate(:page => params[:page], :per_page => 9)
       #@json = @horses.to_gmaps4rails
       
-      @json = @horses.to_gmaps4rails do |user, marker|
-        #marker.infowindow render_to_string(:partial => "/users/my_template", :locals => { :object => user})
+      @json = @horses.to_gmaps4rails do |horse, marker|
+        marker.infowindow render_to_string(:partial => "/horses/display_marker", :locals => {:object => horse})
         #marker.title   "i'm the title"
         #marker.sidebar "i'm the sidebar"
         #marker.json({ :id => @horse.id })

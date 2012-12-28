@@ -60,7 +60,7 @@
     var price_int = Number(price_string);
     document.getElementById('horse_price').value = price_int;
     var breed = document.getElementById('horse_breed').value;
-    document.getElementById('horse_breed').value = capitalize(breed);
+    document.getElementById('horse_breed').value = breed.toLowerCase();
     });
     
     function capitalize(text) {

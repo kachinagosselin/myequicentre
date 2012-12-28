@@ -41,7 +41,7 @@
     <div id="map-results">
     <div class="row">
         <div class="span9">
-        <%= gmaps(:map_options => {:auto_zoom => false, :zoom => 13, :do_clustering => false}, :markers => {:data => @json, :options => {:list_container => "markers_list" } }) %>
+        <%= gmaps(:map_options => {:do_clustering => false}, :markers => {:data => @json, :options => {:list_container => "markers_list" } }) %>
         </div>
         <div class="span2">
         <div id="inner">
