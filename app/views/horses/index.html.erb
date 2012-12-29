@@ -10,22 +10,22 @@ to inquire into the details.</b></p>
 <% else %>
 <div class='white-background'>
 <div class="row-fluid">
-<div class="span4" id="profile-image">
-    <div class='user-profile-image'>
-    <%= image_tag @user.avatar.url(:medium) %>
-    </div>
-        <% if current_user != @user %>
-        <a data-toggle="modal" href="#message-user-<%= @user.id %>" class="btn btn-block" type="button">Message Owner</a>
-        <%= render 'users/user_message', :user => @user %> 
-        <% end %>
-</div>
-
-<div class="span8">
+<div class="span5">
 <% if current_user == @user %>
 <h1><%= @user.first_name %> <%= @user.last_name %></h1>
 <% else %>
 <h1><%= @user.first_name %> <%= @user.last_name[0] %>.</h1>
 <% end %>
+<div class="profile-image">
+    <%= image_tag @user.avatar.url(:medium), :class => "img-circle", :id => "horse-owner-img" %>
+</div>
+        <% if current_user != @user %>
+        <a data-toggle="modal" href="#message-user-<%= @user.id %>" class="btn btn-block" type="button">Message <%= @user.name %></a>
+        <%= render 'users/user_message', :user => @user %> 
+        <% end %>
+</div>
+
+<div class="span7">
 <h3><%= @user.bio if @user.bio %></h3>
 
 <% if (@user.website && !@user.website.blank?) || @user.phone_number %>

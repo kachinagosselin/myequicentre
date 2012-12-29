@@ -65,7 +65,13 @@ class HorsesController < ApplicationController
   end
     
   def search
+    if params.has_key?(:search) && params[:search][:distance] != ""
+      @distance = params[:search][:distance]
+      params[:search].delete :distance
+      @search = Horse.near(current_user.gmaps4rails_address, @distance).search(params[:search])
+    else
       @search = Horse.search(params[:search])
+    end
       @horses = @search.paginate(:page => params[:page], :per_page => 9)
       #@json = @horses.to_gmaps4rails
       

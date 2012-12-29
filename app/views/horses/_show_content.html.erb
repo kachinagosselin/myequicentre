@@ -71,7 +71,7 @@
 <p> <%= @user.name %> </p>
 </div>
 <%= image_tag @user.avatar.url(:medium), :class => "img-circle", :id => "horse-owner-img"%>
-<a data-toggle="modal" href="#message-user-<%= @user.id %>" class="btn btn-info btn-block" type="button">Message Owner</a>
+<a data-toggle="modal" href="#message-user-<%= @user.id %>" class="btn btn-info btn-block" type="button">Inquire about this horse!</a>
 <%= image_tag "/images/get_in_touch.png"%>
 <h4  class="center-align">Horse Details</h4>
 <p><b>Breed: </b><%= @horse.breed %></p>

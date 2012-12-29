@@ -90,6 +90,8 @@ function calculateAge(dobString) {
         <%= f.label :price_less_than_or_equal_to, 'Price less than' %>
         <%= f.text_field :price_less_than_or_equal_to, :include_blank => true %><br />
         </span>
+        <%= f.label :distance, 'Distance' %>
+        <%= f.text_field :distance, :include_blank => true %><br />
         <span class ='span3 offset9'>
         <%= f.submit "Search", :class => "btn btn-primary"%> 
         </span>
