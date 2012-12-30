@@ -81,7 +81,10 @@ class HorsesController < ApplicationController
      params[:search][:breed_contains_any] = @breed_array
 
      params[:search].delete :gender_contains
-
+     @genders = params[:search][:gender_contains_any]
+     @gender_array = @genders.split(" ")
+     params[:search][:gender_contains_any] = @gender_array
+     
      @search = Horse.near(current_user.gmaps4rails_address, @distance).search(params[:search])
     elsif params.has_key?(:search)
      @keywords = params[:search][:name_or_breed_or_gender_or_text_description_contains_any]
@@ -91,12 +94,14 @@ class HorsesController < ApplicationController
      params[:search].delete :distance
 
      params[:search].delete :breed_contains
-     params[:search].delete :breed_contains
      @breeds = params[:search][:breed_contains_any]
      @breed_array = @breeds.split(" ")
      params[:search][:breed_contains_any] = @breed_array
 
      params[:search].delete :gender_contains
+     @genders = params[:search][:gender_contains_any]
+     @gender_array = @genders.split(" ")
+     params[:search][:gender_contains_any] = @gender_array
 
      @search = Horse.search(params[:search])    
    else

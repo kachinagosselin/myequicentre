@@ -27,14 +27,14 @@ $(document).ready(function(){
     '17.3', '18.0', '18.1', '18.2', '18.3', '19.0', '19.1', '19.2', '19.3', '20.0'];
      var genders = ['Mare','Gelding','Stallion'];
     
-    for(var i=0; i<genders.length; i++){
-    var div = document.createElement("div");
-    div.setAttribute("class", "pill");
-    div.id = genders[i];
-    div.innerHTML =  genders[i] + '<a class="close" id="'+genders[i]+'" onclick="hide(id);" style="display:inline;">&#215;</a>';
-    parent = document.getElementById('gender-section');
-    parent.appendChild(div);
-    }
+    //for(var i=0; i<genders.length; i++){
+    //var div = document.createElement("div");
+    //div.setAttribute("class", "pill");
+    //div.id = genders[i];
+    //div.innerHTML =  genders[i] + '<a class="close" id="'+genders[i]+'" onclick="hide(id);" style="display:inline;">&#215;</a>';
+    //parent = document.getElementById('gender-section');
+    //parent.appendChild(div);
+    //}
     
     //for(var i=0; i<3; i++){
     //var div = document.createElement("div");
@@ -65,34 +65,36 @@ $(document).ready(function(){
         
         var breed_string = "";
         var value = "";
-        $("#search_breed_contains").bind("keyup",function(e) {
-        var key = String.fromCharCode(e.keyCode);
+        $("#search_breed_contains").bind("keypress",function(e) {
+        var key = String.fromCharCode(e.which);
         if (key == " "){
-        breed_string = breed_string + " " + value;
+        breed_string = "" + breed_string + " " + value + "";
         proper_value = toProperCase(value);
-        clearandcreate('breed-section',"search_breed_contains","search_breed_contains_any", proper_value, breed_string.trim());
+        clearandcreate('breed-section',"search_breed_contains","search_breed_contains_any", proper_value);
         value = "";
+        }
+        else if(key=="deletevalue"){
+        value = value.substring(0, value.length-1);
         }
         else{
         value = value + key.toLowerCase();
         }
+        });
         
-        //var gender_string = "";
-        //var gender_value = "";
-        //$("#search_gender_contains").bind("keyup",function(e) {
-        //var key = String.fromCharCode(e.keyCode);
-        //if (key == " "){
-        //gender_string = gender_string + " " + gender_value;
-        //proper_value = toProperCase(gender_value);
-        //clearandcreate("search_gender_contains", proper_value, gender_string);
-        //gender_value = "";
-        //}
-        //else{
-        //gender_value = gender_value + key.toLowerCase();
-        //}
-        
-        
-    });
+        var gender_string = "";
+        var gender_value = "";
+        $("#search_gender_contains").bind("keypress",function(e) {
+        var key = String.fromCharCode(e.which);
+        if (key == " "){
+        gender_string = "" + gender_string + " " + gender_value + "";
+        proper_value = toProperCase(gender_value);
+        clearandcreate('gender-section',"search_gender_contains","search_gender_contains_any", proper_value);
+        gender_value = "";
+        }
+        else{
+        gender_value = gender_value + key.toLowerCase();
+        }
+        });
     
     // when you submit this form
   $("#horse_search").submit(function(event) {
@@ -128,10 +130,8 @@ $(document).ready(function(){
         if (distance != ""){
         document.getElementById('search_distance').value = distance;
         }       
-        //var keywords = document.getElementById('search_name_or_breed_or_gender_or_text_description_contains_any').value;
-        //var keyword_array = new Array();
-        //var keyword_array = combine_ids(keywords.split(" "));
-        //alert(keyword);
+        //var keyword_string = document.getElementById('search_name_or_breed_or_gender_or_text_description_contains_any').value;
+        //var keyword_array = keyword_string.split(" ")
         //document.getElementById('search_name_or_breed_or_gender_or_text_description_contains_any').value = keyword_array;       
  
  });
@@ -145,15 +145,16 @@ function searchStringInArray (string) {
     return -1;
 }
 
-function clearandcreate(parent, id, hiddenid, value, string) {
+function clearandcreate(parent, id, hiddenid, value) {
         document.getElementById(id).value = "";
             var div = document.createElement("div");
             div.setAttribute("class", "pill");
             div.id = value;
-            div.innerHTML =  value + '<a class="close" id="'+value+'" onclick="hide(id);" style="display:inline;">&#215;</a>';
+            div.innerHTML =  value + '<a class="close" id="'+value+'" onclick="hide(id, ' + hiddenid +');" style="display:inline;">&#215;</a>';
             parent = document.getElementById(parent);
             parent.appendChild(div);
-            document.getElementById(hiddenid).value = string.replace(/\W/g, '');
+            current_value = document.getElementById(hiddenid).value;
+            document.getElementById(hiddenid).value = ''+ current_value + ' ' + value;
 }
 
 function toProperCase(str)
@@ -161,8 +162,12 @@ function toProperCase(str)
     return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
 }
 
-function hide(id) {
+function hide(id, search_term) {
         document.getElementById(id).style.display = 'none'; 
+        var values = document.getElementById(search_term).value;
+        document.getElementById(search_term).value = values.replace(id, "");
+        var now = document.getElementById(search_term).value;
+        alert(now);
 }
      
 function combine_ids(ids) {
