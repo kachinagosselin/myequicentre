@@ -20,7 +20,7 @@ to inquire into the details.</b></p>
     <%= image_tag @user.avatar.url(:medium), :class => "img-circle", :id => "horse-owner-img" %>
 </div>
         <% if current_user != @user %>
-        <a data-toggle="modal" href="#message-user-<%= @user.id %>" class="btn btn-block" type="button">Message <%= @user.name %></a>
+        <a data-toggle="modal" href="#message-user-<%= @user.id %>" class="btn btn-block" type="button">Message <%= @user.first_name %></a>
         <%= render 'users/user_message', :user => @user %> 
         <% end %>
 </div>

@@ -31,17 +31,17 @@ customer.save
 puts 'First customer created: ' << customer.stripe_customer_token
 
 puts 'SETTING UP TEST HORSE OBJECTS'
-horse21 = user2.horses.create! :name => 'His Horse', :breed => 'Arabian', :gender => 'Gelding', :dob => '2000-01-05', :height => 15.1, :text_description => 'A docile arab gelding for sale.', :price => 12000, :sale_status => 'inactive', :flagged => false, :status => 'normal', :city => 'Cambridge', :state => 'MA'
-horse22 = user2.horses.create! :name => 'Our Horse', :breed => 'Arabian', :gender => 'Stallion', :dob => '2003-02-15', :height => 15.3, :text_description => 'An energetic arabian stallion.', :price => 25000, :sale_status => 'inactive', :flagged => false, :status => 'normal', :city => 'Cambridge', :state => 'MA'
-horse23 = user2.horses.create! :name => 'My Horse', :breed => 'Warmblood', :gender => 'Mare', :dob => '2010-02-15', :height => 16.2, :text_description => 'A gentle warmblood mare for sale.', :price => 19000, :sale_status => 'inactive', :flagged => false, :status => 'normal', :city => 'Cambridge', :state => 'MA'
+horse21 = user2.horses.create! :name => 'His Horse', :breed => 'arabian', :gender => 'Gelding', :dob => '2000-01-05', :height => 15.1, :text_description => 'A docile arab gelding for sale.', :price => 12000, :sale_status => 'inactive', :flagged => false, :status => 'normal', :city => 'Cambridge', :state => 'MA'
+horse22 = user2.horses.create! :name => 'Our Horse', :breed => 'arabian', :gender => 'Stallion', :dob => '2003-02-15', :height => 15.3, :text_description => 'An energetic arabian stallion.', :price => 25000, :sale_status => 'inactive', :flagged => false, :status => 'normal', :city => 'Cambridge', :state => 'MA'
+horse23 = user2.horses.create! :name => 'My Horse', :breed => 'warmblood', :gender => 'Mare', :dob => '2010-02-15', :height => 16.2, :text_description => 'A gentle warmblood mare for sale.', :price => 19000, :sale_status => 'inactive', :flagged => false, :status => 'normal', :city => 'Cambridge', :state => 'MA'
 
 puts 'New horse created: ' << horse21.text_description
 puts 'New horse created: ' << horse22.text_description
 puts 'New horse created: ' << horse23.text_description
 
-horse31 = user3.horses.create! :name => 'First Horse', :breed => 'Arabian', :gender => 'Mare', :dob => '2000-01-05', :height => 15.1, :text_description => 'A lovely arab mare for sale.', :price => 12000, :sale_status => 'inactive', :flagged => false, :status => 'normal', :city => 'Cambridge', :state => 'MA'
-horse32 = user3.horses.create! :name => 'Second Horse', :breed => 'Andalusian', :gender => 'Stallion', :dob => '2003-02-15', :height => 15.3, :text_description => 'A spirited andalusian stallion.', :price => 25000, :sale_status => 'inactive', :flagged => false, :status => 'normal', :city => 'Cambridge', :state => 'MA'
-horse33 = user3.horses.create! :name => 'Third Horse', :breed => 'Warmblood', :gender => 'Gelding', :dob => '1988-08-24', :height => 16.2, :text_description => 'A gentle warmblood gelding for lease.', :price => 19000, :sale_status => 'inactive', :flagged => false, :status => 'normal', :city => 'Cambridge', :state => 'MA'
+horse31 = user3.horses.create! :name => 'First Horse', :breed => 'arabian', :gender => 'Mare', :dob => '2000-01-05', :height => 15.1, :text_description => 'A lovely arab mare for sale.', :price => 12000, :sale_status => 'inactive', :flagged => false, :status => 'normal', :city => 'Cambridge', :state => 'MA'
+horse32 = user3.horses.create! :name => 'Second Horse', :breed => 'andalusian', :gender => 'Stallion', :dob => '2003-02-15', :height => 15.3, :text_description => 'A spirited andalusian stallion.', :price => 25000, :sale_status => 'inactive', :flagged => false, :status => 'normal', :city => 'Cambridge', :state => 'MA'
+horse33 = user3.horses.create! :name => 'Third Horse', :breed => 'warmblood', :gender => 'Gelding', :dob => '1988-08-24', :height => 16.2, :text_description => 'A gentle warmblood gelding for lease.', :price => 19000, :sale_status => 'inactive', :flagged => false, :status => 'normal', :city => 'Cambridge', :state => 'MA'
 
 puts 'New horse created: ' << horse31.text_description
 puts 'New horse created: ' << horse32.text_description

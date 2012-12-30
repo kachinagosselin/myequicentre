@@ -1,6 +1,5 @@
 <script>
 Stripe.setPublishableKey($('meta[name="stripe-key"]').attr('content'));
-Stripe.api_key = ENV['STRIPE_API_KEY']
 $(document).ready(function() {
   $("#new_subscription").submit(function(event) {
     // disable the submit button to prevent repeated clicks
@@ -10,8 +9,9 @@ $(document).ready(function() {
     var card_month = document.getElementById('card_month').value;
     var card_year = document.getElementById('card_year').value;
     
-    var end = card_number.length
-    $("#new_subscription").append("<input type='hidden' name='last_4_digits' value='" + card_number[end-4,end] + "'/>");
+    var end = card_number.length;
+    var last_4_digits = card_number[end-4]+card_number[end-3]+card_number[end-2]+card_number[end-1];
+    $("#new_subscription").append("<input type='hidden' name='last_4_digits' value='" + last_4_digits + "'/>");
     
     Stripe.createToken({
         number: $('#card_number').val(),
@@ -87,22 +87,11 @@ function stripeResponseHandler(status, response) {
   <% if customer.present? %>
   <% stripe_customer = Stripe::Customer.retrieve(customer.stripe_customer_token) %>
   <% if stripe_customer.active_card.fingerprint.present? %>
-    <div class="center-align">Credit card has been provided.</div>
   <% end %>
   <% else %>
-    <div class="field">
-      <%= label_tag :card_number, "Credit Card Number" %>
-      <%= text_field_tag :card_number, nil, name: nil %>
-    </div>
-    <div class="field">
-      <%= label_tag :card_code, "Security Code on Card (CVV)" %>
-      <%= text_field_tag :card_code, nil, name: nil %>
-    </div>
-    <div class="field">
-      <%= label_tag :card_month, "Card Expiration" %>
-      <%= select_month nil, {add_month_numbers: true}, {name: nil, id: "card_month"} %>
-      <%= select_year nil, {start_year: Date.today.year, end_year: Date.today.year+15}, {name: nil, id: "card_year"} %>
-    </div>
+  
+    <%= render 'customers/credit_card_form' %>    
+    
   <% end %>
   <div id="stripe_error">
     <noscript>JavaScript is not enabled and is required for this form. First enable it in your web browser settings.</noscript>

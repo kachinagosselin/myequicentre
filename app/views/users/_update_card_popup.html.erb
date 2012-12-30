@@ -1,8 +1,7 @@
 <script>
 Stripe.setPublishableKey($('meta[name="stripe-key"]').attr('content'));
-function onUpdateCard(id) {
-    this.id = id;
-    alert("/users/" + this.id + "/customers/1/edit");
+$(document).ready(function() {
+  $("#update_card").submit(function(event) {
     // disable the submit button to prevent repeated clicks
     $('.submit-button').attr("disabled", "disabled");
     var card_number = document.getElementById('card_number').value;
@@ -10,15 +9,21 @@ function onUpdateCard(id) {
     var card_month = document.getElementById('card_month').value;
     var card_year = document.getElementById('card_year').value;
     
-    var response = Stripe.createToken({
+    var end = card_number.length;
+    var last_4_digits = card_number[end-4]+card_number[end-3]+card_number[end-2]+card_number[end-1];
+    $("#update_card").append("<input type='hidden' name='last_4_digits' value='" + last_4_digits + "'/>");
+    
+    Stripe.createToken({
         number: $('#card_number').val(),
         cvc: $('#card_code').val(),
         exp_month: $('#card_month').val(),
         exp_year: $('#card_year').val()
-    }, stripeResponseHandler);        
-    // allow the form to submit with the default action
+    }, stripeResponseHandler);
+
+    // prevent the form from submitting with the default action
     return false;
-  };
+  });
+});
 
 function stripeResponseHandler(status, response) {
     if (response.error) {
@@ -26,61 +31,52 @@ function stripeResponseHandler(status, response) {
         $(".submit-button").removeAttr("disabled");
     } else {
         var token = response['id'];
-        var new_url = "/users/" + this.id + "/customers/new";
-        var edit_url = "/users/" + this.id + "/customers/" + this.customer_id + "/edit";
-        $.ajax({
-            type:'GET',
-            url:  edit_url,
-            data: {'stripe_card_token': token}
-        });
+        // insert the token into the form so it gets submitted to the server
+        $("#update_card").append("<input type='hidden' name='stripe_card_token' value='" + token + "'/>");
+        //document.getElementById('subscription_stripe_card_token').value = response['id']
+        // and submit
+        $('#update_card').get(0).submit();
     }
     return false;
-};
+}
 
 </script>
 
-<div id="update-card" class="modal" style="display: none;">
     <% if Rails.env.development? %>
     <% Stripe.api_key %>
     <% else %>
     <% Stripe.api_key = ENV['STRIPE_API_KEY'] %>
     <% end %>
-        <div class="modal-header">
-          <a class="close" data-dismiss="modal">&#215;</a>
+
+<% @user = current_user %>
+<% @customer = @user.customer %>
+<%= simple_form_for( @user, :url => user_customer_path(@user, @customer), 
+:method => :put, :remote => true, :html => {:id => "update_card"}) do |uform| %>
+
+<div id="update-card" class="modal" style="display: none;">
+    
+    <div class="modal-header">
+        <a class="close" data-dismiss="modal">&#215;</a>
         <h2>Update credit card</h2>
-        </div>
+    </div>
 
-        <div class="modal-body">
-        <% customer = Customer.where(:user_id => current_user.id).first %>
-                <% stripe_customer = Stripe::Customer.retrieve(customer.stripe_customer_token) %>
-                <% if stripe_customer.active_card.fingerprint.present? %>
-                    <div class="center-align">Credit card has been provided. Do you want to edit?</div>
-                <% end %>
-                <div class="field">
-                <%= label_tag :card_number, "Credit Card Number" %>
-                <%= text_field_tag :card_number, nil, name: nil %>
-                </div>
-                <div class="field">
-                <%= label_tag :card_code, "Security Code on Card (CVV)" %>
-                <%= text_field_tag :card_code, nil, name: nil %>
-                </div>
-                <div class="field">
-                <%= label_tag :card_month, "Card Expiration" %>
-                <%= select_month nil, {add_month_numbers: true}, {name: nil, id: "card_month"} %>
-                <%= select_year nil, {start_year: Date.today.year, end_year: Date.today.year+15}, {name: nil, id: "card_year"} %>
-                </div>
-            <div id="stripe_error">
-                <noscript>JavaScript is not enabled and is required for this form. First enable it in your web browser settings.</noscript>
-            </div>
-        </div>
+    <div class="modal-body">
+    
+    <%= uform.hidden_field :user_id, :value => @user.id %>
+    <%= uform.hidden_field :email, :value => @user.email %>
   
-        <div class="modal-footer">
-        <div class="actions">
-            <a class="btn" data-dismiss="modal" href="#">Cancel</a>
-        <%= button_tag "Update", :class =>"btn submit-button", :type => 'button', :onclick => "onUpdateCard('#{current_user.id}');"%>
-
-        </div>
-        </div>
-
+    <%= render 'customers/credit_card_form' %>    
+    
+      <div id="stripe_error">
+      <noscript>JavaScript is not enabled and is required for this form. First enable it in your web browser settings.</noscript>
+      </div>
+    </div>
+  
+    <div class="modal-footer">
+    <div class="actions">
+        <a class="btn" data-dismiss="modal" href="#">Cancel</a>
+        <%= uform.submit "Update Card", :class =>"btn submit-button"%>
+    </div>
+    </div>
 </div>
-        
+<%end%>

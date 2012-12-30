@@ -24,10 +24,11 @@ $(".card").onclick(function(){
         <%= horse.gender %>,
         <%= horse.age %> yrs, 
         <%= horse.height %> hh</p>
-        <% if horse.state %>
-        <p>located in: <%= horse.city if horse.city %>, <%= horse.state %>
+        <p>located in: <%= horse.city if horse.city %>, <%= horse.state %> 
+        <% if current_user.present? %>
+        (<%= number_with_precision(horse.distance_from(current_user.gmaps4rails_address), :precision => 1)%> miles)
         <% end %>
-        <span class='more-details'><%= link_to 'view details', user_horse_path(User.find(horse.user_id), horse) %></span>
+        <span class='more-details'></span>
         </p>
     </div>
 </div>

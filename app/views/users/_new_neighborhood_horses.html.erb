@@ -1,0 +1,26 @@
+<% new_horses = Horse.near(current_user.gmaps4rails_address, 25).where(["DATE(created_at) >= ?", Date.today - 7]) %>
+<% if new_horses.first.present? %>
+
+<h4>There are your new horse for sale in your neighborhood!</h4>
+<div class="ad">
+<div class="row">
+
+<% i = 1 %>
+<% new_horses.each do |horse| %>
+<% if horse.user_id != current_user.id && i <=4 %>
+ <div class="span1" style="width:100px;height:100px;">
+ <%= image_tag horse.avatar.url(:thumb), :size => "100x100"  %>
+</div>
+ <div class="span1" style="width:85px;"> 
+ <b><%= horse.name %></b>
+ <p style="margin:0px;"><%= horse.city%>, <%= horse.state%></p>
+ <p style="margin:0px;">(<%= number_with_precision(horse.distance_from(current_user.gmaps4rails_address), :precision => 1)%> miles)</p>
+</div>
+<div class="divider-vertical" style="float:left;margin:0px;height:100px;"></div>
+<% i = i+1; %>
+<% end %>
+<% end %>
+</div>
+</div>
+
+<% end %>

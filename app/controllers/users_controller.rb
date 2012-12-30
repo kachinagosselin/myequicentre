@@ -28,7 +28,7 @@ class UsersController < ApplicationController
   end
     
   def destroy
-Stripe.api_key
+    Stripe.api_key
     authorize! :destroy, @user, :message => 'Not authorized as an administrator'
     user = User.find(params[:id])
       

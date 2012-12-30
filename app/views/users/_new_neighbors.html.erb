@@ -1,0 +1,26 @@
+<% new_users = User.near(current_user.gmaps4rails_address, 25).where(["DATE(created_at) >= ?", Date.today - 7]) %>
+<% if new_users.first.present? %>
+
+<h4>Here are your new neighbors!</h4>
+<div class="ad">
+<div class="row">
+
+<% i = 1 %>
+<% new_users.each do |user| %>
+<% if user.id != current_user.id && i <=4 %>
+ <div class="span1" style="width:100px;height:100px;">
+ <%= image_tag user.avatar.url(:thumb), :size => "100x100"  %>
+</div>
+ <div class="span1" style="width:85px;"> 
+ <b><%= user.first_name %> <%= user.last_name[0] %></b>
+ <p style="margin:0px;"><%= user.city%>, <%= user.state%></p>
+ <p style="margin:0px;">(<%= number_with_precision(user.distance_from(current_user.gmaps4rails_address), :precision => 1)%> miles)</p>
+</div>
+<div class="divider-vertical" style="float:left;margin:0px;height:100px;"></div>
+<% i = i+1; %>
+<% end %>
+<% end %>
+</div>
+</div>
+
+<% end %>

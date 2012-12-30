@@ -53,6 +53,7 @@ class HorsesController < ApplicationController
   def update
       @user = User.find(params[:user_id])
       @horse = @user.horses.find(params[:id])
+
     respond_to do |format|
         if @horse.update_attributes(params[:horse])
         format.html { redirect_to user_horse_path(@user, @horse), notice: 'Horse was successfully updated.' }
@@ -66,11 +67,40 @@ class HorsesController < ApplicationController
     
   def search
     if params.has_key?(:search) && params[:search][:distance] != ""
-      @distance = params[:search][:distance]
-      params[:search].delete :distance
-      @search = Horse.near(current_user.gmaps4rails_address, @distance).search(params[:search])
-    else
-      @search = Horse.search(params[:search])
+
+     @keywords = params[:search][:name_or_breed_or_gender_or_text_description_contains_any]
+     @keyword_array = @keywords.split(" ")
+     params[:search][:name_or_breed_or_gender_or_text_description_contains_any] = @keyword_array
+
+     @distance = params[:search][:distance]
+     params[:search].delete :distance
+
+     params[:search].delete :breed_contains
+     @breeds = params[:search][:breed_contains_any]
+     @breed_array = @breeds.split(" ")
+     params[:search][:breed_contains_any] = @breed_array
+
+     params[:search].delete :gender_contains
+
+     @search = Horse.near(current_user.gmaps4rails_address, @distance).search(params[:search])
+    elsif params.has_key?(:search)
+     @keywords = params[:search][:name_or_breed_or_gender_or_text_description_contains_any]
+     @keyword_array = @keywords.split(" ")
+     params[:search][:name_or_breed_or_gender_or_text_description_contains_any] = @keyword_array
+
+     params[:search].delete :distance
+
+     params[:search].delete :breed_contains
+     params[:search].delete :breed_contains
+     @breeds = params[:search][:breed_contains_any]
+     @breed_array = @breeds.split(" ")
+     params[:search][:breed_contains_any] = @breed_array
+
+     params[:search].delete :gender_contains
+
+     @search = Horse.search(params[:search])    
+   else
+     @search = Horse.search(params[:search])
     end
       @horses = @search.paginate(:page => params[:page], :per_page => 9)
       #@json = @horses.to_gmaps4rails

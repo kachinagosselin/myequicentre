@@ -23,7 +23,6 @@
 <p id="notice"><%= notice %></p>
  
 <div id="search-form">
-    <h4 class = "center-align">Search Criteria</h4>
     <%= render 'horses/search_form' %>
 </div>
 
@@ -35,7 +34,7 @@
 <div class="tab-content">
     <div class="tab-pane" id="search-results">
         <p> Sort by: <%= sort_link @search, :price %> | <%= sort_link @search, :dob, "Age" %> | 
-        </p>
+        <%= link_to "Distance", :order => "released_at" %></p>
         <%= render 'horses/search_results' %>
     </div>
     

@@ -82,7 +82,7 @@
     <%= f.input :gender, :as => :select, :collection => ["Mare","Gelding","Stallion"]%>
     <%= f.input :dob, :as => :date, :discard_day => true, :order => [:month, :year],
                               :start_year => Time.now.utc.to_date.year-50, :end_year => Time.now.utc.to_date.year %>
-    <%=h f.input :height, :as => :string, :collection => VALID_HEIGHTS, :label => 'Height (hh)' %>
+    <%=h f.input :height, :as => :string, :label => 'Height (hh)' %>
     <%=h f.input :price, :as => :string%>
 
     <% if @horse.address.present? %>

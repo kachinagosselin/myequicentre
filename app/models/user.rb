@@ -1,15 +1,16 @@
 class User < ActiveRecord::Base
     rolify
-    acts_as_gmappable :check_process => false
+    if true
+    acts_as_gmappable :check_process => false, :validation => false
+    geocoded_by :gmaps4rails_address   
+    after_validation :geocode          # auto-fetch coordinates
+    end
+
     # Include default devise modules. Others available are:
     # :token_authenticatable, :confirmable,
     # :lockable, :timeoutable and :omniauthable
     devise :database_authenticatable, :registerable,
     :recoverable, :rememberable, :trackable, :validatable, :mailchimp
-    
-    before_validation do
-    phone_number = phone_number.to_s.gsub('-','').to_i
-    end
 
   # Setup accessible (or protected) attributes for your model
     attr_accessible :role_ids, :as => :admin
@@ -23,7 +24,9 @@ class User < ActiveRecord::Base
     validates :email, :uniqueness => true
     validates_format_of :email, :with => /^([^@\s]+)@((?:[-a-z0-9]+.)+[a-z]{2,})$/i
     #validates_format_of :website, :allow_blank => true, :with => /^(http|https)://[a-z0-9]+([-.]{1}[a-z0-9]+)*.[a-z]{2,5}(([0-9]{1,5})?/.*)?$/ix
-    validates :phone_number, :length => { :is => 10 }, :allow_blank => true 
+#validates :phone_number, :length => { :is => 10 }, :allow_blank => true 
+#validates :city, :presence => true
+#validates :state, :presence => true
 
   # Images
     attr_accessible :avatar
@@ -41,7 +44,7 @@ class User < ActiveRecord::Base
       name ="#{self.first_name} #{self.last_name}"  
     end
     
-    def gmaps4rails_address
-      "#{self.address} #{self.city}, #{self.state}" 
-    end
+def gmaps4rails_address
+"#{self.address} #{self.city}, #{self.state}" 
+   end
 end
