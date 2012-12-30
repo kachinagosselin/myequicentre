@@ -62,7 +62,10 @@ $(document).ready(function(){
         var keyword_array = document.getElementById('search_name_or_breed_or_gender_or_text_description_contains_any').value;       
         document.getElementById('search_name_or_breed_or_gender_or_text_description_contains_any').value = 
         keyword_array.replace("[","").replace("]","").replace(","," ").replace(/"/g, "");
-        
+   
+        var keyword_array = document.getElementById('search_breed_contains_any').value; 
+        var gender_array = document.getElementById('search_gender_contains_any').value; 
+
         var breed_string = "";
         var value = "";
         $("#search_breed_contains").bind("keypress",function(e) {

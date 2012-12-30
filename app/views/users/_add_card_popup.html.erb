@@ -63,7 +63,8 @@ function stripeResponseHandler(status, response) {
     <%= form.hidden_field :user_id, :value => @user.id %>
     <%= form.hidden_field :email, :value => @user.email %>
   
-    <% render 'customers/credit_card_form' %>    
+    <%= render 'customers/credit_card_form' %>
+        
       <div id="stripe_error">
       <noscript>JavaScript is not enabled and is required for this form. First enable it in your web browser settings.</noscript>
       </div>
