@@ -1,14 +1,21 @@
    
 <%= simple_form_for([@user, @message]) do |f| %>
   <%= f.error_notification %>
+  <div class="row">
+  <div class="span1" id="form-labels">
+    <p style="margin-top:5px;">Name: </p>
+    <p style="margin-top:28px;">Subject: </p>
+  </div>
 
+  <div class="span9">
   <div class="form-inputs">
-    <%= f.label :to_user_id %>
-    <%= f.input :name %>
+    <%= f.input :name, :label => false, :input_html => 
+    { :style => 'width: 478px'} %>
     <%= f.hidden_field :from_user_id, :value => @user.id %>
-    <%= f.input :title %>
-    <%= f.label :content %>
-    <%= f.text_area :content, :cols => 20, :rows => 20 %>
+    <%= f.input :title, :label => false, :input_html => 
+    { :style => 'width: 478px'} %>
+    <%= f.input :content, :label => false, :as => :text, :input_html => 
+    { :style => 'width: 478px', :rows => 12 } %>
     <%= f.hidden_field :thread_count, :value => 0 %>
   </div>
 
@@ -16,6 +23,7 @@
     <%= link_to 'Cancel', user_messages_path(@user), :class => 'btn'%>
     <%= f.button :submit, 'Save', :name => 'save_button' %>
     <%= f.button :submit %>
-    
+  </div>
+  </div>
   </div>
 <% end %>
