@@ -75,16 +75,23 @@ class HorsesController < ApplicationController
      @distance = params[:search][:distance]
      params[:search].delete :distance
 
-     params[:search].delete :breed_contains
+    if params[:search][:breed_contains_any].blank?
+     params[:search].delete :breed_contains_any
+    else
      @breeds = params[:search][:breed_contains_any]
      @breed_array = @breeds.split(" ")
      params[:search][:breed_contains_any] = @breed_array
+    end
 
+    if params[:search][:gender_contains_any].blank?
+     params[:search].delete :gender_contains_any
+    else
      params[:search].delete :gender_contains
      @genders = params[:search][:gender_contains_any]
      @gender_array = @genders.split(" ")
      params[:search][:gender_contains_any] = @gender_array
-     
+    end
+
      @search = Horse.near(current_user.gmaps4rails_address, @distance).search(params[:search])
     elsif params.has_key?(:search)
      @keywords = params[:search][:name_or_breed_or_gender_or_text_description_contains_any]
@@ -93,15 +100,22 @@ class HorsesController < ApplicationController
 
      params[:search].delete :distance
 
-     params[:search].delete :breed_contains
+    if params[:search][:breed_contains_any].blank?
+     params[:search].delete :breed_contains_any
+    else
      @breeds = params[:search][:breed_contains_any]
      @breed_array = @breeds.split(" ")
      params[:search][:breed_contains_any] = @breed_array
+    end
 
+    if params[:search][:gender_contains_any].blank?
+     params[:search].delete :gender_contains_any
+    else
      params[:search].delete :gender_contains
      @genders = params[:search][:gender_contains_any]
      @gender_array = @genders.split(" ")
      params[:search][:gender_contains_any] = @gender_array
+    end
 
      @search = Horse.search(params[:search])    
    else
@@ -110,7 +124,7 @@ class HorsesController < ApplicationController
       @horses = @search.paginate(:page => params[:page], :per_page => 9)
       #@json = @horses.to_gmaps4rails
       
-      @json = @horses.to_gmaps4rails do |horse, marker|
+      @json = @horses.where(:active => true).to_gmaps4rails do |horse, marker|
         marker.infowindow render_to_string(:partial => "/horses/display_marker", :locals => {:object => horse})
         #marker.title   horse.name
         #marker.sidebar "i'm the sidebar"
