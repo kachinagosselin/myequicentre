@@ -52,13 +52,13 @@
  <div class="span2" style="width:160px;"> 
  <b><%= user.first_name %> <%= user.last_name[0] %>.</b>
  <% if user.city.present? && user.state.present? %>
- <p><%= truncate(user.bio, :length => 74) %></p>
+ <p style="margin:0px;"><%= truncate(user.bio, :length => 74) %></p>
  <p style="margin:0px;"><%= user.city%>, <%= user.state%></p>
  <% elsif user.state.present? %>
- <p><%= truncate(user.bio, :length => 74) %></p> 
+ <p style="margin:0px;"><%= truncate(user.bio, :length => 74) %></p> 
  <p style="margin:0px;"><%= user.state%></p>
  <% else %>
- <p><%= truncate(user.bio, :length => 99) %></p> 
+ <p style="margin:0px;"><%= truncate(user.bio, :length => 99) %></p> 
  <% end %>
 </div>
 <div class="divider-vertical" style="float:left;margin:0px;height:120px;"></div>
