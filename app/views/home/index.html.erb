@@ -33,3 +33,39 @@
 <!-- End mc_embed_signup -->
 <%end%>
 </div>
+
+<% new_users = User.where("bio IS NOT NULL" && "avatar_file_name IS NOT NULL") %>
+<% new_users = new_users.sort_by &:created_at %>
+<% if new_users.first.present? %>
+</br>
+<h4>Welcome our newest users: </h4>
+<div class="ad">
+<div class="row">
+
+<% i = 1 %>
+<% new_users.each do |user| %>
+<% if i <= 3 %>
+ <div class="span1" style="width:100px;height:100px;">
+ <%= image_tag user.avatar.url(:thumb), :size => "100x100", :class => "img-circle" %>
+ <p style="text-align:center;margin-top:-20px;"><%= link_to 'view more', user_horses_path(user) %></p>
+</div>
+ <div class="span2" style="width:160px;"> 
+ <b><%= user.first_name %> <%= user.last_name[0] %>.</b>
+ <% if user.city.present? && user.state.present? %>
+ <p style="margin:0px;"><%= user.city%>, <%= user.state%></p>
+ <p><%= truncate(user.bio, :length => 74) %></p>
+ <% elsif user.state.present? %>
+ <p style="margin:0px;"><%= user.state%></p>
+ <p><%= truncate(user.bio, :length => 74) %></p> 
+ <% else %>
+ <p><%= truncate(user.bio, :length => 99) %></p> 
+ <% end %>
+</div>
+<div class="divider-vertical" style="float:left;margin:0px;height:110px;"></div>
+<% i = i+1; %>
+<% end %>
+<% end %>
+</div>
+</div>
+
+<% end %>
