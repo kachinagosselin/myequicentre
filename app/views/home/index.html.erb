@@ -47,7 +47,7 @@
 <% if i <= 3 %>
  <div class="span1" style="width:100px;height:100px;">
  <%= image_tag user.avatar.url(:thumb), :size => "100x100", :class => "img-circle" %>
- <p style="text-align:center;margin-top:-20px;"><%= link_to 'view more', user_horses_path(user) %></p>
+ <p style="text-align:center;margin-top:-10px;"><%= link_to 'view more', user_horses_path(user) %></p>
 </div>
  <div class="span2" style="width:160px;"> 
  <b><%= user.first_name %> <%= user.last_name[0] %>.</b>
@@ -61,7 +61,7 @@
  <p><%= truncate(user.bio, :length => 99) %></p> 
  <% end %>
 </div>
-<div class="divider-vertical" style="float:left;margin:0px;height:110px;"></div>
+<div class="divider-vertical" style="float:left;margin:0px;height:120px;"></div>
 <% i = i+1; %>
 <% end %>
 <% end %>

@@ -1,4 +1,4 @@
-<div id="message-user" class="modal" style="display: none;">
+<div id="message-user-<%= user.id %>" class="modal" style="display: none;">
         <%= simple_form_for([current_user, current_user.messages.new]) do |f| %>
         <div class="modal-header">
           <a class="close" data-dismiss="modal">&#215;</a>
@@ -10,21 +10,29 @@
         <div class="form-inputs">
         <%= f.hidden_field :to_user_id, :value => user.id %>
         <%= f.hidden_field :name, :value => user.name %>
-        <p> From: <%= current_user.name %> </p>
         <%= f.hidden_field :from_user_id, :value => current_user.id %>
-        <%= f.input :title %>
         <%= f.hidden_field :thread_count, :value => 0 %>
-        <%= f.label :content %>
-        <%= f.text_area :content, :cols => 10, :rows => 10 %>
+
+        <div class="row">
+        <div class="span1">
+        <p>From: </p>
+        <p>Subject: </p>
+        </div>
+        <div class="span5">
+        <%= current_user.name %> 
+        <%= f.input :title, :label => false, 
+        :input_html => { :style => 'width: 420px;margin-top:10px;' } %>
+        <%= f.input :content, :label => false, 
+        :input_html => { :style => 'width: 420px', :rows => 12 } %>
+        </div>
+        </div>
         </div>
         
         </div>
-        <div class="modal-footer">
-        <div class="form-actions">
+        <div class="modal-footer form-actions" style="margin-top:-10px;margin-bottom:0px;">
         <a class="btn" data-dismiss="modal" href="#">Cancel</a>
         <%= f.button :submit, 'Save', :name => 'save_button' %>
         <%= f.button :submit %>  
-        </div> 
         </div>
         <% end %>
         </div>

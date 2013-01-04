@@ -85,7 +85,7 @@ Seen this message enough times? Click here to hide it.
     <tbody>
     <% @users.each do |user| %>
     <tr>
-        <td><a data-toggle="modal" href="#message-user" class="btn btn-mini" type="button">Message</a>
+        <td><a data-toggle="modal" href="#message-user-<%= user.id %>" class="btn btn-mini" type="button">Message</a>
         <%= render 'message', :user => user  %>
         </td>                                    
         <td><%= link_to user.name, user_horses_path(user) %></td>
