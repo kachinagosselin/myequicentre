@@ -5,6 +5,7 @@ class Horse < ActiveRecord::Base
     
     belongs_to :user
     has_many :subscriptions, :dependent => :destroy
+    has_many :videos, :dependent => :destroy
 
     attr_accessible :dob, :breed, :gender, :height, :name, :price, :text_description
     attr_accessible :address, :city, :state

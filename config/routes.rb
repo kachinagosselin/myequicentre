@@ -24,6 +24,7 @@ Railsapp::Application.routes.draw do
     resources :users do
         resources :horses do
             resources :subscriptions
+            resources :videos
         end
         resources :messages
         resources :saved_horses

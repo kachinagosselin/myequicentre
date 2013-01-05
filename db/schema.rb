@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121228060841) do
+ActiveRecord::Schema.define(:version => 20130105215907) do
 
   create_table "comments", :force => true do |t|
     t.string   "commenter"
@@ -219,5 +219,16 @@ ActiveRecord::Schema.define(:version => 20121228060841) do
   end
 
   add_index "users_roles", ["user_id", "role_id"], :name => "index_users_roles_on_user_id_and_role_id"
+
+  create_table "videos", :force => true do |t|
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+    t.string   "video_file_name"
+    t.string   "video_content_type"
+    t.integer  "video_file_size"
+    t.datetime "video_updated_at"
+    t.string   "video_remote_url"
+    t.integer  "horse_id"
+  end
 
 end

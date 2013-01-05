@@ -107,9 +107,11 @@
     <%= f.input :state, :as => :select, :collection => STATES %>
     <% end %>
     </div>
+
     <div class="span6">
     <b>Horse Description</b>    
     <%=h f.input :text_description, :label => false, :as => :text, :input_html => { :style => 'width: 430px', :rows => 10 }, :hint => 'Note: You have used <span id="counter"></span> characters.'%>
+
     <b>Images for Display</b>
     <%= f.input :mainimage, :label => 'Main Image', :hint => 'Note: It is recommended to 
     upload an image that at least 900 x 600px.' %>
@@ -118,6 +120,22 @@
     <%= f.input :image3, :label => 'Extra Image 3' %>
     <%= f.input :image4, :label => 'Extra Image 4', :hint => 'Note: All extra images will 
     only appear in a slideshow on the horse listing.' %>
+    </div>
+
+    <div class="span11">
+    <div class="divider-horizontal"></div>
+    <b>Videos for Display</b>        
+    <p>Want to display videos in your horse listing? You can have unlimited videos no extra charge! 
+    <a data-toggle="modal" href="#add-video" class="btn btn-primary btn-mini" type="button">Add Video</a></p>
+    <% if @horse.videos.first.present? %>
+    <% i = 1 %>
+    <% @horse.videos.each do |video| %>
+    Video <%= i %>:
+    <%= video.video_remote_url%> | <%= link_to 'Delete', [video.horse.user, video.horse, video], method: 
+    :delete, data: { confirm: 'Are you sure?' } %>
+    <% end %>
+    <% end %>
+
     </div>
     </div>
     </div>
@@ -129,3 +147,5 @@
     </span>
   </div>
 <% end %>
+
+    <%= render 'videos/form', :horse => @horse %>

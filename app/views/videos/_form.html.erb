@@ -1,0 +1,40 @@
+<%= simple_form_for(:video, :url => user_horse_videos_path(@user, @horse), :method => :post, :remote => true, :html => {:id => "add_video"} ) do |form| %>
+
+<div id="add-video" class="modal" style="display: none;">
+    
+    <div class="modal-header" style="height:36px;">
+        <a class="close" data-dismiss="modal">&#215;</a>
+        <h4 style="text-align:center;">Add Video to Listing</h4>
+    </div>
+
+    <div class="modal-body">
+    
+    <!--
+    <p>Upload a video:</p> <%= form.file_field :video %>
+    -->
+    <p> You can upload videos from YouTube. Please follow the instructions below: </p>
+    <div class="row">
+    <div class="span1" style="width:100px;">Provide URL: </div>
+    <div class="span3" style="width:100px;"><%= form.text_field :video_url, :style=>"width:380px;" %></div> 
+    </div>
+    <p> 1. Put your video up on YouTube </p>
+    <p> 2. Click the share link under the video </p>
+    <p> 3. Click on the embed link </p>
+    <p> 4. Copy the source url for your video</p>
+    <p> 5. Paste the url in the space below: </p>
+    If you are having difficulty with any of this contact us at <%= mail_to "support@myequicentre.com" %></p>
+
+    <div id="stripe_error">
+      <noscript>JavaScript is not enabled and is required for this form. First enable it in your web browser settings.</noscript>
+      </div>
+    </div>
+  
+    <div class="modal-footer">
+    <div class="actions">
+        <a class="btn" data-dismiss="modal" href="#">Cancel</a>
+        <%= form.submit "Add Video", :class =>"btn submit-button"%>
+    </div>
+    </div>
+</div>
+<%end%>
+

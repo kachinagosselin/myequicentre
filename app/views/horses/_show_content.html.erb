@@ -139,6 +139,14 @@
 </div>
 <% end %>
 
+<% if @horse.videos.first.present? %>
+<% @horse.videos.each do |video| %>
+<div class="span6" style="margin-left:100px;">
+<%= show_video video.video_remote_url%>
+</div>
+<% end %>
+<% end %>
+
 <!--
 <%= render "testimonials/display_all" %>
 -->
