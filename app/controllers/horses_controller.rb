@@ -66,6 +66,15 @@ class HorsesController < ApplicationController
   end
     
   def search
+    if params.has_key?(:search)
+        tmp_values = { "gender_contains_any" => params[:search][:gender_contains_any], 
+        "gender_contains" => params[:search][:gender_contains],
+        "breed_contains_any" => params[:search][:breed_contains_any],
+        "breed_contains" => params[:search][:breed_contains],
+        "distance" => params[:search][:distance] }
+        puts "*************SAVED TMP VALUES****************"
+    end
+    
     if params.has_key?(:search) && params[:search][:distance] != ""
 
      @keywords = params[:search][:name_or_breed_or_gender_or_text_description_contains_any]
@@ -120,7 +129,14 @@ class HorsesController < ApplicationController
      @search = Horse.search(params[:search])    
    else
      @search = Horse.search(params[:search])
-    end
+   end
+   
+   if params.has_key?(:search)
+      params[:search] = params[:search].merge(tmp_values)  
+              puts "**************ASSIGNED TMP VALUES***************"
+      puts params[:search]
+   end
+   
       @horses = @search.paginate(:page => params[:page], :per_page => 9)
       #@json = @horses.to_gmaps4rails
       

@@ -63,21 +63,21 @@ $(document).ready(function(){
         document.getElementById('search_name_or_breed_or_gender_or_text_description_contains_any').value = 
         keyword_array.replace("[","").replace("]","").replace(","," ").replace(/"/g, "");
    
-        var keyword_array = document.getElementById('search_breed_contains_any').value; 
+        var breed_array = document.getElementById('search_breed_contains_any').value; 
         var gender_array = document.getElementById('search_gender_contains_any').value; 
+        var dist = document.getElementById('search_distance').value; 
 
         var breed_string = "";
         var value = "";
         $("#search_breed_contains").bind("keypress",function(e) {
         var key = String.fromCharCode(e.which);
         if (key == " "){
+        if (value != " " && value != ""){
         breed_string = "" + breed_string + " " + value + "";
         proper_value = toProperCase(value);
-        clearandcreate('breed-section',"search_breed_contains","search_breed_contains_any", proper_value);
+        clearandcreate('breed-section',"search_breed_contains", "breed", proper_value);
         value = "";
         }
-        else if(key=="deletevalue"){
-        value = value.substring(0, value.length-1);
         }
         else{
         value = value + key.toLowerCase();
@@ -91,13 +91,14 @@ $(document).ready(function(){
         if (key == " "){
         gender_string = "" + gender_string + " " + gender_value + "";
         proper_value = toProperCase(gender_value);
-        clearandcreate('gender-section',"search_gender_contains","search_gender_contains_any", proper_value);
+        clearandcreate('gender-section',"search_gender_contains","gender", proper_value);
         gender_value = "";
         }
         else{
         gender_value = gender_value + key.toLowerCase();
         }
         });
+
     
     // when you submit this form
   $("#horse_search").submit(function(event) {
@@ -148,16 +149,25 @@ function searchStringInArray (string) {
     return -1;
 }
 
-function clearandcreate(parent, id, hiddenid, value) {
+function clearandcreate(parent, id, type, value) {
         document.getElementById(id).value = "";
             var div = document.createElement("div");
             div.setAttribute("class", "pill");
             div.id = value;
-            div.innerHTML =  value + '<a class="close" id="'+value+'" onclick="hide(id, ' + hiddenid +');" style="display:inline;">&#215;</a>';
+            
+            if (type == "breed"){
+            div.innerHTML =  value + '<a class="close" id="'+value+'" onclick="hide_breed(id);" style="display:inline;">&#215;</a>';
+            current_value = document.getElementById('search_breed_contains_any').value;
+            document.getElementById('search_breed_contains_any').value = ''+ current_value + ' ' + value;
+            }
+            else {
+            div.innerHTML =  value + '<a class="close" id="'+value+'" onclick="hide_gender(id);" style="display:inline;">&#215;</a>';
+            current_value = document.getElementById('search_gender_contains_any').value;
+            document.getElementById('search_gender_contains_any').value = ''+ current_value + ' ' + value;
+            }
+            
             parent = document.getElementById(parent);
             parent.appendChild(div);
-            current_value = document.getElementById(hiddenid).value;
-            document.getElementById(hiddenid).value = ''+ current_value + ' ' + value;
 }
 
 function toProperCase(str)
@@ -165,12 +175,16 @@ function toProperCase(str)
     return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
 }
 
-function hide(id, search_term) {
+function hide_breed(id) {
         document.getElementById(id).style.display = 'none'; 
-        var values = document.getElementById(search_term).value;
-        document.getElementById(search_term).value = values.replace(id, "");
-        var now = document.getElementById(search_term).value;
-        alert(now);
+        var values = document.getElementById('search_breed_contains_any').value;
+        document.getElementById('search_breed_contains_any').value = values.replace(id, "");
+}
+
+function hide_gender(id) {
+        document.getElementById(id).style.display = 'none'; 
+        var values = document.getElementById('search_gender_contains_any').value;
+        document.getElementById('search_gender_contains_any').value = values.replace(id, "");
 }
      
 function combine_ids(ids) {

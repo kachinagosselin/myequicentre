@@ -5,7 +5,14 @@ Railsapp::Application.routes.draw do
     end
     root :to => "home#index"
     devise_for :users
-  
+
+    #match ':controller(/:action(/:id(.:format)))' => ':controller#:action', :via => [:get]
+    match 'horses/search(/:id)' => 'horses#search', :via => [:get]
+    match 'users/search(/:id)' => 'users#search', :via => [:get]
+    match 'users/search(/:id)' => 'users#search', :via => [:get]
+    #match 'horses(/:id)/search' => 'horses#search', :via => [:get]
+    match 'horses' => 'home#index', :via => [:get]
+    
     match '/users/:user_id/messages/inbox(/:id(.:format))', :controller => 'messages', :action => 'inbox', :via => [:get], :as => 'user_messages_inbox'
     match '/users/:user_id/messages/drafts(/:id(.:format))', :controller => 'messages', :action => 'drafts', :via => [:get], :as => 'user_messages_drafts'
     match '/users/:user_id/messages/sent(/:id(.:format))', :controller => 'messages', :action => 'sent', :via => [:get], :as => 'user_messages_sent'
@@ -39,11 +46,6 @@ Railsapp::Application.routes.draw do
         resources :comments
         end
     
-    #match ':controller(/:action(/:id(.:format)))' => ':controller#:action', :via => [:get]
-    match 'horses/search(/:id)' => 'horses#search', :via => [:get]
-    #match 'horses(/:id)/search' => 'horses#search', :via => [:get]
-    match 'horses' => 'home#index', :via => [:get]
-
     get "/pages/about"
     get "/pages/info"
     get "/pages/help"

@@ -56,5 +56,19 @@ class UsersController < ApplicationController
        redirect_to users_path
     end
   end
+  
+  def search
+   if params.has_key?(:search)
+     @keywords = params[:search][:profession_contains_any]
+     @keyword_array = @keywords.split(" ")
+     params[:search][:profession_contains_any] = @keyword_array
+   end      
+      @search = User.search(params[:search])   
+      @users = @search.paginate(:page => params[:page], :per_page => 9)
+      
+      @json = @users.to_gmaps4rails do |user, marker|
+        marker.infowindow render_to_string(:partial => "/users/display_marker", :locals => {:object => user})
+      end
+  end
     
 end

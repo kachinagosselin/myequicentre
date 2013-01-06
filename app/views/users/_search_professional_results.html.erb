@@ -1,0 +1,40 @@
+<script>
+$(".card").onclick(function(){
+     window.location=$(this).find("a").attr("href"); 
+     return true;
+});
+</script>
+
+<div class='row'>
+<% @users.each do |user| %>
+<% if !user.profession.blank? && user.avatar.present? && user.testimonials.first.present? && user.professional_listing == true %>
+<div class='span4'>
+<div class='card' style="width:275px;background:no-repeat;background-size:cover;">
+<%=image_tag user.avatar.url(:medium) %>
+<div class='banner'>
+    <div class='mainline'>
+    <%= link_to user.first_name, user_horses_path(user) %>
+    </div>
+    <div class='tagline'> 
+        <p><%= user.profession %></p>
+        <% if user.city.present? || user.state.present? %>
+        <p>located in: <%= user.city if user.city %>, <%= user.state %> 
+        <% if current_user.present? %>
+        (<%= number_with_precision(user.distance_from(current_user.gmaps4rails_address), :precision => 1)%> miles)
+        <% end %>
+        <% end %>
+        <span class='more-details'>
+        </span>
+        </p>
+    </div>
+</div>
+</div>
+</div>
+<% end %>
+<% end %>
+<div class="search-paginate">
+<%= will_paginate @users, :renderer => BootstrapPagination::Rails %>
+</div>
+
+</div>
+

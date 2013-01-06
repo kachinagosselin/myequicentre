@@ -132,7 +132,7 @@
     <% @horse.videos.each do |video| %>
     Video <%= i %>:
     <%= video.video_remote_url%> | <%= link_to 'Delete', [video.horse.user, video.horse, video], method: 
-    :delete, data: { confirm: 'Are you sure?' } %>
+    :delete%>
     </br>
     <% i = i+1 %>
     <% end %>

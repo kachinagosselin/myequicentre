@@ -1,0 +1,10 @@
+<div class="row span5">
+   <% if object.avatar.present? %>
+ 		<div class="marker-image">
+ 	     <%= image_tag object.avatar.url(:thumb) %>
+ 	 </div>
+         <p><b><%= object.first_name %></b> </p> <%= object.profession %><%=link_to 'view details', user_horses_path(object) %>
+   <% else %>
+        <p><b><%= object.first_name %></b></p> <%= object.profession %><%=link_to 'view details', user_horses_path(object) %>
+ 	<% end %>
+</div>

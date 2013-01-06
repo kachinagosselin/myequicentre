@@ -28,8 +28,62 @@
     safeClass: 'safe',
     overClass: 'over',
     thousandSeparator: ','});
-   
+    
+    var profession_string = "";
+    var value = "";
+    $("#profession-input").bind("keypress",function(e) {
+        var key = String.fromCharCode(e.which);
+        if (key == " "){
+        if (value != " " && value != ""){
+        profession_string = "" + profession_string + " " + value + "";
+        proper_value = toProperCase(value);
+        clearandcreate('profession-section',"profession-input", proper_value);
+        value = " ";
+        }
+        }
+        else{
+        value = value + key.toLowerCase();
+        }
     });
+   
+    var p = document.getElementById('user_profession').value.trim();
+    var prof_array = p.split(" ");
+    for(var i=0; i<prof_array.length; i++){
+    if (prof_array != ""){
+    var div = document.createElement("div");
+    div.setAttribute("class", "pill");
+    div.id = prof_array[i];
+    div.innerHTML =  prof_array[i] + '<a class="close" id="'+prof_array[i]+'" onclick="hide(id);" style="display:inline;">&#215;</a>';
+    parent = document.getElementById('profession-section');
+    parent.appendChild(div);
+    }
+    }
+    });
+    
+function clearandcreate(parent, id, value) {
+        document.getElementById(id).value = "";
+            var div = document.createElement("div");
+            div.setAttribute("class", "pill");
+            div.id = value;
+            div.innerHTML =  value + '<a class="close" id="'+value+'" onclick="hide(id);" style="display:inline;">&#215;</a>';
+            parent = document.getElementById(parent);
+            parent.appendChild(div);
+            current_value = document.getElementById('user_profession').value;
+            document.getElementById('user_profession').value = ''+ current_value + ' ' + value;
+        alert(document.getElementById('user_profession').value);
+}
+
+function toProperCase(str)
+{
+    return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+}
+
+function hide(id) {
+        document.getElementById(id).style.display = 'none'; 
+        var values = document.getElementById('user_profession').value;
+        document.getElementById('user_profession').value = values.replace(id, "");
+        alert(document.getElementById('user_profession').value);
+}
      
 </script>
 
@@ -80,6 +134,21 @@
   <%= f.label(:phone_number, "Phone Number") %>
   <%=h f.text_field :phone_number %>
   <%= f.input :join_mailing_list, :as => :boolean, :boolean_style => 'nested' %>
+  </div>
+  </div>
+  <div class="divider-horizontal"></div>
+
+  <h4>Professional Information</h4>
+  <div class="row">
+  <div class="span5" id='profession-section'>
+  <p>Equine Profession (list all that apply): </p>
+  <%= text_field_tag 'profession-input' %>
+  <%=h f.hidden_field :profession, :include_blank => true %>
+  </br>
+  </div>
+  <div class="span5">
+  <p style="padding:0px;"> Select to be listed in the directory </p>
+  <%= f.input :professional_listing, :label => false, :as => :boolean, :boolean_style => 'nested' %>
   </div>
   </div>
   <div class="divider-horizontal"></div>

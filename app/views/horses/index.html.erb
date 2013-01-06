@@ -43,7 +43,7 @@ to inquire into the details.</b></p>
 </div>
 </div>
 
-
+<% if @horses.first.present? %>
 <div class='white-background'>
 <h1>Sales Barn</h1>
 <% @horses.each do |horse| %>
@@ -52,7 +52,64 @@ to inquire into the details.</b></p>
 <% end %>
 <% end %>
 </div>
+<% end %>
 
 <div class="search-paginate">
 <%= will_paginate @horses, :renderer => BootstrapPagination::Rails %>
+</div>
+
+<div class="span11">
+<div class="ad" style="margin-left:50px;margin-top:20px;">
+<% if @user.testimonials.first.present?%>
+<h4>Testimonials for <%= @user.first_name %></h4>
+<div class='infobox' style="min-height:0px;max-height:100px;">
+<% @user.testimonials.each do |t| %>
+<% @voucher = User.find(t.voucher_id) %>
+<div class="row">
+<% if @voucher.avatar.present? %>
+<div class="span1" style="width:100px;height:auto;">
+<%= image_tag @voucher.avatar.url(:thumb), :class => "img-rounded" %>
+</div>
+<% end %>
+<div class="span7">
+<p> "<%= t.body %> " ~ <%= @voucher.first_name %> <%= @voucher.last_name %> </p>
+<% if current_user.has_role? :admin || current_user == @voucher || current_user == @user %>
+<p style="text-align:right"> <%= link_to 'Delete', [t.user, t], method: :delete, data: { confirm: 'Are you sure?' } %> </p>
+<% end %>
+</div>
+</div>
+</div>
+<% end %>
+<% end %>
+
+<% if current_user.present? && current_user != @user %>
+<p><b>Know this person? Add a testimonial:</b></p>
+<%= simple_form_for([@user, @user.testimonials.build]) do |f| %>
+  <div class="field">
+    <%= f.hidden_field :voucher_id, :value => current_user.id %>
+    <%= f.input :body, :as => :text, :label => false, :input_html => { :style => "width:754px;", :rows => 5 } %>
+  </div>
+  <div class="actions" style="text-align:right;">
+    <%= f.button :submit, :class => "btn btn-primary" %>
+  </div>
+<% end %>
+<% elsif !current_user.present? %>
+<p style="margin-top:10px;"><b>Know this person and want to give a testimonial?</b>
+Register for an account!
+<%= link_to "Sign Up (it's free!)", new_user_registration_path, :class => "btn btn-primary pull-right"%> </p>
+<% else %>
+<p style="margin-top:10px;"><b>Want to get testimonials?</b> Share this page with your friends!
+
+<!-- AddThis Button BEGIN -->
+<div class="addthis_toolbox addthis_default_style pull-right " style="margin-top:-30px;">
+<a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+<a class="addthis_button_tweet"></a>
+</div>
+<script type="text/javascript">var addthis_config = {"data_track_addressbar":true};</script>
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-50d8b33900a66959"></script>
+<!-- AddThis Button END -->
+       
+</p>
+<% end %>
+</div>
 </div>

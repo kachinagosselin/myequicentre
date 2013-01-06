@@ -24,7 +24,7 @@ $(document).ready(function() {
     <p> You can upload videos from YouTube. Please follow the instructions below: </p>
     <div class="row">
     <div class="span1" style="width:100px;">Provide URL: </div>
-    <div class="span3" style="width:100px;"><%= form.text_field :video_url, :style=>"width:380px;" %></div> 
+    <div class="span3" style="width:100px;"><%=h form.text_field :video_url, :style=>"width:380px;" %></div> 
     </div>
     <p> 1. Put your video up on YouTube </p>
     <p> 2. Click the share link under the video </p>

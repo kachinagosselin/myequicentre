@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130105215907) do
+ActiveRecord::Schema.define(:version => 20130106205511) do
 
   create_table "comments", :force => true do |t|
     t.string   "commenter"
@@ -173,6 +173,7 @@ ActiveRecord::Schema.define(:version => 20130105215907) do
     t.integer  "user_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.integer  "voucher_id"
   end
 
   add_index "testimonials", ["user_id"], :name => "index_testimonials_on_user_id"
@@ -208,6 +209,8 @@ ActiveRecord::Schema.define(:version => 20130105215907) do
     t.float    "latitude"
     t.float    "longitude"
     t.boolean  "gmaps"
+    t.string   "profession"
+    t.boolean  "professional_listing"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

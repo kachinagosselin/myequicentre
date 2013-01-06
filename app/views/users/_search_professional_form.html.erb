@@ -1,0 +1,20 @@
+<script>
+$(document).ready(function(){
+        var keyword_array = document.getElementById('search_profession_contains_any').value;       
+        document.getElementById('search_profession_contains_any').value = 
+        keyword_array.replace("[","").replace("]","").replace(","," ").replace(/"/g, "");
+});
+</script>
+
+<%= simple_form_for(@search, :url => { :search => "search" }, :html => {:method => 'get', :class => 'form-vertical'}) do |f| %>
+        <div class = 'span11 offset2'>
+        <div class ='span6'>
+        <%= f.input :profession_contains_any, :label => false, 
+        :input_html => { :style => 'width: 430px', :class=> "search-query", 
+        :placeholder=>"Search by profession"}, :include_blank => true  %>
+        </div>
+        <div class ='span1'>
+        <%= f.submit "Search", :class => "btn btn-primary"%> 
+        </div>
+        </div>
+<% end %> 

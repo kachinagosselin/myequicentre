@@ -19,6 +19,7 @@ class User < ActiveRecord::Base
     attr_accessible :bio
     attr_accessible :join_mailing_list
     attr_accessible :status, :flagged
+    attr_accessible :professional_listing, :profession 
 
     validates :first_name, :last_name, :email, :presence => true
     validates :email, :uniqueness => true
@@ -44,7 +45,11 @@ class User < ActiveRecord::Base
       name ="#{self.first_name} #{self.last_name}"  
     end
     
-def gmaps4rails_address
-"#{self.address} #{self.city}, #{self.state}" 
-   end
+    def gmaps4rails_address
+        "#{self.address} #{self.city}, #{self.state}" 
+    end
+
+    def gmaps4rails_sidebar
+        "<span>#{first_name}</span>"
+    end
 end
