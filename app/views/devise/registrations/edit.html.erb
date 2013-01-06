@@ -45,9 +45,7 @@
     });
    
     var p = document.getElementById('user_profession').value.trim();
-    alert(p);
     var prof_array = p.split(" ");
-    alert(prof_array);
     for(var i=0; i<prof_array.length; i++){
     if (prof_array != "" && prof_array != " "){
     var div = document.createElement("div");
@@ -70,7 +68,6 @@ function clearandcreate(parent, id, value) {
             parent.appendChild(div);
             current_value = document.getElementById('user_profession').value.trim();
             document.getElementById('user_profession').value = ''+ current_value + ' ' + value;
-        alert(document.getElementById('user_profession').value);
 }
 
 function toProperCase(str)
@@ -82,7 +79,6 @@ function hide(id) {
         document.getElementById(id).style.display = 'none'; 
         var values = document.getElementById('user_profession').value;
         document.getElementById('user_profession').value = values.replace(id, "");
-        alert(document.getElementById('user_profession').value);
 }
      
 </script>
