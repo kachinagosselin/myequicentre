@@ -1,3 +1,12 @@
+<script>
+$(document).ready(function() {
+  $("#add_video").submit(function(event) {
+    $('#add-video').modal('hide');
+    document.location.reload('#horse-videos');
+  });
+  });
+</script>
+
 <%= simple_form_for(:video, :url => user_horse_videos_path(@user, @horse), :method => :post, :remote => true, :html => {:id => "add_video"} ) do |form| %>
 
 <div id="add-video" class="modal" style="display: none;">

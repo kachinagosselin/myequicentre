@@ -122,7 +122,7 @@
     only appear in a slideshow on the horse listing.' %>
     </div>
 
-    <div class="span11">
+    <div class="span11" id="horse-videos">
     <div class="divider-horizontal"></div>
     <b>Videos for Display</b>        
     <p>Want to display videos in your horse listing? You can have unlimited videos no extra charge! 
@@ -133,9 +133,11 @@
     Video <%= i %>:
     <%= video.video_remote_url%> | <%= link_to 'Delete', [video.horse.user, video.horse, video], method: 
     :delete, data: { confirm: 'Are you sure?' } %>
+    </br>
+    <% i = i+1 %>
     <% end %>
     <% end %>
-
+    <p>Note: Please save horse details before uploading to this section.</p>
     </div>
     </div>
     </div>

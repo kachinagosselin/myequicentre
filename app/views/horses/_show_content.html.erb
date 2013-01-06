@@ -141,9 +141,11 @@
 
 <% if @horse.videos.first.present? %>
 <% @horse.videos.each do |video| %>
+<% if !video.video_remote_url.blank? %>
 <div class="span6" style="margin-left:100px;">
 <%= show_video video.video_remote_url%>
 </div>
+<% end %>
 <% end %>
 <% end %>
 
