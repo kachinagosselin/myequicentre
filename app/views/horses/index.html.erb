@@ -73,8 +73,10 @@ to inquire into the details.</b></p>
 <% end %>
 <div class="span7">
 <p> "<%= t.body %> " ~ <%= @voucher.first_name %> <%= @voucher.last_name %> </p>
+<% if current_user.present? %>
 <% if current_user.has_role? :admin || current_user == @voucher || current_user == @user %>
 <p style="text-align:right"> <%= link_to 'Delete', [t.user, t], method: :delete, data: { confirm: 'Are you sure?' } %> </p>
+<% end %>
 <% end %>
 </div>
 </div>

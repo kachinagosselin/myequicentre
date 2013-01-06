@@ -29,16 +29,14 @@
     overClass: 'over',
     thousandSeparator: ','});
     
-    var profession_string = "";
     var value = "";
     $("#profession-input").bind("keypress",function(e) {
         var key = String.fromCharCode(e.which);
         if (key == " "){
         if (value != " " && value != ""){
-        profession_string = "" + profession_string + " " + value + "";
         proper_value = toProperCase(value);
         clearandcreate('profession-section',"profession-input", proper_value);
-        value = " ";
+        value = "";
         }
         }
         else{
@@ -47,9 +45,11 @@
     });
    
     var p = document.getElementById('user_profession').value.trim();
+    alert(p);
     var prof_array = p.split(" ");
+    alert(prof_array);
     for(var i=0; i<prof_array.length; i++){
-    if (prof_array != ""){
+    if (prof_array != "" && prof_array != " "){
     var div = document.createElement("div");
     div.setAttribute("class", "pill");
     div.id = prof_array[i];
@@ -68,7 +68,7 @@ function clearandcreate(parent, id, value) {
             div.innerHTML =  value + '<a class="close" id="'+value+'" onclick="hide(id);" style="display:inline;">&#215;</a>';
             parent = document.getElementById(parent);
             parent.appendChild(div);
-            current_value = document.getElementById('user_profession').value;
+            current_value = document.getElementById('user_profession').value.trim();
             document.getElementById('user_profession').value = ''+ current_value + ' ' + value;
         alert(document.getElementById('user_profession').value);
 }
