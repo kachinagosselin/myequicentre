@@ -64,7 +64,7 @@ class UsersController < ApplicationController
      params[:search][:profession_contains_any] = @keyword_array
    end      
       @search = User.search(params[:search])   
-      @users = @search.paginate(:page => params[:page], :per_page => 9)
+      @users = @search.paginate(:page => params[:page], :per_page => 21)
       
       @json = @users.to_gmaps4rails do |user, marker|
         marker.infowindow render_to_string(:partial => "/users/display_marker", :locals => {:object => user})
