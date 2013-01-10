@@ -36,6 +36,7 @@
 
 <% new_users = User.where("bio IS NOT NULL" && "avatar_file_name IS NOT NULL") %>
 <% new_users = new_users.sort_by &:created_at %>
+<% new_users.reverse %>
 <% if new_users.first.present? %>
 </br>
 <h4>Welcome our newest users: </h4>
