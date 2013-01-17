@@ -32,11 +32,7 @@
   <body class="<%= controller_name %> <%= action_name %>">
 
     <div class="navbar">
-      <div class="navbar-inner">
-        <div class="container">
           <%= render 'layouts/navigation' %>
-        </div>
-      </div>
     </div>
     
 <noscript>
@@ -67,10 +63,8 @@ $('.dropdown-toggle').dropdown()
         <div class="content">
         
            <div class="row">
-            <div class="span12">
               <%= render 'layouts/messages' %>
               <%= yield %>
-            </div>
           </div>
           <footer>
             <%= render 'layouts/footer' %>
