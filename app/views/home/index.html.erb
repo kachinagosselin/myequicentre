@@ -2,10 +2,32 @@
 
 <!-- This renders the home carousel that shows horse images from the site. -->
 <%= render 'carousel' %>
+<div class="start-content">
+<h1 style="text-align:center;"> Welcome to MyEquiCentre </h1>
+
+<div class="navbar">
+<div class='main-nav' style="position:relative;margin-bottom:0px;">
+<ul class="nav" style="text-align:center;">
+<li>
+</li>
+<li><%= link_to 'Horses', '/pages/discover' %></li>
+<li class='divider-vertical'></li>
+<li><%= link_to 'Farms', '/pages/discover' %></li>
+<li class='divider-vertical'></li>
+<li><%= link_to 'Professionals', '/pages/info' %></li>
+<li class='divider-vertical'></li>
+</ul>
+</div>
+</div>
+
+<div class="bottom-shadow">
+<div class="left"></div>
+<div class="right"></div>
+</div>
+</div>
 
 <!-- This is the page content-->
-<div class="white-background center-align">
-<h1> Welcome to MyEquiCentre </h1>
+<div class="center-align">
 <h3>The most beautiful and elegant site available for selling and buying horses online.</h3>
 
 <!-- For users that are logged in --> 

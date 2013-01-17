@@ -37,28 +37,6 @@ h3 {
   font-weight: normal;
 }
 
-/* Control label on form and marker - NOT ACTIVE*/
-.middle-form .control-label {
-float: left;
-width: 100px;
-padding-top: 5px;
-text-align: right;
-display: inline;
-color: #777;
-vertical-align: middle;
-}
-
-.middle-form .controls {
-display: inline;
-margin-left: 20px;
-}
-
-required {
-color: #F66;
-vertical-align: super;
-}
-/**/
-
 /*ICON ELEMENTS*/
 .icon-search {
 color: #fff;
@@ -68,7 +46,7 @@ color: #fff;
 /* NAVIGATION
 -------------------------------------------------- */
 .main-nav .logo {
-margin: 10px 0px 6px;
+margin: 10px 10px 0px 6px;
 }
 
 .main-nav {
@@ -83,50 +61,55 @@ position: fixed;
 top: 0;
 left: 0;
 z-index: 200;
+margin-bottom: 20px;
 }
 
 .navbar {
-/*color: #424641;*/
+font-size: 0.9em;
+color: #666;
+letter-spacing: 1px;
+font-weight: bold;
+}
+
+.navbar .nav {
+position: relative;
+display: block;
+float: right;
+margin: 10px 10px 0 0;
 }
 
 .navbar .nav > ul {
 padding: 0;
 list-style-type: none;
-margin: 0 0 0 70px;
+margin: 0px 0px 0px 70px;
 position: relative;
 height: 60px;
 float: left;
 }
 
-.navbar .nav > li > a {
-float: none;
-padding: 10px 10px 11px;
-line-height: 19px;
-color: #424641;
-text-decoration: none;
-font-weight: bold;
-text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.1);
+.navbar .nav ul li {
+-moz-transition-property: color;
+-moz-transition-duration: 200ms;
+-webkit-transition-property: color;
+-webkit-transition-duration: 200ms;
+-o-transition-property: color;
+-o-transition-duration: 200ms;
+transition-property: color;
+transition-duration: 200ms;
+float: left;
+margin-top: 3px;
+cursor: pointer;
+padding: 0px 20px 0 20px;
 }
 
-.navbar-inner {
-/*padding-left: 20px;
-padding-right: 20px;
-background-color: #F1F1F1;
-background-image: -moz-linear-gradient(top, white, gainsboro);
-background-image: -ms-linear-gradient(top, white, gainsboro);
-background-image: -webkit-gradient(linear, 0 0, 0 100%, from(white), to(gainsboro));
-background-image: -webkit-linear-gradient(top, white, gainsboro);
-background-image: -o-linear-gradient(top, white, gainsboro);
-background-image: linear-gradient(top, white, gainsboro);
-background-repeat: repeat-x;
-filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFFFFFFF', endColorstr='#FFDCDCDC', GradientType=0);
--webkit-border-radius: 4px;
--moz-border-radius: 4px;
-border-radius: 4px;
--webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25),inset 0 -1px 0 rgba(0, 0, 0, 0.1);
--moz-box-shadow: 0 1px 3px rgba(0,0,0,0.25),inset 0 -1px 0 rgba(0,0,0,0.1);
-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25),inset 0 -1px 0 rgba(0, 0, 0, 0.1);
-*/}
+.navbar .nav ul a {
+color: #666;
+font-size: 12px;
+}
+
+.navbar .nav > ul > a, active, visited {
+color: #fff;
+}
 
 .navbar-inner .container {
 margin-left: auto;
@@ -134,20 +117,9 @@ margin-right: auto;
 }
 
 .navbar .main-nav {
-min-width: 860px;
+min-width: 960px;
 width: 100%;
 }
-
-.navbar .divider-vertical {
-/*
-height: 42px;
-width: 1px;
-margin: 0 9px;
-overflow: hidden;
-background-color: gainsboro;
-border-right: 1px solid white;
-*/}
-
 
 ul {
 list-style: none;
@@ -160,6 +132,13 @@ font-size: 12px;
 
 links {
 margin-top: 40px;
+}
+
+
+.navbar .divider-vertical {
+  height: 40px;
+  margin: 0 5px;
+  border-left: 1px solid #f9f9f9;
 }
 
 /* Shadowboxes

@@ -17,7 +17,6 @@
     <!-- Carousel items -->
         <div class="carousel-inner">
             <div class="item active">
-            <div class='span12'>
                 <div class="carousel-image">
                 <%= image_tag "/images/carousel.jpg"%>
                     <div class="carousel-caption">
@@ -35,12 +34,10 @@
                     </div>
                 </div>
             </div>
-            </div>
         <!-- Select all horses at random that have been activated that have an image to display -->
         <% Horse.where(:active => true).all(:order => 'Random()').each do |horse| %>
         <% if horse.mainimage.present?%>
             <div class="item">
-                <div class='span12'>
                 <div class="carousel-image">
                 <%= image_tag horse.mainimage.url(:large), :class => "img-polaroid"%>
                     <div class="carousel-caption">
@@ -63,7 +60,6 @@
                     <h4><%= number_to_currency(horse.price.round, :precision => 0) %></h4>
                     </div>
                 </div>
-            </div>
             </div>
         <% end %>
         <% end %>
