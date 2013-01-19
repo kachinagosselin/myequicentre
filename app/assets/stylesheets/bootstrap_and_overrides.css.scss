@@ -102,18 +102,14 @@ cursor: pointer;
 padding: 0px 20px 0 20px;
 }
 
-.navbar .nav ul a {
-color: #666;
-font-size: 12px;
-}
 
-.navbar .nav > ul > a, active, visited {
-color: #fff;
-}
-
-.navbar-inner .container {
-margin-left: auto;
-margin-right: auto;
+.navbar .nav > li > a {
+float: none;
+padding: 10px 15px 10px;
+color: #777;
+text-transform:capitalize;
+text-decoration: none;
+text-shadow: 0 1px 0 white;
 }
 
 .navbar .main-nav {
@@ -140,6 +136,21 @@ margin-top: 40px;
   margin: 0 5px;
   border-left: 1px solid #f9f9f9;
 }
+
+.discover-nav {
+width: 100%;
+height: 60px;
+background: white;
+background: rgba(255, 255, 255, 0.9);
+-webkit-box-shadow: 1px 0 5px rgba(0, 0, 0, 0.3);
+-moz-box-shadow: 1px 0 5px rgba(0, 0, 0, 0.3);
+box-shadow: 1px 0 5px rgba(0, 0, 0, 0.3);
+position: relative;
+margin-bottom: 20px;
+}
+
+.row{
+margin-left:0px;}
 
 /* Shadowboxes
 -------------------------------------------- */
@@ -176,8 +187,6 @@ z-index: 20;
 
 .shadow-content {
 background: #EEE;
-font-size: 1.4em;
-color: #AAA;
 border-top: 1px solid #EEE;
 border-bottom: 1px solid #EEE;
 }

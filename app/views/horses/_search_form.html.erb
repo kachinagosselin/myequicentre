@@ -231,56 +231,44 @@ function calculateAge(dobString) {
         <h4>Advanced Search Criteria</h4>
         <div class="divider-horizontal" style='width:725px'></div>
         <div class="row">
-        <div class="search-labels span3">Age within range:</div>
-        <div class="search-labels span3">Height within range:</div>
-        <div class="search-labels span3">Price within range:</div>
-        </div>
         
-        <div class="row">
-        <div class ='span2'>
+        <div class="search-labels span3">Age between</div>
+        <div class="search-labels span3">Height within: </div>
+        <div class="search-labels span3">Price range: </div>
+        <div class ='span2' style="width:40px;margin-top:-27px;margin-left:101px;">
         <%= f.input :dob_less_than_or_equal_to, :label => false, 
-        :input_html => { :style => 'width: 75px'}, :include_blank => true %>
+        :input_html => { :style => 'width:40px', :placeholder=>"min"}, :include_blank => true %>
         </div>
-        <div class ='span1'>
+        <div class ='span1' style="width:40px;margin-top:-27px;margin-left:42px;">
         <%= f.input :dob_greater_than_or_equal_to, :label => false, 
-        :input_html => { :style => 'position: relative; left: -29px; width: 75px;'},
+        :input_html => { :style => 'width: 40px;', :placeholder=>"max"},
         :include_blank => true %>
         </div>
-        <div class ="span2">
+        <div class ="span2" style="width:40px;margin-top:-27px;margin-left:101px;">
          <%= f.input :height_greater_than_or_equal_to, :label => false, 
-        :input_html => {:autofocus => false, :style => 'width: 75px'}, :include_blank => true %> 
+        :input_html => {:autofocus => false, :style => 'width: 40px'}, :include_blank => true %> 
        </div>
-        <div class ="span1">
+        <div class ="span1" style="width:40px;margin-top:-27px;margin-left:-58px;">
         <%= f.input :height_less_than_or_equal_to, :label => false, 
-        :input_html => {:autofocus => false, :style => 'position: relative; left: -29px; width: 75px;'}, 
+        :input_html => {:autofocus => false, :style => 'width: 40px;'}, 
         :include_blank => true %>
         </div>
-        <div class ="span2">
+        <div class ="span2" style="width:46px;margin-top:-27px;margin-left:90px;">
          <%= f.input :price_greater_than_or_equal_to, :label => false, 
-        :input_html => { :style => 'width: 75px'}, :include_blank => true %> 
+        :input_html => { :style => 'width: 46px'}, :include_blank => true %> 
        </div>
-        <div class ="span1">
+        <div class ="span1" style="width:46px;margin-top:-27px;margin-left:-53px;">
         <%= f.input :price_less_than_or_equal_to, :label => false, 
-        :input_html => { :style => 'position: relative; left: -29px; width: 75px;'}, 
+        :input_html => { :style => 'width: 46px;'}, 
         :include_blank => true %>
         </div>
         </div>
         
         <div class="row">
-        <div class="and-labels">
-        <div class="search-labels span3 offset1">and</div>
-        <div class="search-labels span3">and</div>
-        <div class="search-labels span3">and</div>
-        </div>
-        </div>
- 
- <!--
-        <div class="row">
-        <div class="search-labels span3">Include breed:</div>
-        <div class="search-labels span3">Gender includes:</div>
-        <div class="search-labels span3">Price within range:</div>
-        </div>
--->               
+        <div class="search-labels span3" style="margin-left:157px;margin-top:-53px;">and</div>
+        <div class="search-labels span3" style="margin-left:402px;margin-top:-53px;">and</div>
+        <div class="search-labels span3" style="margin-left:638px;margin-top:-53px;">and</div>
+        </div>             
                
         <div class="row">
         <div class ='span3'  id='breed-section'>

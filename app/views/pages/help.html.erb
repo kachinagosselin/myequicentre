@@ -1,18 +1,21 @@
 <div class="faq">
-<div class="white-background">
-<h1> Something go wrong? </h1>
-<h3>
-Please feel free to contact us with your questions and concerns. We will get in contact with 
-you regarding any updates. In the meantime check out our FAQ section and suppport documentation.
-</h3>
+<div class="span11 offset1" style="margin-top:50px;">
 <div class='center-align'>
+<h1> Something go wrong? </h1>
 <h3>Contact <%= mail_to "support@myequicentre.com" %> to get in touch. </h3>
 </div>
 </div>
 
-<div class="white-background">
-<h1> FAQ Section</h1>
 
+<div class="top-shadow">
+<div class="left"></div>
+<div class="right"></div>
+</div>
+<div class="general-content" style="margin-left:auto;margin-right:auto;">
+<div class="divider-horizontal" style="margin: 0px 40px 10px 0px;"></div>
+<h1 style="text-align:center;"> FAQ Section</h1>
+<div class="divider-horizontal" style="margin: 0px 40px 10px 0px;"></div>
+<div class="span11 offset1">
     <h4>General Questions </h4>
     <%= render 'general_questions' %>
 
@@ -32,5 +35,6 @@ you regarding any updates. In the meantime check out our FAQ section and supppor
     
     <h4>Communicating with Users </h4>
     <%= render 'communication_questions' %>
+</div>
 </div>
 </div>

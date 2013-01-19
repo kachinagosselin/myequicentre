@@ -1,10 +1,15 @@
 <% render 'press_footer' if false %>
-</br>
+
+<div class="footer-wrapper">
+<div class="bottom-shadow">
+<div class="left"></div>
+<div class="right"></div>
+</div></br>
 <div class='footer_links'>
 <div class='row links'>
 
 <div class='span2 offset1'>
-<b>Info</b>
+<b style="color:#153E56;">INFO</b>
 <ul>
     <li><%= link_to 'About', '/pages/about' %></li>
     <li><%= link_to 'Press', '/static_pages/press' if false %></li>
@@ -15,7 +20,7 @@
 </div>
 
 <div class='span2'>
-<b>Connect</b>
+<b style="color:#153E56;">CONNECT</b>
 <ul>
     <li><%= link_to 'Success Stories', '/pages/stories' if false %></li>
     <li><%= link_to 'Read Our Blog', "http://blog.myequicentre.com/" %></li>
@@ -24,15 +29,16 @@
 </div>
 
 <div class='span2'>
-<b>Find us</b>
+<b style="color:#153E56;">FIND US</b>
 <ul>
+    <li><%= link_to 'Pinterest', "http://pinterest.com/myequicentre/" %></li>
     <li><%= link_to 'Facebook', "http://www.facebook.com/pages/EquiCentre/284495924975888?" %></li>
     <li><%= link_to 'Twitter', "https://twitter.com/myequicentre" %></li>
 </ul>
 </div>
 
 <div class='span2'>
-<b>Policies</b>
+<b style="color:#153E56;">POLICIES</b>
 <ul>
     <li><%= link_to 'Guidelines', '/static_pages/guidelines' if false %></li>
     <li><%= link_to 'Terms of Service', '/pages/terms' %></li>
@@ -41,15 +47,15 @@
 </div>
 
 <div class='span3'>
-<b>Search Our Site</b>
+<b style="color:#153E56;">DISCOVER</b>
 <ul>
-    <li><%= link_to 'See all our Horses', '/horses/search' %></li>
+    <li><%= link_to 'Your Dream Horses', '/horses/search' %></li>
+    <li><%= link_to 'Search Professionals', '/users/search' %></li>
+    <li><%= link_to 'Find Nearby Farms', '/horses/search' %></li>
 </ul>
 </div>
 
 </div>
 </div>
-
-<div class='span3'>
-&copy 2012 MyEquicentre.com 
+<p style="text-align:right;">&copy 2012 MyEquicentre.com </p>
 </div>

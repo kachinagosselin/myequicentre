@@ -60,11 +60,13 @@ margin-left: 30px;
 .search-labels {
 padding-top: 10px;
 padding-bottom: 5px;
+z-index: -900;
 }
 
 .and-labels {
 position: relative;
-z-index: -1;
+width:15px;
+z-index: -900;
 bottom: 45px;
 left: 18px;
 line-height: 0px;
@@ -221,15 +223,6 @@ list-style: none;
 }
 
 /* LINK ELEMENTS*/
-.footer_links a:link {
-color: #424641;
-text-decoration: none;
-}
-
-.footer_links a:visited {
-color: #424641;
-text-decoration: none;
-}
 
 .text-box a:link {
 color: #fff;
@@ -244,6 +237,38 @@ text-decoration: none;
 .text-box a:visited {
 color: #fff;
 text-decoration: none;
+}
+
+.general-content {
+background-color: white;
+padding: 40px;
+}
+
+.general-content h1 {
+padding: 0px 10px 10px 10px;
+font-weight: 300;
+position: relative;
+font-size: 36px;
+text-align: center;
+margin-bottom: 0px;
+}
+
+.general-content h2 {
+font-family: "Helvetica Neue","Helvetica","Arial","sans-serif";
+font-size: 24px;
+font-weight: 300;
+text-align: center;
+margin-bottom: 0px;
+padding: 0px 20px 30px 20px;
+}
+
+.general-content h3 {
+font-family: "proxima-nova","Helvetica Neue","Helvetica","Arial","sans-serif";
+color: grey;
+font-size: 18px;
+line-height: 24px;
+font-weight: 300;
+padding: 0px 20px 30px 20px;
 }
 
 /* STATIC PAGE ELEMENTS*/
@@ -376,8 +401,23 @@ margin-top: 20px;
 margin-bottom: 30px;
 }
 
+.footer-wrapper {
+  background-color: #26729e;
+  height: 100%;
+}
+
 .footer_links {
 margin-bottom: 50px;
+}
+
+.footer_links a:link {
+color: #fff;
+text-decoration: none;
+}
+
+.footer_links a:visited {
+color: #fff;
+text-decoration: none;
 }
 
 .form-search{

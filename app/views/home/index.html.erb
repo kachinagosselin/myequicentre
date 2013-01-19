@@ -6,16 +6,23 @@
 <h1 style="text-align:center;"> Welcome to MyEquiCentre </h1>
 
 <div class="navbar">
-<div class='main-nav' style="position:relative;margin-bottom:0px;">
-<ul class="nav" style="text-align:center;">
-<li>
+<div class='discover-nav' style="position:relative;margin-bottom:0px;">
+<ul class="nav" style="width:960px;float:left;margin-top:10px;margin-left:100px;">
+<li style="margin-top:10px;"> DISCOVER: 
 </li>
-<li><%= link_to 'Horses', '/pages/discover' %></li>
+<li><%= link_to 'Horses for Sale', '/horses/search' %></li>
 <li class='divider-vertical'></li>
-<li><%= link_to 'Farms', '/pages/discover' %></li>
+<li><%= link_to 'Boarding Farms', '/pages/discover' %></li>
 <li class='divider-vertical'></li>
-<li><%= link_to 'Professionals', '/pages/info' %></li>
+<li><%= link_to 'Equine Professionals', '/users/search' %></li>
 <li class='divider-vertical'></li>
+<% if user_signed_in? %>
+<li><%= link_to 'Your Dashboard', user_path(current_user) %></li>
+<% else %>
+<li><%= link_to 'Create your EquiCentre   ', '/pages/info' %></li>
+<%= link_to "Sign Up", new_user_registration_path, :class => "btn btn-primary" %>
+<div style=""> (it's free) </div>
+<% end %>
 </ul>
 </div>
 </div>
@@ -70,15 +77,15 @@
 
 
 <div class="shadow-content">
-<h4>Welcome our newest users: </h4>
-<div class="row">
+<h4 style="text-align:center;">Welcome our newest users!</h4>
+<div class="row" style="margin: 0 auto;">
 
 <% i = 1 %>
 <% new_users.each do |user| %>
 <% if i <= 3 %>
  <div class="span1" style="width:100px;height:100px;">
  <%= image_tag user.avatar.url(:thumb), :size => "100x100", :class => "img-circle" %>
- <p style="text-align:center;margin-top:-10px;"><%= link_to 'view more', user_horses_path(user) %></p>
+ <p style="text-align:center;margin-top:-20px;"><%= link_to 'view more', user_horses_path(user) %></p>
 </div>
  <div class="span2" style="width:160px;"> 
  <b><%= user.first_name %> <%= user.last_name[0] %>.</b>
@@ -100,8 +107,3 @@
 </div>
 
 <% end %>
-
-<div class="bottom-shadow">
-<div class="left"></div>
-<div class="right"></div>
-</div>

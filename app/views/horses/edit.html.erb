@@ -4,5 +4,6 @@
 <h2>Update <%= current_user.horses.find(params[:id]).name %>'s Listing</h2>
 
 <%= render 'form' %>
+<%= render 'videos/form', :horse => @horse %>
 
 </div>
