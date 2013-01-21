@@ -22,15 +22,15 @@
 
 <p id="notice"><%= notice %></p>
 
-<div class="top-shadow" style="margin-top:60px;">
-<div class="left"></div>
-<div class="right"></div>
+<div style="margin-top:60px;">
+<%= render 'layouts/sub_navigation' %>
 </div>
 
 <div id="search-form">
     <%= render 'users/search_professional_form' %>
 </div>
 
+<div id="results" style="margin-left: 75px;">
 <ul class="nav nav-tabs"  id="myTab">
   <li><a href="#search-results">List View</a></li>
   <li><a href="#map-results">Map View</a></li>
@@ -54,4 +54,5 @@
         </div>
     </div>
     </div>
+</div>
 </div>

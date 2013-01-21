@@ -78,8 +78,7 @@ class HorsesController < ApplicationController
     if params.has_key?(:search) && params[:search][:distance] != ""
 
      @keywords = params[:search][:name_or_breed_or_gender_or_text_description_contains_any]
-     @keyword_array = @keywords.split(" ")
-     params[:search][:name_or_breed_or_gender_or_text_description_contains_any] = @keyword_array
+     params[:search][:name_or_breed_or_gender_or_text_description_contains_any] = @keywords.split(" ") if !@keywords.blank?
 
      @distance = params[:search][:distance]
      params[:search].delete :distance
@@ -88,8 +87,7 @@ class HorsesController < ApplicationController
      params[:search].delete :breed_contains_any
     else
      @breeds = params[:search][:breed_contains_any]
-     @breed_array = @breeds.split(" ")
-     params[:search][:breed_contains_any] = @breed_array
+     params[:search][:breed_contains_any] = @breeds.split(" ") if !@breeds.blank?
     end
 
     if params[:search][:gender_contains_any].blank?

@@ -21,11 +21,11 @@
 </script>
 <p id="notice"><%= notice %></p>
 
-<div class="top-shadow" style="margin-top:60px;">
-<div class="left"></div>
-<div class="right"></div>
+<div style="margin-top:60px;">
+<%= render 'layouts/sub_navigation' %>
 </div>
-<div class="shadow-content"> 
+
+<div class="shadow-content" style="background: #F8F8F8;" > 
 <div id="search-form">
     <%= render 'horses/search_form' %>
 </div>
@@ -34,6 +34,7 @@
 <div class="right"></div>
 </div>
 
+<div id="results" style="margin-left: 75px;">
 <ul class="nav nav-tabs"  id="myTab">
   <li><a href="#search-results">List View</a></li>
   <li><a href="#map-results">Map View</a></li>
@@ -41,8 +42,10 @@
 
 <div class="tab-content">
     <div class="tab-pane" id="search-results">
+    <!--
         <p> Sort by: <%= sort_link @search, :price %> | <%= sort_link @search, :dob, "Age" %> | 
         <%= link_to "Distance", :order => "released_at" %></p>
+    -->
         <%= render 'horses/search_results' %>
     </div>
     
@@ -59,4 +62,5 @@
         </div>
     </div>
     </div>
+</div>
 </div>

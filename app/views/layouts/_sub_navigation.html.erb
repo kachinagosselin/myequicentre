@@ -1,0 +1,21 @@
+<div class="navbar">
+<div class='discover-nav' style="position:relative;margin-bottom:0px;">
+<ul class="nav" style="width:960px;float:left;margin-top:10px;margin-left:100px;">
+<li style="margin-top:10px;"> DISCOVER: 
+</li>
+<li><%= link_to 'Horses for Sale', '/horses/search' %></li>
+<li class='divider-vertical'></li>
+<li><%= link_to 'Boarding Farms', '/farms/discover' %></li>
+<li class='divider-vertical'></li>
+<li><%= link_to 'Equine Professionals', '/users/search' %></li>
+<% if user_signed_in? %>
+<!--<li><%= link_to 'Your Dashboard', user_path(current_user) %></li>-->
+<% else %>
+<li class='divider-vertical'></li>
+<li><%= link_to 'Create your own EquiCentre', new_user_registration_path %></li>
+<%= link_to "Sign Up", new_user_registration_path, :class => "btn btn-primary" %>
+<div style=""> (it's free) </div>
+<% end %>
+</ul>
+</div>
+</div>
