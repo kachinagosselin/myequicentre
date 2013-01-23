@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
     if true
     acts_as_gmappable :check_process => false, :validation => false
     geocoded_by :gmaps4rails_address   
-    after_validation :geocode          # auto-fetch coordinates
+    #after_validation :geocode          # auto-fetch coordinates
     end
 
     # Include default devise modules. Others available are:

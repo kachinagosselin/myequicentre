@@ -1,9 +1,31 @@
+<script>
+$(document).ready(function(){
+       var keyword_array = document.getElementById('search_name_contains').value; 
+        document.getElementById('search_name_contains').value = 
+        keyword_array.replace("[","").replace("]","").replace(","," ").replace(/"/g, "");
+      // when you submit this form
+  $("#farm_search").submit(function(event) {
+       var distance = Number(document.getElementById('search_distance').value.replace(/[A-Za-z$-,-]/g, "").replace(/[^\d\.\-\ ]/g, ''));
+        if (distance != ""){
+        document.getElementById('search_distance').value = distance;
+        }      
+        //alert(document.getElementById('search_name_contains').value);  
+ });
+
+});
+</script>
+
   <%= simple_form_for(@search, :url => { :search => "search" }, :html => {:method => 'get', :class => 'form-vertical'}) do |f| %>
         <div class="row" style="margin-top:20px;margin-left:60px;">
         <div class ='span6'>
-        <%= f.input :name_or_description_contains_any, :label => false, 
+        <%= f.input :name_contains, :label => false, 
         :input_html => { :style => 'width: 430px', :class=> "search-query", 
         :placeholder=>"Search by keyword"}, :include_blank => true  %>
+        </div>
+        <div class='span3'>
+        <%= f.input :distance, :label => false, :input_html => { 
+        :placeholder=>"distance in miles"}, :required => false,
+        :include_blank => true %>
         </div>
         <div class ='span1'>
         <%= f.submit "Search", :class => "btn btn-primary"%> 

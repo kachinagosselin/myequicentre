@@ -1,30 +1,26 @@
 <div class='row'>
-<% @farms.each do |farm| %>
-<div class='span4'>
-<div class='card' style="background: no-repeat;background-size:cover;">
-<%=image_tag farm.mainimage.url %>
-<div class='banner'>
-    <div class='mainline' style="margin-bottom:-3px;">
-    <%= link_to farm.name, farm_path(farm) %>
-        <div class='amount'>
-            <div class='dollar'>$</div>
-            <div class='price'><%= number_to_currency(farm.rate.round, :unit => "", :precision => 0) %>/month</div>
+    <% @farms.each do |farm| %>
+    <div class='span4'>
+        <div class='farmdisplay card' style="background: no-repeat;background-size:cover;">
+            <%=image_tag farm.mainimage.url%>
+            <div class='banner'>
+                <div class='mainline' style="margin-bottom:-3px;">
+                    <%= farm.name %>
+                    <!--<%= link_to farm.name, farm_path(farm) %>-->
+                </div>
+                <div class='tagline'> 
+                <p style="margin-bottom:0px;">$<%= number_to_currency(farm.rate.round, :unit => "", :precision => 0) %>/month - Serves <%= farm.capacity %> horses</p>
+                <p><%= farm.city if farm.city %>, <%= farm.state %> 
+                (<%= number_with_precision(farm.distance_from(current_user.gmaps4rails_address), :precision => 1)%> miles)</p>
+                </div>
+            </div>
         </div>
     </div>
-    <div class='tagline'> 
-        <p style="margin-bottom:0px;">Serves <%= farm.capacity %> horses</p>
-        <p>located in: <%= farm.city if farm.city %>, <%= farm.state %> 
-        (<%= number_with_precision(farm.distance_from(current_user.gmaps4rails_address), :precision => 1)%> miles)
-        <span class='more-details'></span>
-        </p>
+    <% end %>
+
+    <div class="search-paginate">
+        <%= will_paginate @farms, :renderer => BootstrapPagination::Rails %>
     </div>
-</div>
-</div>
-</div>
-<% end %>
-<div class="search-paginate">
-<%= will_paginate @farms, :renderer => BootstrapPagination::Rails %>
-</div>
 
 </div>
 

@@ -1,0 +1,15 @@
+<div class="row span5">
+ 	<% if object.mainimage.present? %>
+ 		<div class="marker-image">
+ 	     	<%= image_tag object.mainimage.url(:thumb) %>
+ 	 	</div>
+ 	<% end %>
+         <p><b><%= object.name %></b> in <%= object.city %>, <%= object.state %> </p> 
+         <%= truncate(object.description, :length => 275) %>
+         <b>Rate: </b> $<%= object.rate %>/month 
+         <% if object.capacity.present? && !object.capacity.blank? %> 
+         - 
+         Serves <%= object.capacity %> horses
+         <% end %>
+         <!--<%=link_to 'view details', farm_path(object) %>-->
+ </div>

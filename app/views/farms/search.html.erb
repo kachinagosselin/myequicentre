@@ -46,16 +46,16 @@
     
     <div id="map-results">
     <div class="row">
-        <div class="span9">
+        <div class="span11">
         <%= gmaps(:map_options => {:do_clustering => false}, :markers => {:data => @json, :options => {:list_container => "markers_list" } }) %>
         </div>
-        <div class="span2">
+        <div class="span2" style="display:none;">
         <div id="inner">
-        <h4> Boarding Farms </h4>
         <ul id="markers_list"></ul>
         </div>
         </div>
     </div>
     </div>
+
 </div>
 </div>

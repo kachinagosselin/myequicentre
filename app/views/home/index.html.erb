@@ -15,31 +15,18 @@
 
 <!-- This is the page content-->
 <div class="center-align">
-<h3>The most beautiful and elegant site available for selling and buying horses online.</h3>
+<!--<h3>
+	The most beautiful and elegant site available for selling and buying horses online.</h3>-->
 
 <!-- For users that are logged in --> 
 <% if user_signed_in? %>
-    <h3>Go to your dashboard to manage your account or begin 
-    <%= link_to 'browsing our horses', '/horses/search' %>...</h3>
+    <h3>Go to your dashboard to manage your account or begin browsing our horses...</h3>
 <!-- For users that aren't logged in --> 
 <% else %>
     <h3>Browse the site as you please, or sign up for a free account to post your own horses.</h3>
     <%= link_to "Sign Up (it's free)", new_user_registration_path, :class => "btn btn-primary
     btn-large" %>
-    
-    <!-- The newsletter signup form for the EquiCentre mailing list --> 
-<!-- The newsletter signup form for the EquiCentre mailing list --> 
-<!-- Begin MailChimp Signup Form -->
-<div class="center-align">
-<div id="mc_embed_signup">
-<form action="http://daedalusinnovation.us5.list-manage1.com/subscribe/post?u=6b599f220526ed76b813b95c9&amp;id=c5917e2e5d" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate horizontal" target="_blank" novalidate>
-	<h4>Subscribe to our mailing list: </h4>
-	<input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required>
-	<input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="btn btn-mini btn-info">
-</form>
-</div>
-</div>
-<!-- End mc_embed_signup -->
+
 <%end%>
 </div>
 
@@ -50,11 +37,182 @@
 </br>
 
 
+
+
+
+<div class='row'>
+<div class='span12'>
+<div class="general-content">
+<div class="divider-horizontal"></div>
+
+<div class="span6">
+<h4>Beautiful professional affordable ads</h4>
+<h3>
+We want you to be able to represent your horse in the most professional fashion possible.
+We allow you to put multiple images and videos up at no additional cost. Ads are a flat fee of $10 a 
+month with costs prorated if you're horse sells faster than expected. Inquire about getting 
+your horse in the slideshow on the homepage and check out blog for posts on how to best 
+represent your horse through photographs and video.
+</h3>
+</div>
+<div class="span4">
+<p><%= image_tag("/images/ad_screen_shot.png", :alt => "")%></p>
+</div>
+<div class="divider-horizontal"></div>
+<div class="span3">
+</br>
+<div class="pill">Warmblood 
+<a class="close" style="display:inline;top:-22px;">&#215;</a>
+</div>
+<div class="pill">Arabian 
+<a class="close" style="display:inline;top:-22px;">&#215;</a>
+</div>
+<div class="pill">Thoroughbred 
+<a class="close" style="display:inline;top:-22px;">&#215;</a>
+</div>
+<div class="pill">Friesan 
+<a class="close" style="display:inline;top:-22px;">&#215;</a>
+</div>
+<div class="pill">Andalusian 
+<a class="close" style="display:inline;top:-22px;">&#215;</a>
+</div>
+
+<!--
+<ul class="nav nav-tabs">
+  <li><a href="#">List View</a></li>
+  <li><a href="#" class="active">Map View</a></li>
+</ul>
+-->
+</div>
+<div class="span7">
+<h4>Simple yet comprehensive search tools</h4>
+<h3>
+We provide a simple intuitive interface for search for horses. Multiple genders and breeds 
+are added as you type. Choose to view the results in map view to see where you are 
+in relation to the horses. Try it out for yourself, start <%= link_to 'browsing our horses ', '/horses/search' %>...
+</h3>
+</div>
+<div class="divider-horizontal"></div>
+<div class="span7">
+<h4>Save your favorite horses</h4>
+<h3> 
+As you browse through our site you can save your favorite horses so that you can easily find
+them from your dashboard in the future. Save notes to remind you why they caught your eye. 
+</h3>
+</div>
+<div class="span3">
+</br>
+<%= image_tag("/images/bookmark.png", :style => "width:100px;margin-left:65px;", :alt => "")%>
+</div>
+<div class="divider-horizontal"></div>
+<div class="span3">
+<%= image_tag("/images/facebook_logo.jpg", :style => "width:100px;margin-left:65px;margin-top:55px;", :alt => "")%>
+
+</div>
+<div class="span7">
+<h4>Leave testimonials and share</h4>
+<h3>
+If you're in communication with the horse owner then it means we trust your opinion when
+it comes to leaving a testimonial for the next person to view the horse. So if you're a 
+friend, neighbor or just visited the horse leave a note for interested viewers. If you 
+know what horses you like we make it easy for you to share horses via Facebook, 
+Twitter and even Pinterest.
+</div>
+<div class="divider-horizontal"></div>
+<div class="span6">
+<h4>Personal message center</h4>
+<h3>
+You will get your own personal message center for managing conversations with users on our site.
+Contact horse owners, get in touch with your neighbors, have conversations with friends. We're all
+about communication without having to share your email address or phone number. 
+</h3>
+</div>
+<div class="span4">
+<p><%= image_tag("/images/message_center.png", :alt => "")%></p>
+</div>
+<div class="divider-horizontal"></div>
+<div class="span4">
+<p><%= image_tag("/images/horse_community.jpg", :style => "margin-top:15px;", :alt => "")%></p>
+</div>
+<div class="span6">
+<h4>Connect to your community!</h4>
+<h3> 
+Our site is about more than just listings, it's about community. We'll let you know when new users in 
+your area have joined onto the site. Go out and meet them! Start discussions, make 
+friends and build community. Together we can make MyEquiCentre the place to go to stay in 
+touch with your barn buddies, you know, when it's too cold to trek out to the barn!
+</h3>
+</div>
+<div class="divider-horizontal"></div>
+</br>
+<h1>Offerings Down the Road</h1>
+<div class="divider-horizontal"></div>
+<div class="span6">
+<h4>Best ads rise to the top</h4>
+<h3> 
+We don't allow horse owners to pay for their listings to get more visibility on the site 
+(with exception of the slideshow on the homepage). Instead we subtly encourage owner 
+transparency by giving preferance to horses that have a detailed pedigree and competition 
+record filled out thus making sure that you get in-depth knowledge on the horses you find.
+</h3>
+</div>
+<div class="span4">
+<p><%= image_tag("/images/competition_horse.png", :alt => "")%></p>
+</div>
+<div class="divider-horizontal"></div>
+<div class="span4">
+</br>
+<p><%= image_tag("/images/survey_image.png", :alt => "", :style => "margin-left: 50px;")%></p>
+</div>
+<div class="span6">
+<h4>Find serious inquirers</h4>
+<h3>
+As a horse owner you need to balance attracting attention and time spent.
+We enable you to create custom surveys so that you can identify serious inquirers
+before sharing your contact information.
+</h3>
+</div>
+<div class="divider-horizontal"></div>
+<div class="span6">
+<h4>MyEquiCentre iPhone App</h4>
+<h3>
+We envision down the road having an iphone app that gives your alerts about new users and 
+horses being listed that are in your neighborhood. You'll never even have to go online to 
+conduct your horse search - the best horses will come to you! 
+</h3>
+</div>
+<div class="span4">
+</br>
+<p><%= image_tag("/images/myequicentre_iphone.png", :alt => "")%></p>
+</div>
+<div class="divider-horizontal"></div>
+
+<!-- Begin MailChimp Signup Form -->
+<div class="center-align">
+</br>
+<h3>
+Interested and learn more about what we do?
+</h3>
+<div id="mc_embed_signup">
+<form action="http://daedalusinnovation.us5.list-manage1.com/subscribe/post?u=6b599f220526ed76b813b95c9&amp;id=c5917e2e5d" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate horizontal" target="_blank" novalidate>
+	<h4>Subscribe to our mailing list: </h4>
+	<input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required>
+	<input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="btn btn-mini btn-info">
+</form>
+</div>
+</div>
+<!-- End mc_embed_signup -->
+
+</div>
+</div>
+</div>
+
+
+
 <div class="top-shadow">
 <div class="left"></div>
 <div class="right"></div>
 </div>
-
 
 <div class="shadow-content">
 <h4 style="text-align:center;">Welcome our newest users!</h4>
