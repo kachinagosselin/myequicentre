@@ -11,7 +11,21 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130106205511) do
+ActiveRecord::Schema.define(:version => 20130123150811) do
+
+  create_table "businesses", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.integer  "phone"
+    t.string   "website"
+    t.string   "city"
+    t.string   "state"
+    t.integer  "user_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  add_index "businesses", ["user_id"], :name => "index_businesses_on_user_id"
 
   create_table "comments", :force => true do |t|
     t.string   "commenter"
@@ -54,6 +68,30 @@ ActiveRecord::Schema.define(:version => 20130106205511) do
   end
 
   add_index "delayed_jobs", ["priority", "run_at"], :name => "delayed_jobs_priority"
+
+  create_table "farms", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.integer  "phone"
+    t.string   "website"
+    t.integer  "rate"
+    t.integer  "capacity"
+    t.string   "city"
+    t.string   "state"
+    t.integer  "user_id"
+    t.datetime "created_at",             :null => false
+    t.datetime "updated_at",             :null => false
+    t.string   "mainimage_file_name"
+    t.string   "mainimage_content_type"
+    t.integer  "mainimage_file_size"
+    t.datetime "mainimage_updated_at"
+    t.string   "address"
+    t.float    "latitude"
+    t.float    "longitude"
+    t.boolean  "gmaps"
+  end
+
+  add_index "farms", ["user_id"], :name => "index_farms_on_user_id"
 
   create_table "horses", :force => true do |t|
     t.string   "name"

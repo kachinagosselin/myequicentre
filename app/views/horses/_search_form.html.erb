@@ -212,7 +212,7 @@ function calculateAge(dobString) {
 </script>
 
   <%= simple_form_for(@search, :url => { :search => "search" }, :html => {:method => 'get', :class => 'form-vertical'}) do |f| %>
-        <div class = 'span11 offset1'>
+        <div class="row" style="margin-top:20px;margin-left:60px;">
         <div class="row">
         <div class ='span6'>
         <%= f.input :name_or_breed_or_gender_or_text_description_contains_any, :label => false, 
@@ -279,6 +279,5 @@ function calculateAge(dobString) {
         <%= f.input :distance, :label => "Distance (in miles):", :required => false, :include_blank => true %><br />
         </div>
         </div>
-        
-        </div>
+</div>
 <% end %> 

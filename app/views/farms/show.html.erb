@@ -1,0 +1,33 @@
+<!-- This is the farm profile page. -->
+
+<div class="white-background">
+<h3><%= @farm.name if @farm.name %></h3>
+<%= image_tag @farm.mainimage%>
+<p> Cost per month: $<%= @farm.rate if @farm.rate%> </p>
+<p> Capacity: <%= @farm.capacity if @farm.capacity%> horses </p>
+<% if (@farm.website && !@farm.website.blank?) || @farm.phone %>
+<h2>Contact Information</h2>
+<% end %>
+<% if @farm.website && !@farm.website.blank? %>
+<h3>Website: <a href="http://<%= @farm.website%>"  target="_blank"><%= @farm.website%></a></h3>
+<% end %>
+<% if @farm.phone %>
+<h3>Phone: (<%= @farm.phone.to_s[0,3] %>)
+<%= @farm.phone.to_s[3,3] %>-<%= @farm.phone.to_s[6,@farm.phone.size]%>
+</h3>
+<% end %>
+</div>
+
+    <div id="map-results">
+    <div class="row">
+        <div class="span4">
+        <%= gmaps(:map_options => {:auto_zoom => false, :zoom => 15}, :markers => {:data => @json}) %>
+        </div>
+        <div class="span2">
+        <div id="inner">
+        <h4> Farm </h4>
+        <ul id="markers_list"></ul>
+        </div>
+        </div>
+    </div>
+    </div>

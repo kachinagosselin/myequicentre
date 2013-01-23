@@ -1,4 +1,7 @@
 Railsapp::Application.routes.draw do    
+  resources :businesses
+
+
     ## For the auth
     authenticated :user do
         root :to => 'home#index'
@@ -9,7 +12,7 @@ Railsapp::Application.routes.draw do
     #match ':controller(/:action(/:id(.:format)))' => ':controller#:action', :via => [:get]
     match 'horses/search(/:id)' => 'horses#search', :via => [:get]
     match 'users/search(/:id)' => 'users#search', :via => [:get]
-    match 'users/search(/:id)' => 'users#search', :via => [:get]
+    match 'farms/search(/:id)' => 'farms#search', :via => [:get]
     #match 'horses(/:id)/search' => 'horses#search', :via => [:get]
     match 'horses' => 'home#index', :via => [:get]
     
@@ -41,6 +44,8 @@ Railsapp::Application.routes.draw do
         resources :testimonials
     end
     resources :plans
+    resources :farms
+    resources :businesses
     
     resources :posts do
         resources :comments

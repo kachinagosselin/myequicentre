@@ -5,6 +5,19 @@
 <h3>
 This is the place for you to keep track of your listings and your favorite horses from our site. 
 </h3>
+<p> Are you the owner of a horse farm? 
+<%= link_to 'Add New Farm', new_farm_path(), class: 'btn btn-mini' %>
+<% @farms = Farm.where(:user_id => current_user.id) %>
+<div class='divider-horizontal'></div>
+<% @farms.each do |farm| %>
+<%= farm.name %>
+    <div class='horse-controls'>
+    <%= link_to 'Show', farm_path(farm) %> | <%= link_to 'Edit', 
+    edit_farm_path(farm) %> | <%= link_to 'Delete', [farm], method: 
+    :delete, data: { confirm: 'Are you sure?' } %>
+    </div>
+<% end %>
+</p>
 </div>
 </div>
 

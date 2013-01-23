@@ -1,0 +1,61 @@
+<script>
+  $(function () {
+    document.getElementById('map-results').style.visibility = 'hidden'; 
+    document.getElementById('map-results').style.height = '0'; 
+    document.getElementById('map-results').style.overflow = 'hidden'; 
+    $('#myTab a:first').tab('show');
+    $('#myTab a').click(function (e) {
+    e.preventDefault();
+    $(this).tab('show');
+    document.getElementById('map-results').style.visibility = 'visible'; 
+    document.getElementById('map-results').style.overflow = 'visible'; 
+  })
+    $('#myTab a:first').click(function (e) {
+    e.preventDefault();
+    $(this).tab('show');
+    document.getElementById('map-results').style.visibility = 'hidden'; 
+    document.getElementById('map-results').style.overflow = 'hidden'; 
+    //$('#myTab').load($('li.active a[data-toggle="tab"]').attr('href'));
+  })
+})
+</script>
+<p id="notice"><%= notice %></p>
+
+<div style="margin-top:60px;">
+<%= render 'layouts/sub_navigation' %>
+</div>
+
+<div class="shadow-content" style="background: #F8F8F8;" > 
+<div id="search-form">
+    <%= render 'farms/search_form' %>
+
+<div id="results" style="width:100%;margin-top: 25px; margin-left: 75px;">
+<ul class="nav nav-tabs"  id="myTab">
+  <li><a href="#search-results">List View</a></li>
+  <li><a href="#map-results">Map View</a></li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane" id="search-results">
+    <!--
+        <p> Sort by: <%= sort_link @search, :price %> | <%= sort_link @search, :dob, "Age" %> | 
+        <%= link_to "Distance", :order => "released_at" %></p>
+    -->
+        <%= render 'farms/search_results' %>
+    </div>
+    
+    <div id="map-results">
+    <div class="row">
+        <div class="span9">
+        <%= gmaps(:map_options => {:do_clustering => false}, :markers => {:data => @json, :options => {:list_container => "markers_list" } }) %>
+        </div>
+        <div class="span2">
+        <div id="inner">
+        <h4> Boarding Farms </h4>
+        <ul id="markers_list"></ul>
+        </div>
+        </div>
+    </div>
+    </div>
+</div>
+</div>

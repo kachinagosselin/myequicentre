@@ -1,0 +1,81 @@
+<script>
+  $(document).ready(function(){
+    var raw_price = document.getElementById('farm_price').value;
+    if (raw_price != ""){
+    var formated_price = '$' + raw_price;
+    document.getElementById('farm_price').value = formated_price;
+    }
+    
+    $("#new_farm").submit(function(event) {
+    var price_string = document.getElementById('farm_price').value.replace(/[A-Za-z$-,-]/g, "").replace(/[^\d\.\-\ ]/g, '');
+    var price_int = Number(price_string);
+    document.getElementById('farm_price').value = price_int;
+    var breed = document.getElementById('farm_breed').value;
+    document.getElementById('farm_breed').value = capitalize(breed);
+    var height = document.getElementById('farm_height').value;
+    document.getElementById('farm_height').value = Number(height);
+    });
+
+    $("#edit_farm").submit(function(event) {
+    var price_string = document.getElementById('farm_price').value.replace(/[A-Za-z$-,-]/g, "").replace(/[^\d\.\-\ ]/g, '');
+    var price_int = Number(price_string);
+    document.getElementById('farm_price').value = price_int;
+    var breed = document.getElementById('farm_breed').value;
+    document.getElementById('farm_breed').value = breed.toLowerCase();
+    var height = document.getElementById('farm_height').value;
+    document.getElementById('farm_height').value = Number(height);
+    });
+    
+    function capitalize(text) {
+    return text.charAt(0).toUpperCase() + text.slice(1).toLowerCase();
+    }
+});
+</script>
+
+<%= simple_form_for(@farm, :html => {:id => 'edit_farm', :class => 'form-vertical', :multipart => true }) do |f| %>
+  <%= f.error_notification %>
+  <div class="form-inputs">    
+  <div class="row">
+  <div class="span5">
+    <b>Basic farm Details</b>
+    <%=h f.input :name %>
+    <%= f.hidden_field :user_id, :value => current_user.id %>
+    <% if @farm.address.present? %>
+    <%=h f.input :address, :value => @farm.address%>
+    <% else %>
+    <%=h f.input :address %>
+    <% end %>
+      	
+    <% if @user.city.present? && !@farm.city.present?%>
+    <%=h f.input :city, :value => @user.city, :hint => 'Note: Change farm location if different than yours.'%>
+    <% elsif @farm.city.present? %>
+    <%=h f.input :city, :value => @farm.city%>
+    <% else %>
+    <%=h f.input :city %>
+    <% end %>
+    
+    <% if @user.state.present? && !@farm.state.present?%>
+    <%= f.input :state, :as => :select, :collection => STATES, :value => @user.state%>
+    <% elsif @farm.state.present? %>
+    <%= f.input :state, :as => :select, :collection => STATES, :value => @farm.state%>
+    <% else %>
+    <%= f.input :state, :as => :select, :collection => STATES %>
+    <% end %>
+    </div>
+
+    <div class="span6">
+    <b>Farm Description</b>    
+    <%=h f.input :rate %>
+    <%=h f.input :capacity %>
+    <b>Images for Display</b>
+    <%= f.input :mainimage, :label => 'Main Image' %>
+   </div>
+</div>
+  <div class="form-actions">
+    <span class="pull-right">
+      <%= link_to 'Cancel', user_path(@user), class: 'btn' %>
+      <%= f.button :submit %>
+    </span>
+  </div>
+<% end %>
+

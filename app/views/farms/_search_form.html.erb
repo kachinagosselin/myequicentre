@@ -1,0 +1,13 @@
+  <%= simple_form_for(@search, :url => { :search => "search" }, :html => {:method => 'get', :class => 'form-vertical'}) do |f| %>
+        <div class="row" style="margin-top:20px;margin-left:60px;">
+        <div class ='span6'>
+        <%= f.input :name_or_description_contains_any, :label => false, 
+        :input_html => { :style => 'width: 430px', :class=> "search-query", 
+        :placeholder=>"Search by keyword"}, :include_blank => true  %>
+        </div>
+        <div class ='span1'>
+        <%= f.submit "Search", :class => "btn btn-primary"%> 
+        </div>
+
+</div>
+<% end %> 
