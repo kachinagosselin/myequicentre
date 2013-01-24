@@ -47,8 +47,8 @@ class FarmsController < ApplicationController
     
     def search
         if params.has_key?(:search) && params[:search][:distance] != ""
-            @keywords = params[:search][:name_contains]
-            params[:search][:name_contains] = @keywords.split(" ") if !@keywords.blank?
+            #@keywords = params[:search][:name_contains]
+            #params[:search][:name_contains] = @keywords.split(" ") if !@keywords.blank?
             
             @distance = params[:search][:distance]
             params[:search].delete :distance
@@ -56,11 +56,11 @@ class FarmsController < ApplicationController
             @search = Farm.near(current_user.gmaps4rails_address, @distance).search(params[:search])
             
         elsif params.has_key?(:search)
-            @keywords = params[:search][:name_contains]
-            params[:search][:name_contains] = @keywords.split(" ") if !@keywords.blank?
+            #@keywords = params[:search][:name_contains]
+            #params[:search][:name_contains] = @keywords.split(" ") if !@keywords.blank?
             @search = Farm.search(params[:search])            
         else
-            @search = Farm.search(params[:search])
+            @search = Farm.search.all
         end
         @json = @search.all.to_gmaps4rails do |farm, marker|
             marker.infowindow render_to_string(:partial => "/farms/display_marker", :locals => {:object => farm})       
