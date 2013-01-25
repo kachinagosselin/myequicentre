@@ -60,7 +60,7 @@ class FarmsController < ApplicationController
             #params[:search][:name_contains] = @keywords.split(" ") if !@keywords.blank?
             @search = Farm.search(params[:search])            
         else
-            @search = Farm.search.all
+            @search = Farm.search(params[:search])
         end
         @json = @search.all.to_gmaps4rails do |farm, marker|
             marker.infowindow render_to_string(:partial => "/farms/display_marker", :locals => {:object => farm})       
