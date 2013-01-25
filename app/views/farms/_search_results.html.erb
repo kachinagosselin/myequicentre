@@ -11,7 +11,10 @@
                 <div class='tagline'> 
                 <p style="margin-bottom:0px;">$<%= number_to_currency(farm.rate.round, :unit => "", :precision => 0) %>/month - Serves <%= farm.capacity %> horses</p>
                 <p><%= farm.city if farm.city %>, <%= farm.state %> 
-                (<%= number_with_precision(farm.distance_from(current_user.gmaps4rails_address), :precision => 1)%> miles)</p>
+                <% if current_user.present? %>
+                (<%= number_with_precision(farm.distance_from(current_user.gmaps4rails_address), :precision => 1)%> miles)
+                <% end %>
+                </p>
                 </div>
             </div>
         </div>
