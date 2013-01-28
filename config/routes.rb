@@ -1,6 +1,4 @@
 Railsapp::Application.routes.draw do    
-  resources :businesses
-
 
     ## For the auth
     authenticated :user do

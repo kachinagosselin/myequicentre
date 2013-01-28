@@ -10,20 +10,12 @@
     var price_string = document.getElementById('farm_price').value.replace(/[A-Za-z$-,-]/g, "").replace(/[^\d\.\-\ ]/g, '');
     var price_int = Number(price_string);
     document.getElementById('farm_price').value = price_int;
-    var breed = document.getElementById('farm_breed').value;
-    document.getElementById('farm_breed').value = capitalize(breed);
-    var height = document.getElementById('farm_height').value;
-    document.getElementById('farm_height').value = Number(height);
-    });
+   });
 
     $("#edit_farm").submit(function(event) {
     var price_string = document.getElementById('farm_price').value.replace(/[A-Za-z$-,-]/g, "").replace(/[^\d\.\-\ ]/g, '');
     var price_int = Number(price_string);
     document.getElementById('farm_price').value = price_int;
-    var breed = document.getElementById('farm_breed').value;
-    document.getElementById('farm_breed').value = breed.toLowerCase();
-    var height = document.getElementById('farm_height').value;
-    document.getElementById('farm_height').value = Number(height);
     });
     
     function capitalize(text) {
