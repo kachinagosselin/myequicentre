@@ -22,7 +22,7 @@ class Horse < ActiveRecord::Base
     VALID_GENDERS = ["Mare", "Gelding", "Stallion"]
 
     validates :dob,  :presence => true #, :numericality => { :greater_than => 0, :less_than_or_equal_to => 50 }
-    validates :breed, :presence => true, :inclusion => { :in => VALID_BREEDS , :message => "%{value} is not a listed breed" }
+    validates :breed, :presence => true #, :inclusion => { :in => VALID_BREEDS , :message => "%{value} is not a listed breed" }
     validates :gender, :presence => true, :inclusion => { :in => VALID_GENDERS , :message => "%{value} is not a valid gender" }
     validates :height, :presence => true, :numericality => { :greater_than_or_equal_to => 4, :less_than_or_equal_to => 20 }, :inclusion => { :in => VALID_HEIGHTS, :message => "%{value} is not a valid height" }
     validates :name, :presence => true, :length => { :minimum => 3 }
