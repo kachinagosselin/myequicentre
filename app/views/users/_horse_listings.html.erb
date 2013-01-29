@@ -1,4 +1,4 @@
-<div class='white-background'>
+<div class='general-content'>
 <h1>Your Horse Listings</h1>
 <table class="table table-condensed">
   <% if @user.horses.present? %>
@@ -14,7 +14,7 @@
     <th></th>
   </tr>
   </thead>
-  <% @user.horses.each do |horse| %>
+  <% @horses.each do |horse| %>
   <tbody>
   <tr>
     <td><%= horse.name %></td>
@@ -49,4 +49,7 @@
 </div>
 <% end %>
 </table>
+<div class="search-paginate">
+<%= will_paginate @horses, :renderer => BootstrapPagination::Rails %>
+</div>
 </div>

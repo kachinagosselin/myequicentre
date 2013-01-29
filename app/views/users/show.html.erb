@@ -32,14 +32,12 @@ This is the place for you to keep track of your listings and your favorite horse
 <%= render 'saved_horses' %>
 <% end %>
 
-<% if true %>
 <%= render 'horse_listings' %>
-<% end %>
 
 <div class='white-background'>
 <h1>Your Sales Barn</h1>
 <div class='divider-horizontal'></div>
-<% @horses.each do |horse| %>
+<% @sale_horses.each do |horse| %>
 <%= render 'sales_barn', :horse => horse %>
     <div class='horse-controls'>
     <%= link_to 'Show', user_horse_path(@user, horse) %> | <%= link_to 'Edit', 
@@ -50,5 +48,5 @@ This is the place for you to keep track of your listings and your favorite horse
 <% end %>
 </div>
 <div class="search-paginate">
-<%= will_paginate @horses, :renderer => BootstrapPagination::Rails %>
+<%= will_paginate @sale_horses, :param_name => 'sales_page', :renderer => BootstrapPagination::Rails %>
 </div>
