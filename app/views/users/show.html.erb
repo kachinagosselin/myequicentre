@@ -27,26 +27,7 @@ This is the place for you to keep track of your listings and your favorite horse
 <% if false %>
 <%= render 'new_neighborhood_horses' %>
 <% end %>
-
-<% if true %>
+<div class="divider-horizontal"></div>
 <%= render 'saved_horses' %>
-<% end %>
-
+<div class="divider-horizontal"></div>
 <%= render 'horse_listings' %>
-
-<div class='white-background'>
-<h1>Your Sales Barn</h1>
-<div class='divider-horizontal'></div>
-<% @sale_horses.each do |horse| %>
-<%= render 'sales_barn', :horse => horse %>
-    <div class='horse-controls'>
-    <%= link_to 'Show', user_horse_path(@user, horse) %> | <%= link_to 'Edit', 
-    edit_user_horse_path(@user, horse) %> | <%= link_to 'Delete', [horse.user, horse], method: 
-    :delete, data: { confirm: 'Are you sure?' } %>
-    </div>
-    <div class='divider-horizontal'></div>
-<% end %>
-</div>
-<div class="search-paginate">
-<%= will_paginate @sale_horses, :param_name => 'sales_page', :renderer => BootstrapPagination::Rails %>
-</div>
