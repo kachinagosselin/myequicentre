@@ -52,8 +52,8 @@
     <% if current_user == @user %>
     <%= link_to 'Edit', edit_user_horse_path(@user, @horse) %> |
     <%= link_to 'Back', user_horses_path(@user) %>
-    <%else%>
-    <%= link_to 'View Horses for Sale by Owner', user_horses_path(@user) %>
+    <%elsif false%>
+    <%= link_to 'View Horses for Sale', user_horses_path(@user) %>
     <%end%>
     </p>
     </div>
@@ -70,7 +70,9 @@
 <h4>Horse Representative</h4>
 <p> <%= @user.name %> </p>
 </div>
+<!--
 <%= image_tag @user.avatar.url(:medium), :class => "img-circle", :id => "horse-owner-img"%>
+-->
 <a data-toggle="modal" href="#message-user-<%= @user.id %>" class="btn btn-info btn-block" type="button">Inquire about this horse!</a>
 <%= image_tag "/images/get_in_touch.png"%>
 <h4  class="center-align">Horse Details</h4>
