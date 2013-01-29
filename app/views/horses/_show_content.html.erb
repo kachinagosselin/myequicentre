@@ -73,15 +73,14 @@
 </div>
 <%= image_tag @user.avatar.url(:medium), :class => "img-circle", :id => "horse-owner-img"%>
 -->
-<a data-toggle="modal" href="#message-user-<%= @user.id %>" class="btn btn-info btn-block" type="button">Inquire about this horse!</a>
-<%= image_tag "/images/get_in_touch.png"%>
 <h4  class="center-align">Horse Details</h4>
 <p><b>Breed: </b><%= @horse.breed %></p>
 <p><b>Gender: </b><%= @horse.gender %></p>
 <p><b>Age: </b><%= @horse.age %> yrs</p>
 <p><b>Height: </b><%= @horse.height %> hh</p> 
 <p><b>Price: </b><%= number_to_currency(@horse.price.round, :precision => 0) %> </p>
-
+<a data-toggle="modal" href="#message-user-<%= @user.id %>" class="btn btn-info btn-block" type="button">Inquire about this horse!</a>
+<%= image_tag "/images/get_in_touch.png"%>
 </div>
 <div class='point'></div>
 </div>
